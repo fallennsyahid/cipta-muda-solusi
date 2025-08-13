@@ -23,21 +23,22 @@
 <body>
     {{-- Header Start --}}
     <header class="bg-white absolute top-0 left-0 w-full flex items-center z-10">
-        <div class="container max-w-full">
+        <div class="container max-w-full relative">
             <div class="flex items-center justify-between">
                 <div class="px-4 py-6">
                     <div class="flex items-center mr-2">
-                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi" width="150"
-                            height="150" loading="lazy">
-                        <div class="flex flex-col items-center">
-                            <h1 class="text-primary font-semibold text-2xl">PT. Cipta Muda Solusi</h1>
-                            <span class="text-text">Young, Brave, Innovative, Strong</span>
+                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
+                            class="w-21 lg:w-37.5" width="675" height="200">
+                        <div class="flex flex-col items-start">
+                            <h1 class="text-primary font-semibold text-base lg:text-2xl">PT. Cipta Muda Solusi</h1>
+                            <span class="text-text text-xs lg:text-base">Young, Brave, Innovative, Strong</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end px-4">
-                    <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
+                    <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
+                        class="block absolute right-4 lg:hidden">
                         <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
                         <span class="hamburger-line transition duration-300 ease-in-out"></span>
                         <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
@@ -48,45 +49,51 @@
                     lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
                         <ul class="block lg:flex lg:items-center lg:justify-center" id="#nav-active">
                             <li class="group">
-                                <a href="#" class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                <a href="#"
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Beranda
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#about" class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                <a href="#about"
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Tentang
                                 </a>
                             </li>
                             <li class="group">
                                 <a href="#visiMisi"
-                                    class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Visi & Misi
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#service" class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                <a href="#service"
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Layanan
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#teams" class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                <a href="#teams"
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Team
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#portfolio"
-                                    class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                <a href="#portfolios"
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Portfolio
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#contact" class="text-base text-black py-2 mx-5 flex group-hover:text-primary">
+                                <a href="#contact"
+                                    class="text-base font-medium text-black py-2 mx-5 flex group-hover:text-primary">
                                     Contact
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#contact"
-                                    class="text-2xl text-black py-3 px-3 bg-[#d9d9d9] rounded-full mx-5 flex transition-all duration-200 ease-in-out group-hover:scale-110">
+                                <a href="#contact" id="search-button"
+                                    class="text-2xl text-black w-12.5 h-12.5 bg-section rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
+                                    aria-label="Buka Pencarian">
                                     <i class="fas fa-magnifying-glass"></i>
                                 </a>
                             </li>
@@ -94,6 +101,19 @@
                     </nav>
                 </div>
             </div>
+
+            {{-- Search Form Start --}}
+            <div
+                class="search-form absolute top-full right-0 mt-6 mx-4 sm:mx-8 p-3 sm:p-5 bg-white rounded-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:w-160 flex items-center scale-x-0 origin-center duration-300 z-50">
+                <input type="search" id="search-box" placeholder="Cari disini..."
+                    class="w-full text-base sm:text-xl md:text-2xl text-text p-3 sm:p-4 bg-section rounded-md focus:border-0 focus:outline-none">
+                <label for="search-box"
+                    class="cursor-pointer mr-3 sm:mr-6 absolute inset-y-0 right-2 flex items-center">
+                    <i class="fas fa-magnifying-glass text-2xl sm:text-3xl text-text"></i>
+                </label>
+            </div>
+            {{-- Search Form End --}}
+
         </div>
     </header>
     {{-- Header End --}}
@@ -110,17 +130,19 @@
                         Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda
                     </p>
                     <div class="flex justify-center lg:justify-start">
-                        <a href="#"
-                            class="bg-bg/90 inline-flex items-center mt-5 px-6 py-3 rounded-xl text-heading shadow-lg hover:bg-bg transition-colors duration-200 ease-in-out">
-                            <i class="fas fa-phone mr-2"></i>
-                            Konsultasi Gratis
+                        <a href="#contact"
+                            class="bg-bg/90 relative inline-flex items-center mt-5 px-6 py-3 rounded-xl text-heading shadow-lg hover:bg-bg overflow-hidden transition-all duration-500 ease-out group">
+                            <span
+                                class="absolute inset-0 bg-bg scale-x-0 origin-center transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
+                            <i class="fas fa-phone mr-2 relative z-10"></i>
+                            <span class="relative z-10">Konsultasi Gratis</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="w-full self-end px-8 lg:w-1/2 overflow-hidden hidden lg:block">
                     <img src="{{ asset('landing/webp/hero-section.webp') }}" alt="Hero Section Image"
-                        class="rounded-lg">
+                        fetchpriority="high" class="rounded-lg aspect-[3/2]">
                 </div>
             </div>
 
@@ -128,15 +150,18 @@
                 class="bg-accent/80 p-10 flex flex-wrap justify-center items-center mt-21 lg:mt-10 gap-8 md:gap-16 lg:gap-24">
                 <div class="flex-1 min-w-[120px] max-w-[300px] flex justify-center">
                     <img src="{{ asset('landing/webp/angkasa-pura.webp') }}" alt="Angkasa Pura"
-                        class="w-full h-auto object-contain" />
+                        class="w-full h-auto object-contain grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300 ease-in-out"
+                        loading="lazy" width="824" height="300" />
                 </div>
                 <div class="flex-1 min-w-[80px] max-w-[150px] flex justify-center">
                     <img src="{{ asset('landing/webp/kemenkop.webp') }}" alt="Kemenkop"
-                        class="w-full h-auto object-contain" />
+                        class="w-full h-auto object-contain grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300 ease-in-out"
+                        loading="lazy" width="403" height="300" />
                 </div>
                 <div class="flex-1 min-w-[90px] max-w-[160px] flex justify-center">
                     <img src="{{ asset('landing/webp/telkom.webp') }}" alt="Telkom Indonesia"
-                        class="w-full h-auto object-contain" />
+                        class="w-full h-auto object-contain grayscale hover:grayscale-0 hover:scale-110 transition-all duration-300 ease-in-out"
+                        loading="lazy" width="441" height="300" />
                 </div>
             </div>
         </div>
@@ -144,24 +169,24 @@
     {{-- Hero Section End --}}
 
     {{-- About Section Start --}}
-    <section id="about" class="pt-36 pb-32 bg-accent">
-        <div class="container max-w-full px-12">
+    <section id="about" class="pt-36 pb-0 bg-accent relative overflow-hidden min-h-[700px]">
+        <div class="container max-w-full px-12 pb-32">
             <h1 class="text-center text-heading font-semibold text-4xl">Tentang Perusahaan</h1>
             <div class="flex justify-center mt-3">
                 <span class="w-24 h-1 bg-secondary"></span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 mt-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 mt-0 lg:mt-5">
                 <div class="block mt-15">
-                    <img src={{ asset('landing/webp/about-image.webp') }} alt="About Image" width="550"
-                        height="330" class="rounded-xl">
+                    <img src="{{ asset('landing/webp/about-image.webp') }}" alt="About Image" height="1024"
+                        width="1536" class="rounded-xl w-[550px] aspect-[3/2] object-cover" fetchpriority="high">
                 </div>
                 <div class="flex flex-col mt-5">
-                    <p class="pb-9 text-xl text-text">
+                    <p class="pb-9 text-xl text-gray-700">
                         PT Cipta Muda Solusi adalah perusahaan yang berkomitmen membangun kepercayaan dan kerjasama
                         dengan mitra strategis dalam menghadapi era digital 4.0.
                     </p>
-                    <p class="pb-9 text-xl text-text">
+                    <p class="pb-9 text-xl text-gray-700">
                         Kami fokus membuat mitra lebih terbuka terhadap
                         teknologi dengan nilai-nilai Young, Brave, Innovative,
                         dan Strong sebagai fondasi dalam mendukung industri kreatif Indonesia.
@@ -186,14 +211,18 @@
                     </div>
                 </div>
             </div>
-
             <div class="ml-10 mt-5">
-                <img src={{ asset('landing/svg/circle.svg') }} alt="Circle">
+                <img src="{{ asset('landing/svg/circle.svg') }}" alt="Circle" loading="lazy" width="165"
+                    height="165">
             </div>
-
-            {{-- <div class="relative pb-32">
-                <img src={{ asset('landing/svg/wave.svg') }} alt="Wave">
-            </div> --}}
+        </div>
+        <div class="absolute left-0 bottom-0 w-full pointer-events-none z-10">
+            <svg class="w-full h-full xl:h-60" viewBox="0 0 1440 222" fill="none"
+                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path
+                    d="M587 29.7293C438.5 164.229 151.712 212.304 -3 168.729V271.729H1440V156.729C1440 283.729 735.5 -104.771 587 29.7293Z"
+                    fill="#AFD1FF" stroke="#AFD1FF" />
+            </svg>
         </div>
     </section>
     {{-- About Section End --}}
@@ -201,7 +230,7 @@
     {{-- Visi & Misi Section Start --}}
     <section id="visiMisi" class="pt-32 pb-18">
         <div class="container max-w-full">
-            <h1 class="text-heading font-semibold text-4xl text-center" id="title">Visi & Misi</h1>
+            <h1 class="text-heading font-semibold text-4xl text-center">Visi & Misi</h1>
             <div class="flex justify-center mt-3">
                 <span class="w-24 h-1 bg-secondary"></span>
             </div>
@@ -239,7 +268,7 @@
                         <i class="fa-solid fa-quote-right text-text text-5xl"></i>
                     </div>
                     <p class="font-semibold text-black text-4xl italic text-center">
-                        " Kepuasaan Perusahaan Mitra adalah yang Utama"
+                        "Kepuasaan Perusahaan Mitra adalah yang Utama"
                     </p>
                     <div class="absolute -bottom-10 right-20 bg-accent p-3">
                         <i class="fa-solid fa-quote-left text-text text-5xl"></i>
@@ -280,14 +309,14 @@
                         <i class="fas fa-bullhorn text-3xl text-secondary"></i>
                         <h1 class="font-semibold text-3xl mt-1 text-heading">Sales dan Marketing</h1>
 
-                        <p class="text-base text-text my-7.5">
+                        <p class="text-base text-gray-700 my-7.5">
                             Memberikan pelayanan dalam bidang pemasaran produk mitra untuk pengembangan usaha
                         </p>
 
                         <ul class="list-disc list-inside">
-                            <li class="text-text text-base">Sales & Marketing Strategy</li>
-                            <li class="text-text text-base">Digital Marketing</li>
-                            <li class="text-text text-base">Brand Development</li>
+                            <li class="text-gray-700 text-base">Sales & Marketing Strategy</li>
+                            <li class="text-gray-700 text-base">Digital Marketing</li>
+                            <li class="text-gray-700 text-base">Brand Development</li>
                         </ul>
                     </div>
                 </div>
@@ -297,14 +326,14 @@
                         <i class="fas fa-calendar-days text-3xl"></i>
                         <h1 class="font-semibold text-3xl mt-1">Event Organizer</h1>
 
-                        <p class="text-base text-text my-7.5">
+                        <p class="text-base text-gray-700 my-7.5">
                             Membantu menjalankan penyelenggaraan event yang di inginkan mitra kerja
                         </p>
 
                         <ul class="list-disc list-inside">
-                            <li class="text-text text-base">MICE Event</li>
-                            <li class="text-text text-base">Corporate Events</li>
-                            <li class="text-text text-base">Virtual Events</li>
+                            <li class="text-gray-700 text-base">MICE Event</li>
+                            <li class="text-gray-700 text-base">Corporate Events</li>
+                            <li class="text-gray-700 text-base">Virtual Events</li>
                         </ul>
                     </div>
                 </div>
@@ -314,13 +343,13 @@
                         <i class="fas fa-laptop text-3xl text-secondary"></i>
                         <h1 class="font-semibold text-3xl mt-1 text-heading">Software Development</h1>
 
-                        <p class="text-base text-text my-7.5">
+                        <p class="text-base text-gray-700 my-7.5">
                             Berkembang bersama mitra dalam membentuk software yang di inginkan
                         </p>
 
                         <ul class="list-disc list-inside">
-                            <li class="text-text text-base">Analisis Kebutuhan dan perencanaan sistem</li>
-                            <li class="text-text text-base">Pengembangan aplikasi berbasis web & mobile</li>
+                            <li class="text-gray-700 text-base">Analisis Kebutuhan dan perencanaan sistem</li>
+                            <li class="text-gray-700 text-base">Pengembangan aplikasi berbasis web & mobile</li>
                         </ul>
                     </div>
                 </div>
@@ -330,14 +359,14 @@
                         <i class="fas fa-server text-3xl"></i>
                         <h1 class="font-semibold text-3xl mt-1">Data Center</h1>
 
-                        <p class="text-base text-text my-7.5">
+                        <p class="text-base text-gray-700 my-7.5">
                             Menjadi tempat terpercaya dalam penyimpanan data mitra untuk bekerja sama
                         </p>
 
                         <ul class="list-disc list-inside">
-                            <li class="text-text text-base">Akses Data Cepat dan Andal</li>
-                            <li class="text-text text-base">Keamanan berlapis & enkripsi</li>
-                            <li class="text-text text-base">Infrastruktur berskala sesuai kebutuhan</li>
+                            <li class="text-gray-700 text-base">Akses Data Cepat dan Andal</li>
+                            <li class="text-gray-700 text-base">Keamanan berlapis & enkripsi</li>
+                            <li class="text-gray-700 text-base">Infrastruktur berskala sesuai kebutuhan</li>
                         </ul>
                     </div>
                 </div>
@@ -372,76 +401,76 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 mx-8 gap-10 my-10">
                 {{-- 1 --}}
-                <div class="bg-white p-6 rounded-xl shadow-xl flex flex-col">
-                    <div class="flex items-center">
-                        <div class="mr-3">
-                            <img src={{ asset('landing/pngs/randy-khairu.png') }} alt="Randy Khairu Basyar"
-                                width="70" height="70">
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl flex flex-col">
+                    <div class="flex flex-col sm:flex-row items-center">
+                        <div class="mb-3 sm:mb-0 sm:mr-3 flex-shrink-0 flex justify-center">
+                            <img src="{{ asset('landing/webp/teams/randy-khairu.webp') }}" alt="Randy Khairu Basyar"
+                                loading="lazy" class="rounded-full w-16 h-16 object-cover" />
                         </div>
-                        <div class="flex flex-col justify-center">
-                            <h1 class="text-primary font-semibold text-2xl">Randy Khairu Basyar</h1>
-                            <span class="text-secondary text-lg">Komisaris Utama</span>
+                        <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                            <h1 class="text-primary font-semibold text-xl sm:text-2xl">Randy Khairu Basyar</h1>
+                            <span class="text-blue-900 text-base sm:text-lg">Komisaris Utama</span>
                         </div>
                     </div>
-                    <div class="block mt-6">
-                        <p class="text-text italic text-xl">
+                    <div class="block mt-4 sm:mt-6">
+                        <p class="text-text italic text-base sm:text-xl text-center sm:text-left">
                             "Dengan menghadapi dunia digital 4.0, kami berkomitmen untuk terus berkembang dan menjadi
                             poros teknologi di Indonesia."
                         </p>
                     </div>
                 </div>
                 {{-- 2 --}}
-                <div class="bg-white p-6 rounded-xl shadow-xl flex flex-col">
-                    <div class="flex items-center">
-                        <div class="mr-3">
-                            <img src={{ asset('landing/pngs/adit-bayu.png') }} alt="Aditya Bayu Irawan" width="70"
-                                height="70">
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl flex flex-col">
+                    <div class="flex flex-col sm:flex-row items-center">
+                        <div class="mb-3 sm:mb-0 sm:mr-3 flex-shrink-0 flex justify-center">
+                            <img src={{ asset('landing/webp/teams/adit-bayu.webp') }} alt="Aditya Bayu Irawan"
+                                loading="lazy" class="rounded-full w-16 h-16 object-cover">
                         </div>
-                        <div class="flex flex-col justify-center">
-                            <h1 class="text-primary font-semibold text-2xl">Aditya Bayu Irawan</h1>
-                            <span class="text-secondary text-lg">CEO</span>
+                        <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                            <h1 class="text-primary font-semibold text-xl sm:text-2xl">Aditya Bayu Irawan</h1>
+                            <span class="text-blue-900 text-base sm:text-lg">CEO</span>
                         </div>
                     </div>
-                    <div class="block mt-6">
-                        <p class="text-text italic text-xl">
+                    <div class="block mt-4 sm:mt-6">
+                        <p class="text-text italic text-base sm:text-xl text-center sm:text-left">
                             "Membawa Indonesia untuk bersaing di pasar global agar terus berkembang dan menjadi poros IT
                             Dunia."
                         </p>
                     </div>
                 </div>
                 {{-- 3 --}}
-                <div class="bg-white p-6 rounded-xl shadow-xl flex flex-col">
-                    <div class="flex items-center">
-                        <div class="mr-3">
-                            <img src={{ asset('landing/pngs/irfan-fauzan.png') }} alt="Irfan Fauzan" width="70"
-                                height="70">
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl flex flex-col">
+                    <div class="flex flex-col sm:flex-row items-center">
+                        <div class="mb-3 sm:mb-0 sm:mr-3 flex-shrink-0 flex justify-center">
+                            <img src={{ asset('landing/webp/teams/irfan-fauzan.webp') }} alt="Irfan Fauzan"
+                                loading="lazy" class="rounded-full w-16 h-16 object-cover">
                         </div>
-                        <div class="flex flex-col justify-center">
-                            <h1 class="text-primary font-semibold text-2xl">Irfan Fauzan</h1>
-                            <span class="text-secondary text-lg">IT Director</span>
+                        <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                            <h1 class="text-primary font-semibold text-xl sm:text-2xl">Irfan Fauzan</h1>
+                            <span class="text-blue-900 text-base sm:text-lg">IT Director</span>
                         </div>
                     </div>
-                    <div class="block mt-6">
-                        <p class="text-text italic text-xl">
+                    <div class="block mt-4 sm:mt-6">
+                        <p class="text-text italic text-base sm:text-xl text-center sm:text-left">
                             "Berdiri dengan kekuatan dan mental jiwa kesatria untuk terus berkembang menghadapi dunia
                             industri IT."
                         </p>
                     </div>
                 </div>
                 {{-- 4 --}}
-                <div class="bg-white p-6 rounded-xl shadow-xl flex flex-col">
-                    <div class="flex items-center">
-                        <div class="mr-3">
-                            <img src={{ asset('landing/pngs/nanda.png') }} alt="Nanda Ikhsanabdullah Utama"
-                                width="70" height="70">
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl flex flex-col">
+                    <div class="flex flex-col sm:flex-row items-center">
+                        <div class="mb-3 sm:mb-0 sm:mr-3 flex-shrink-0 flex justify-center">
+                            <img src={{ asset('landing/webp/teams/nanda.webp') }} alt="Nanda Ikhsanabdullah Utama"
+                                loading="lazy" class="rounded-xl w-16 h-16 object-cover">
                         </div>
-                        <div class="flex flex-col justify-center">
-                            <h1 class="text-primary font-semibold text-2xl">Nanda Ikhsanabdullah Utama</h1>
-                            <span class="text-secondary text-lg">Event Director</span>
+                        <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                            <h1 class="text-primary font-semibold text-xl sm:text-2xl">Nanda Ikhsanabdullah Utama</h1>
+                            <span class="text-blue-900 text-base sm:text-lg">Event Director</span>
                         </div>
                     </div>
-                    <div class="block mt-6">
-                        <p class="text-text italic text-xl">
+                    <div class="block mt-4 sm:mt-6">
+                        <p class="text-text italic text-base sm:text-xl text-center sm:text-left">
                             "Digitalisasi merupakan perkembangan dunia yang bisa membawa kita kearah kemudahan dalam
                             melakukan perkembangan."
                         </p>
@@ -454,76 +483,79 @@
 
     {{-- Portfolios Section Start --}}
     <section id="portfolios" class="pt-36 pb-32 bg-gray-200">
-        <div class="container max-w-full relative">
+        <div class="container max-w-full relative px-4 sm:px-8">
             <h1 class="text-primary text-center font-semibold text-4xl">Portfolio</h1>
             <div class="flex justify-center mt-3">
                 <span class="bg-secondary w-24 h-1"></span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mx-8 my-10 gap-10">
-                <div class="bg-section w-100 rounded-lg shadow-4">
-                    <img src={{ asset('landing/pngs/porto-1.png') }} alt="Sunlife Financial Annual Award Night"
-                        width="400" height="225">
-                    <div class="flex flex-col p-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-6 gap-8 md:gap-10 my-10">
+                <div class="bg-section w-full rounded-lg shadow-4 flex flex-col">
+                    <img src="{{ asset('landing/webp/portfolios/porto-1.webp') }}"
+                        alt="Sunlife Financial Annual Award Night"
+                        class="w-full h-48 sm:h-56 md:h-60 object-cover rounded-t-lg">
+                    <div class="flex flex-col p-5 flex-1">
                         <h1 class="text-primary font-semibold text-2xl">Sunlife Financial Annual Award Night</h1>
-                        <h3 class="flex items-center py-2.5 text-secondary font-semibold text-base">
+                        <h2 class="flex items-center py-2.5 text-blue-900 font-semibold text-base">
                             <i class="fas fa-gears mr-2 text-text"></i>
                             Virtual Event
-                        </h3>
+                        </h2>
                         <p class="text-text text-base">
                             Virtual Event untuk 8000 peserta agent di seluruh Indonesia menggunakan platform Zoom
                             Meeting
                         </p>
-                        <b class="pt-2.5 text-secondary text-base">Januari 2021</b>
+                        <b class="pt-2.5 text-blue-900 text-base">Januari 2021</b>
                     </div>
                 </div>
-                <div class="bg-section w-100 rounded-lg shadow-4">
-                    <img src={{ asset('landing/pngs/porto-2.png') }} alt="Web Based Production" width="400"
-                        height="225">
-                    <div class="flex flex-col p-5">
+                <div class="bg-section w-full rounded-lg shadow-4 flex flex-col">
+                    <img src="{{ asset('landing/webp/portfolios/porto-2.webp') }}" alt="Web Based Production"
+                        class="w-full h-48 sm:h-56 md:h-60 object-cover rounded-t-lg">
+                    <div class="flex flex-col p-5 flex-1">
                         <h1 class="text-primary font-semibold text-2xl">Web Based Production</h1>
-                        <h3 class="flex items-center py-2.5 text-secondary font-semibold text-base">
+                        <h2 class="flex items-center py-2.5 text-blue-900 font-semibold text-base">
                             <i class="fas fa-gears mr-2 text-text"></i>
                             Lamikro dan Database Kewirausahaan
-                        </h3>
+                        </h2>
                         <p class="text-text text-base">
                             Virtual Event untuk 8000 peserta agent di seluruh Indonesia menggunakan platform Zoom
                             Meeting
                         </p>
-                        <b class="pt-2.5 text-secondary text-base">Agustus 2020</b>
+                        <b class="pt-2.5 text-blue-900 text-base">Agustus 2020</b>
                     </div>
                 </div>
-                <div class="bg-section w-100 rounded-lg shadow-4">
-                    <img src={{ asset('landing/pngs/porto-3.png') }} alt="Infrastructure Instalation" width="400"
-                        height="225">
-                    <div class="flex flex-col p-5">
+                <div class="bg-section w-full rounded-lg shadow-4 flex flex-col">
+                    <img src="{{ asset('landing/webp/portfolios/porto-3.webp') }}" alt="Infrastructure Instalation"
+                        class="w-full h-48 sm:h-56 md:h-60 object-cover rounded-t-lg">
+                    <div class="flex flex-col p-5 flex-1">
                         <h1 class="text-primary font-semibold text-2xl">Infrastructure Instalation</h1>
-                        <h3 class="flex items-center py-2.5 text-secondary font-semibold text-base">
+                        <h2 class="flex items-center py-2.5 text-blue-900 font-semibold text-base">
                             <i class="fas fa-gears mr-2 text-text"></i>
                             Switch dan Router MIKROTIK
-                        </h3>
+                        </h2>
                         <p class="text-text text-base">
                             Virtual Event untuk 8000 peserta agent di seluruh Indonesia menggunakan platform Zoom
                             Meeting
                         </p>
-                        <b class="pt-2.5 text-secondary text-base">April 2020</b>
+                        <b class="pt-2.5 text-blue-900 text-base">April 2020</b>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center justify-center gap-5">
-                <span class="bg-accent w-12 h-12 flex items-center justify-center rounded-full shadow-4">
+            <div class="flex items-center justify-center gap-3 md:gap-5 mt-8">
+                <span
+                    class="bg-accent w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-4">
                     <i class="fas fa-arrow-left text-text"></i>
                 </span>
                 <span
-                    class="font-semibold text-white text-xl bg-primary w-12 h-12 rounded-full flex items-center justify-center shadow-paginate">
+                    class="font-semibold text-white text-lg md:text-xl bg-primary w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-paginate">
                     1
                 </span>
                 <span
-                    class="font-semibold text-text text-xl bg-accent w-12 h-12 rounded-full flex items-center justify-center shadow-4">
+                    class="font-semibold text-text text-lg md:text-xl bg-accent w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-4">
                     2
                 </span>
-                <span class="bg-accent w-12 h-12 flex items-center justify-center rounded-full shadow-4">
+                <span
+                    class="bg-accent w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-4">
                     <i class="fas fa-arrow-right"></i>
                 </span>
             </div>
@@ -616,14 +648,21 @@
     </section>
     {{-- Contact Section End --}}
 
+    {{-- Back To Top Start --}}
+    <a href="#" id="to-top"
+        class="fixed z-[9999] hidden justify-center items-center bottom-4 right-4 p-4 w-14 h-14 rounded-full bg-primary hover:ring-2 hover:ring-blue-400 active:ring-offset-2 active:ring-blue-500 hover:scale-110 transition-all duration-200 ease-linear">
+        <i class="fas fa-arrow-up text-white font-bold text-2xl"></i>
+    </a>
+    {{-- Back To Top End --}}
+
     {{-- Footer Section Start --}}
     <footer class="bg-accent pt-10">
         <div class="container max-w-full">
             <div class="flex flex-wrap mx-6 mb-10">
                 <div class="w-full mb-5 md:w-1/3">
                     <div class="flex items-center">
-                        <img src={{ asset('landing/webp/cms-logo.webp') }} alt="Cipta Muda Solusi" width="150"
-                            height="150">
+                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
+                            class="w-21 lg:w-37.5" width="675" height="200">
                         <div class="block">
                             <h1 class="text-heading text-2xl font-semibold">PT. Cipta Muda Solusi</h1>
                             <p class="text-text text-base">Young, Brave, Innovative, Strong </p>
@@ -634,21 +673,21 @@
                         pelayanan terbaik untuk kemajuan bisnis mitra.
                     </p>
                     <div class="flex items-center gap-2">
-                        <a href="https://instagram.com/umarusyahidm_/" target="_blank"
-                            class="w-12.5 h-12.5 bg-primary text-white rounded-full flex items-center justify-center text-2xl">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/umarusyahidm_/" target="_blank" aria-label="Facebook"
+                            class="w-13 h-13 bg-primary text-white rounded-full flex items-center justify-center text-center">
+                            <i class="fab fa-facebook-f text-2xl"></i>
                         </a>
-                        <a href="https://instagram.com/umarusyahidm_/" target="_blank"
-                            class="w-12.5 h-12.5 bg-primary text-white rounded-full flex items-center justify-center text-2xl">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/umarusyahidm_/" target="_blank" aria-label="Instagram"
+                            class="w-13 h-13 bg-primary text-white rounded-full flex items-center justify-center text-center">
+                            <i class="fab fa-instagram text-2xl"></i>
                         </a>
-                        <a href="https://instagram.com/umarusyahidm_/" target="_blank"
-                            class="w-12.5 h-12.5 bg-primary text-white rounded-full flex items-center justify-center text-2xl">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/umarusyahidm_/" target="_blank" aria-label="LinkedIn"
+                            class="w-13 h-13 bg-primary text-white rounded-full flex items-center justify-center text-center">
+                            <i class="fab fa-linkedin-in text-2xl"></i>
                         </a>
-                        <a href="https://instagram.com/umarusyahidm_/" target="_blank"
-                            class="w-12.5 h-12.5 bg-primary text-white rounded-full flex items-center justify-center text-2xl">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/umarusyahidm_/" target="_blank" aria-label="Twitter"
+                            class="w-13 h-13 bg-primary text-white rounded-full flex items-center justify-center text-center">
+                            <i class="fab fa-twitter text-2xl"></i>
                         </a>
                     </div>
                 </div>
@@ -690,65 +729,14 @@
                 </div>
             </div>
             <div class="border-t-2 border-text flex items-center justify-center p-6">
-                <h3 class="text-primary font-semibold text-base text-center">
+                <h1 class="text-primary font-semibold text-base text-center">
                     Copyright &copy; {{ date('Y') }} Cipta Muda Solusi. All Right Reserved.
-                </h3>
+                </h1>
             </div>
         </div>
     </footer>
     {{-- Footer Section End --}}
 
-
 </body>
-
-<script>
-    // function buatLingkaran(container, x, y, size, color) {
-    //     const lingkaran = document.createElement("div");
-    //     lingkaran.style.width = size + "px";
-    //     lingkaran.style.height = size + "px";
-    //     lingkaran.style.backgroundColor = color;
-    //     lingkaran.style.left = x + "px";
-    //     lingkaran.style.top = y + "px";
-    //     lingkaran.style.position = "absolute";
-    //     lingkaran.style.borderRadius = "50%";
-    //     // lingkaran.style.zIndex = '-1'
-    //     container.appendChild(lingkaran);
-    // }
-
-    // const section = document.getElementById("teams");
-    // section.style.position = "relative";
-
-    // const colors = [
-    //     getComputedStyle(document.documentElement).getPropertyValue("--color-primary").trim(),
-    //     getComputedStyle(document.documentElement).getPropertyValue("--color-secondary").trim(),
-    //     getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim(),
-    // ];
-
-    // let circles = JSON.parse(localStorage.getItem("circlesData"));
-
-    // if (!circles) {
-    //     // Generate lingkaran baru kalau belum ada di localStorage
-    //     circles = [];
-    //     for (let i = 0; i < 10; i++) {
-    //         const size = Math.floor(Math.random() * 70) + 30;
-    //         const x = Math.random() * (section.clientWidth - size);
-    //         const y = Math.random() * (section.clientHeight - size);
-    //         const color = colors[Math.floor(Math.random() * colors.length)];
-
-    //         circles.push({
-    //             x,
-    //             y,
-    //             size,
-    //             color
-    //         });
-    //     }
-    //     localStorage.setItem("circlesData", JSON.stringify(circles));
-    // }
-
-    // // Render lingkaran dari data yang sudah tersimpan
-    // circles.forEach(c => {
-    //     buatLingkaran(section, c.x, c.y, c.size, c.color);
-    // });
-</script>
 
 </html>
