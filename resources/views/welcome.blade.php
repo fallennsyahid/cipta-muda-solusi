@@ -99,17 +99,24 @@
                             </li>
                         </ul>
                     </nav>
+                    <div class="lg:hidden absolute right-12">
+                        <a href="#contact" id="search-button"
+                            class="text-2xl text-black w-12.5 h-12.5 bg-section rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
+                            aria-label="Buka Pencarian">
+                            <i class="fas fa-magnifying-glass"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             {{-- Search Form Start --}}
             <div
-                class="search-form absolute top-full right-0 mt-6 mx-4 sm:mx-8 p-3 sm:p-5 bg-white rounded-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:w-160 flex items-center scale-x-0 origin-center duration-300 z-50">
+                class="search-form absolute top-full right-0 mt-6 mx-4 sm:mx-8 p-3 sm:p-5 bg-white rounded-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-160 flex items-center scale-x-0 origin-center duration-300 z-50">
                 <input type="search" id="search-box" placeholder="Cari disini..."
                     class="w-full text-base sm:text-xl md:text-2xl text-text p-3 sm:p-4 bg-section rounded-md focus:border-0 focus:outline-none">
                 <label for="search-box"
                     class="cursor-pointer mr-3 sm:mr-6 absolute inset-y-0 right-2 flex items-center">
-                    <i class="fas fa-magnifying-glass text-2xl sm:text-3xl text-text"></i>
+                    <i class="fas fa-magnifying-glass text-xl sm:text-lg text-text"></i>
                 </label>
             </div>
             {{-- Search Form End --}}
@@ -129,13 +136,20 @@
                     <p class="text-[1.625rem] text-center lg:text-left text-white">
                         Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda
                     </p>
-                    <div class="flex justify-center lg:justify-start">
+                    <div class="flex gap-4 justify-center lg:justify-start">
                         <a href="#contact"
                             class="bg-bg/90 relative inline-flex items-center mt-5 px-6 py-3 rounded-xl text-heading shadow-lg hover:bg-bg overflow-hidden transition-all duration-500 ease-out group">
                             <span
                                 class="absolute inset-0 bg-bg scale-x-0 origin-center transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
-                            <i class="fas fa-phone mr-2 relative z-10"></i>
-                            <span class="relative z-10">Konsultasi Gratis</span>
+                            <i class="fas fa-phone mr-2 relative"></i>
+                            <span class="relative">Konsultasi Gratis</span>
+                        </a>
+                        <a href="/lowongan-kerja"
+                            class="relative inline-flex items-center mt-5 px-6 py-3 border-2 border-accent/60 rounded-xl text-white hover:bg-secondary hover:border-none overflow-hidden transition-all duration-500 ease-out group">
+                            <span
+                                class="absolute inset-0 scale-x-0 origin-center border-2 border-accent rounded-xl bg-secondary transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
+                            <i class="fas fa-briefcase mr-2 relative"></i>
+                            <span class="relative">Lowongan Kerja</span>
                         </a>
                     </div>
                 </div>
@@ -221,7 +235,7 @@
                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path
                     d="M587 29.7293C438.5 164.229 151.712 212.304 -3 168.729V271.729H1440V156.729C1440 283.729 735.5 -104.771 587 29.7293Z"
-                    fill="#AFD1FF" stroke="#AFD1FF" />
+                    fill="#0891b2" stroke="#0891b2" />
             </svg>
         </div>
     </section>
@@ -392,7 +406,8 @@
     {{-- Service Section End --}}
 
     {{-- Team Section Start --}}
-    <section id="teams" class="bg-section pt-36 pb-32">
+    <section id="teams" class="bg-section pt-36 pb-32 relative overflow-hidden">
+        <div class="dots-container"></div>
         <div class="container max-w-full">
             <h1 class="text-primary font-semibold text-4xl text-center">Tim Kami</h1>
             <div class="flex justify-center mt-3">
@@ -649,7 +664,7 @@
     {{-- Contact Section End --}}
 
     {{-- Back To Top Start --}}
-    <a href="#" id="to-top"
+    <a href="#" id="to-top" aria-label="Back To Top"
         class="fixed z-[9999] hidden justify-center items-center bottom-4 right-4 p-4 w-14 h-14 rounded-full bg-primary hover:ring-2 hover:ring-blue-400 active:ring-offset-2 active:ring-blue-500 hover:scale-110 transition-all duration-200 ease-linear">
         <i class="fas fa-arrow-up text-white font-bold text-2xl"></i>
     </a>

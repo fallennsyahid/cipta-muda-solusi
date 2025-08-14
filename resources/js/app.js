@@ -60,3 +60,33 @@ window.addEventListener('click', function (e) {
         searchForm.classList.add('scale-x-0');
     };
 });
+
+// Dots
+const container = document.querySelector('.dots-container');
+const section = document.getElementById('teams');
+const sectionWidth = section.offsetWidth;
+const sectionHeight = section.offsetHeight;
+const primary = '#0891b2';
+const secondary = '#22d3ee';
+const accent = '#0e7490';
+
+const colors = [primary, secondary, accent];
+
+for (let i = 0; i < 20; i++) {
+    const dot = document.createElement('div');
+    const size = Math.floor(Math.random() * (55 - 30 + 1)) + 30;
+    const posX = Math.random() * sectionWidth;
+    const posY = Math.random() * sectionHeight;
+    const delay = Math.random() * 5;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    dot.classList.add('dot');
+    dot.style.width = `${size}px`;
+    dot.style.height = `${size}px`;
+    dot.style.left = `${posX}px`;
+    dot.style.top = `${posY}px`;
+    dot.style.animationDelay = `${delay}s`;
+    dot.style.backgroundColor = color;
+
+    container.appendChild(dot);
+}
