@@ -91,8 +91,8 @@
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#contact" id="search-button"
-                                    class="text-2xl text-black w-12.5 h-12.5 bg-section rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
+                                <a href="#contact"
+                                    class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
                                     aria-label="Buka Pencarian">
                                     <i class="fas fa-magnifying-glass"></i>
                                 </a>
@@ -100,8 +100,8 @@
                         </ul>
                     </nav>
                     <div class="lg:hidden absolute right-12">
-                        <a href="#contact" id="search-button"
-                            class="text-2xl text-black w-12.5 h-12.5 bg-section rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
+                        <a href="#contact"
+                            class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
                             aria-label="Buka Pencarian">
                             <i class="fas fa-magnifying-glass"></i>
                         </a>
@@ -144,7 +144,7 @@
                             <i class="fas fa-phone mr-2 relative"></i>
                             <span class="relative">Konsultasi Gratis</span>
                         </a>
-                        <a href="/lowongan-kerja"
+                        <a href="/jobs"
                             class="relative inline-flex items-center mt-5 px-6 py-3 border-2 border-accent/60 rounded-xl text-white hover:bg-secondary hover:border-none overflow-hidden transition-all duration-500 ease-out group">
                             <span
                                 class="absolute inset-0 scale-x-0 origin-center border-2 border-accent rounded-xl bg-secondary transition-transform duration-500 ease-out group-hover:scale-x-100"></span>

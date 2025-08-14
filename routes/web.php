@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,3 +10,5 @@ Route::get('/', function () {
 Route::get('/404', function () {
     abort(404);
 });
+
+Route::resource('/jobs', JobsController::class);
