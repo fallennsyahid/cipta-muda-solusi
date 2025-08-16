@@ -43,7 +43,7 @@
                     lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
                         <ul class="block lg:flex lg:items-center lg:justify-center" id="#nav-active">
                             <li class="group">
-                                <a href="/"
+                                <a href="/jobs"
                                     class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
                                     aria-label="Buka Pencarian">
                                     <i class="fas fa-magnifying-glass"></i>
@@ -52,7 +52,7 @@
                         </ul>
                     </nav>
                     <div class="lg:hidden absolute right-4">
-                        <a href="/"
+                        <a href="/jobs"
                             class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
                             aria-label="Buka Pencarian">
                             <i class="fas fa-magnifying-glass"></i>

@@ -30,8 +30,8 @@
                         <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
                             class="w-21 lg:w-37.5" width="675" height="200">
                         <div class="flex flex-col items-start">
-                            <h1 class="text-primary font-semibold text-base lg:text-2xl">PT. Cipta Muda Solusi</h1>
-                            <span class="text-text text-xs lg:text-base">Young, Brave, Innovative, Strong</span>
+                            <h1 class="text-primary font-semibold text-base lg:text-lg">PT. Cipta Muda Solusi</h1>
+                            <span class="text-text text-xs">Young, Brave, Innovative, Strong</span>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#contact"
+                                <a href="/"
                                     class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
                                     aria-label="Buka Pencarian">
                                     <i class="fas fa-magnifying-glass"></i>
@@ -100,7 +100,7 @@
                         </ul>
                     </nav>
                     <div class="lg:hidden absolute right-12">
-                        <a href="#contact"
+                        <a href="/"
                             class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
                             aria-label="Buka Pencarian">
                             <i class="fas fa-magnifying-glass"></i>
@@ -497,7 +497,7 @@
     {{-- Team Section End --}}
 
     {{-- Portfolios Section Start --}}
-    <section id="portfolios" class="pt-36 pb-32 bg-gray-200">
+    <section id="portfolios" class="pt-36 pb-32 bg-[#E4F8FD] relative">
         <div class="container max-w-full relative px-4 sm:px-8">
             <h1 class="text-primary text-center font-semibold text-4xl">Portfolio</h1>
             <div class="flex justify-center mt-3">
@@ -574,6 +574,29 @@
                     <i class="fas fa-arrow-right"></i>
                 </span>
             </div>
+        </div>
+        <div class="absolute left-0 bottom-0">
+            <svg width="281" height="200" viewBox="0 0 281 200" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M161.015 41.9779C180.469 18.7942 215.033 15.7702 238.217 35.2236C261.401 54.6771 264.425 89.2414 244.971 112.425L107.962 275.707C88.5081 298.891 53.9438 301.915 30.76 282.461C7.57629 263.008 4.5523 228.443 24.0058 205.26L161.015 41.9779Z"
+                    fill="#CCD2DF" />
+                <path
+                    d="M162.949 148.961C176.833 132.414 201.503 130.256 218.05 144.14C234.596 158.024 236.755 182.694 222.87 199.241L129.061 311.038C115.177 327.585 90.5075 329.743 73.9607 315.858C57.4139 301.974 55.2556 277.305 69.14 260.758L162.949 148.961Z"
+                    fill="#0891B2" />
+                <path
+                    d="M99.3542 57.6374C113.239 41.0906 137.908 38.9323 154.455 52.8167C171.002 66.7012 173.16 91.3706 159.275 107.917L32.0613 259.525C18.1769 276.072 -6.4925 278.23 -23.0393 264.346C-39.5861 250.462 -41.7444 225.792 -27.86 209.245L99.3542 57.6374Z"
+                    fill="#22D3EE" />
+            </svg>
+        </div>
+        <div class="absolute right-0 bottom-0">
+            <svg width="485" height="243" viewBox="0 0 485 243" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M282 87C331.275 14.8935 373.94 -6.18968 486 2.49997V244.5H1.5C1.5 244.5 68.5 177.5 154.5 193.5C240.5 209.5 282 87 282 87Z"
+                    fill="#0891B2" stroke="#0891B2" />
+            </svg>
+
         </div>
     </section>
     {{-- Portfolios Section End --}}
@@ -654,7 +677,7 @@
                             rows="1"></textarea>
                     </div>
                     <button type="submit"
-                        class="w-full py-3 bg-primary text-lg font-semibold rounded-lg text-white shadow-paginate">
+                        class="w-full py-3 bg-primary text-lg font-semibold text-white rounded-lg shadow-paginate">
                         <i class="fas fa-paper-plane mr-2"></i>
                         Kirim Pesan</button>
                 </div>
@@ -744,7 +767,7 @@
                 </div>
             </div>
             <div class="border-t-2 border-text flex items-center justify-center p-6">
-                <h1 class="text-primary font-semibold text-base text-center">
+                <h1 class="text-heading font-semibold text-base text-center">
                     Copyright &copy; {{ date('Y') }} Cipta Muda Solusi. All Right Reserved.
                 </h1>
             </div>
@@ -753,5 +776,7 @@
     {{-- Footer Section End --}}
 
 </body>
+
+<script src={{ asset('js/script.js') }}></script>
 
 </html>

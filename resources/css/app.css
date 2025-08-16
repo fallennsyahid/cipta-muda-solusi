@@ -55,6 +55,10 @@ input[type="search"]::-webkit-search-cancel-button {
         0 0 24px rgba(59, 130, 246, 0.75);
 }
 
+.text-shadow {
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .toTop-1 {
     animation: cta1 0.5s ease-in-out;
     -webkit-animation: cta1 0.5s ease-in-out;
