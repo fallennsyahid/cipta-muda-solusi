@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Cipta Muda Solusi - Dashboard</title>
+    <title>Cipta Muda Solusi - Jobs</title>
 
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -25,7 +24,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="antialiased bg-[#EAEEF6]">
+<body class="antialiased bg-[#eaeef6]">
     <header>
         <div class="flex flex-row w-full">
             <div class="flex justify-between items-center w-1/3 lg:w-1/5 px-6 py-3 lg:py-5">
@@ -87,9 +86,21 @@
             <ul class="flex flex-col gap-6 p-6">
                 <li>
                     <a href="#"
-                        class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary hover:bg-primary/90 transition-all duration-200 ease-out">
+                        class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary hover:bg-primary/90 transition-all duration-200 ease-in-out">
                         <i class="fas fa-desktop"></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('jobs.index') }}"
+                        class="inline-flex relative items-center gap-3 w-full text-text rounded-sm text-xl p-3 hover:text-white transition-all duration-200 ease-in-out overflow-hidden  group">
+
+                        <span
+                            class="absolute inset-0 bg-primary scale-x-0 origin-center  transition-transform duration-200 ease-out group-hover:scale-x-100">
+                        </span>
+
+                        <i class="fas fa-briefcase relative z-10"></i>
+                        <span class="relative z-10">Jobs</span>
                     </a>
                 </li>
                 <li>
@@ -99,37 +110,69 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary">
-                        <i class="fas fa-desktop"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary">
-                        <i class="fas fa-desktop"></i>
-                        <span>Dashboard</span>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
+                            class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-red-500">
+                            <i class="fas fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </a>
+                    </form>
                 </li>
             </ul>
         </aside>
 
-        <article>
-            <h1>HI</h1>
+        <article class="flex-1 m-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold text-heading">Daftar Lowongan Kerja</h1>
+                    <a href="#"
+                        class="text-lg bg-primary flex items-center rounded-xl font-semibold text-white px-6 py-4 shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all duration-200 ease-in-out">
+                        <i class="fas fa-plus mr-2"></i>
+                        Tambah Lowongan Kerja
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach ($jobs as $job)
+                        <div
+                            class="border rounded-lg shadow-sm p-5 bg-bg hover:shadow-md hover:-translate-y-2 transition-all duration-200 ease-in-out">
+
+                            <h2 class="text-4xl text-center font-bold text-primary mb-2">{{ $job->title }}</h2>
+
+                            <div class="flex items-center justify-between text-sm text-gray-600 mb-3">
+                                <span class="px-2 py-1 rounded bg-primary/10 text-primary font-medium capitalize">
+                                    {{ $job->type->value }}
+                                </span>
+                                <span class="flex items-center gap-1">
+                                    <i class="fas fa-location-dot"></i>
+                                    {{ $job->location }}
+                                </span>
+                            </div>
+
+                            <!-- Job Photo -->
+                            @if ($job->photo)
+                                <img src="{{ asset('storage/' . $job->photo) }}" alt="{{ $job->title }}"
+                                    class="w-full  rounded-md mb-3">
+                            @else
+                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center rounded-md mb-3">
+                                    <i class="fas fa-image text-gray-400 text-3xl"></i>
+                                </div>
+                            @endif
+
+                            <!-- Action -->
+                            <div class="flex justify-end">
+                                <a href="{{ route('jobs.show', $job->id) }}"
+                                    class="text-sm font-medium px-3 py-2 bg-primary text-white rounded hover:bg-primary/90 transition">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </article>
     </main>
-
 </body>
-
-<script>
-    const hamburgerButton = document.querySelector('#close-sidebar');
-    const sidebar = document.querySelector('aside');
-
-    hamburgerButton.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        sidebar.classList.toggle('scale-x-100');
-        sidebar.classList.toggle('scale-x-0');
-    });
-</script>
 
 </html>

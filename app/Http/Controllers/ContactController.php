@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jobs;
 use Illuminate\Http\Request;
 
-class JobsController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jobs = Jobs::paginate(9);
-        return view('jobs.index', compact('jobs'));
+        //
     }
 
     /**

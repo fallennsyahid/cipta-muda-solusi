@@ -71,8 +71,9 @@
                                 class="block mt-1 pl-10 pr-3 py-4 text-base text-text rounded-xl w-full" type="password"
                                 name="password" required autocomplete="current-password"
                                 placeholder="Masukkan password anda" />
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-                                <i class="fas fa-eye text-text/50"></i>
+                            <div id="show-password"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                                <i class="fas fa-eye text-text/50" id="password-icon"></i>
                             </div>
                         </div>
 
@@ -83,12 +84,11 @@
                     <div class="flex justify-between mt-4">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox"
-                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
-                                name="remember">
-                            <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                class="rounded border-gray-300 text-primary shadow-sm w-4 h-4" name="remember">
+                            <span class="ms-2 text-base text-gray-600">{{ __('Remember me') }}</span>
                         </label>
                         @if (Route::has('password.request'))
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            <a class="underline text-base text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
                             </a>
@@ -107,5 +107,7 @@
         </div>
     </div>
 </body>
+
+<script src={{ asset('asset-admin/js/script.js') }}></script>
 
 </html>

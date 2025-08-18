@@ -30,7 +30,7 @@
                         <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
                             class="w-21 lg:w-37.5" width="675" height="200">
                         <div class="flex flex-col items-start">
-                            <h1 class="text-primary font-semibold text-base lg:text-lg">PT. Cipta Muda Solusi</h1>
+                            <h1 class="text-heading font-semibold text-base lg:text-lg">PT. Cipta Muda Solusi</h1>
                             <span class="text-text text-xs">Young, Brave, Innovative, Strong</span>
                         </div>
                     </div>
@@ -130,8 +130,8 @@
         <div class="container max-w-full">
             <div class="flex flex-wrap">
                 <div class="w-full self-center px-8 lg:w-1/2">
-                    <h1 class="text-4xl lg:text-6xl font-bold text-white pb-5 lg:text-left text-center">Young, Brave,
-                        Innovative, Strong
+                    <h1 class="text-4xl lg:text-6xl font-bold text-white pb-5 lg:text-left text-center">
+                        Young, Brave, Innovative, Strong
                     </h1>
                     <p class="text-[1.625rem] text-center lg:text-left text-white">
                         Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda
@@ -644,42 +644,45 @@
                 </div>
                 <div class="bg-accent p-5 rounded-lg">
                     <h1 class="text-primary font-semibold text-4xl">Konsultasi Gratis</h1>
-                    {{-- Nama Lengkap --}}
-                    <div class="relative text-text text-base bg-white my-5 rounded-lg">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-user"></i>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        {{-- Nama Lengkap --}}
+                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <input type="text" id="full-name" name="full-name" placeholder="Nama Lengkap"
+                                class="w-full pl-10 pr-3 py-4">
                         </div>
-                        <input type="text" id="nama-lengkap" name="nama-lengkap" placeholder="Nama Lengkap"
-                            class="w-full pl-10 pr-3 py-4">
-                    </div>
-                    {{-- Email --}}
-                    <div class="relative text-text text-base bg-white my-5 rounded-lg">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-envelope"></i>
+                        {{-- Email --}}
+                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <input type="email" id="email" name="email" placeholder="Email"
+                                class="w-full pl-10 pr-3 py-4">
                         </div>
-                        <input type="email" id="email" name="email" placeholder="Email"
-                            class="w-full pl-10 pr-3 py-4">
-                    </div>
-                    {{-- Phone Number --}}
-                    <div class="relative text-text text-base bg-white my-5 rounded-lg">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-phone"></i>
+                        {{-- Phone Number --}}
+                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <input type="tel" id="phone-number" name="phone-number" placeholder="Nama Lengkap"
+                                class="w-full pl-10 pr-3 py-4">
                         </div>
-                        <input type="tel" id="phone-number" name="phone-number" placeholder="Nama Lengkap"
-                            class="w-full pl-10 pr-3 py-4">
-                    </div>
-                    {{-- Pesan --}}
-                    <div class="relative text-text text-base bg-white my-5 rounded-lg">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-message"></i>
+                        {{-- Pesan --}}
+                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-message"></i>
+                            </div>
+                            <textarea id="message" name="message" placeholder="Nama Lengkap" class="w-full pl-10 pr-3 py-4" rows="1"></textarea>
                         </div>
-                        <textarea id="nama-lengkap" name="nama-lengkap" placeholder="Nama Lengkap" class="w-full pl-10 pr-3 py-4"
-                            rows="1"></textarea>
-                    </div>
+                    </form>
                     <button type="submit"
-                        class="w-full py-3 bg-primary text-lg font-semibold text-white rounded-lg shadow-paginate">
+                        class="w-full py-3 bg-primary text-lg font-bold hover:bg-cyan-700 transition-all duration-200 ease-in-out cursor-pointer text-white text-shadow rounded-lg">
                         <i class="fas fa-paper-plane mr-2"></i>
-                        Kirim Pesan</button>
+                        Kirim Pesan
+                    </button>
                 </div>
             </div>
         </div>

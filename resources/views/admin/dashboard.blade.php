@@ -87,9 +87,21 @@
             <ul class="flex flex-col gap-6 p-6">
                 <li>
                     <a href="#"
-                        class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary hover:bg-primary/90 transition-all duration-200 ease-out">
+                        class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary hover:bg-primary/90 transition-all duration-200 ease-in-out">
                         <i class="fas fa-desktop"></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('jobs.index') }}"
+                        class="inline-flex relative items-center gap-3 w-full text-text rounded-sm text-xl p-3 hover:text-white transition-all duration-200 ease-in-out overflow-hidden  group">
+
+                        <span
+                            class="absolute inset-0 bg-primary scale-x-0 origin-center  transition-transform duration-200 ease-out group-hover:scale-x-100">
+                        </span>
+
+                        <i class="fas fa-briefcase relative z-10"></i>
+                        <span class="relative z-10">Jobs</span>
                     </a>
                 </li>
                 <li>
@@ -99,16 +111,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary">
-                        <i class="fas fa-desktop"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary">
-                        <i class="fas fa-desktop"></i>
-                        <span>Dashboard</span>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
+                            class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-red-500">
+                            <i class="fas fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </a>
+                    </form>
                 </li>
             </ul>
         </aside>

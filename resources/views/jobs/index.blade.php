@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
                         <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
                             class="w-21 lg:w-37.5" width="675" height="200">
                         <div class="flex flex-col items-start">
-                            <h1 class="text-primary font-semibold text-base lg:text-2xl">PT. Cipta Muda Solusi</h1>
+                            <h1 class="text-heading font-semibold text-base lg:text-2xl">PT. Cipta Muda Solusi</h1>
                             <span class="text-text text-xs lg:text-base">Young, Brave, Innovative, Strong</span>
                         </div>
                     </div>
@@ -127,90 +127,24 @@
                 </form>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 m-6">
-                <div class="bg-bg w-full rounded-lg shadow-4">
-                    <div class="flex flex-col">
-                        <img src="https://placehold.co/308x203.png" alt="" class="rounded-t-lg">
-                        <div class="flex flex-col m-6">
-                            <h1 class="text-center text-heading text-2xl font-medium">Fullstack Developer</h1>
-                            <h2 class="text-center mt-1 text-lg text-text font-medium">Full Time</h2>
-                            <p class="text-primary text-xl text-center mt-1 font-medium">Jakarta</p>
-                            <a href="/"
-                                class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                Lamar Posisi
-                            </a>
+                @foreach ($jobs as $job)
+                    <div class="bg-bg w-full rounded-lg shadow-4">
+                        <div class="flex flex-col">
+                            <img src="{{ asset('storage/' . $job->photo) }}" alt="" class="rounded-t-lg"
+                                width="308" height="203">
+                            <div class="flex flex-col m-6">
+                                <h1 class="text-center text-heading text-2xl font-medium">{{ $job->title }}</h1>
+                                <h2 class="text-center mt-1 text-lg text-text font-medium capitalize">
+                                    {{ $job->type }}</h2>
+                                <p class="text-primary text-xl text-center mt-1 font-medium">{{ $job->location }}</p>
+                                <a href="/"
+                                    class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
+                                    Lamar Posisi
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-bg w-full rounded-lg shadow-4">
-                    <div class="flex flex-col">
-                        <img src="https://placehold.co/308x203.png" alt="" class="rounded-t-lg">
-                        <div class="flex flex-col m-6">
-                            <h1 class="text-center text-heading text-2xl font-medium">Fullstack Developer</h1>
-                            <h2 class="text-center mt-1 text-lg text-text font-medium">Full Time</h2>
-                            <p class="text-primary text-xl text-center mt-1 font-medium">Jakarta</p>
-                            <a href="/"
-                                class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                Lamar Posisi
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-bg w-full rounded-lg shadow-4">
-                    <div class="flex flex-col">
-                        <img src="https://placehold.co/308x203.png" alt="" class="rounded-t-lg">
-                        <div class="flex flex-col m-6">
-                            <h1 class="text-center text-heading text-2xl font-medium">Fullstack Developer</h1>
-                            <h2 class="text-center mt-1 text-lg text-text font-medium">Full Time</h2>
-                            <p class="text-primary text-xl text-center mt-1 font-medium">Jakarta</p>
-                            <a href="/"
-                                class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                Lamar Posisi
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-bg w-full rounded-lg shadow-4">
-                    <div class="flex flex-col">
-                        <img src="https://placehold.co/308x203.png" alt="" class="rounded-t-lg">
-                        <div class="flex flex-col m-6">
-                            <h1 class="text-center text-heading text-2xl font-medium">Fullstack Developer</h1>
-                            <h2 class="text-center mt-1 text-lg text-text font-medium">Full Time</h2>
-                            <p class="text-primary text-xl text-center mt-1 font-medium">Jakarta</p>
-                            <a href="/"
-                                class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                Lamar Posisi
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-bg w-full rounded-lg shadow-4">
-                    <div class="flex flex-col">
-                        <img src="https://placehold.co/308x203.png" alt="" class="rounded-t-lg">
-                        <div class="flex flex-col m-6">
-                            <h1 class="text-center text-heading text-2xl font-medium">Fullstack Developer</h1>
-                            <h2 class="text-center mt-1 text-lg text-text font-medium">Full Time</h2>
-                            <p class="text-primary text-xl text-center mt-1 font-medium">Jakarta</p>
-                            <a href="/"
-                                class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                Lamar Posisi
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-bg w-full rounded-lg shadow-4">
-                    <div class="flex flex-col">
-                        <img src="https://placehold.co/308x203.png" alt="" class="rounded-t-lg">
-                        <div class="flex flex-col m-6">
-                            <h1 class="text-center text-heading text-2xl font-medium">Fullstack Developer</h1>
-                            <h2 class="text-center mt-1 text-lg text-text font-medium">Full Time</h2>
-                            <p class="text-primary text-xl text-center mt-1 font-medium">Jakarta</p>
-                            <a href="/"
-                                class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                Lamar Posisi
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
