@@ -15,8 +15,9 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Jobs::latest()->get();
-        return view('admin.jobs.index', compact('jobs'));
+        $jobs = Jobs::paginate(9);
+        $types = JobType::cases();
+        return view('admin.jobs.index', compact('jobs', 'types'));
     }
 
     /**
@@ -71,16 +72,36 @@ class JobsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Jobs $job)
     {
-        //
+        $request->validate([
+            'title' => 'nullable',
+            'location' => 'nullable',
+            'type' => 'nullable',
+            'photo' => 'nullable',
+        ]);
+
+        $path = $job->photo;
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('jobs', 'public');
+        }
+
+        $job->update([
+            'title' => $request->title,
+            'location' => $request->location,
+            'type' => $request->type,
+            'photo' => $path,
+        ]);
+
+        return redirect()->route('jobs.index')->with('success', 'Data berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jobs $job)
     {
-        //
+        $job->delete();
+        return redirect()->route('jobs.index')->with('success', 'Data berhasil dihapus!');
     }
 }

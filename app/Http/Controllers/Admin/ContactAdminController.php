@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class ContactAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $contacts = Contact::paginate(9);
+        return view('admin.contact.index', compact('contacts'));
     }
 
     /**
@@ -28,21 +30,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'full_name' => 'required',
-            'email' => 'required',
-            'phone_number' => 'required',
-            'message' => 'required',
-        ]);
-
-        Contact::create([
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'message' => $request->message,
-        ]);
-
-        return redirect()->route('index');
+        //
     }
 
     /**

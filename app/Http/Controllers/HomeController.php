@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('welcome');
     }
 
     /**
@@ -28,21 +27,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'full_name' => 'required',
-            'email' => 'required',
-            'phone_number' => 'required',
-            'message' => 'required',
-        ]);
-
-        Contact::create([
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'message' => $request->message,
-        ]);
-
-        return redirect()->route('index');
+        //
     }
 
     /**

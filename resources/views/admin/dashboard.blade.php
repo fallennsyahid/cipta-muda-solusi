@@ -36,33 +36,7 @@
                 </button>
             </div>
 
-            <div class="px-6 py-3 lg:py-5 bg-accent w-full lg:w-4/5">
-                <div class="flex justify-between items-center gap-3 w-full">
-
-                    <div class="hidden lg:flex items-center gap-3">
-                        <img src="https://placehold.co/50x50.png" alt="" class="rounded-lg">
-                        <div class="flex items-center gap-2">
-                            <span class="text-text font-bold text-2xl">Jhon Doe</span>
-                            <span class="text-text/60 font-medium text-sm">Was login 5 minutes ago.</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 justify-end mt-2 w-full lg:w-auto lg:justify-end">
-                        <div
-                            class="hidden lg:flex lg:items-center gap-2 text-sm text-text border border-text/30 py-2 px-3 rounded-sm">
-                            <p>Today: August 18th 2025</p>
-                            <i class="fas fa-calendar-days"></i>
-                        </div>
-                        <div class="font-medium flex lg:items-center text-lg lg:text-xl text-text">
-                            11.00.00 AM
-                        </div>
-                        <button
-                            class="flex lg:hidden w-10 h-10 rounded-full items-center justify-center cursor-pointer hover:bg-text/30 hover:scale-110 transition-all duration-200 ease-in">
-                            <i class="fas fa-bars text-text text-2xl"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <x-admin.navbar></x-admin.navbar>
         </div>
 
         <nav class="bg-[#DBEAFE] px-6 py-5 flex flex-col lg:flex-row justify-between items-start gap-3 w-full">
@@ -86,7 +60,7 @@
             class="bg-white m-6 w-1/3 lg:w-1/5 rounded-lg shadow scale-x-100 origin-center transition-all duration-200 ease-linear">
             <ul class="flex flex-col gap-6 p-6">
                 <li>
-                    <a href="#"
+                    <a href="{{ route('dashboard') }}"
                         class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary hover:bg-primary/90 transition-all duration-200 ease-in-out">
                         <i class="fas fa-desktop"></i>
                         <span>Dashboard</span>

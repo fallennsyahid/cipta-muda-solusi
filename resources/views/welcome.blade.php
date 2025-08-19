@@ -144,7 +144,7 @@
                             <i class="fas fa-phone mr-2 relative"></i>
                             <span class="relative">Konsultasi Gratis</span>
                         </a>
-                        <a href="/jobs"
+                        <a href="{{ route('user.jobs.index') }}"
                             class="relative inline-flex items-center mt-5 px-6 py-3 border-2 border-accent/60 rounded-xl text-white hover:bg-secondary hover:border-none overflow-hidden transition-all duration-500 ease-out group">
                             <span
                                 class="absolute inset-0 scale-x-0 origin-center border-2 border-accent rounded-xl bg-secondary transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
@@ -642,47 +642,50 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="bg-accent p-5 rounded-lg">
                     <h1 class="text-primary font-semibold text-4xl">Konsultasi Gratis</h1>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('index.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- Nama Lengkap --}}
-                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                        <div class="relative my-5">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-user text-text"></i>
                             </div>
-                            <input type="text" id="full-name" name="full-name" placeholder="Nama Lengkap"
-                                class="w-full pl-10 pr-3 py-4">
+                            <input type="text" id="full_name" name="full_name" placeholder="Nama Lengkap"
+                                class="w-full pl-10 pr-3 py-4 text-text text-base bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border focus:border-cyan-600">
                         </div>
                         {{-- Email --}}
-                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                        <div class="relative my-5">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope text-text"></i>
                             </div>
                             <input type="email" id="email" name="email" placeholder="Email"
-                                class="w-full pl-10 pr-3 py-4">
+                                class="w-full pl-10 pr-3 py-4 text-text text-base bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border focus:border-cyan-600">
                         </div>
                         {{-- Phone Number --}}
-                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                        <div class="relative my-5">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-phone"></i>
+                                <i class="fas fa-phone text-text"></i>
                             </div>
-                            <input type="tel" id="phone-number" name="phone-number" placeholder="Nama Lengkap"
-                                class="w-full pl-10 pr-3 py-4">
+                            <input type="tel" id="phone_number" name="phone_number" placeholder="Nama Lengkap"
+                                class="w-full pl-10 pr-3 py-4 text-text text-base bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border focus:border-cyan-600">
                         </div>
                         {{-- Pesan --}}
-                        <div class="relative text-text text-base bg-white my-5 rounded-lg">
+                        <div class="relative my-5">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-message"></i>
+                                <i class="fas fa-message text-text"></i>
                             </div>
-                            <textarea id="message" name="message" placeholder="Nama Lengkap" class="w-full pl-10 pr-3 py-4" rows="1"></textarea>
+                            <textarea id="message" name="message" placeholder="Pesan Anda"
+                                class="w-full pl-10 pr-3 py-4 text-text text-base bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border focus:border-cyan-600"
+                                rows="1"></textarea>
                         </div>
+                        <button type="submit"
+                            class="w-full py-3 bg-primary text-lg font-bold hover:bg-cyan-700 transition-all duration-200 ease-in-out cursor-pointer text-white text-shadow rounded-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Kirim Pesan
+                        </button>
                     </form>
-                    <button type="submit"
-                        class="w-full py-3 bg-primary text-lg font-bold hover:bg-cyan-700 transition-all duration-200 ease-in-out cursor-pointer text-white text-shadow rounded-lg">
-                        <i class="fas fa-paper-plane mr-2"></i>
-                        Kirim Pesan
-                    </button>
                 </div>
             </div>
         </div>
