@@ -65,9 +65,9 @@ const container = document.querySelector('.dots-container');
 const section = document.getElementById('teams');
 const sectionWidth = section.offsetWidth;
 const sectionHeight = section.offsetHeight;
-const primary = '#0891b2';
-const secondary = '#22d3ee';
-const accent = '#0e7490';
+const primary = '#1e40af';
+const secondary = '#3b82f6';
+const accent = ' #dbeafe';
 
 const colors = [primary, secondary, accent];
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\JobsController as JobsAdminController;
+use App\Http\Controllers\Admin\PartnerAdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
@@ -25,6 +26,8 @@ Route::get('/dashboard', function () {
 Route::resource('admin/jobs', JobsAdminController::class)->middleware(['auth', 'verified']);
 
 Route::resource('admin/contact', ContactAdminController::class);
+
+Route::resource('admin/partner', PartnerAdminController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

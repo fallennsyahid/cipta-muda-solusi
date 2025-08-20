@@ -97,7 +97,7 @@
 
                     <div class="mt-4">
                         <x-primary-button
-                            class="bg-primary text-white flex items-center justify-center text-center font-semibold text-2xl w-full py-5 rounded-xl hover:bg-primary/90 hover:ring-2 hover:ring-blue-300 hover:scale-105 active:ring-offset-2 active:ring-blue-400 active:scale-100 transition-all duration-300 ease-in-out">
+                            class="bg-primary text-white flex items-center justify-center text-center font-semibold text-xl w-full py-3 rounded-xl hover:bg-primary/90 hover:ring-2 hover:ring-blue-300 hover:scale-105 active:ring-offset-2 active:ring-blue-400 active:scale-100 transition-all duration-300 ease-in-out">
                             <i class="fas fa-right-to-bracket mr-2"></i>
                             {{ __('Log in') }}
                         </x-primary-button>

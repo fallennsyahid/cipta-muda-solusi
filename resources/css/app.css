@@ -7,13 +7,13 @@
 
 @theme {
     /* Color Variable */
-    --color-primary: #0891b2;
-    --color-secondary: #22d3ee;
-    --color-accent: #cffafe;
-    --color-heading: #0e7490;
-    --color-text: #475569;
-    --color-bg: #f0f9ff;
-    --color-section: #ffffff;
+    --color-primary: #1e40af;
+    --color-secondary: #3b82f6;
+    --color-accent: #dbeafe;
+    --color-heading: #1e3a8a;
+    --color-text: #6b7280;
+    --color-bg: #d9d9d9;
+    --color-section: #f4f4f4;
 
     /* Text Shadow */
     --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);

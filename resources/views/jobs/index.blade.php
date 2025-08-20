@@ -28,8 +28,10 @@
             <div class="flex items-center justify-between">
                 <div class="px-4 py-6">
                     <div class="flex items-center mr-2">
-                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
-                            class="w-21 lg:w-37.5" width="675" height="200">
+                        <a href="{{ route('index') }}">
+                            <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
+                                class="w-21 lg:w-37.5" width="675" height="200">
+                        </a>
                         <div class="flex flex-col items-start">
                             <h1 class="text-heading font-semibold text-base lg:text-2xl">PT. Cipta Muda Solusi</h1>
                             <span class="text-text text-xs lg:text-base">Young, Brave, Innovative, Strong</span>

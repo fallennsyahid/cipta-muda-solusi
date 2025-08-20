@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Cipta Muda Solusi - Jobs</title>
+    <title>Cipta Muda Solusi - Partner</title>
 
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -47,34 +47,24 @@
         <article class="flex-1 m-6">
             <div class="bg-white p-6 rounded-lg shadow">
                 <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-2xl font-bold text-heading">Daftar Lowongan Kerja ({{ $jobs->count() }})</h1>
-                    <a href="#" id="add-job"
+                    <h1 class="text-2xl font-bold text-heading">Daftar Partner ({{ $partners->count() }})</h1>
+                    <a href="#" id="add-partner"
                         class="text-lg bg-primary flex items-center rounded-xl font-semibold text-white px-6 py-4 shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all duration-200 ease-in-out">
                         <i class="fas fa-plus mr-2"></i>
-                        Tambah Lowongan Kerja
+                        Tambah Partner
                     </a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach ($jobs as $job)
+                    @foreach ($partners as $partner)
                         <div
-                            class="border rounded-lg shadow-sm p-5 bg-bg hover:shadow-md hover:-translate-y-2 transition-all duration-200 ease-in-out">
+                            class="border rounded-lg shadow-sm p-5 bg-white hover:shadow-md hover:-translate-y-2 transition-all duration-200 ease-in-out">
 
-                            <h2 class="text-2xl text-center font-bold text-primary mb-2">{{ $job->title }}</h2>
-
-                            <div class="flex items-center justify-between text-sm text-gray-600 mb-3">
-                                <span class="px-2 py-1 rounded bg-primary/10 text-primary font-medium capitalize">
-                                    {{ $job->type->value }}
-                                </span>
-                                <span class="flex items-center gap-1">
-                                    <i class="fas fa-location-dot"></i>
-                                    {{ $job->location }}
-                                </span>
-                            </div>
+                            <h2 class="text-2xl text-center font-bold text-primary mb-2">{{ $partner->title }}</h2>
 
                             <!-- Job Photo -->
-                            @if ($job->photo)
-                                <img src="{{ asset('storage/' . $job->photo) }}" alt="{{ $job->title }}"
+                            @if ($partner->partner_image)
+                                <img src="{{ asset('storage/' . $partner->partner_image) }}" alt=""
                                     class="w-full rounded-md mb-3">
                             @else
                                 <div class="w-full h-40 bg-gray-200 flex items-center justify-center rounded-md mb-3">
@@ -84,15 +74,15 @@
 
                             <!-- Action -->
                             <div class="flex justify-end border-t pt-3 gap-3">
-                                <a href="#" data-id="{{ $job->id }}"
+                                <a href="#" data-id="{{ $partner->id }}"
                                     class="open-detail text-sm font-medium px-2 py-2 bg-amber-100 text-white hover:bg-amber-200 rounded transition-all duration-200 ease-in-out">
                                     <i class="fas fa-eye text-amber-400"></i>
                                 </a>
-                                <a href="#" data-id="{{ $job->id }}"
+                                <a href="#" data-id="{{ $partner->id }}"
                                     class="open-edit text-sm font-medium px-2 py-2 bg-blue-100 text-white hover:bg-blue-200 rounded transition-all duration-200 ease-in-out">
                                     <i class="fas fa-edit text-blue-400"></i>
                                 </a>
-                                <form action="{{ route('jobs.destroy', $job->id) }}" method="POST"
+                                <form action="{{ route('partner.destroy', $partner->id) }}" method="POST"
                                     class="delete-form">
                                     @csrf
                                     @method('DELETE')
@@ -105,7 +95,6 @@
                         </div>
                     @endforeach
                 </div>
-                {{ $jobs->links() }}
             </div>
 
             {{-- Tambah Data Start --}}
@@ -113,69 +102,50 @@
                 <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
                 <div
                     class="relative bg-bg rounded-lg flex flex-col items-center justify-center shadow-xl max-w-lg w-full my-4">
+
+                    <!-- Header -->
                     <div class="flex justify-center items-center p-6">
                         <div class="flex flex-col items-center space-y-3">
                             <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Cipta Muda Solusi Logo"
-                                class="w-15">
+                                class="w-16">
                             <h1 class="text-3xl text-[#1E40AF] font-bold">Cipta Muda Solusi</h1>
                         </div>
                     </div>
-                    <h2 class="text-xl text-primary font-bold">Tambah Lowongan</h2>
 
-                    <div class="p-6">
-                        <form action="{{ route('jobs.store') }}" method="POST" enctype="multipart/form-data">
+                    <h2 class="text-xl text-primary font-bold">Tambah Partner</h2>
+
+                    <!-- Form -->
+                    <div class="p-6 w-full">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="flex flex-col justify-center mb-5">
+
+                                <!-- Title -->
                                 <div class="mb-5">
-                                    <label for="title" class="block text-text text-lg font-medium mb-2">Title</label>
+                                    <label for="title" class="block text-text text-lg font-medium mb-2">
+                                        Nama Partner
+                                    </label>
                                     <div class="relative">
                                         <div
                                             class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <i class="fas fa-tag text-text text-lg"></i>
                                         </div>
-                                        <input type="text" id="title" name="title" placeholder="Fullstack Dev"
+                                        <input type="text" id="title" name="title"
+                                            placeholder="Cipta Muda Solusi"
                                             class="w-full pl-10 pr-3 py-3 border border-text text-black rounded-lg font-medium focus:outline-none">
                                     </div>
                                 </div>
-                                <div class="mb-5">
-                                    <label for="location"
-                                        class="block text-text text-lg font-medium mb-2">Location</label>
-                                    <div class="relative">
-                                        <div
-                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <i class="fas fa-location-dot text-text text-lg"></i>
-                                        </div>
-                                        <input type="text" id="location" name="location" placeholder="Texas"
-                                            class="w-full pl-10 pr-3 py-3 border border-text text-black rounded-lg font-medium focus:outline-none">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="mb-5">
-                                <label for="type" class="block text-text text-lg font-medium mb-2">Tipe
-                                    Pekerjaan</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <i class="fas fa-briefcase text-text"></i>
-                                    </div>
-                                    <select name="type" id="type"
-                                        class="w-full pl-10 pr-3 py-3 border border-text rounded-lg focus:outline-none">
-                                        <option value="-">Pilih Tipe Pekerjaan</option>
-                                        @foreach ($types as $type)
-                                            <option value="{{ $type->value }}">{{ $type->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="mb-5">
-                                <label for="photo"
+                                <!-- Upload Photo -->
+                                <label for="partner_image"
                                     class="flex items-center justify-center w-full text-white font-semibold text-lg bg-primary/90 py-3 rounded-lg shadow-lg cursor-pointer hover:shadow-2xl hover:bg-primary transition-all duration-200 ease-in-out">
                                     <i class="fas fa-image mr-2"></i>
                                     Upload Photo
                                 </label>
-                                <input type="file" class="hidden" id="photo" name="photo"
+                                <input type="file" class="hidden" id="partner_image" name="partner_image"
                                     accept="image/*">
+
+                                <!-- Preview -->
                                 <div id="photo-preview"
                                     class="hidden mt-3 gap-4 bg-white rounded-lg shadow p-4 border border-primary/20">
                                     <div class="flex flex-col items-center">
@@ -185,20 +155,21 @@
                                             class="hidden w-32 h-32 object-cover rounded-lg border-2 border-primary shadow-md transition-all duration-200">
                                     </div>
                                     <button type="button" id="remove-photo"
-                                        class="flex cursor-pointer ml-auto bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 items-center justify-center shadow transition-all duration-200">
+                                        class="cursor-pointer ml-auto bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 items-center justify-center shadow transition-all duration-200">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                             </div>
 
+                            <!-- Action Buttons -->
                             <div class="border-t border-text pt-4 grid grid-cols-2 gap-6">
                                 <a href="#"
-                                    class="close-modal bg-red-600 text-white font-medium text-lg py-3 flex items-center justify-center rounded-lg shadow-lg hover:shadow-2xl hover:bg-red-700 transition-all duration-200 ease-in-out">
+                                    class="close-modal px-5 py-3 bg-red-600 text-white font-medium text-lg rounded-lg flex items-center justify-center shadow-lg hover:shadow-2xl hover:bg-red-700 transition-all duration-200 ease-in-out">
                                     <i class="fas fa-x mr-2"></i>
                                     Batal
                                 </a>
                                 <button type="submit"
-                                    class="bg-green-500 text-white font-medium text-lg py-3 flex items-center justify-center rounded-lg shadow-lg cursor-pointer hover:shadow-2xl hover:bg-green-600 transition-all duration-200 ease-in-out">
+                                    class="px-5 py-3 bg-green-500 text-white font-medium text-lg rounded-lg flex items-center justify-center shadow-lg hover:shadow-2xl hover:bg-green-600 transition-all duration-200 ease-in-out">
                                     <i class="fas fa-save mr-2"></i>
                                     Simpan
                                 </button>
@@ -209,31 +180,17 @@
             </div>
             {{-- Tambah Data End --}}
 
-            {{-- Detail Data Start --}}
-            @foreach ($jobs as $job)
-                <div id="detail-modal-{{ $job->id }}"
+            {{-- Detail Modal Start --}}
+            @foreach ($partners as $partner)
+                <div id="detail-modal-{{ $partner->id }}"
                     class="fixed inset-0 z-50 hidden items-center justify-center p-4">
                     <div class="close-modal-2 absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
                     <div
                         class="relative bg-white rounded-xl shadow-2xl max-w-lg w-full p-8 flex flex-col items-center">
-                        <div class="flex flex-col items-center mb-6">
-                            <img src="{{ asset('storage/' . $job->photo) }}" alt="{{ $job->title }}"
+                        <div class="flex flex-col items-center mb-3">
+                            <img src="{{ asset('storage/' . $partner->partner_image) }}" alt="{{ $partner->title }}"
                                 class="aspect-video object-cover mb-3">
-                            <h2 class="text-2xl font-bold text-primary mb-1">{{ $job->title }}</h2>
-                            <span
-                                class="px-3 py-1 rounded-full bg-primary/10 text-primary font-semibold capitalize text-sm">
-                                {{ $job->type->value ?? $job->type }}
-                            </span>
-                        </div>
-                        <div class="w-full flex justify-between space-y-3 mb-3">
-                            <div class="flex items-center gap-2 text-lg">
-                                <i class="fas fa-location-dot text-primary"></i>
-                                <span class="font-medium text-gray-700">{{ $job->location }}</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-lg">
-                                <i class="fas fa-briefcase text-primary"></i>
-                                <span class="font-medium text-gray-700">{{ $job->type->name ?? $job->type }}</span>
-                            </div>
+                            <h1 class="text-center text-primary font-bold text-2xl">{{ $partner->title }}</h1>
                         </div>
                         <div class="w-full border-t pt-6 text-right">
                             <button
@@ -245,40 +202,125 @@
                     </div>
                 </div>
             @endforeach
-            {{-- Detail Data End --}}
+            {{-- Detail Modal End --}}
+
+            <div id="edit-modal-{{ $partner->id }}"
+                class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+                <!-- Overlay -->
+                <div
+                    class="close-modal-2 absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300">
+                </div>
+
+                <!-- Modal Card -->
+                <div
+                    class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 flex flex-col items-center animate-scaleIn">
+                    <h1 class="text-2xl font-bold mb-6 text-gray-800">✏️ Edit Data Partner</h1>
+
+                    <form action="{{ route('partner.update', $partner->id) }}" method="POST"
+                        enctype="multipart/form-data" class="w-full space-y-4">
+                        @csrf
+                        @method('PUT')
+
+                        <!-- Input Judul -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Judul</label>
+                            <input type="text" name="title" value="{{ $partner->title }}"
+                                class="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-green-400 focus:outline-none">
+                        </div>
+
+                        <!-- Input File -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Upload Gambar</label>
+                            <input type="file" name="partner_image"
+                                class="w-full border border-gray-300 px-4 py-2 rounded-lg cursor-pointer shadow-sm focus:ring-2 focus:ring-green-400 focus:outline-none">
+                        </div>
+
+                        <!-- Preview Gambar -->
+                        <div class="flex justify-center">
+                            <img src="{{ asset('storage/' . $partner->partner_image) }}" alt="{{ $partner->title }}"
+                                class="w-40 h-40 object-cover rounded-xl border-4 border-gray-100 shadow-md">
+                        </div>
+
+                        <!-- Tombol -->
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button"
+                                class="close-modal-2 bg-gray-500 hover:bg-gray-600 text-white px-5 py-2 rounded-lg shadow-md transition duration-200">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-2 rounded-lg shadow-md transition duration-200">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Animasi -->
+            <style>
+                @keyframes scaleIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.9) translateY(10px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: scale(1) translateY(0);
+                    }
+                }
+
+                .animate-scaleIn {
+                    animation: scaleIn 0.3s ease-out;
+                }
+            </style>
+
 
             {{-- Edit Data Start --}}
-            @foreach ($jobs as $job)
-                <div id="edit-modal-{{ $job->id }}"
+            @foreach ($partners as $partner)
+                <div id="edit-modal-{{ $partner->id }}"
                     class="fixed inset-0 z-50 hidden items-center justify-center p-4">
                     <div class="close-modal-2 absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
                     <div
-                        class="relative bg-white rounded-xl shadow-2xl max-w-md w-full p-8 flex flex-col items-center">
-                        <h1 class="text-xl font-bold mb-4">Edit Data</h1>
+                        class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 flex flex-col items-center animate-scaleIn">
+                        <h1 class="text-2xl font-bold mb-6 text-gray-800">✏️ Edit Data Partner</h1>
 
-                        <form action="{{ route('jobs.update', $job->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('partner.update', $partner->id) }}" method="POST"
+                            enctype="multipart/form-data" class="w-full space-y-4">
                             @csrf
                             @method('PUT')
 
-                            <input type="text" name="title" value="{{ $job->title }}"
-                                class="w-full border px-3 py-2 rounded mb-3">
+                            <!-- Input Judul -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Judul</label>
+                                <input type="text" name="title" value="{{ $partner->title }}"
+                                    class="w-full border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-2 focus:ring-green-400 focus:outline-none">
+                            </div>
 
-                            <input type="text" name="location" value="{{ $job->location }}"
-                                class="w-full border px-3 py-2 rounded mb-3">
+                            <!-- Input File -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Upload Gambar</label>
+                                <input type="file" name="partner_image"
+                                    class="w-full border border-gray-300 px-4 py-2 rounded-lg cursor-pointer shadow-sm focus:ring-2 focus:ring-green-400 focus:outline-none">
+                            </div>
 
-                            <input type="text" name="type" value="{{ $job->type }}"
-                                class="w-full border px-3 py-2 rounded mb-3">
+                            <!-- Preview Gambar -->
+                            <div class="flex justify-center">
+                                <img src="{{ asset('storage/' . $partner->partner_image) }}"
+                                    alt="{{ $partner->title }}"
+                                    class="w-40 h-40 object-cover rounded-xl border-4 border-gray-100 shadow-md">
+                            </div>
 
-                            <input type="file" name="photo" class="w-full mb-3">
-
-                            <img src="{{ asset('storage/' . $job->photo) }}" alt="" width="200">
-
-                            <div class="flex justify-end gap-3">
+                            <!-- Tombol -->
+                            <div class="flex justify-end gap-3 pt-4">
                                 <button type="button"
-                                    class="close-modal-2 bg-gray-500 text-white px-4 py-2 rounded">Batal</button>
+                                    class="close-modal-2 bg-gray-500 hover:bg-gray-600 text-white px-5 py-2 rounded-lg shadow-md transition duration-200">
+                                    Batal
+                                </button>
                                 <button type="submit"
-                                    class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
+                                    class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-2 rounded-lg shadow-md transition duration-200">
+                                    Update
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -329,6 +371,6 @@
     });
 </script>
 
-<script src="{{ asset('asset-admin/js/popup.js') }}"></script>
+<script src="{{ asset('asset-admin/js/popup-partner.js') }}"></script>
 
 </html>

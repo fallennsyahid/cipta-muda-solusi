@@ -39,67 +39,13 @@
             <x-admin.navbar></x-admin.navbar>
         </div>
 
-        <nav class="bg-[#DBEAFE] px-6 py-5 flex flex-col lg:flex-row justify-between items-start gap-3 w-full">
-            <div class="flex justify-start items-center gap-2">
-                <h1 class="text-heading font-bold text-2xl">Dashboard</h1>
-                <a href="" class="font-medium text-sm text-text">Home</a>
-            </div>
-            <div class="hidden lg:flex flex-col lg:flex-row items-center w-full lg:w-auto">
-                <input type="search" name="search" id="search" placeholder="Searching..."
-                    class="bg-white w-full lg:w-75 px-3 py-2.5 text-sm rounded-l-sm placeholder:text-black/50 focus:outline-none">
-                <button type="button"
-                    class="text-white bg-primary px-3 py-2.5 text-sm rounded-r-sm cursor-pointer w-full lg:w-auto mt-2 lg:mt-0">
-                    <i class="fas fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </nav>
+        <x-admin.navbar2></x-admin.navbar2>
     </header>
 
     <main class="flex">
-        <aside
-            class="bg-white m-6 w-1/3 lg:w-1/5 rounded-lg shadow scale-x-100 origin-center transition-all duration-200 ease-linear">
-            <ul class="flex flex-col gap-6 p-6">
-                <li>
-                    <a href="{{ route('dashboard') }}"
-                        class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary hover:bg-primary/90 transition-all duration-200 ease-in-out">
-                        <i class="fas fa-desktop"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('jobs.index') }}"
-                        class="inline-flex relative items-center gap-3 w-full text-text rounded-sm text-xl p-3 hover:text-white transition-all duration-200 ease-in-out overflow-hidden  group">
+        <x-admin.sidebar></x-admin.sidebar>
 
-                        <span
-                            class="absolute inset-0 bg-primary scale-x-0 origin-center  transition-transform duration-200 ease-out group-hover:scale-x-100">
-                        </span>
 
-                        <i class="fas fa-briefcase relative z-10"></i>
-                        <span class="relative z-10">Jobs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-primary">
-                        <i class="fas fa-desktop"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="flex items-center gap-3 text-white rounded-sm text-xl p-3 bg-red-500">
-                            <i class="fas fa-right-from-bracket"></i>
-                            <span>Logout</span>
-                        </a>
-                    </form>
-                </li>
-            </ul>
-        </aside>
-
-        <article>
-            <h1>HI</h1>
-        </article>
     </main>
 
 </body>

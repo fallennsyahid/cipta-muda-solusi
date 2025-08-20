@@ -235,7 +235,7 @@
                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path
                     d="M587 29.7293C438.5 164.229 151.712 212.304 -3 168.729V271.729H1440V156.729C1440 283.729 735.5 -104.771 587 29.7293Z"
-                    fill="#0891b2" stroke="#0891b2" />
+                    fill="#1e40af" stroke="#1e40af" />
             </svg>
         </div>
     </section>
