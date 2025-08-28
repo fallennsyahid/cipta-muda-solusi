@@ -13,10 +13,14 @@
     --color-heading: #1e3a8a;
     --color-text: #6b7280;
     --color-bg: #d9d9d9;
-    --color-section: #f4f4f4;
+    --color-section: #f8fafc;
+    --color-darkChoco: #333333;
+    --color-black2: #0d0d0e;
 
     /* Text Shadow */
     --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+
+    --font-lato: "Lato", sans-serif;
 }
 
 body {
@@ -49,13 +53,44 @@ input[type="search"]::-webkit-search-cancel-button {
     @apply -rotate-45;
 }
 
-.shadow-4 {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+.shadow-1 {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
 }
 
-.shadow-paginate {
-    box-shadow: 0 0 32px rgba(96, 165, 250, 0.75),
-        0 0 24px rgba(59, 130, 246, 0.75);
+.shadow-2 {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-3 {
+    box-shadow: 0 0px 12px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-4 {
+    box-shadow: 0 0px 24px rgba(0, 0, 0, 0.25);
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+    -webkit-animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-1px);
+        -webkit-transform: translateY(-1px);
+        -moz-transform: translateY(-1px);
+        -ms-transform: translateY(-1px);
+        -o-transform: translateY(-1px);
+    }
 }
 
 .text-shadow {

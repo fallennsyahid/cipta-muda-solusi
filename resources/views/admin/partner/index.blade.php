@@ -64,8 +64,8 @@
 
                             <!-- Job Photo -->
                             @if ($partner->partner_image)
-                                <img src="{{ asset('storage/' . $partner->partner_image) }}" alt=""
-                                    class="w-full rounded-md mb-3">
+                                <img src="{{ asset('storage/' . $partner->partner_image) }}" alt="{{ $partner->title }}"
+                                    class="w-full aspect-video rounded-md mb-3">
                             @else
                                 <div class="w-full h-40 bg-gray-200 flex items-center justify-center rounded-md mb-3">
                                     <i class="fas fa-image text-gray-400 text-3xl"></i>
@@ -238,7 +238,7 @@
                         <!-- Preview Gambar -->
                         <div class="flex justify-center">
                             <img src="{{ asset('storage/' . $partner->partner_image) }}" alt="{{ $partner->title }}"
-                                class="w-40 h-40 object-cover rounded-xl border-4 border-gray-100 shadow-md">
+                                class=" rounded-xl border-4 border-gray-100 shadow-md">
                         </div>
 
                         <!-- Tombol -->

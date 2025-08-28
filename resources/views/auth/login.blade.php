@@ -36,7 +36,7 @@
                 <img src={{ asset('asset-admin/webps/3d-login.webp') }} alt="Login" class="" width="540"
                     height="540">
             </div>
-            <div class="bg-bg py-12 px-10 flex flex-col justify-center rounded-r-2xl">
+            <div class="bg-white py-12 px-10 flex flex-col justify-center rounded-r-2xl">
                 <h1 class="text-heading text-[2.5rem] font-bold text-shadow text-center">PT. Cipta Muda Solusi</h1>
                 <h2 class="mt-9 text-center text-heading font-bold text-4xl text-shadow">Welcome Back</h2>
                 <h3 class="text-center font-medium text-2xl mt-2 text-text text-shadow">Have a nice day 😉</h3>

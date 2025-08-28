@@ -58,7 +58,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($jobs as $job)
                         <div
-                            class="border rounded-lg shadow-sm p-5 bg-bg hover:shadow-md hover:-translate-y-2 transition-all duration-200 ease-in-out">
+                            class="border border-text rounded-lg shadow-sm p-5 bg-white hover:shadow-md hover:-translate-y-2 transition-all duration-200 ease-in-out">
 
                             <h2 class="text-2xl text-center font-bold text-primary mb-2">{{ $job->title }}</h2>
 
