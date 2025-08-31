@@ -41,7 +41,7 @@
                         <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
                     </button>
 
-                    <nav id="nav-menu" class="bg-white shadow-2 px-6 py-4 rounded-full">
+                    <nav id="nav-menu" class="bg-white/30 border border-white/20 shadow-2 px-6 py-4 rounded-full">
                         <ul class="flex items-center justify-center gap-8" id="#nav-active">
                             <li class="group">
                                 <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">

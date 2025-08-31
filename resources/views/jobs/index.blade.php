@@ -23,141 +23,332 @@
 </head>
 
 <body>
-    <header class="bg-white absolute top-0 left-0 w-full flex items-center z-10">
+    {{-- Header Start --}}
+    <header class="absolute top-0 left-0 w-full flex items-center">
         <div class="container max-w-full relative">
             <div class="flex items-center justify-between">
-                <div class="px-4 py-6">
-                    <div class="flex items-center mr-2">
-                        <a href="{{ route('index') }}">
-                            <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
-                                class="w-21 lg:w-37.5" width="675" height="200">
-                        </a>
-                        <div class="flex flex-col items-start">
-                            <h1 class="text-heading font-semibold text-base lg:text-2xl">PT. Cipta Muda Solusi</h1>
-                            <span class="text-text text-xs lg:text-base">Young, Brave, Innovative, Strong</span>
-                        </div>
-                    </div>
+                <div class="pl-10 py-6">
+                    <a href="{{ route('index') }}">
+                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
+                            class="h-14 w-auto relative z-50" width="675" height="200">
+                    </a>
                 </div>
 
-                <div class="flex items-center justify-end px-4">
-                    <nav id="nav-menu"
-                        class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block
-                    lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
-                        <ul class="block lg:flex lg:items-center lg:justify-center" id="#nav-active">
+                {{-- <div class="flex items-center justify-center px-4 py-6">
+                    <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
+                        class="block absolute right-4 lg:hidden">
+                        <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+                        <span class="hamburger-line transition duration-300 ease-in-out"></span>
+                        <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+                    </button>
+
+                    <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
+                        <ul class="flex items-center justify-center gap-8" id="#nav-active">
                             <li class="group">
-                                <a href="/jobs"
-                                    class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
-                                    aria-label="Buka Pencarian">
-                                    <i class="fas fa-magnifying-glass"></i>
+                                <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Beranda
                                 </a>
+                            </li>
+                            <li class="group">
+                                <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Tentang
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Layanan
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Team
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Contact
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Faq
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="group">
+                                <i class="fas fa-sun text-darkChoco text-2xl"></i>
                             </li>
                         </ul>
                     </nav>
-                    <div class="lg:hidden absolute right-4">
-                        <a href="/jobs"
-                            class="search-button text-2xl text-black w-12.5 h-12.5 bg-gray-300 rounded-full mx-5 flex items-center justify-center transition-all duration-200 ease-in-out group-hover:scale-110"
+                </div> --}}
+                <div class="relative mr-10 group ">
+                    <div class="absolute z-1 inset-y-0 right-0 flex items-center">
+                        <button type="button" id="search-button"
+                            class="search-button text-2xl text-darkChoco w-14 h-14 bg-black/10 rounded-full flex items-center justify-center transition-all duration-200 ease-in-out cursor-pointer hover:bg-black/20"
                             aria-label="Buka Pencarian">
                             <i class="fas fa-magnifying-glass"></i>
-                        </a>
+                        </button>
+                    </div>
+                    <input type="search" name="input-search" id="input-search" placeholder="Cari sesuatu..." autofocus
+                        class="bg-white text-darkChoco pr-10 pl-4 py-4 rounded-full focus:outline-none shadow-3 w-0 group-hover:w-64 origin-right transition-all duration-500 ease-in-out">
+                </div>
+            </div>
+        </div>
+    </header>
+    {{-- Header Start --}}
+
+    <section id="hero" class="relative h-screen bg-accent/50 flex items-center justify-center text-center">
+        <div class="absolute left-10 top-20 w-32 h-32 bg-primary/20 rounded-full blur-md"></div>
+        <div class="absolute right-10 bottom-20 w-40 h-40 bg-primary/20 rounded-full blur-md"></div>
+        <div
+            class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-60 h-60 bg-primary/20 rounded-full blur-md">
+        </div>
+
+        <div class="container max-w-full">
+            <h1
+                class="font-bold text-3xl lg:text-6xl mx-auto mb-6 text-center leading-snug bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text max-w-4xl">
+                Bergabung Menjadi Bagian dari Tim Kami
+            </h1>
+            <p class="font-semibold text-xl text-text max-w-6xl mx-auto">
+                Wujudkan karir impian Anda bersama Cipta Muda Solusi. Kami mencari talenta terbaik untuk bergabung dalam
+                misi menciptakan solusi teknologi inovatif.
+            </p>
+            <div class="flex items-center justify-center mt-6 gap-8">
+                <div class="flex items-center text-text text-base">
+                    <i class="fas fa-users mr-2 text-primary"></i>
+                    50+ Tim Profesional
+                </div>
+                <div class="flex items-center text-text text-base">
+                    <i class="fas fa-briefcase mr-2 text-primary"></i>
+                    Lingkungan Kerja Fleksibel
+                </div>
+                <div class="flex items-center text-text text-base">
+                    <i class="fas fa-location-dot mr-2 text-primary"></i>
+                    Jakarta & Remote
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="jobs" class="py-12 bg-section">
+        <div class="container max-w-full">
+            <div class="flex items-center justify-between mx-10 mb-10">
+                <h1 class="font-bold text-2xl text-heading">Daftar Lowongan Kerja (6)</h1>
+                <div class="flex items-center gap-6">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-magnifying-glass text-black/50"></i>
+                        </div>
+                        <input type="search" name="input-search" id="input-search" placeholder="Cari Lowongan..."
+                            class="border border-text text-base text-black2 rounded-lg pl-10 p-4 pr-3 focus:outline-none placeholder:text-black/50">
+                    </div>
+                    <div>
+                        <select name="filter" id="filter"
+                            class="p-4 rounded-lg border border-text text-base focus:outline-none text-black2">
+                            <option value="-">Semua Kategori</option>
+                            <option value="-">Semua Kategori</option>
+                        </select>
                     </div>
                 </div>
             </div>
 
-            {{-- Search Form Start --}}
-            <div
-                class="search-form absolute top-full right-0 mt-6 mx-4 sm:mx-8 p-3 sm:p-5 bg-white rounded-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-160 flex items-center scale-x-0 origin-center duration-300 z-50">
-                <input type="search" id="search-box" placeholder="Cari disini..."
-                    class="w-full text-base sm:text-xl md:text-2xl text-text p-3 sm:p-4 bg-section rounded-md focus:border-0 focus:outline-none">
-                <label for="search-box"
-                    class="cursor-pointer mr-3 sm:mr-6 absolute inset-y-0 right-2 flex items-center">
-                    <i class="fas fa-magnifying-glass text-xl sm:text-lg text-text"></i>
-                </label>
-            </div>
-            {{-- Search Form End --}}
-
-        </div>
-    </header>
-    <section id="hero" class="bg-bg relative overflow-hidden">
-        <img src="{{ asset('landing/webp/handshake.webp') }}" alt="Handshake" class="w-full opacity-40">
-
-        <div class="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/50 to-bg/70"></div>
-
-        <div
-            class="absolute top-10 left-10 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-primary rounded-full animate-bounce opacity-70">
-        </div>
-        <div
-            class="absolute bottom-10 right-10 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-secondary rounded-full animate-ping opacity-50">
-        </div>
-        <div
-            class="absolute top-1/2 right-1/4 w-6 h-6 sm:w-7 sm:h-8 md:w-8 md:h-8 bg-accent rounded-full animate-spin-slow opacity-40">
-        </div>
-
-        <div
-            class="absolute top-2/3 lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full max-w-[90%] sm:max-w-[75%] lg:max-w-[65%] px-4">
-            <h1 class="text-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl">Selamat Datang</h1>
-            <p class="text-xl sm:text-2xl md:text-2xl lg:text-3xl text-heading mt-6 sm:mt-7 md:mt-8 lg:mt-9">
-                Temukan peluang karier terbaik yang sesuai dengan passion dan
-                keahlianmu. Jelajahi berbagai posisi yang tersedia dan temukan tempat di mana kemampuanmu dihargai
-                dan berkembang.
-            </p>
-            <p class="text-xl sm:text-2xl md:text-2xl lg:text-3xl text-heading mt-6 sm:mt-7 md:mt-8 lg:mt-9">
-                Mulai perjalanan profesionalmu hari ini dan bergabung dengan tim yang mendukung pertumbuhan,
-                kreativitas, dan inovasi. Karier impianmu hanya sejauh satu klik.
-            </p>
-
-            <a href="#jobs"
-                class="mt-8 sm:mt-10 md:mt-12 inline-block bg-primary text-white font-semibold py-3 sm:py-3 md:py-4 px-6 sm:px-6 md:px-8 rounded-lg text-lg sm:text-xl md:text-2xl hover:bg-primary/80 transition">
-                Lihat Lowongan
-            </a>
-        </div>
-    </section>
-
-    <section id="jobs">
-        <div class="container max-w-full">
-            <div class="flex justify-between m-6">
-                <h1 class="font-semibold text-4xl text-text">Lowongan Pekerjaan</h1>
-                <form action="" class="flex gap-4 items-center">
-                    <span class="font-medium text-text text-xl">Filter By:</span>
-                    <select name="filter" id="filter"
-                        class="border border-secondary p-4 rounded-md text-lg text-text">
-                        <option value="-">Pilih Perusahaan</option>
-                        <option value="1">Cipta Muda Solusi</option>
-                        <option value="2">Samudra Biru Indonesia</option>
-                    </select>
-                    <button type="submit"
-                        class="px-8 py-4 bg-primary text-lg text-white font-semibold rounded-md hover:bg-primary/80 cursor-pointer">Cari</button>
-                </form>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 m-6">
-                @foreach ($jobs as $job)
-                    <div class="bg-bg w-full rounded-lg shadow-4">
-                        <div class="flex flex-col">
-                            <img src="{{ asset('storage/' . $job->photo) }}" alt="" class="rounded-t-lg"
-                                width="308" height="203">
-                            <div class="flex flex-col m-6">
-                                <h1 class="text-center text-heading text-2xl font-medium">{{ $job->title }}</h1>
-                                <h2 class="text-center mt-1 text-lg text-text font-medium capitalize">
-                                    {{ $job->type }}</h2>
-                                <p class="text-primary text-xl text-center mt-1 font-medium">{{ $job->location }}</p>
-                                <a href="/"
-                                    class="w-full bg-secondary mt-3 py-3 font-semibold text-white text-xl text-center rounded-md">
-                                    Lamar Posisi
-                                </a>
-                            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-10">
+                <div class="bg-white rounded-xl shadow-1 p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
+                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
+                    </div>
+                    <p class="font-lato text-sm max-w-md text-text mb-3">
+                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
+                        engineering kami.
+                    </p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-location-dot mr-2"></i>
+                            Jakarta, Indonesia
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-clock mr-2"></i>
+                            Full-Time
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-briefcase mr-2"></i>
+                            3-5 Tahun
                         </div>
                     </div>
-                @endforeach
+                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            React.Js, Node.Js
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            Database Management
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            API Development
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
+                        <a href="#"
+                            class="bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
+                            Lamar Sekarang
+                            <i class="fas fa-chevron-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-1 p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
+                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
+                    </div>
+                    <p class="font-lato text-sm max-w-md text-text mb-3">
+                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
+                        engineering kami.
+                    </p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-location-dot mr-2"></i>
+                            Jakarta, Indonesia
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-clock mr-2"></i>
+                            Full-Time
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-briefcase mr-2"></i>
+                            3-5 Tahun
+                        </div>
+                    </div>
+                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            React.Js, Node.Js
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            Database Management
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            API Development
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
+                        <a href="#"
+                            class="bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
+                            Lamar Sekarang
+                            <i class="fas fa-chevron-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-1 p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
+                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
+                    </div>
+                    <p class="font-lato text-sm max-w-md text-text mb-3">
+                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
+                        engineering kami.
+                    </p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-location-dot mr-2"></i>
+                            Jakarta, Indonesia
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-clock mr-2"></i>
+                            Full-Time
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-briefcase mr-2"></i>
+                            3-5 Tahun
+                        </div>
+                    </div>
+                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            React.Js, Node.Js
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            Database Management
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            API Development
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
+                        <a href="#"
+                            class="bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
+                            Lamar Sekarang
+                            <i class="fas fa-chevron-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-1 p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
+                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
+                    </div>
+                    <p class="font-lato text-sm max-w-md text-text mb-3">
+                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
+                        engineering kami.
+                    </p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-location-dot mr-2"></i>
+                            Jakarta, Indonesia
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-clock mr-2"></i>
+                            Full-Time
+                        </div>
+                        <div class="flex items-center text-text text-xs">
+                            <i class="fas fa-briefcase mr-2"></i>
+                            3-5 Tahun
+                        </div>
+                    </div>
+                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            React.Js, Node.Js
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            Database Management
+                        </div>
+                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                            API Development
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
+                        <a href="#"
+                            class="bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
+                            Lamar Sekarang
+                            <i class="fas fa-chevron-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    {{-- <footer>
         <div class="container max-w-full">
             <div class="bg-bg p-6 text-center text-text font-medium">
                 <p>Copyright &copy; {{ date('Y') }} PT. Cipta Muda Solusi. All Right Reserved.</p>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
 </body>
 

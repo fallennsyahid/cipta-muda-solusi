@@ -1,64 +1,109 @@
 // Search Form
-const searchButton = document.querySelectorAll('.search-button');
-const searchBox = document.querySelector('#search-box');
-const searchForm = document.querySelector('.search-form');
+const searchButton = document.querySelector('.search-button');
+const searchInput = document.querySelector('#input-search');
 
-searchButton.forEach((btn) => {
-    btn.addEventListener('click', function (e) {
+if (searchButton && searchInput) {
+    searchButton.addEventListener('click', function (e) {
         e.preventDefault();
 
-        searchForm.classList.toggle('scale-x-100');
-        searchForm.classList.toggle('scale-x-0');
+        searchInput.classList.toggle('w-0');
+        searchInput.classList.toggle('w-64');
 
-        if (searchForm.classList.contains('scale-x-100')) {
-            searchBox.focus();
-        }
+        searchInput.focus();
+        e.stopPropagation();
     });
-});
+}
 
 // Navbar Fixed
-const header = document.querySelector('header');
+const navbar = document.querySelector('#nav-menu');
 const toTop = document.querySelector('#to-top');
+const header = document.querySelector('header');
 let isVisible = false;
 
-toTop.addEventListener('animationend', (e) => {
-    if (e.animationName === 'cta2') {
-        toTop.classList.add('hidden');
-    }
-});
-
 window.addEventListener('scroll', function () {
-    const fixedNav = header.offsetTop;
+    const threshold = header.offsetHeight;
 
-    if (window.scrollY > fixedNav && !isVisible) {
+    if (window.scrollY > threshold && !isVisible) {
         isVisible = true;
         header.classList.add('navbar-fixed');
+        // header.classList.remove('z-10');
+        // navbar.classList.add('navbar-effect');
         toTop.classList.remove('hidden', 'toTop-2');
         toTop.classList.add('flex', 'toTop-1');
     }
-    else if (window.scrollY <= fixedNav && isVisible) {
+    else if (window.scrollY <= threshold && isVisible) {
         isVisible = false;
         header.classList.remove('navbar-fixed');
+        // header.classList.remove('z-10');
+        // navbar.classList.remove('navbar-effect');
         toTop.classList.remove('flex', 'toTop-1');
         toTop.classList.add('toTop-2');
     }
 });
 
+// Portfolio Overlay
+const body = document.querySelector('body');
+const portfolioOverlay = document.querySelector('#portfolio-overlay');
+const openBtn = document.querySelector('#open-overlay');
+const closeBtn = document.querySelector('#close-overlay');
+
+if (openBtn && closeBtn && portfolioOverlay) {
+    openBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        portfolioOverlay.classList.toggle('translate-x-full');
+        portfolioOverlay.classList.toggle('translate-x-0');
+
+        body.classList.add('overflow-hidden');
+    });
+
+    closeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        portfolioOverlay.classList.remove('translate-x-0');
+        portfolioOverlay.classList.add('translate-x-full');
+
+        body.classList.remove('overflow-hidden');
+    });
+}
+
 // Hamburger Menu
-const hamburger = document.querySelector('#hamburger');
-const navMenu = document.querySelector('#nav-menu');
+// const hamburger = document.querySelector('#hamburger');
+// const navMenu = document.querySelector('#nav-menu');
 
-hamburger.addEventListener('click', function () {
-    hamburger.classList.toggle('hamburger-active');
-    navMenu.classList.toggle('hidden');
-});
+// hamburger.addEventListener('click', function () {
+//     hamburger.classList.toggle('hamburger-active');
+//     navMenu.classList.toggle('hidden');
+// });
 
-window.addEventListener('click', function (e) {
-    if (e.target != hamburger && e.target != navMenu) {
-        hamburger.classList.remove('hamburger-active');
-        navMenu.classList.add('hidden');
-    }
-});
+// window.addEventListener('click', function (e) {
+//     if (e.target != hamburger && e.target != navMenu) {
+//         hamburger.classList.remove('hamburger-active');
+//         navMenu.classList.add('hidden');
+//     }
+// });
+
+const clockEl = document.getElementById("clock");
+let serverTime = new Date(clockEl.dataset.time);
+
+const updateClock = () => {
+    serverTime.setSeconds(serverTime.getSeconds() + 1);
+
+    let hours = serverTime.getHours();
+    let minutes = serverTime.getMinutes();
+    let seconds = serverTime.getSeconds();
+
+    let ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12;
+
+    clockEl.innerText =
+        `${hours.toString().padStart(2, '0')}:` +
+        `${minutes.toString().padStart(2, '0')}:` +
+        `${seconds.toString().padStart(2, '0')} ${ampm}`;
+};
+
+setInterval(updateClock, 1000);
+updateClock();
 
 // Dots
 const container = document.querySelector('.dots-container');
@@ -89,3 +134,4 @@ for (let i = 0; i < 20; i++) {
 
     container.appendChild(dot);
 }
+

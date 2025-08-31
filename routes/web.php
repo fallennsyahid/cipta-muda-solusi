@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\JobsController as JobsAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
+use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\ProfileController;
@@ -18,6 +20,14 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/', [ContactController::class, 'store'])->name('index.store');
 
 Route::get('/jobs', [JobsController::class, 'index'])->name('user.jobs.index');
+
+Route::get('/faqs', [FaqsController::class, 'index'])->name('user.faqs.index');
+
+Route::get('/blogs', [BlogsController::class, 'index'])->name('user.blogs.index');
+
+Route::get('testing', function () {
+    return view('testing');
+});
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
