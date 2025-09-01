@@ -1,19 +1,25 @@
 // Faq Answer
-const dropdownBtn = document.querySelector('#dropdown-button');
-const dropdownContent = document.querySelector('#dropdown-content');
-const dropdownIcon = document.querySelector('#dropdown-icon');
+const dropdownBtns = document.querySelectorAll('.dropdown-button');
 
-dropdownBtn.addEventListener('click', () => {
-    if (dropdownContent.classList.contains('opacity-0')) {
-        dropdownContent.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
-        dropdownContent.classList.add('opacity-100', 'scale-y-100', 'max-h-[500px]', 'py-6');
-        dropdownIcon.classList.add('-rotate-180');
-    } else {
-        dropdownContent.classList.remove('opacity-100', 'scale-y-100', 'max-h-[500px]', 'py-6');
-        dropdownContent.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
-        dropdownIcon.classList.remove('-rotate-180');
-    }
+dropdownBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const content = btn.closest('.bg-white').querySelector('.dropdown-content');
+        const icon = btn.querySelector('.dropdown-icon');
+
+        const isOpen = !content.classList.contains('opacity-0');
+
+        if (isOpen) {
+            content.classList.remove('opacity-100', 'scale-y-100', 'max-h-[250px]', 'py-6');
+            content.classList.add('opacity-0', 'scale-y-0', 'max-h-0');
+            icon.classList.remove('-rotate-180');
+        } else {
+            content.classList.remove('opacity-0', 'scale-y-0', 'max-h-0');
+            content.classList.add('opacity-100', 'scale-y-100', 'max-h-[250px]', 'py-6');
+            icon.classList.add('-rotate-180');
+        }
+    });
 });
+
 
 // Question Form
 const openModalBtn = document.querySelector('#add-question');
@@ -37,37 +43,27 @@ closeBtn.forEach(btn => {
     });
 });
 
-// Search Input
-const searchButton = document.querySelector('.search-button');
-const searchInput = document.querySelector('#input-search');
+// Character Count
+const textarea = document.querySelector('#question-input');
+const charCount = document.querySelector('#char-count');
 
-searchButton.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    searchInput.classList.toggle('w-0');
-    searchInput.classList.toggle('w-64');
-
-    searchInput.focus();
-    e.stopPropagation();
+textarea.addEventListener('input', () => {
+    charCount.textContent = textarea.value.length;
 });
 
 // Validate Form
 const sendBtn = document.querySelector('#submit-button');
-const requiredFields = [
-    document.getElementById('email-input'),
-    document.getElementById('question-input'),
-];
+const questionField = document.querySelector('#question-input');
 
 function validateForm() {
-    let allFilled = requiredFields.every(field => field.value.trim() !== '' && field.value !== "-");
-    sendBtn.disabled = !allFilled;
+    const isFilled = questionField.value.trim() !== '' && questionField.value !== "-";
+    sendBtn.disabled = !isFilled;
 }
 
-requiredFields.forEach(field => {
-    field.addEventListener('input', validateForm);
-    field.addEventListener('change', validateForm);
-});
+questionField.addEventListener('input', validateForm);
+questionField.addEventListener('change', validateForm);
 
-validateForm(); // cek awal
+validateForm();
+
 
 

@@ -26,20 +26,30 @@
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
 </head>
 
-<body class="bg-gradient-to-br from-[#DEF7F9] to-accent">
+<style>
+    .login-bg {
+        background-image: url("./asset-admin/svgs/animate-shape.svg");
+    }
+</style>
+
+<body
+    class="min-h-screen bg-gradient-to-br from-section via-bg to-accent flex items-center justify-center overflow-hidden">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <div class="flex justify-center items-center  login-bg">
-        <div class="flex items-center mx-auto my-10">
-            <div class="bg-primary hidden lg:flex pt-27 rounded-l-2xl">
-                <img src={{ asset('asset-admin/webps/3d-login.webp') }} alt="Login" class="" width="540"
-                    height="540">
-            </div>
-            <div class="bg-white py-12 px-10 flex flex-col justify-center rounded-r-2xl">
-                <h1 class="text-heading text-[2.5rem] font-bold text-shadow text-center">PT. Cipta Muda Solusi</h1>
-                <h2 class="mt-9 text-center text-heading font-bold text-4xl text-shadow">Welcome Back</h2>
-                <h3 class="text-center font-medium text-2xl mt-2 text-text text-shadow">Have a nice day 😉</h3>
+    <div class="absolute inset-0 -z-50 login-bg pointer-events-none"></div>
+
+    <div class="relative">
+        <div class="flex items-center justify-center">
+            <div class="bg-white/50 p-8 backdrop-blur-md border-0 rounded-2xl shadow-2xl">
+                <div
+                    class="flex justify-center items-center bg-gradient-to-tr from-primary to-secondary w-16 h-16 rounded-2xl text-white text-3xl mx-auto mb-4">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-heading text-center mb-4">Selamat Datang Kembali</h1>
+                <p class="text-text text-center">
+                    Masuk ke dashboard admin untuk mengelola website Anda
+                </p>
 
                 <form method="POST" action="{{ route('login') }}" class="mt-9">
                     @csrf
@@ -52,9 +62,9 @@
                                 <i class="fas fa-user text-text/50"></i>
                             </div>
                             <x-text-input id="email"
-                                class="block mt-3 pl-10 pr-3 py-4 text-base text-text rounded-xl w-full" type="email"
-                                name="email" :value="old('email')" required autofocus autocomplete="username"
-                                placeholder="Masukkan email anda" />
+                                class="block mt-3 pl-10 pr-3 py-4 text-lg text-darkChoco font-medium rounded-xl w-full border-2 border-text/50 focus:border-2 focus:border-secondary transition-colors duration-300"
+                                type="email" name="email" :value="old('email')" required autofocus
+                                autocomplete="username" placeholder="Masukkan email anda" />
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
@@ -68,8 +78,8 @@
                                 <i class="fas fa-lock text-text/50"></i>
                             </div>
                             <x-text-input id="password"
-                                class="block mt-1 pl-10 pr-3 py-4 text-base text-text rounded-xl w-full" type="password"
-                                name="password" required autocomplete="current-password"
+                                class="block mt-1 pl-10 pr-3 py-4 text-lg text-darkChoco font-medium rounded-xl w-full border-2 border-text/50 focus:border-2 focus:border-secondary transition-colors duration-300"
+                                type="password" name="password" required autocomplete="current-password"
                                 placeholder="Masukkan password anda" />
                             <div id="show-password"
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
@@ -97,7 +107,7 @@
 
                     <div class="mt-4">
                         <x-primary-button
-                            class="bg-primary text-white flex items-center justify-center text-center font-semibold text-xl w-full py-3 rounded-xl hover:bg-primary/90 hover:ring-2 hover:ring-blue-300 hover:scale-105 active:ring-offset-2 active:ring-blue-400 active:scale-100 transition-all duration-300 ease-in-out">
+                            class="bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center text-center font-semibold text-xl w-full py-3 rounded-xl hover:from-secondary hover:to-primary transform hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out">
                             <i class="fas fa-right-to-bracket mr-2"></i>
                             {{ __('Log in') }}
                         </x-primary-button>

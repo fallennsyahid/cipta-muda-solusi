@@ -133,26 +133,167 @@
 
     <section id="question" class="p-12 bg-section">
         <div class="container max-w-full">
-            <div class="flex flex-col gap-6">
-                <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
-                    <div
-                        class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
-                        <h1 class="font-semibold text-2xl text-heading">
-                            Teknologi apa saja yang digunakan dalam pengembangan?
-                        </h1>
-                        <div id="dropdown-button"
-                            class="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
-                            <i id="dropdown-icon"
-                                class="fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading">
+                                Teknologi apa saja yang digunakan dalam pengembangan?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
+
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
                         </div>
                     </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading">
+                                Teknologi apa saja yang digunakan dalam pengembangan?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
 
-                    <div class="opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top"
-                        id="dropdown-content">
-                        <p class="px-8 text-base font-medium text-text leading-relaxed">
-                            Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
-                            styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
-                        </p>
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading">
+                                Teknologi apa saja yang digunakan dalam pengembangan?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
+
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading">
+                                Teknologi apa saja yang digunakan dalam pengembangan?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
+
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading">
+                                Teknologi apa saja yang digunakan dalam pengembangan?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
+
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading line-clamp-2">
+                                Bagaimana cara melakukan integrasi pembayaran Midtrans ke dalam aplikasi Laravel dan
+                                memastikan transaksi aman?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
+
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-y-auto transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-lg font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
+                        <div
+                            class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                            <h1 class="font-semibold text-2xl text-heading">
+                                Teknologi apa saja yang digunakan dalam pengembangan?
+                            </h1>
+                            <div
+                                class="dropdown-button w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:bg-text/20 transition-all duration-300 ease-in-out">
+                                <i
+                                    class="dropdown-icon fas fa-chevron-down text-2xl text-heading transition-transform duration-300"></i>
+                            </div>
+                        </div>
+
+                        <div
+                            class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-y-auto transition-all duration-500 ease-in-out origin-top">
+                            <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
+                                styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,14 +333,13 @@
             <form id="question-form" action="" method="POST" class="space-y-6 p-6">
                 <div class="space-y-3">
                     <div class="mb-2">
-                        <label for="email" class="text-base text-heading font-medium">Email</label>
+                        <label for="email" class="text-base text-heading font-medium">Email (Opsional)</label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-text"></i>
                         </div>
-                        <input type="email" name="email-input" id="email-input" placeholder="Masukkan email Anda.."
-                            required
+                        <input type="email" name="email-input" id="email-input" placeholder="Masukkan email"
                             class="w-full pl-10 py-3 pr-3 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
                     <div class="mb-2">
@@ -209,8 +349,12 @@
                         <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
                             <i class="fas fa-message text-text"></i>
                         </div>
-                        <textarea name="question-input" id="question-input" rows="5" placeholder="Masukkan pertanyaan Anda.." required
+                        <textarea name="question-input" id="question-input" rows="5" maxlength="150"
+                            placeholder="Masukkan pertanyaan (Max. 300 karakter)" required
                             class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        <p class="text-sm text-text">
+                            <span id="char-count">0</span>/150 Karakter
+                        </p>
                     </div>
                     <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera</p>
                 </div>

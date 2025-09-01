@@ -2,123 +2,200 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-    {{-- Google Fonts --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
-
-    {{-- Font Awesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Layout</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/lucide.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .scale-102 {
+            transform: scale(1.02);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100">
-    <div class="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl">
+<body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-300">
 
-        <!-- Container untuk slide -->
-        <div class="flex transition-transform duration-700" id="sliderWrapper">
-            <!-- Maps -->
-            <div id="maps" class="w-full flex-shrink-0">
-                <div class="flex flex-wrap md:flex-nowrap gap-10">
-                    <div class="w-full md:w-1/2">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.0444291674!2d-118.74139030403776!3d34.020608403183566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20California%2C%20Amerika%20Serikat!5e0!3m2!1sid!2sid!4v1756348054105!5m2!1sid!2sid"
-                            loading="lazy" class="rounded-lg w-full h-100"></iframe>
+    <!-- Sidebar -->
+    <div id="sidebar"
+        class="fixed top-4 left-4 bottom-4 z-50 w-64 bg-white/80 backdrop-blur-xl shadow-2xl rounded-2xl border border-white/20 transform -translate-x-full scale-95 transition-all duration-500 ease-out lg:translate-x-0 lg:scale-100">
+        <div class="flex flex-col h-full rounded-2xl overflow-hidden">
+
+            <!-- Header -->
+            <div
+                class="flex items-center justify-between h-16 px-6 bg-gradient-to-r from-blue-500 to-purple-500 relative">
+                <div class="absolute inset-0 bg-black/10 rounded-t-2xl"></div>
+                <div class="flex items-center space-x-3 relative z-10">
+                    <div
+                        class="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+                        <span class="text-blue-500 font-bold text-sm">CMS</span>
                     </div>
-                    <div class="w-full md:w-1/2 p-16 flex flex-col justify-center items-center">
-                        <h1 class="font-bold text-4xl text-heading text-center mb-8">Kunjungi Kami</h1>
-                        <p class="font-lato text-text text-lg text-center max-w-xl mb-8">
-                            Datang dan temui tim kami secara langsung. Kami selalu terbuka untuk berbincang dan
-                            berkolaborasi.
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="https://maps.app.goo.gl/MEj1GV4VQM4ft1UVA" target="_blank"
-                                class="py-3 px-5 bg-secondary text-white font-medium text-base rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300 ease-in-out">
-                                <i class="fas fa-map-location-dot mr-2"></i> Dapatkan Petunjuk Arah
-                            </a>
-                        </div>
-                        <button id="btnToForm"
-                            class="mt-6 px-5 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity">
-                            Maps
-                        </button>
+                    <div>
+                        <h1 class="text-white font-bold text-base drop-shadow-sm">Cipta Muda</h1>
+                        <p class="text-blue-100 text-xs">Solusi</p>
                     </div>
                 </div>
+                <button id="closeSidebar" class="lg:hidden text-white hover:bg-white/20 rounded-xl relative z-10">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
             </div>
 
-            <!-- Form Kontak -->
-            <div id="formKontak" class="w-full flex-shrink-0">
-                <div class="flex flex-wrap md:flex-nowrap gap-10">
-                    <div class="w-full lg:w-1/2 h-full">
-                        <h1 class="text-heading text-2xl font-bold">Konsultasi Gratis</h1>
-                        <form class="space-y-4 py-4">
-                            <div class="space-y-4">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="full-name"
-                                            class="block mb-2 font-medium text-base text-heading">Nama Lengkap</label>
-                                        <input type="text" id="full-name" placeholder="Masukkan nama lengkap"
-                                            class="w-full bg-white pl-4 py-2 rounded-lg border" />
-                                    </div>
-                                    <div>
-                                        <label for="phone-number"
-                                            class="block mb-2 font-medium text-base text-heading">Nomor Telepon</label>
-                                        <input type="tel" id="phone-number" placeholder="Masukkan nomor telepon"
-                                            class="w-full bg-white pl-4 py-2 rounded-lg border" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="email"
-                                        class="block mb-2 font-medium text-base text-heading">Email</label>
-                                    <input type="email" id="email" placeholder="Masukkan email"
-                                        class="w-full bg-white pl-4 py-2 rounded-lg border" />
-                                </div>
-                                <div>
-                                    <label for="message"
-                                        class="block mb-2 font-medium text-base text-heading">Pesan</label>
-                                    <textarea id="message" rows="3" placeholder="Pesan Anda" class="w-full bg-white pl-4 py-2 rounded-lg border"></textarea>
-                                </div>
-                                <div>
-                                    <button type="submit"
-                                        class="w-full py-3 px-6 bg-secondary text-white rounded-lg">Kirim</button>
-                                </div>
-                            </div>
-                        </form>
+            <!-- Navigation -->
+            <nav class="flex-1 px-4 py-6 space-y-3 overflow-y-auto">
+                <a href="/"
+                    class="flex items-center space-x-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105">
+                    <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="/jobs"
+                    class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-sm">
+                    <i data-lucide="briefcase" class="h-5 w-5"></i>
+                    <span class="font-medium">Jobs</span>
+                </a>
+                <a href="/partners"
+                    class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-sm">
+                    <i data-lucide="users" class="h-5 w-5"></i>
+                    <span class="font-medium">Partners</span>
+                </a>
+                <a href="/faq"
+                    class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-sm">
+                    <i data-lucide="help-circle" class="h-5 w-5"></i>
+                    <span class="font-medium">FAQ</span>
+                </a>
+                <a href="/blog"
+                    class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-sm">
+                    <i data-lucide="file-text" class="h-5 w-5"></i>
+                    <span class="font-medium">Blog</span>
+                </a>
+                <a href="/settings"
+                    class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-sm">
+                    <i data-lucide="settings" class="h-5 w-5"></i>
+                    <span class="font-medium">Settings</span>
+                </a>
+            </nav>
+
+            <!-- User Panel -->
+            <div class="p-4 border-t border-white/20 backdrop-blur-sm">
+                <div
+                    class="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-r from-white/40 to-white/20 backdrop-blur-sm border border-white/30 hover:shadow-lg transition-all duration-300">
+                    <div class="h-12 w-12 rounded-full overflow-hidden ring-2 ring-white/30">
+                        <img src="/admin-avatar.png" alt="Admin" class="w-full h-full object-cover">
                     </div>
-                    <button id="btnToMaps"
-                        class="mt-6 px-5 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity">
-                        Konsultasi sekarang
-                    </button>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-semibold text-gray-800 truncate">Admin User</p>
+                        <p class="text-xs text-gray-500 opacity-80">admin@ciptamuda.com</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const slider = document.getElementById('sliderWrapper');
-        const btnToForm = document.getElementById('btnToForm');
-        const btnToMaps = document.getElementById('btnToMaps')
+    <!-- Main Content -->
+    <div class="lg:ml-72">
+        <!-- Header -->
+        <header
+            class="bg-white/70 backdrop-blur-xl shadow-sm border-b border-white/20 sticky top-0 z-40 mx-4 mt-4 rounded-2xl">
+            <div class="flex items-center justify-between h-16 px-6">
+                <div class="flex items-center space-x-4">
+                    <button id="openSidebar" class="lg:hidden hover:bg-white/60 rounded-xl">
+                        <i data-lucide="menu" class="h-5 w-5"></i>
+                    </button>
+                    <div>
+                        <h2
+                            class="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                            Dashboard</h2>
+                        <p class="text-sm text-gray-600">Manage your company profile content</p>
+                    </div>
+                </div>
 
-        btnToForm.addEventListener('click', () => {
-            slider.style.transform = 'translateX(-100%)'; // slide ke form
+                <div class="flex items-center space-x-4">
+                    <div class="relative hidden md:block">
+                        <i data-lucide="search"
+                            class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"></i>
+                        <input type="text" placeholder="Search..."
+                            class="pl-10 pr-4 py-2 w-64 bg-white/60 backdrop-blur-sm border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm hover:shadow-md transition-all duration-300">
+                    </div>
+
+                    <button class="relative hover:bg-white/60 rounded-xl p-2">
+                        <i data-lucide="bell" class="h-5 w-5 text-gray-700"></i>
+                        <span
+                            class="absolute -top-1 -right-1 h-5 w-5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full flex items-center justify-center shadow-lg animate-pulse">3</span>
+                    </button>
+
+                    <!-- User Dropdown -->
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-2 hover:bg-white/60 rounded-xl p-1">
+                            <div class="h-8 w-8 rounded-full overflow-hidden">
+                                <img src="/admin-avatar.png" alt="User" class="w-full h-full object-cover">
+                            </div>
+                            <i data-lucide="chevron-down" class="h-4 w-4 text-gray-700"></i>
+                        </button>
+                        <div id="userDropdown"
+                            class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 hidden z-50">
+                            <div class="px-4 py-2 font-semibold">My Account</div>
+                            <hr class="border-gray-200">
+                            <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i
+                                    data-lucide="user" class="h-4 w-4 mr-2"></i>Profile</a>
+                            <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i
+                                    data-lucide="settings" class="h-4 w-4 mr-2"></i>Settings</a>
+                            <hr class="border-gray-200">
+                            <a href="#" class="flex items-center px-4 py-2 hover:bg-red-100 text-red-600"><i
+                                    data-lucide="log-out" class="h-4 w-4 mr-2"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-6 pt-4">
+            <h1 class="text-2xl font-bold">Welcome to Admin Panel</h1>
+            <p class="mt-2 text-gray-600">This is your main content area.</p>
+        </main>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+
+    <script>
+        lucide.createIcons();
+
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const openBtn = document.getElementById('openSidebar');
+        const closeBtn = document.getElementById('closeSidebar');
+
+        openBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full', 'scale-95');
+            sidebar.classList.add('translate-x-0', 'scale-100');
+            overlay.classList.remove('hidden');
         });
 
-        // slider.style.transform = 'translateX(0)';
-        btnToMaps.addEventListener('click', () => {
-            slider.style.transform = 'translateX(0%)'
-        })
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('translate-x-0', 'scale-100');
+            sidebar.classList.add('-translate-x-full', 'scale-95');
+            overlay.classList.add('hidden');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('translate-x-0', 'scale-100');
+            sidebar.classList.add('-translate-x-full', 'scale-95');
+            overlay.classList.add('hidden');
+        });
+
+        // User dropdown
+        const userBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userBtn.addEventListener('click', () => {
+            userDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
     </script>
-
 </body>
-
 
 </html>

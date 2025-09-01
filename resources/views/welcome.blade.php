@@ -94,17 +94,6 @@
                         </ul>
                     </nav>
                 </div>
-                {{-- <div class="relative mr-10">
-                    <div class="absolute z-1 inset-y-0 right-0 flex items-center">
-                        <button type="button" id="search-button"
-                            class="search-button text-2xl text-darkChoco w-14 h-14 bg-black/10 rounded-full flex items-center justify-center transition-all duration-200 ease-in-out cursor-pointer hover:bg-black/20"
-                            aria-label="Buka Pencarian">
-                            <i class="fas fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                    <input type="search" name="input-search" id="input-search" placeholder="Cari sesuatu..." autofocus
-                        class="bg-white text-darkChoco pr-10 pl-4 py-4 rounded-full focus:outline-none shadow-3 w-0 origin-right transition-all duration-500 ease-in-out">
-                </div> --}}
                 <div id="clock" data-time="{{ now()->timezone('Asia/Jakarta')->format('Y-m-d\TH:i:s') }}"
                     class="mr-10 text-darkChoco font-bold text-2xl"></div>
             </div>
@@ -191,27 +180,27 @@
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
-                            <i class="fas fa-users text-2xl text-white"></i>
+                            <i class="fas fa-shield-halved text-2xl text-white"></i>
                         </div>
-                        <h1 class="font-semibold text-2xl text-heading text-center">Young</h1>
+                        <h1 class="font-semibold text-2xl text-heading text-center">Strong</h1>
                     </div>
                 </div>
                 <div class="relative w-74 mx-auto">
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
-                            <i class="fas fa-users text-2xl text-white"></i>
+                            <i class="fas fa-lightbulb text-2xl text-white"></i>
                         </div>
-                        <h1 class="font-semibold text-2xl text-heading text-center">Young</h1>
+                        <h1 class="font-semibold text-2xl text-heading text-center">Innovotive</h1>
                     </div>
                 </div>
                 <div class="relative w-74 mx-auto">
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
-                            <i class="fas fa-users text-2xl text-white"></i>
+                            <i class="fas fa-hand-back-fist text-2xl text-white"></i>
                         </div>
-                        <h1 class="font-semibold text-2xl text-heading text-center">Young</h1>
+                        <h1 class="font-semibold text-2xl text-heading text-center">Strong</h1>
                     </div>
                 </div>
             </div>
@@ -349,17 +338,15 @@
                     {{-- 1 --}}
                     <div class="slide-item-left">
                         <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                            class="bg-white shadow-3 rounded-xl p-6 h-48 group-hover:rounded-none group-hover:rounded-t-xl">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
                                     <i class="fas fa-laptop-code text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
+                                <h1 class="text-heading font-semibold text-xl">
                                     IT Solution
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
+                                <p class="text-text text-base text-center">
                                     Memberikan pelayanan terbaik dalam segala bidang IT
                                 </p>
                             </div>
@@ -368,18 +355,16 @@
                     {{-- 2 --}}
                     <div class="slide-item-left">
                         <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                            class="bg-white shadow-3 rounded-xl p-6 h-48 group-hover:rounded-none group-hover:rounded-t-xl">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-laptop text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Software Development
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Berkembang bersama mitra dalam membentuk software yang di inginkan
                                 </p>
                             </div>
                         </div>
@@ -387,18 +372,16 @@
                     {{-- 3 --}}
                     <div class="slide-item-left">
                         <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                            class="bg-white shadow-3 rounded-xl p-6 h-48 group-hover:rounded-none group-hover:rounded-t-xl">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-server text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Data Center
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Menjadi tempat terpercaya dalam penyimpanan data mitra untuk bekerja sama
                                 </p>
                             </div>
                         </div>
@@ -406,18 +389,15 @@
 
                     {{-- 1 --}}
                     <div class="slide-item-left">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
                                     <i class="fas fa-laptop-code text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
+                                <h1 class="text-heading font-semibold text-xl">
                                     IT Solution
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
+                                <p class="text-text text-base text-center">
                                     Memberikan pelayanan terbaik dalam segala bidang IT
                                 </p>
                             </div>
@@ -425,38 +405,32 @@
                     </div>
                     {{-- 2 --}}
                     <div class="slide-item-left">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-laptop text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Software Development
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Berkembang bersama mitra dalam membentuk software yang di inginkan
                                 </p>
                             </div>
                         </div>
                     </div>
                     {{-- 3 --}}
                     <div class="slide-item-left">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-server text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Data Center
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Menjadi tempat terpercaya dalam penyimpanan data mitra untuk bekerja sama
                                 </p>
                             </div>
                         </div>
@@ -466,111 +440,114 @@
 
             <div class="slider-right-container">
                 <div class="slider-right-track gap-8 ">
+
+                    {{-- Slide Utama --}}
                     <div class="slide-item-right">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-screwdriver-wrench text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
-                                </h1>
+                                <h1 class="text-heading font-semibold text-xl">
+                                    IT Operation dan Maintenance</h1>
+
                                 <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                    Melakukan dan memberikan
+                                    maintenance kebutuhan IT
+                                    untuk seluruh mitra yang
+                                    bekerja sama
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="slide-item-right">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-bullhorn text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Sales dan
+                                    Marketing
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Memberikan pelayanan
+                                    dalam bidang pemasaran
+                                    produk mitra untuk
+                                    pengembangan usaha.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="slide-item-right">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-calendar-days text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Event Organizer
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Membantu menjalankan
+                                    penyelenggaraan event yang
+                                    di inginkan mitra kerja.
                                 </p>
                             </div>
                         </div>
                     </div>
 
+                    {{-- Slide Duplikat --}}
                     <div class="slide-item-right">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-screwdriver-wrench text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
-                                </h1>
+                                <h1 class="text-heading font-semibold text-xl">
+                                    IT Operation dan Maintenance</h1>
+
                                 <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                    Melakukan dan memberikan
+                                    maintenance kebutuhan IT
+                                    untuk seluruh mitra yang
+                                    bekerja sama
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="slide-item-right">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-bullhorn text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Sales dan
+                                    Marketing
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Memberikan pelayanan
+                                    dalam bidang pemasaran
+                                    produk mitra untuk
+                                    pengembangan usaha.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="slide-item-right">
-                        <div
-                            class="bg-white shadow-3 rounded-xl p-6 group-hover:rounded-none group-hover:rounded-t-xl">
+                        <div class="bg-white shadow-3 rounded-xl p-6 h-48">
                             <div class="flex justify-center items-center flex-col gap-4">
-                                <div
-                                    class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg group-hover:-translate-x-40 duration-500 ease-in-out">
-                                    <i class="fas fa-laptop-code text-white text-2xl"></i>
+                                <div class="inline-flex justify-center bg-secondary w-12 h-12 p-3 rounded-lg">
+                                    <i class="fas fa-calendar-days text-white text-2xl"></i>
                                 </div>
-                                <h1
-                                    class="text-heading font-semibold text-xl group-hover:-translate-x-33 duration-500 ease-in-out">
-                                    IT Solution
+                                <h1 class="text-heading font-semibold text-xl">
+                                    Event Organizer
                                 </h1>
-                                <p class="text-text text-base text-center group-hover:text-left">
-                                    Memberikan pelayanan terbaik dalam segala bidang IT
+                                <p class="text-text text-base text-center">
+                                    Membantu menjalankan
+                                    penyelenggaraan event yang
+                                    di inginkan mitra kerja.
                                 </p>
                             </div>
                         </div>
@@ -597,7 +574,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
                     <div class="flex flex-col items-start gap-3">
                         <span class="flex items-center text-secondary font-lato text-xl font-semibold">
-                            <i class="fas fa-gear text-text mr-2"></i>
+                            <i class="fas fa-gears rotate-90 text-text mr-2"></i>
                             Switch dan Router MIKROTIK
                         </span>
                         <h1 class="font-bold text-4xl text-heading">INFRASTRUCTURE INSTALATION</h1>
@@ -617,22 +594,25 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
                     <div>
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_3.webp') }}" alt=""
+                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
                             width="600" height="300">
                     </div>
                     <div class="flex flex-col items-start gap-3">
                         <span class="flex items-center text-secondary font-lato text-xl font-semibold">
-                            <i class="fas fa-gear text-text mr-2"></i>
-                            Switch dan Router MIKROTIK
+                            <i class="fas fa-gears rotate-90 text-text mr-2"></i>
+                            Lamikro dan Database Kewirausahaan
                         </span>
-                        <h1 class="font-bold text-4xl text-heading">INFRASTRUCTURE INSTALATION</h1>
+                        <h1 class="font-bold text-4xl text-heading">WEB BASED PRODUCTION</h1>
                         <p class="text-text text-xl">
-                            Instalasi dan konfigurasi switch Catalyst 2960X dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
+                            Jasa pembuatan website berbasis Big Data, yang
+                            dikelola oleh tim kami bekerjasama dengan
+                            Kementerian Koperasi dan UKM.
+                            Kami juga mengelola maintain dan operasional
+                            kegiatan didalamnya.
                         </p>
                         <div
                             class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl">
-                            APRIL 2020
+                            AGUSTUS 2020
                         </div>
                     </div>
                 </div>
@@ -646,8 +626,9 @@
     </section>
     {{-- Portfolio Section End --}}
 
+    {{-- Detail Portfolio Overlay Start --}}
     <div id="portfolio-overlay"
-        class="fixed inset-0 z-[99999] bg-black/40 backdrop-blur-lg overflow-y-auto transform translate-x-full transition-transform duration-700 ease-in-out">
+        class="fixed inset-0 z-[99999] bg-black2/20 backdrop-blur-xl overflow-y-auto transform translate-x-full transition-transform duration-700 ease-in-out">
         <div class="ml-12 mt-12">
             <a href="#" id="close-overlay"
                 class="flex items-center justify-center w-12 h-12 bg-white rounded-full hover:bg-white/75 duration-200 transition-all ease-in-out group">
@@ -663,134 +644,113 @@
                     <div class="w-25 h-1 bg-white mx-auto rounded-full"></div>
                 </div>
                 <div class="flex gap-4">
-                    <button type="button" class="px-3 py-1 text-white rounded-full bg-darkChoco font-medium">
+                    <button type="button"
+                        class="px-3 py-1 text-white rounded-full bg-darkChoco font-medium cursor-pointer">
                         Semua
                     </button>
                     <button type="button"
-                        class="px-3 py-1 text-darkChoco border border-darkChoco rounded-full font-medium hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
+                        class="px-3 py-1 text-darkChoco border border-darkChoco rounded-full font-medium cursor-pointer hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
                         Event
                     </button>
                     <button type="button"
-                        class="px-3 py-1 border border-darkChoco rounded-full text-darkChoco font-medium hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
+                        class="px-3 py-1 border border-darkChoco rounded-full text-darkChoco font-medium cursor-pointer hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
                         IoT
                     </button>
                     <button type="button"
-                        class="px-3 py-1 border border-darkChoco rounded-full text-darkChoco font-medium hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
+                        class="px-3 py-1 border border-darkChoco rounded-full text-darkChoco font-medium cursor-pointer hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
                         Web Development
                     </button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mx-10">
-                <div
-                    class="bg-white shadow-1 rounded-xl hover:border-2 hover:border-text transition-all duration-300 ease-in-out">
+                <div class="bg-white shadow-1 rounded-xl">
                     <div class="aspect-video overflow-hidden rounded-t-xl">
                         <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
                             class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
                     </div>
                     <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium">Web Development</h1>
+                        <h1 class="text-primary text-lg font-medium flex items-center gap-2">
+                            <i class="fas fa-layer-group text-text"></i>
+                            Web Development
+                        </h1>
                         <h2 class="text-heading font-bold text-xl">Web Based Development</h2>
                         <p class="text-base text-text">
-                            Instalasi dan konfigurasi switch Catalyst 2960X
-                            dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
+                            Jasa pembuatan website berbasis Big Data, yang
+                            dikelola oleh tim kami bekerjasama dengan
+                            Kementerian Koperasi dan UKM.
+                            Kami juga mengelola maintain dan operasional
+                            kegiatan didalamnya.
                         </p>
                         <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
+                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
+                                Bootstrap
+                            </span>
+                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
+                                PHP
+                            </span>
+                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
+                                JQuery
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="bg-white shadow-1 rounded-xl hover:border hover:border-text transition-all duration-200 ease-in-out">
+                <div class="bg-white shadow-1 rounded-xl">
                     <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300" />
+                        <img src="{{ asset('landing/webp/portfolios/portfolio_2.webp') }}" alt=""
+                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
                     </div>
                     <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium">Web Development</h1>
-                        <h2 class="text-heading font-bold text-xl">Web Based Development</h2>
+                        <h1 class="text-primary text-lg font-medium flex items-center gap-2">
+                            <i class="fas fa-layer-group text-text"></i>
+                            Event Organizer
+                        </h1>
+                        <h2 class="text-heading font-bold text-xl">
+                            SUNLIFE FINANCIAL ANNUAL AWARD NIGHT
+                        </h2>
                         <p class="text-base text-text">
-                            Instalasi dan konfigurasi switch Catalyst 2960X
-                            dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
+                            Malam Penghargaan agensi Sunlife Financial
+                            Indonesia yang di laksanakan secara virtual
+                            melalui zoom meeting yang di ikuti sebanyak 8000
+                            peserta (Agent) di seluruh Indonesia
                         </p>
                         <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
+                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
+                                Zoom
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="bg-white shadow-1 rounded-xl hover:border hover:border-text transition-all duration-200 ease-in-out">
+                <div class="bg-white shadow-1 rounded-xl">
                     <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300" />
+                        <img src="{{ asset('landing/webp/portfolios/portfolio_3.webp') }}" alt=""
+                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
                     </div>
                     <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium">Web Development</h1>
-                        <h2 class="text-heading font-bold text-xl">Web Based Development</h2>
+                        <h1 class="text-primary text-lg font-medium flex items-center gap-2">
+                            <i class="fas fa-layer-group text-text"></i>
+                            IT Operation dan Maintenance
+                        </h1>
+                        <h2 class="text-heading font-bold text-xl">INFRASTRUCTURE INSTALATION</h2>
                         <p class="text-base text-text">
                             Instalasi dan konfigurasi switch Catalyst 2960X
                             dan Mikrotik RB 1100 AH pada server Angkasa
                             Pura 1 – Kemayoran , Jakarta Pusat.
                         </p>
                         <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white shadow-1 rounded-xl hover:border hover:border-text transition-all duration-200 ease-in-out">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300" />
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium">Web Development</h1>
-                        <h2 class="text-heading font-bold text-xl">Web Based Development</h2>
-                        <p class="text-base text-text">
-                            Instalasi dan konfigurasi switch Catalyst 2960X
-                            dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
-                        </p>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white shadow-1 rounded-xl hover:border hover:border-text transition-all duration-200 ease-in-out">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300" />
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium">Web Development</h1>
-                        <h2 class="text-heading font-bold text-xl">Web Based Development</h2>
-                        <p class="text-base text-text">
-                            Instalasi dan konfigurasi switch Catalyst 2960X
-                            dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
-                        </p>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">IoT</span>
+                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
+                                Catalyst 2960X
+                            </span>
+                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
+                                Mikrotik RB 1100 AH
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    {{-- Detail Portfolio Overlay End --}}
 
     {{-- Section Team Start --}}
     <section id="team" class="pt-36 pb-32 bg-white">
@@ -837,80 +797,101 @@
                 <div
                     class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-6">
                     <div class="relative mb-4">
-                        <img src="{{ asset('landing/webp/teams/randy-khairu.webp') }}" alt=""
+                        <img src="{{ asset('landing/webp/teams/aditya_bayu.webp') }}" alt=""
                             class="rounded-full h-20 w-20 object-contain">
                     </div>
-
-                    <h1 class="text-base text-heading font-bold text-center mb-1">Randy Khairu Basyar</h1>
-                    <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisarin Utama</h2>
+                    <h1 class="text-base text-heading font-bold text-center mb-1">Aditya Bayu Irawan</h1>
+                    <h2 class="text-sm font-semibold text-heading text-center mb-3">CEO</h2>
                     <p class="text-text text-sm italic text-center mb-6">
-                        “Dengan menghadapi dunia digital 4.0, kami berkomitmen untuk terus berkembang dan menjadi poros
-                        teknologi di Indonesia.”
+                        “Membawa Indonesia
+                        untuk bersaing di
+                        pasar global agar terus
+                        berkembang dan
+                        menjadi poros IT
+                        Dunia.”
                     </p>
 
                     <div class="flex items-center gap-6">
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-telegram text-2xl text-heading"></i>
-                        </div>
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-linkedin text-2xl text-heading"></i>
-                        </div>
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-instagram text-2xl text-heading"></i>
-                        </div>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-instagram text-2xl text-heading group-hover:text-white"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center">
                     <div class="relative mb-4">
-                        <img src="{{ asset('landing/webp/teams/randy-khairu.webp') }}" alt=""
+                        <img src="{{ asset('landing/webp/teams/irfan_fauzan.webp') }}" alt=""
                             class="rounded-full h-20 w-20 object-contain">
                     </div>
-
-                    <h1 class="text-base text-heading font-bold text-center mb-1">Randy Khairu Basyar</h1>
-                    <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisarin Utama</h2>
+                    <h1 class="text-base text-heading font-bold text-center mb-1">Irfan Fauzan</h1>
+                    <h2 class="text-sm font-semibold text-heading text-center mb-3">IT Director</h2>
                     <p class="text-text text-sm italic text-center mb-6">
-                        “Dengan menghadapi dunia digital 4.0, kami berkomitmen untuk terus berkembang dan menjadi poros
-                        teknologi di Indonesia.”
+                        “Berdiri dengan
+                        kekuatan dan mental
+                        jiwa kesatria untuk
+                        terus berkembang
+                        menghadapi dunia
+                        industri IT.”
                     </p>
 
                     <div class="flex items-center gap-6">
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-telegram text-2xl text-heading"></i>
-                        </div>
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-linkedin text-2xl text-heading"></i>
-                        </div>
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-instagram text-2xl text-heading"></i>
-                        </div>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-instagram text-2xl text-heading group-hover:text-white"></i>
+                        </a>
                     </div>
                 </div>
 
                 <div
                     class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-6">
                     <div class="relative mb-4">
-                        <img src="{{ asset('landing/webp/teams/randy-khairu.webp') }}" alt=""
+                        <img src="{{ asset('landing/webp/teams/nanda.webp') }}" alt=""
                             class="rounded-full h-20 w-20 object-contain">
                     </div>
-
-                    <h1 class="text-base text-heading font-bold text-center mb-1">Randy Khairu Basyar</h1>
+                    <h1 class="text-base text-heading font-bold text-center mb-1">Nanda
+                        Ikhsanabdullah Utama
+                    </h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisarin Utama</h2>
                     <p class="text-text text-sm italic text-center mb-6">
-                        “Dengan menghadapi dunia digital 4.0, kami berkomitmen untuk terus berkembang dan menjadi poros
-                        teknologi di Indonesia.”
+                        “Digitalisasi merupakan
+                        perkembangan dunia
+                        yang bisa membawa
+                        kita kearah
+                        kemudahan dalam
+                        melakukan
+                        perkembangan.”
                     </p>
 
                     <div class="flex items-center gap-6">
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-telegram text-2xl text-heading"></i>
-                        </div>
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-linkedin text-2xl text-heading"></i>
-                        </div>
-                        <div class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center">
-                            <i class="fab fa-instagram text-2xl text-heading"></i>
-                        </div>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
+                            <i class="fab fa-instagram text-2xl text-heading group-hover:text-white"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -963,13 +944,41 @@
                 </div>
             </div>
 
-            <p class="text-center font-lato text-lg text-text font-medium">
-                Ingin menjadi partner kami?
-                <a href="#" class="font-semibold text-primary hover:text-primary/80">
-                    Hubungi Kami
-                    <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-            </p>
+            <div class="relative">
+                <p class="text-center font-lato text-lg text-text font-medium">
+                    Ingin menjadi partner kami?
+                    <a href="#" id="contact-us"
+                        class="font-semibold text-primary hover:text-primary/80 group transition-all duration-300 ease-in">
+                        Hubungi Kami
+                        <i id="contact-us-icon"
+                            class="fas fa-arrow-right ml-1 group-hover:rotate-90 transition-all duration-200 ease-in"></i>
+                    </a>
+                </p>
+
+                <div id="partner-email-box"
+                    class="absolute left-1/2 right-1/2 top-10 flex justify-center items-center scale-x-0 transition-transform origin-center duration-400 ease-linear">
+                    <div class="bg-white p-4 shadow-2 rounded-xl flex items-center gap-2">
+                        <form action="" method="POST">
+                            <div class="flex items-center gap-2">
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-envelope text-text"></i>
+                                    </div>
+                                    <input type="email" name="partner-email" id="partner-email"
+                                        placeholder="Masukkan email.."
+                                        class="pl-10 py-3 pr-4 text-darkChoco font-medium text-lg border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary">
+                                </div>
+                                <div>
+                                    <button type="submit"
+                                        class="bg-secondary text-white text-lg p-4 flex items-center justify-center rounded-lg cursor-pointer hover:bg-secondary/90">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     {{-- Partner Section End --}}
@@ -1104,6 +1113,13 @@
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.0444291674!2d-118.74139030403776!3d34.020608403183566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20California%2C%20Amerika%20Serikat!5e0!3m2!1sid!2sid!4v1756612201402!5m2!1sid!2sid"
                         class="rounded-lg w-full h-96" loading="lazy"></iframe>
+                    <div class="flex justify-center mt-4">
+                        <a href="" target="_blank"
+                            class="py-4 bg-gradient-to-r from-primary to-secondary px-8 text-lg font-semibold text-white rounded-lg flex items-center justify-center gap-2 transition-transform duration-300 ease-linear hover:scale-105 active:scale-95">
+                            <i class="fas fa-map-location-dot"></i>
+                            Lihat Petunjuk Arah
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

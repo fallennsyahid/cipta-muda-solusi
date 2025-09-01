@@ -67,6 +67,23 @@ if (openBtn && closeBtn && portfolioOverlay) {
     });
 }
 
+// Partner Email
+const contactUsBtn = document.querySelector('#contact-us');
+const contactUsIcon = document.querySelector('#contact-us-icon');
+const partnerEmailBox = document.querySelector('#partner-email-box');
+const partnerEmailInput = document.querySelector('#partner-email');
+
+contactUsBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    contactUsIcon.classList.toggle('rotate-90');
+
+    partnerEmailBox.classList.toggle('scale-x-0');
+    partnerEmailBox.classList.toggle('scale-x-100');
+
+    partnerEmailInput.focus();
+});
+
 // Hamburger Menu
 // const hamburger = document.querySelector('#hamburger');
 // const navMenu = document.querySelector('#nav-menu');

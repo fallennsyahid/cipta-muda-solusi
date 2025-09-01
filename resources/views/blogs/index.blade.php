@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -121,7 +121,7 @@
                 Dapatkan wawasan terbaru tentang teknologi, tips pengembangan, dan tren industri dari tim ahli kami
             </p>
             <div class="flex items-center justify-center">
-                <a href="#"
+                <a href="#blogs"
                     class="flex items-center justify-center bg-gradient-to-br from-primary to-secondary px-8 py-4 text-white text-xl font-semibold rounded-xl shadow-2 relative z-10 group">
                     Lihat Blog
                     <i
@@ -131,7 +131,7 @@
         </div>
     </section>
 
-    <section class="bg-section">
+    <section id="blogs" class="bg-section">
         <div class="container max-w-full">
             <div class="p-8 border-b border-b-text flex flex-wrap items-center gap-3">
                 <button type="button"

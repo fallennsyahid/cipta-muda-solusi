@@ -32,6 +32,10 @@ input[type="search"]::-webkit-search-cancel-button {
     appearance: none;
 }
 
+input:focus {
+    outline: none;
+}
+
 .navbar-fixed {
     @apply fixed z-[99999];
 }
