@@ -11,7 +11,6 @@
 
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href={{ asset('css/style.css') }}>
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,41 +24,38 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="antialiased bg-[#EAEEF6]">
-    <header>
-        <div class="flex flex-row w-full">
-            <div class="flex justify-between items-center w-1/3 lg:w-1/5 px-6 py-3 lg:py-5">
-                <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="" class="w-24 lg:w-30">
-                <button type="button" aria-label="Hamburger Menu" id="close-sidebar"
-                    class="hidden lg:flex rounded-full w-10 h-10 items-center justify-center cursor-pointer hover:bg-text/30 hover:scale-110 transition-all duration-200 ease-in">
-                    <i class="fas fa-bars text-text text-2xl mt-2 lg:mt-0"></i>
-                </button>
+<body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
+
+    <x-admin.sidebar></x-admin.sidebar>
+
+    <div class="ml-[20rem] fixed top-4 right-4 z-40 w-[calc(100%-19rem-2rem)]">
+        <x-admin.navbar></x-admin.navbar>
+
+        <main class="p-6">
+            <div class="space-y-6">
+                <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white geometric-shape">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 class="text-3xl text-white font-bold mb-2">
+                                Welcome back, {{ Auth::check() ? Auth::user()->name : 'Admin' }}
+                            </h1>
+                            <p class="font-lato text-lg">Here's what's happening with your company profile today.</p>
+                        </div>
+                        <div class="hidden md:block relative z-10 float-animation">
+                            <div class="w-24 h-24 bg-white rounded-full flex justify-center items-center">
+                                <i class="fa-solid fa-rocket text-darkChoco text-5xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <x-admin.navbar></x-admin.navbar>
-        </div>
-
-        <x-admin.navbar2></x-admin.navbar2>
-    </header>
-
-    <main class="flex">
-        <x-admin.sidebar></x-admin.sidebar>
+        </main>
+    </div>
 
 
-    </main>
 
 </body>
 
-<script>
-    const hamburgerButton = document.querySelector('#close-sidebar');
-    const sidebar = document.querySelector('aside');
-
-    hamburgerButton.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        sidebar.classList.toggle('scale-x-100');
-        sidebar.classList.toggle('scale-x-0');
-    });
-</script>
+<script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 
 </html>

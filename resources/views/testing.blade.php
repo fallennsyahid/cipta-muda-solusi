@@ -5,19 +5,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Layout</title>
-    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/lucide.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .scale-102 {
-            transform: scale(1.02);
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-300">
 
+    <div class="w-[270px] h-[550px] rounded-lg shadow-2xl bg-text border border-solid border-[#ddd] fixed top-4 left-4">
+        <div
+            class=" w-16 h-full bg-primary p-2 box-border text-white overflow-hidden rounded-r-none rounded-t-lg rounded-l-lg transition-all duration-700 ease-in-out hover:w-50">
+            <ul class="list-none p-0 m-0 flex flex-col gap-4">
+                <li class="p-3">
+                    <a href="" class="inline-flex gap-4 text-inherit no-underline">
+                        <span>
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span class="pl-6">Home</span>
+                    </a>
+                </li>
+                <li class="p-3">
+                    <a href="" class="inline-flex gap-4 text-inherit no-underline">
+                        <span>
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span class="pl-6">Home</span>
+                    </a>
+                </li>
+                <li class="p-3">
+                    <a href="" class="inline-flex gap-4 text-inherit no-underline">
+                        <span>
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span class="pl-6">Home</span>
+                    </a>
+                </li>
+                <li class="p-3">
+                    <a href="" class="inline-flex gap-4 text-inherit no-underline">
+                        <span>
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span class="pl-6">Home</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Sidebar -->
-    <div id="sidebar"
+    {{-- <div id="sidebar"
         class="fixed top-4 left-4 bottom-4 z-50 w-64 bg-white/80 backdrop-blur-xl shadow-2xl rounded-2xl border border-white/20 transform -translate-x-full scale-95 transition-all duration-500 ease-out lg:translate-x-0 lg:scale-100">
         <div class="flex flex-col h-full rounded-2xl overflow-hidden">
 
@@ -195,7 +232,7 @@
                 userDropdown.classList.add('hidden');
             }
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>

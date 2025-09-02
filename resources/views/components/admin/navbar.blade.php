@@ -1,28 +1,39 @@
-<div class="px-6 py-3 lg:py-5 bg-accent w-full lg:w-4/5">
-    <div class="flex justify-between items-center gap-3 w-full">
-
-        <div class="hidden lg:flex items-center gap-3">
-            <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="" class="rounded-lg">
-            <div class="flex items-center gap-2">
-                <span class="text-black font-bold text-2xl">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
-                <span class="text-black/60 font-medium text-sm">Was login 5 minutes ago.</span>
+<header class="bg-white/70 backdrop-blur-xl shadow-1 border-b border-white/20 mx-4 rounded-2xl">
+    <div class="flex items-center justify-between py-2 px-6">
+        <div class="flex items-center space-x-4">
+            <button class="block lg:hidden hover:bg-white/60 rounded-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div>
+                <h2 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    {{ ucwords(str_replace(['.', 'index'], [' ', ''], Route::currentRouteName())) }}
+                </h2>
+                <p class="text-sm text-text font-lato">Manage your company profile content</p>
             </div>
         </div>
 
-        <div class="flex items-center gap-3 justify-end mt-2 w-full lg:w-auto lg:justify-end">
-            <div
-                class="hidden lg:flex lg:items-center gap-2 text-sm text-black border border-black/30 py-2 px-3 rounded-sm">
-                <p id="today-date">Today: August 18th 2025</p>
-                <i class="fas fa-calendar-days"></i>
+        <div class="flex items-center space-x-4">
+            <div class="relative hidden md:block">
+                <div class="flex items-center gap-2 border-2 border-text/15 p-2 text-text rounded-lg">
+                    <i class="fas fa-calendar-days"></i>
+                    <span id="today-date"></span>
+                    <span id="clock"></span>
+                </div>
             </div>
-            <div id="clock" class="font-medium flex lg:items-center text-lg lg:text-xl text-black"></div>
-            <button
-                class="flex lg:hidden w-10 h-10 rounded-full items-center justify-center cursor-pointer hover:bg-text/30 hover:scale-110 transition-all duration-200 ease-in">
-                <i class="fas fa-bars text-text text-2xl"></i>
-            </button>
+
+            <div class="flex items-center gap-3">
+                <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="{{ Auth::user()->name }}"
+                    class="rounded-full w-10 h-10">
+                <div class="flex flex-col">
+                    <span
+                        class="text-base font-bold text-darkChoco">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
+                    <span class="text-sm font-medium text-text">Was login 5 minutes ago.</span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</header>
+
 
 <script>
     // Ambil waktu server dari Laravel
