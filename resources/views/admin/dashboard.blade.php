@@ -126,7 +126,7 @@
                             <i class="fas fa-calendar"></i>
                             Quick Actions
                         </div>
-                        <div class="space-y-3">
+                        <div class="space-y-3 relative z-10">
                             <a href=""
                                 class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
                                 <i class="fas fa-briefcase mr-3"></i>

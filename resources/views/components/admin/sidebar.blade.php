@@ -18,7 +18,7 @@
         <a href="{{ route('dashboard') }}"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
-                class="fas fa-table-cells-large {{ request()->routeIs('dashboard') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}  "></i>
+                class="fas fa-table-cells-large {{ request()->routeIs('dashboard') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
             <span class="font-medium pl-2">
                 Dashboard
             </span>
@@ -51,9 +51,10 @@
             </div>
         </div>
 
-        <a href=""
-            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
-            <i class="fas fa-question-circle transition-all duration-300 text-text group-hover:scale-110"></i>
+        <a href="{{ route('faqs.index') }}"
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('faqs.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            <i
+                class="fas fa-question-circle {{ request()->routeIs('faqs.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
             <span class="font-medium pl-2">
                 Faq
             </span>
@@ -70,9 +71,10 @@
                 <i class="fas fa-chevron-down"></i>
             </span>
         </a>
-        <a href=""
-            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
-            <i class="fas fa-newspaper transition-all duration-300 text-text group-hover:scale-110"></i>
+        <a href="{{ route('blogs.index') }}"
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('blogs.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            <i
+                class="fas fa-newspaper {{ request()->routeIs('blogs.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
             <span class="font-medium pl-2">
                 Blog
             </span>

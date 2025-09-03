@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogsAdminController;
 use App\Http\Controllers\Admin\ContactAdminController;
+use App\Http\Controllers\Admin\FaqsAdminController;
 use App\Http\Controllers\Admin\JobsController as JobsAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
 use App\Http\Controllers\BlogsController;
@@ -34,6 +36,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('admin/jobs', JobsAdminController::class)->middleware(['auth', 'verified']);
+
+Route::resource('admin/faqs', FaqsAdminController::class);
+
+Route::resource('admin/blogs', BlogsAdminController::class);
 
 Route::resource('admin/contact', ContactAdminController::class);
 
