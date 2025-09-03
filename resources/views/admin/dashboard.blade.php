@@ -28,10 +28,10 @@
 
     <x-admin.sidebar></x-admin.sidebar>
 
-    <div class="ml-[20rem] fixed top-4 right-4 z-40 w-[calc(100%-19rem-2rem)]">
+    <div class="ml-[20rem] mt-4 w-[calc(100%-18rem-2rem)]">
         <x-admin.navbar></x-admin.navbar>
 
-        <main class="p-6">
+        <main class="p-6 pt-20">
             <div class="space-y-6">
                 <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white geometric-shape">
                     <div class="flex items-center justify-between">
@@ -48,11 +48,116 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                            <h1 class="text-sm font-medium text-text">
+                                Total Jobs
+                            </h1>
+                            <div class="w-8 h-8 rounded-lg bg-heading flex justify-center items-center">
+                                <i class="fas fa-briefcase text-white text-base"></i>
+                            </div>
+                        </div>
+                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                            24
+                            <p class="text-xs text-green-600 font-lato flex mt-1">
+                                <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
+                                12% from last month
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                            <h1 class="text-sm font-medium text-text">
+                                Active Partners
+                            </h1>
+                            <div class="w-8 h-8 rounded-lg bg-secondary flex justify-center items-center">
+                                <i class="fas fa-user-group text-white text-base"></i>
+                            </div>
+                        </div>
+                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                            18
+                            <p class="text-xs text-green-600 font-lato flex mt-1">
+                                <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
+                                8% from last month
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                            <h1 class="text-sm font-medium text-text">
+                                Blog Posts
+                            </h1>
+                            <div class="w-8 h-8 rounded-lg bg-green-500 flex justify-center items-center">
+                                <i class="fas fa-newspaper text-white text-base"></i>
+                            </div>
+                        </div>
+                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                            14
+                            <p class="text-xs text-green-600 font-lato flex mt-1">
+                                <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
+                                4% from last month
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                            <h1 class="text-sm font-medium text-text">
+                                FAQ
+                            </h1>
+                            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex justify-center items-center">
+                                <i class="fas fa-question-circle text-white text-base"></i>
+                            </div>
+                        </div>
+                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                            21
+                            <p class="text-xs text-green-600 font-lato flex mt-1">
+                                <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
+                                5% from last month
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
+                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
+                        <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
+                            <i class="fas fa-calendar"></i>
+                            Quick Actions
+                        </div>
+                        <div class="space-y-3">
+                            <a href=""
+                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                                <i class="fas fa-briefcase mr-3"></i>
+                                Buat Lowongan Kerja Baru
+                            </a>
+                            <a href=""
+                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                                <i class="fas fa-user-group mr-3"></i>
+                                Tambah Partner Baru
+                            </a>
+                            <a href=""
+                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                                <i class="fas fa-newspaper mr-3"></i>
+                                Buat Postingan Blog Baru
+                            </a>
+                            <a href=""
+                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                                <i class="fas fa-question-circle mr-3"></i>
+                                Update FAQ
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
+                        <div>
+                            <i></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
-
-
 
 </body>
 

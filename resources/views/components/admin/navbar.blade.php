@@ -1,4 +1,5 @@
-<header class="bg-white/70 backdrop-blur-xl shadow-1 border-b border-white/20 mx-4 rounded-2xl">
+<header
+    class="bg-white/70 backdrop-blur-xl shadow-1 border-b border-white/20 mr-4 rounded-2xl fixed top-4 left-0 right-0 z-50 ml-[21rem]">
     <div class="flex items-center justify-between py-2 px-6">
         <div class="flex items-center space-x-4">
             <button class="block lg:hidden hover:bg-white/60 rounded-xl">

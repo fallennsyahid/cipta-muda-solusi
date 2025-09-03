@@ -370,7 +370,6 @@
                         <i class="fas fa-paper-plane"></i>
                         Kirim
                     </button>
-
                 </div>
             </form>
         </div>

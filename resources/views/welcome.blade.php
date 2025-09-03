@@ -944,44 +944,195 @@
                 </div>
             </div>
 
-            <div class="relative">
+            <div class="flex flex-col gap-2 items-center justify-center">
                 <p class="text-center font-lato text-lg text-text font-medium">
                     Ingin menjadi partner kami?
-                    <a href="#" id="contact-us"
-                        class="font-semibold text-primary hover:text-primary/80 group transition-all duration-300 ease-in">
-                        Hubungi Kami
-                        <i id="contact-us-icon"
-                            class="fas fa-arrow-right ml-1 group-hover:rotate-90 transition-all duration-200 ease-in"></i>
-                    </a>
                 </p>
-
-                <div id="partner-email-box"
-                    class="absolute left-1/2 right-1/2 top-10 flex justify-center items-center scale-x-0 transition-transform origin-center duration-400 ease-linear">
-                    <div class="bg-white p-4 shadow-2 rounded-xl flex items-center gap-2">
-                        <form action="" method="POST">
-                            <div class="flex items-center gap-2">
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <i class="fas fa-envelope text-text"></i>
-                                    </div>
-                                    <input type="email" name="partner-email" id="partner-email"
-                                        placeholder="Masukkan email.."
-                                        class="pl-10 py-3 pr-4 text-darkChoco font-medium text-lg border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary">
-                                </div>
-                                <div>
-                                    <button type="submit"
-                                        class="bg-secondary text-white text-lg p-4 flex items-center justify-center rounded-lg cursor-pointer hover:bg-secondary/90">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <button type="button" id="open-partner-modal"
+                    class="flex items-center gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-4 px-10 text-white font-semibold text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
+                    <i class="fas fa-headset"></i>
+                    Hubungi Kami
+                </button>
             </div>
+            {{-- <div id="partner-email-box"
+                class="absolute left-1/2 right-1/2 top-10 flex justify-center items-center scale-x-0 transition-transform origin-center duration-400 ease-linear">
+                <div class="bg-white p-4 shadow-2 rounded-xl flex items-center gap-2">
+                    <form action="" method="POST">
+                        <div class="flex items-center gap-2">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-envelope text-text"></i>
+                                </div>
+                                <input type="email" name="partner-email" id="partner-email"
+                                    placeholder="Masukkan email.."
+                                    class="pl-10 py-3 pr-4 text-darkChoco font-medium text-lg border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary">
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="bg-secondary text-white text-lg p-4 flex items-center justify-center rounded-lg cursor-pointer hover:bg-secondary/90">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> --}}
         </div>
     </section>
     {{-- Partner Section End --}}
+
+    <div id="partner-modal" class="fixed inset-0 z-[99999] hidden items-center justify-center p-4">
+        <div class="close-partner-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+        <div class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+            <div
+                class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative z-10">
+                    <div
+                        class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                        <i class="fas fa-handshake text-3xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white mb-2">Mari Berkolaborasi!</h1>
+                    <p class="text-white/90 text-base font-lato">Ceritakan ide kerjasama Anda dengan kami</p>
+                </div>
+
+                <button
+                    class="close-partner-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                <form action="" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div class="group">
+                        <label for="company"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-building"></i>
+                            Nama Perusahaan <span class="text-red-400">*</span>
+                        </label>
+                        <input type="text" id="company" name="company" required
+                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            placeholder="PT. Nama Perusahaan">
+                    </div>
+
+                    <div class="group">
+                        <label for="company-email"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-envelope"></i>
+                            Email <span class="text-red-400">*</span>
+                        </label>
+                        <input type="email" id="company-email" name="company-email" required
+                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            placeholder="nama@perusahaan.com">
+                    </div>
+
+                    <div class="group">
+                        <label for="company-number"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-mobile-screen"></i>
+                            Nomor Telepon <span class="text-red-400">*</span>
+                        </label>
+                        <input type="tel" id="company-number" name="company-number" required
+                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            placeholder="+62 123-3456-7890">
+                    </div>
+
+                    <div class="group">
+                        <label for="company-number"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-industry"></i>
+                            Jenis Perusahaan <span class="text-red-400">*</span>
+                        </label>
+                        <select name="company-type" id="company-type"
+                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
+                            <option value="-" disabled selected>Pilih Kategori Perusahaan Anda</option>
+                            <option value="fnb">🍔 Food & Beverage</option>
+                            <option value="tech">💻 Teknologi</option>
+                            <option value="education">📚 Pendidikan</option>
+                            <option value="retail">🛍️ Retail</option>
+                            <option value="finance">💰 Keuangan</option>
+                            <option value="healthcare">🏥 Kesehatan</option>
+                            <option value="other">✨ Lainnya</option>
+                        </select>
+
+                        <input type="text" id="other-company-type" name="other-company-type"
+                            class="hidden mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            placeholder="Ceritakan jenis bisnis Anda...">
+                    </div>
+
+                    <div class="group">
+                        <label for="company-message"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-comment-dots"></i>
+                            Ceritakan Ide Kerjasama <span class="text-red-400">*</span>
+                        </label>
+                        <textarea name="company-message" id="company-message" rows="4" required maxlength="400"
+                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
+                            placeholder="Kami ingin berkolaborasi dalam hal... Mari diskusikan peluang yang bisa kita kembangkan bersama! ✨"></textarea>
+                        <div class="flex justify-between items-center mt-2">
+                            <p class="text-xs text-slate-500">Ceritakan visi kerjasama Anda</p>
+                            <p class="text-xs font-medium text-slate-600" id="charCount"></p>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <label for="company-message"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-paperclip"></i>
+                            Lampiran (Opsional)
+                        </label>
+                        <input type="file" name="cv-upload" id="cv-upload" class="hidden" accept="file/.pdf">
+                        <label for="cv-upload"
+                            class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                            <div class="mb-4">
+                                <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-base font-medium text-darkChoco">
+                                    Choose a file or drag & drop it here
+                                </h1>
+                                <p class="text-text text-sm font-medium font-lato">
+                                    PDF format, max. 5MB
+                                </p>
+                            </div>
+                        </label>
+                        <div class="bg-text/10 p-4 rounded-lg flex justify-between mt-2">
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
+                                </div>
+                                <div>
+                                    <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
+                                    <div class="flex items-center gap-2 text-xs text-text">
+                                        <span>60KB of 120KB</span>
+                                        <span>•</span>
+                                        <span>
+                                            <i class="fa-solid fa-spinner text-blue-400"></i>
+                                            Uploading...
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="">
+                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <button type="submit"
+                            class="flex items-center gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-4 px-10 text-white font-semibold text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
+                            <i class="fas fa-rocket"></i>
+                            Kirim Permohonan Kerjasama
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     {{-- Contact & Maps Section Start --}}
     <section id="contact" class="pt-32 pb-32 px-12 bg-section">

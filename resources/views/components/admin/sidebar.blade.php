@@ -18,24 +18,39 @@
         <a href="{{ route('dashboard') }}"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
-                class="fas fa-table-cells-large {{ request()->routeIs('dashboard') ? 'text-white transition-all duration-300' : 'transition-all duration-300 text-text group-hover:scale-110' }}"></i>
-            <span class="font-medium text-white pl-2">
+                class="fas fa-table-cells-large {{ request()->routeIs('dashboard') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}  "></i>
+            <span class="font-medium pl-2">
                 Dashboard
             </span>
         </a>
-        <a href="{{ route('jobs.index') }}"
-            class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('jobs.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
-            <span class="flex items-center gap-5">
-                <i
-                    class="fas fa-briefcase {{ request()->routeIs('jobs.index') ? 'text-white transition-all duration-300' : 'transition-all duration-300 text-text group-hover:scale-110' }}"></i>
-                <span class="font-medium">
-                    Jobs
+
+        <div class="relative dropdown">
+            <a href="javascript:void(0);" id="dropdown-toggle"
+                class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
+                <span class="flex items-center gap-5">
+                    <i class="fas fa-briefcase"></i>
+                    <span class="font-medium">
+                        Jobs
+                    </span>
                 </span>
-            </span>
-            <span>
-                <i class="fas fa-chevron-down"></i>
-            </span>
-        </a>
+                <span class="chevron transition-transform duration-300">
+                    <i class="fas fa-chevron-down"></i>
+                </span>
+            </a>
+
+            <div
+                class="dropdown-menu absolute left-0 mt-2 w-full bg-white shadow-lg rounded-xl overflow-hidden z-50 border border-gray-200 hidden">
+                <a href="{{ route('jobs.index') }}"
+                    class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition">
+                    <i class="fas fa-list"></i> All Jobs
+                </a>
+                <a href=""
+                    class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition">
+                    <i class="fas fa-file"></i> All CV
+                </a>
+            </div>
+        </div>
+
         <a href=""
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
             <i class="fas fa-question-circle transition-all duration-300 text-text group-hover:scale-110"></i>

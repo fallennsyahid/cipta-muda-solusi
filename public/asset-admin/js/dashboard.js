@@ -22,3 +22,22 @@ sidebarButtons.forEach(btn => {
         }
     });
 });
+
+// Dropdown Jobs
+const toggle = document.getElementById("dropdown-toggle");
+const menu = toggle.nextElementSibling;
+const chevron = toggle.querySelector(".chevron");
+
+toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    menu.classList.toggle("hidden");
+    chevron.classList.toggle("rotate-180");
+});
+
+// Tutup dropdown kalau klik di luar
+document.addEventListener("click", function (e) {
+    if (!toggle.parentElement.contains(e.target)) {
+        menu.classList.add("hidden");
+        chevron.classList.remove("rotate-180");
+    }
+});

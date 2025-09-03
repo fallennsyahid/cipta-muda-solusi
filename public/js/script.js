@@ -67,23 +67,6 @@ if (openBtn && closeBtn && portfolioOverlay) {
     });
 }
 
-// Partner Email
-const contactUsBtn = document.querySelector('#contact-us');
-const contactUsIcon = document.querySelector('#contact-us-icon');
-const partnerEmailBox = document.querySelector('#partner-email-box');
-const partnerEmailInput = document.querySelector('#partner-email');
-
-contactUsBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    contactUsIcon.classList.toggle('rotate-90');
-
-    partnerEmailBox.classList.toggle('scale-x-0');
-    partnerEmailBox.classList.toggle('scale-x-100');
-
-    partnerEmailInput.focus();
-});
-
 // Hamburger Menu
 // const hamburger = document.querySelector('#hamburger');
 // const navMenu = document.querySelector('#nav-menu');
@@ -100,6 +83,7 @@ contactUsBtn.addEventListener('click', function (e) {
 //     }
 // });
 
+// Watch
 const clockEl = document.getElementById("clock");
 let serverTime = new Date(clockEl.dataset.time);
 
@@ -122,33 +106,85 @@ const updateClock = () => {
 setInterval(updateClock, 1000);
 updateClock();
 
+// Partner Modal 
+const openPartnerModal = document.querySelector('#open-partner-modal');
+const partnerModal = document.querySelector('#partner-modal');
+const closePartnerModal = document.querySelectorAll('.close-partner-modal');
+
+openPartnerModal.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    partnerModal.classList.remove('hidden');
+    partnerModal.classList.add('flex', 'animate-fade-in');
+
+    partnerModal.classList.remove('animate-fade-out')
+});
+
+closePartnerModal.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        partnerModal.classList.remove('animate-fade-in');
+        partnerModal.classList.add('animate-fade-out')
+
+        partnerModal.addEventListener('animationend', () => {
+            if (partnerModal.classList.contains('animate-fade-out')) {
+                partnerModal.classList.remove('flex', 'animate-fade-out');
+                partnerModal.classList.add('hidden');
+            }
+        }, { once: true });
+    });
+});
+
+const messageCompany = document.querySelector('#company-message');
+const charCount = document.querySelector('#charCount');
+
+messageCompany.addEventListener('input', function () {
+    charCount.textContent = `${messageCompany.value.length} / 400 Karakter`
+});
+
+const selectCompanyType = document.querySelector('#company-type');
+const otherCompanyType = document.querySelector('#other-company-type');
+
+selectCompanyType.addEventListener('change', function () {
+    if (selectCompanyType.value === 'other') {
+        otherCompanyType.classList.remove('hidden');
+        otherCompanyType.required = true;
+        otherCompanyType.focus();
+    } else {
+        otherCompanyType.classList.add('hidden');
+        otherCompanyType.required = false;
+        otherCompanyType.value = "";
+    }
+});
+
 // Dots
-const container = document.querySelector('.dots-container');
-const section = document.getElementById('teams');
-const sectionWidth = section.offsetWidth;
-const sectionHeight = section.offsetHeight;
-const primary = '#1e40af';
-const secondary = '#3b82f6';
-const accent = ' #dbeafe';
+// const container = document.querySelector('.dots-container');
+// const section = document.getElementById('teams');
+// const sectionWidth = section.offsetWidth;
+// const sectionHeight = section.offsetHeight;
+// const primary = '#1e40af';
+// const secondary = '#3b82f6';
+// const accent = ' #dbeafe';
 
-const colors = [primary, secondary, accent];
+// const colors = [primary, secondary, accent];
 
-for (let i = 0; i < 20; i++) {
-    const dot = document.createElement('div');
-    const size = Math.floor(Math.random() * (55 - 30 + 1)) + 30;
-    const posX = Math.random() * sectionWidth;
-    const posY = Math.random() * sectionHeight;
-    const delay = Math.random() * 5;
-    const color = colors[Math.floor(Math.random() * colors.length)];
+// for (let i = 0; i < 20; i++) {
+//     const dot = document.createElement('div');
+//     const size = Math.floor(Math.random() * (55 - 30 + 1)) + 30;
+//     const posX = Math.random() * sectionWidth;
+//     const posY = Math.random() * sectionHeight;
+//     const delay = Math.random() * 5;
+//     const color = colors[Math.floor(Math.random() * colors.length)];
 
-    dot.classList.add('dot');
-    dot.style.width = `${size}px`;
-    dot.style.height = `${size}px`;
-    dot.style.left = `${posX}px`;
-    dot.style.top = `${posY}px`;
-    dot.style.animationDelay = `${delay}s`;
-    dot.style.backgroundColor = color;
+//     dot.classList.add('dot');
+//     dot.style.width = `${size}px`;
+//     dot.style.height = `${size}px`;
+//     dot.style.left = `${posX}px`;
+//     dot.style.top = `${posY}px`;
+//     dot.style.animationDelay = `${delay}s`;
+//     dot.style.backgroundColor = color;
 
-    container.appendChild(dot);
-}
+//     container.appendChild(dot);
+// }
 

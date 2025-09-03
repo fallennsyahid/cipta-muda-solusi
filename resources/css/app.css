@@ -179,6 +179,7 @@ input:focus {
     }
 }
 
+/* Animasi Masuk */
 .animate-fade-in {
     animation: fadeIn 0.2s linear;
     -webkit-animation: fadeIn 0.2s linear;
@@ -201,6 +202,32 @@ input:focus {
         -moz-transform: translateY(0px);
         -ms-transform: translateY(0px);
         -o-transform: translateY(0px);
+    }
+}
+
+/* Animasi Keluar */
+.animate-fade-out {
+    animation: fadeOut 0.2s linear;
+    -webkit-animation: fadeOut 0.2s linear;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+        -moz-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        -o-transform: translateY(-10px);
     }
 }
 
@@ -259,4 +286,31 @@ input:focus {
         -ms-transform: translateY(-10px);
         -o-transform: translateY(-10px);
     }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
