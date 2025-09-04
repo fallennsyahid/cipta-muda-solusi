@@ -1,5 +1,4 @@
-<header
-    class="bg-white/70 backdrop-blur-xl shadow-1 border-b border-white/20 mr-4 rounded-2xl fixed top-4 left-0 right-0 z-50 ml-[21rem]">
+<header class="bg-white shadow-1 border-b border-white/20 mx-4 rounded-2xl fixed top-4 left-0 right-0 z-99">
     <div class="flex items-center justify-between py-2 px-6">
         <div class="flex items-center space-x-4">
             <button class="block lg:hidden hover:bg-white/60 rounded-xl">
@@ -28,13 +27,40 @@
                 <div class="flex flex-col">
                     <span
                         class="text-base font-bold text-darkChoco">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
-                    <span class="text-sm font-medium text-text">Was login 5 minutes ago.</span>
+                    <span class="text-sm font-medium text-text">
+                        @if (Auth::check() && Auth::user()->last_login_at)
+                            <span id="last-login" class="text-text font-medium text-sm"
+                                data-timestamp="{{ Auth::user()->last_login_at->timestamp }}"></span>
+                        @endif
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<script>
+    function timeAgo(timestamp) {
+        const now = new Date().getTime() / 1000;
+        const diff = now - timestamp;
+
+        if (diff < 60) return 'just now';
+        if (diff < 3600) return Math.floor(diff / 60) + ' minutes ago';
+        if (diff < 86400) return Math.floor(diff / 3600) + ' hours ago';
+        return Math.floor(diff / 86400) + ' days ago';
+    }
+
+    function updateLastLogin() {
+        const el = document.getElementById('last-login');
+        if (!el) return;
+
+        const timestamp = parseInt(el.dataset.timestamp);
+        el.textContent = 'Was login ' + timeAgo(timestamp);
+    }
+
+    updateLastLogin();
+    setInterval(updateLastLogin, 60000);
+</script>
 
 <script>
     // Ambil waktu server dari Laravel

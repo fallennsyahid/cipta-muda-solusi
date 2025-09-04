@@ -118,6 +118,21 @@
     </div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('logout_success'))
+    <script>
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Logout Berhasil",
+            text: 'Sampai Jumpa Lagi 😉',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
+
 <script src={{ asset('asset-admin/js/script.js') }}></script>
 
 </html>

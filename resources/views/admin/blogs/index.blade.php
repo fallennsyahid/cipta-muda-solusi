@@ -98,13 +98,26 @@
 
         <div class="flex flex-col gap-6">
             <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
+                <div class="flex justify-between items-start">
                     <div class="flex items-center gap-3">
-                        <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
-                            #1
-                        </span>
-                        <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
-                        <span class="bg-indigo-200 px-2 py-1 rounded-full text-indigo-700">Sudah Dijawab</span>
+                        <div class="aspect-video w-25 h-20 overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/100x80.png" alt="" class="rounded-lg">
+                        </div>
+                        <div class="flex flex-col space-y-1">
+                            <div class="flex items-center space-x-3 flex-wrap">
+                                <h1 class="text-base text-heading font-semibold">
+                                    Panduan Memilih Framework Web Development yang Tepat
+                                </h1>
+                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
+                                <span class="bg-primary px-2 py-1 rounded-full text-white">Development</span>
+                            </div>
+                            <div>
+                                <p class="text-base text-text">
+                                    React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan
+                                    kebutuhan proyek Anda.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="relative z-50 flex items-center gap-2">
                         <button type="button"
@@ -117,23 +130,49 @@
                     </div>
                 </div>
 
-                <div class="cursor-pointer">
-                    <div class="flex items-center gap-3 mt-3">
-                        <i class="fas fa-chevron-right text-text text-sm"></i>
-                        <h1 class="text-heading font-semibold text-xl">Teknologi apa yang digunakan oleh Cipta Muda
-                            Solusi?
-                        </h1>
+                <div class="mt-5 flex justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="flex items-center text-sm text-text">
+                            <i class="fas fa-user mr-2"></i>
+                            Abraham Lincoln
+                        </span>
+                        <span class="flex items-center text-sm text-text">
+                            <i class="fas fa-calendar mr-2"></i>
+                            04/09/2025
+                        </span>
+                        <span class="flex items-center text-sm text-text">
+                            <i class="fas fa-clock mr-2"></i>
+                            8 menit lalu
+                        </span>
                     </div>
+                    <button type="button"
+                        class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
+                        <i class="fas fa-edit mr-2"></i>
+                        Edit Lowongan
+                    </button>
                 </div>
             </div>
             <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
+                <div class="flex justify-between items-start">
                     <div class="flex items-center gap-3">
-                        <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
-                            #2
-                        </span>
-                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
-                        <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Belum Dijawab</span>
+                        <div class="aspect-video w-25 h-20 overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/100x80.png" alt="" class="rounded-lg">
+                        </div>
+                        <div class="flex flex-col space-y-1">
+                            <div class="flex items-center space-x-3 flex-wrap">
+                                <h1 class="text-base text-heading font-semibold">
+                                    Panduan Memilih Framework Web Development yang Tepat
+                                </h1>
+                                <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                <span class="bg-secondary px-2 py-1 rounded-full text-white">Mobile Development</span>
+                            </div>
+                            <div>
+                                <p class="text-base text-text">
+                                    React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan
+                                    kebutuhan proyek Anda.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="relative z-50 flex items-center gap-2">
                         <button type="button"
@@ -146,95 +185,26 @@
                     </div>
                 </div>
 
-                <div class="cursor-pointer">
-                    <div class="flex items-center gap-3 mt-3">
-                        <i class="fas fa-chevron-right text-text text-sm"></i>
-                        <h1 class="text-heading font-semibold text-xl">Teknologi apa yang digunakan oleh Cipta Muda
-                            Solusi?
-                        </h1>
-                    </div>
-
-                    <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
-                        <p class="text-text font-lato">
-                            -
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex justify-between">
-                    <div class="flex space-x-3">
-                        <span class="flex items-center text-sm text-text">
-                            <i class="far fa-calendar mr-2"></i>
-                            Created: 04/09/2025
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="far fa-edit mr-2"></i>
-                            Updated: -
-                        </span>
-                    </div>
-                    <div>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-reply mr-2"></i>
-                            Jawab
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
+                <div class="mt-5 flex justify-between">
                     <div class="flex items-center gap-3">
-                        <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
-                            #3
-                        </span>
-                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
-                        <span class="bg-indigo-200 px-2 py-1 rounded-full text-indigo-700">Sudah Dijawab</span>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="cursor-pointer">
-                    <div class="flex items-center gap-3 mt-3">
-                        <i class="fas fa-chevron-down text-text text-sm"></i>
-                        <h1 class="text-heading font-semibold text-xl">Teknologi apa yang digunakan oleh Cipta Muda
-                            Solusi?
-                        </h1>
-                    </div>
-
-                    <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
-                        <p class="text-text font-lato">
-                            Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
-                            styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex justify-between">
-                    <div class="flex space-x-3">
                         <span class="flex items-center text-sm text-text">
-                            <i class="far fa-calendar mr-2"></i>
-                            Created: 04/09/2025
+                            <i class="fas fa-user mr-2"></i>
+                            Abraham Lincoln
                         </span>
                         <span class="flex items-center text-sm text-text">
-                            <i class="far fa-edit mr-2"></i>
-                            Updated: 04/09/2025
+                            <i class="fas fa-calendar mr-2"></i>
+                            04/09/2025
+                        </span>
+                        <span class="flex items-center text-sm text-text">
+                            <i class="fas fa-clock mr-2"></i>
+                            8 menit lalu
                         </span>
                     </div>
-                    <div>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-pen-to-square mr-2"></i>
-                            Edit Jawaban
-                        </button>
-                    </div>
+                    <button type="button"
+                        class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
+                        <i class="fas fa-edit mr-2"></i>
+                        Edit Lowongan
+                    </button>
                 </div>
             </div>
         </div>
@@ -243,6 +213,7 @@
     </x-admin.layout>
 
 </body>
+
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 

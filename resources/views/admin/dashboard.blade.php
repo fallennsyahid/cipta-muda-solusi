@@ -28,9 +28,9 @@
 
     <x-admin.sidebar></x-admin.sidebar>
 
-    <div class="ml-[20rem] mt-4 w-[calc(100%-18rem-2rem)]">
-        <x-admin.navbar></x-admin.navbar>
+    <x-admin.navbar></x-admin.navbar>
 
+    <div class="ml-74 mt-4 transition-all duration-700 ease-in-out" id="main-content">
         <main class="p-6 pt-20">
             <div class="space-y-6">
                 <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white geometric-shape">

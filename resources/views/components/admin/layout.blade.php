@@ -9,3 +9,29 @@
             </div>
         </main>
     </div>
+
+    {{-- Logout Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const logoutForm = document.querySelector('#logout-form');
+        const logoutBtn = document.querySelector('#logout-btn');
+
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Yakin ingin logout?',
+                text: 'Sesi Anda akan berakhir!',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    logoutForm.submit();
+                }
+            })
+        });
+    </script>
