@@ -161,6 +161,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-8 gap-8">
+                {{-- @foreach ($blogs as $blog) --}}
                 <div class="bg-white border-1 border-text shadow-1 rounded-xl">
                     <div class="aspect-video overflow-hidden rounded-t-xl">
                         <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
@@ -187,7 +188,7 @@
                                 <i class="fas fa-user mr-2"></i>
                                 Abraham Lincoln
                             </span>
-                            <a href="#"
+                            <a href="blogs/show  "
                                 class="text-primary text-sm flex items-center hover:text-primary/80 transition-colors duration-200">
                                 Baca Selengkapnya
                                 <i class="fas fa-arrow-right ml-2"></i>
@@ -195,180 +196,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white border-1 border-text shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="bg-secondary/30 text-primary px-3 py-1 text-sm rounded-full">Development</span>
-                            <p class="flex items-center text-text text-sm">
-                                <i class="fas fa-calendar text-base mr-1.5"></i>
-                                5 Januari 2025
-                            </p>
-                            <p class="text-text text-sm">8 min ago</p>
-                        </div>
-                        <h1 class="text-heading font-bold text-xl mb-3">
-                            Panduan Memilih Framework Web Development yang Tepat
-                        </h1>
-                        <p class="font-laro text-text text-base mb-4">
-                            React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan
-                            proyek Anda.
-                        </p>
-                        <div class="flex justify-between">
-                            <span class="flex items-center text-text text-sm">
-                                <i class="fas fa-user mr-2"></i>
-                                Abraham Lincoln
-                            </span>
-                            <a href="#"
-                                class="text-primary text-sm flex items-center hover:text-primary/80 transition-colors duration-200">
-                                Baca Selengkapnya
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white border-1 border-text shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span
-                                class="bg-secondary/30 text-primary px-3 py-1 text-sm rounded-full">Development</span>
-                            <p class="flex items-center text-text text-sm">
-                                <i class="fas fa-calendar text-base mr-1.5"></i>
-                                5 Januari 2025
-                            </p>
-                            <p class="text-text text-sm">8 min ago</p>
-                        </div>
-                        <h1 class="text-heading font-bold text-xl mb-3">
-                            Panduan Memilih Framework Web Development yang Tepat
-                        </h1>
-                        <p class="font-laro text-text text-base mb-4">
-                            React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan
-                            proyek Anda.
-                        </p>
-                        <div class="flex justify-between">
-                            <span class="flex items-center text-text text-sm">
-                                <i class="fas fa-user mr-2"></i>
-                                Abraham Lincoln
-                            </span>
-                            <a href="#"
-                                class="text-primary text-sm flex items-center hover:text-primary/80 transition-colors duration-200">
-                                Baca Selengkapnya
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white border-1 border-text shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span
-                                class="bg-secondary/30 text-primary px-3 py-1 text-sm rounded-full">Development</span>
-                            <p class="flex items-center text-text text-sm">
-                                <i class="fas fa-calendar text-base mr-1.5"></i>
-                                5 Januari 2025
-                            </p>
-                            <p class="text-text text-sm">8 min ago</p>
-                        </div>
-                        <h1 class="text-heading font-bold text-xl mb-3">
-                            Panduan Memilih Framework Web Development yang Tepat
-                        </h1>
-                        <p class="font-laro text-text text-base mb-4">
-                            React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan
-                            proyek Anda.
-                        </p>
-                        <div class="flex justify-between">
-                            <span class="flex items-center text-text text-sm">
-                                <i class="fas fa-user mr-2"></i>
-                                Abraham Lincoln
-                            </span>
-                            <a href="#"
-                                class="text-primary text-sm flex items-center hover:text-primary/80 transition-colors duration-200">
-                                Baca Selengkapnya
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white border-1 border-text shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span
-                                class="bg-secondary/30 text-primary px-3 py-1 text-sm rounded-full">Development</span>
-                            <p class="flex items-center text-text text-sm">
-                                <i class="fas fa-calendar text-base mr-1.5"></i>
-                                5 Januari 2025
-                            </p>
-                            <p class="text-text text-sm">8 min ago</p>
-                        </div>
-                        <h1 class="text-heading font-bold text-xl mb-3">
-                            Panduan Memilih Framework Web Development yang Tepat
-                        </h1>
-                        <p class="font-laro text-text text-base mb-4">
-                            React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan
-                            proyek Anda.
-                        </p>
-                        <div class="flex justify-between">
-                            <span class="flex items-center text-text text-sm">
-                                <i class="fas fa-user mr-2"></i>
-                                Abraham Lincoln
-                            </span>
-                            <a href="#"
-                                class="text-primary text-sm flex items-center hover:text-primary/80 transition-colors duration-200">
-                                Baca Selengkapnya
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white border-1 border-text shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span
-                                class="bg-secondary/30 text-primary px-3 py-1 text-sm rounded-full">Development</span>
-                            <p class="flex items-center text-text text-sm">
-                                <i class="fas fa-calendar text-base mr-1.5"></i>
-                                5 Januari 2025
-                            </p>
-                            <p class="text-text text-sm">8 min ago</p>
-                        </div>
-                        <h1 class="text-heading font-bold text-xl mb-3">
-                            Panduan Memilih Framework Web Development yang Tepat
-                        </h1>
-                        <p class="font-laro text-text text-base mb-4">
-                            React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan
-                            proyek Anda.
-                        </p>
-                        <div class="flex justify-between">
-                            <span class="flex items-center text-text text-sm">
-                                <i class="fas fa-user mr-2"></i>
-                                Abraham Lincoln
-                            </span>
-                            <a href="#"
-                                class="text-primary text-sm flex items-center hover:text-primary/80 transition-colors duration-200">
-                                Baca Selengkapnya
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                {{-- @endforeach --}}
             </div>
         </div>
     </section>

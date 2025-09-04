@@ -1110,9 +1110,9 @@
                         </div>
                     </div>
 
-                    <div class="">
+                    <div class="flex justify-center">
                         <button type="submit"
-                            class="flex items-center gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-4 px-10 text-white font-semibold text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
+                            class="flex items-center w-full gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-4 px-10 text-white font-semibold text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
                             <i class="fas fa-rocket"></i>
                             Kirim Permohonan Kerjasama
                         </button>

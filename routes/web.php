@@ -26,6 +26,7 @@ Route::get('/jobs', [JobsController::class, 'index'])->name('user.jobs.index');
 Route::get('/faqs', [FaqsController::class, 'index'])->name('user.faqs.index');
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('user.blogs.index');
+Route::get('blogs/show', [BlogsController::class, 'index2'])->name('user-blogs-blog');
 
 Route::get('testing', function () {
     return view('testing');

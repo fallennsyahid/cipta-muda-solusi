@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class BlogsController extends Controller
@@ -11,7 +12,13 @@ class BlogsController extends Controller
      */
     public function index()
     {
+        // $blogs = Blog::paginate(9);
         return view('blogs.index');
+    }
+
+    public function index2()
+    {
+        return view('blogs.show');
     }
 
     /**
@@ -35,7 +42,8 @@ class BlogsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        return view('blogs.show', compact('blog'));
     }
 
     /**
