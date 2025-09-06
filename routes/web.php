@@ -5,8 +5,10 @@ use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\FaqsAdminController;
 use App\Http\Controllers\Admin\JobsController as JobsAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
+use App\Http\Controllers\Admin\PartnerReqAdminController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CvAdminController;
 use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
@@ -45,6 +47,10 @@ Route::resource('admin/blogs', BlogsAdminController::class);
 Route::resource('admin/contact', ContactAdminController::class);
 
 Route::resource('admin/partner', PartnerAdminController::class);
+
+Route::resource('admin/partnerReq', PartnerReqAdminController::class);
+
+Route::resource('admin/cv', CvAdminController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

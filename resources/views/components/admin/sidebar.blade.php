@@ -32,10 +32,11 @@
             </span>
         </a>
 
-        <a href=""
-            class="flex items-center justify-between w-full px-4 py-3 rounded-xl transition-all duration-300 group overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
+        <a href="{{ route('cv.index') }}"
+            class="flex items-center justify-between w-full px-4 py-3 rounded-xl transition-all duration-300 group overflow-hidden {{ request()->routeIs('cv.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-3">
-                <i class="fas fa-file"></i>
+                <i
+                    class="fas fa-file {{ request()->routeIs('cv.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
                 <span class="font-medium">CV</span>
             </span>
         </a>
@@ -53,17 +54,18 @@
             class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('partner.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-5">
                 <i
-                    class="fas fa-handshake transition-all {{ request()->routeIs('partner.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
+                    class="fas fa-handshake {{ request()->routeIs('partner.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
                 <span class="font-medium">
                     Partner
                 </span>
             </span>
         </a>
 
-        <a href=""
-            class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
+        <a href="{{ route('partnerReq.index') }}"
+            class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('partnerReq.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-5">
-                <i class="fas fa-user-plus text-text transition-all duration-300 group-hover:scale-110"></i>
+                <i
+                    class="fas fa-user-plus {{ request()->routeIs('partnerReq.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
                 <span class="font-medium">
                     Partner Request
                 </span>

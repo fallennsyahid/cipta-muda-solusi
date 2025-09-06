@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $contacts->total() }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -93,127 +93,66 @@
         </div>
 
         <div class="flex flex-col gap-6">
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div>
-                            <img src="https://placehold.co/75x75.png" alt="" class="rounded-full">
+            @foreach ($contacts as $contact)
+                <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <img src="https://placehold.co/75x75.png" alt="" class="rounded-full">
+                            </div>
+                            <div class="space-y-3">
+                                <h1 class="font-bold text-heading text-2xl">{{ $contact->full_name }}</h1>
+                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Sudah Dibalas</span>
+                            </div>
                         </div>
-                        <div class="space-y-3">
-                            <h1 class="font-bold text-heading text-2xl">John F. Kennedy</h1>
-                            <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Sudah Dibalas</span>
-                        </div>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 mt-10 mb-5">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        johnkennedyf@gmail.com
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-456-789
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-calendar-days mr-2"></i>
-                        4 September 2025 pukul 12.42
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
-                    <p class="text-text font-lato">
-                        Saya mau tanya kenapa saya suka melakukan sesuatu yang mungkin saya gak mau lakuin tapi saya
-                        selalu lakuin itu karna saya mau melakukan padahal saya tidak mau melakukan itu.
-                    </p>
-                </div>
-
-                <div class="flex justify-between">
-                    <span class="flex items-center text-sm text-text">
-                        <i class="fas fa-message mr-2"></i>
-                        Website Contact Form
-                    </span>
-                    <div class="flex items-center space-x-3">
-                        <a href="#"
-                            class="bg-orange-500 px-4 py-2 text-white text-lg rounded-lg hover:bg-orange-600">
-                            <i class="fas fa-phone-volume mr-2"></i>
-                            Hubungi Ulang
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div>
-                            <img src="https://placehold.co/75x75.png" alt="" class="rounded-full">
-                        </div>
-                        <div class="space-y-3">
-                            <h1 class="font-bold text-heading text-2xl">John F. Kennedy</h1>
-                            <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Belum Dibalas</span>
+                        <div class="relative z-50 flex items-center gap-2">
+                            <button type="button"
+                                class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
+                                <i class="fas fa-ellipsis"></i>
+                            </button>
+                            <button class="cursor-pointer">
+                                <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 mt-10 mb-5">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        johnkennedyf@gmail.com
+                    <div class="grid grid-cols-1 lg:grid-cols-3 mt-10 mb-5">
+                        <div class="flex items-center text-text text-base">
+                            <i class="fas fa-envelope mr-2"></i>
+                            {{ $contact->email }}
+                        </div>
+                        <div class="flex items-center text-text text-base">
+                            <i class="fas fa-phone mr-2"></i>
+                            {{ $contact->phone_number }}
+                        </div>
+                        <div class="flex items-center text-text text-base">
+                            <i class="fas fa-calendar-days mr-2"></i>
+                            {{-- 4 September 2025 pukul 12.42 --}}
+                            {{ $contact->created_at }}
+                        </div>
                     </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-456-789
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-calendar-days mr-2"></i>
-                        4 September 2025 pukul 12.42
-                    </div>
-                </div>
 
-                <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
-                    <p class="text-text font-lato">
-                        Saya mau tanya kenapa saya suka melakukan sesuatu yang mungkin saya gak mau lakuin tapi saya
-                        selalu lakuin itu karna saya mau melakukan padahal saya tidak mau melakukan itu.
-                    </p>
-                </div>
+                    <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
+                        <p class="text-text font-lato">
+                            {{ $contact->message }}
+                        </p>
+                    </div>
 
-                <div class="flex justify-between">
-                    <span class="flex items-center text-sm text-text">
-                        <i class="fas fa-message mr-2"></i>
-                        Website Contact Form
-                    </span>
-                    <div class="flex items-center space-x-3">
-                        <a href="#"
-                            class="bg-green-600 px-4 py-2 text-white text-lg rounded-lg hover:bg-green-600/90">
-                            <i class="fas fa-pen-to-square mr-2"></i>
-                            Update Status
-                        </a>
-                        <a href="#"
-                            class="bg-primary px-4 py-2 text-white text-lg rounded-lg hover:bg-primary/90">
-                            <i class="fas fa-reply mr-2"></i>
-                            Balas Pesan
-                        </a>
+                    <div class="flex justify-between">
+                        <span class="flex items-center text-sm text-text">
+                            <i class="fas fa-message mr-2"></i>
+                            Website Contact Form
+                        </span>
+                        <div class="flex items-center space-x-3">
+                            <a href="#"
+                                class="bg-orange-500 px-4 py-2 text-white text-lg rounded-lg hover:bg-orange-600">
+                                <i class="fas fa-phone-volume mr-2"></i>
+                                Hubungi Ulang
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
 
     </x-admin.layout>

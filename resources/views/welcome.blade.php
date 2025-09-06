@@ -28,77 +28,77 @@
 
 <body>
     {{-- Header Start --}}
-    <header class="absolute top-0 left-0 w-full flex items-center">
-        <div class="container max-w-full relative">
-            <div class="flex items-center justify-between">
-                <div class="pl-10 py-6">
-                    <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
-                        class="h-14 w-auto" width="675" height="200">
-                </div>
+    <x-header>
+        <div class="flex items-center justify-center px-4 py-6">
+            <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
+                class="block absolute right-4 lg:hidden">
+                <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+                <span class="hamburger-line transition duration-300 ease-in-out"></span>
+                <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+            </button>
 
-                <div class="flex items-center justify-center px-4 py-6">
-                    <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
-                        class="block absolute right-4 lg:hidden">
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
-                    </button>
-
-                    <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
-                        <ul class="flex items-center justify-center gap-8" id="#nav-active">
-                            <li class="group">
-                                <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Beranda
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Tentang
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Layanan
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Team
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Contact
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="{{ route('user.faqs.index') }}"
-                                    class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Faq
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="{{ route('user.blogs.index') }}"
-                                    class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Blog
-                                </a>
-                            </li>
-                            <li class="group">
-                                <i class="fas fa-sun text-darkChoco text-2xl"></i>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div id="clock" data-time="{{ now()->timezone('Asia/Jakarta')->format('Y-m-d\TH:i:s') }}"
-                    class="mr-10 text-darkChoco font-bold text-2xl"></div>
-            </div>
+            <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
+                <ul class="flex items-center justify-center gap-8" id="#nav-active">
+                    <li class="group">
+                        <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Beranda
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Tentang
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Layanan
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Team
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#partner" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Partner
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="{{ route('user.jobs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
+                            Karir
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="{{ route('user.faqs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
+                            Faq
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="{{ route('user.blogs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="group">
+                        <i class="fas fa-sun text-darkChoco text-2xl"></i>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </header>
+    </x-header>
     {{-- Header Start --}}
 
     {{-- Hero Section Start --}}
