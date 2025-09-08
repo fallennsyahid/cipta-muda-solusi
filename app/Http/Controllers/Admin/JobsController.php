@@ -15,9 +15,10 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Jobs::paginate(9);
-        $types = JobType::cases();
-        return view('admin.jobs.index', compact('jobs', 'types'));
+        // $jobs = Jobs::paginate(9);
+        // $types = JobType::cases();
+        // return view('admin.jobs.index', compact('jobs', 'types'));
+        return view('admin.jobs.index');
     }
 
     /**

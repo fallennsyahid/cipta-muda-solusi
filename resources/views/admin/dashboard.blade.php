@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            24
+                            {{ $totalJobs }}
                             <p class="text-xs text-green-600 font-lato flex mt-1">
                                 <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
                                 12% from last month

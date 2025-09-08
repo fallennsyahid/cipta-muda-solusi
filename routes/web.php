@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\BlogsAdminController;
 use App\Http\Controllers\Admin\ContactAdminController;
+use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\FaqsAdminController;
 use App\Http\Controllers\Admin\JobsController as JobsAdminController;
+use App\Http\Controllers\Admin\JobVacancyAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
 use App\Http\Controllers\Admin\PartnerReqAdminController;
 use App\Http\Controllers\BlogsController;
@@ -34,11 +36,14 @@ Route::get('testing', function () {
     return view('testing');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin/dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('admin/jobs', JobsAdminController::class)->middleware(['auth', 'verified']);
+
+Route::resource('/dashboard', DashboardAdminController::class)->middleware(['auth', 'verified']);
+
+Route::resource('admin/jobs', JobVacancyAdminController::class);
 
 Route::resource('admin/faqs', FaqsAdminController::class);
 

@@ -36,6 +36,14 @@ input:focus {
     outline: none;
 }
 
+textarea:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
+
 .navbar-fixed {
     @apply fixed z-[99999];
 }

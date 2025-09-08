@@ -12,8 +12,9 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Jobs::paginate(9);
-        return view('jobs.index', compact('jobs'));
+        // $jobs = Jobs::paginate(9);
+        // return view('jobs.index', compact('jobs'));
+        return view('jobs.index');
     }
 
     /**

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ContactStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Jobs;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ContactAdminController extends Controller
@@ -14,8 +16,12 @@ class ContactAdminController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::paginate(9);
-        return view('admin.contact.index', compact('contacts'));
+        $contacts = Contact::latest()->paginate(5);
+        $belumDibalas = ContactStatus::BelumDibalas;
+        $pesanBaru =  Contact::whereDate('created_at', Carbon::today())->count();
+        $totalBelumDibalas = Contact::where('status', ContactStatus::BelumDibalas->value)->count();
+        $totalSudahDibalas = Contact::where('status', ContactStatus::SudahDibalas->value)->count();
+        return view('admin.contact.index', compact('contacts', 'pesanBaru', 'totalBelumDibalas', 'totalSudahDibalas', 'belumDibalas'));
     }
 
     /**
@@ -53,9 +59,12 @@ class ContactAdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Contact $contact)
     {
-        //
+        $contact->status = ContactStatus::SudahDibalas;
+        $contact->save();
+
+        return redirect()->back()->with('success', 'Status berhasild diperbarui!');
     }
 
     /**
@@ -64,6 +73,7 @@ class ContactAdminController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return redirect()->route('contact.index');
+
+        return redirect()->back()->with('success', 'Contact berhasil dihapus!');
     }
 }

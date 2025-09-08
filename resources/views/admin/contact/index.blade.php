@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $pesanBaru }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalBelumDibalas }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalSudahDibalas }}
                 </div>
             </div>
         </div>
@@ -98,11 +98,20 @@
                     <div class="flex justify-between">
                         <div class="flex items-center gap-3">
                             <div>
-                                <img src="https://placehold.co/75x75.png" alt="" class="rounded-full">
+                                <img src="{{ Avatar::create($contact->full_name)->toBase64() }}"
+                                    alt="{{ $contact->full_name }}" class="rounded-full">
                             </div>
                             <div class="space-y-3">
                                 <h1 class="font-bold text-heading text-2xl">{{ $contact->full_name }}</h1>
-                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Sudah Dibalas</span>
+                                @if ($contact->status === $belumDibalas)
+                                    <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">
+                                        Belum Dibalas
+                                    </span>
+                                @else
+                                    <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">
+                                        Sudah Dibalas
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="relative z-50 flex items-center gap-2">
@@ -110,9 +119,14 @@
                                 class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
                                 <i class="fas fa-ellipsis"></i>
                             </button>
-                            <button class="cursor-pointer">
-                                <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                            </button>
+                            <form action="{{ route('contact.destroy', $contact->id) }}" method="POST"
+                                class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="cursor-pointer">
+                                    <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
 
@@ -128,7 +142,8 @@
                         <div class="flex items-center text-text text-base">
                             <i class="fas fa-calendar-days mr-2"></i>
                             {{-- 4 September 2025 pukul 12.42 --}}
-                            {{ $contact->created_at }}
+                            {{ $contact->created_at->format('d/m/Y') }} pukul
+                            {{ $contact->created_at->format('H:i') }}
                         </div>
                     </div>
 
@@ -144,6 +159,23 @@
                             Website Contact Form
                         </span>
                         <div class="flex items-center space-x-3">
+                            @if ($contact->status === $belumDibalas)
+                                <form action="{{ route('contact.update', $contact->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit"
+                                        class="bg-teal-500 px-4 py-2 text-white text-lg rounded-lg cursor-pointer hover:bg-teal-600">
+                                        <i class="fas fa-pen mr-2"></i>
+                                        Update Status
+                                    </button>
+                                </form>
+                            @else
+                                <button type="button" disabled
+                                    class="bg-teal-500 px-4 py-2 text-white text-lg rounded-lg opacity-50 cursor-not-allowed">
+                                    <i class="fas fa-pen mr-2"></i>
+                                    Update Status
+                                </button>
+                            @endif
                             <a href="#"
                                 class="bg-orange-500 px-4 py-2 text-white text-lg rounded-lg hover:bg-orange-600">
                                 <i class="fas fa-phone-volume mr-2"></i>
@@ -153,6 +185,10 @@
                     </div>
                 </div>
             @endforeach
+
+            <div class="mt-4">
+                {{ $contacts->links() }}
+            </div>
         </div>
 
     </x-admin.layout>

@@ -1129,11 +1129,12 @@
                 <div class="flex flex-wrap md:flex-nowrap gap-10" id="formKontak">
                     <div class="w-full lg:w-1/2">
                         <h1 class="text-heading text-2xl font-bold">Konsultasi Gratis</h1>
-                        <form action="" method="POST" class="space-y-4 py-4">
+                        <form action="{{ route('index.store') }}" method="POST" class="space-y-4 py-4">
+                            @csrf
                             <div class="space-y-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label for="full-name"
+                                        <label for="full_name"
                                             class="block mb-2 font-medium text-base text-heading">Nama
                                             Lengkap</label>
                                         <div class="relative">
@@ -1141,13 +1142,13 @@
                                                 class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <i class="fas fa-user text-base text-text"></i>
                                             </div>
-                                            <input type="text" name="full-name" id="full-name"
+                                            <input type="text" name="full_name" id="full_name"
                                                 placeholder="Masukkan nama lengkap"
                                                 class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none">
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="phone-number"
+                                        <label for="phone_number"
                                             class="block mb-2 font-medium text-base text-heading">Nomor
                                             Telepon</label>
                                         <div class="relative">
@@ -1155,7 +1156,7 @@
                                                 class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                                 <i class="fas fa-phone text-base text-text"></i>
                                             </div>
-                                            <input type="tel" name="phone-number" id="phone-number"
+                                            <input type="tel" name="phone_number" id="phone_number"
                                                 placeholder="Masukkan nomor telepon"
                                                 class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none">
                                         </div>
@@ -1181,13 +1182,13 @@
                                         <div class="absolute inset-y-0 left-0 top-4 pl-4 pointer-events-none">
                                             <i class="fas fa-message text-base text-text"></i>
                                         </div>
-                                        <textarea name="message" id="message" rows="3" placeholder="Pesan Anda"
+                                        <textarea name="message" id="message" rows="4" placeholder="Pesan Anda"
                                             class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none"></textarea>
                                     </div>
                                 </div>
                                 <div class="flex">
                                     <button type="submit"
-                                        class="flex flex-1 items-center justify-center py-3 px-6 gap-2 text-white text-base font-semibold bg-gradient-to-br from-primary to-secondary rounded-lg">
+                                        class="flex flex-1 items-center justify-center py-3 px-6 gap-2 text-white text-base font-semibold bg-gradient-to-br from-primary to-secondary hover:from-secondary hover:to-primary rounded-lg cursor-pointer">
                                         <i class="fas fa-paper-plane"></i>
                                         Kirim
                                     </button>
@@ -1465,6 +1466,30 @@
     </footer>
     {{-- Footer Section End --}}
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            showConfirmButton: true,
+        });
+    </script>
+@endif
 
 <script src="{{ asset('js/script.js') }}"></script>
 

@@ -8,4 +8,9 @@ enum JobType: string
     case PartTime = 'part-time';
     case Internship = 'internship';
     case Freelance = 'freelance';
+
+    public static function values(): array
+    {
+        return array_column(self::cases(), 'value');
+    }
 }
