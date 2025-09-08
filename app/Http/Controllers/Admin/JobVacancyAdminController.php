@@ -98,6 +98,14 @@ class JobVacancyAdminController extends Controller
             'status' => ['sometimes', Rule::in(JobStatus::values())],
         ]);
 
+        $validated['skills'] = array_values(array_filter($validated['skills'], function ($skill) {
+            return !is_null($skill) && trim($skill) !== '';
+        }));
+
+        if (count($validated['skills']) < 3) {
+            return back()->withErrors(['skills' => 'Minimal 3 skill harus diisi.'])->withInput();
+        }
+
         $job->update($validated);
 
         return redirect()->route('jobs.index')->with('success', 'Data berhasil diupate!');

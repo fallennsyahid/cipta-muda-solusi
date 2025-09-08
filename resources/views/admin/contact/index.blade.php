@@ -176,11 +176,11 @@
                                     Update Status
                                 </button>
                             @endif
-                            <a href="#"
-                                class="bg-orange-500 px-4 py-2 text-white text-lg rounded-lg hover:bg-orange-600">
+                            <button type="button" data-id="{{ $contact->id }}"
+                                class="open-modal bg-orange-500 px-4 py-2 text-white text-lg rounded-lg hover:bg-orange-600">
                                 <i class="fas fa-phone-volume mr-2"></i>
                                 Hubungi Ulang
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -192,29 +192,67 @@
         </div>
 
     </x-admin.layout>
+
+    @foreach ($contacts as $contact)
+        <div id="call-modal-{{ $contact->id }}" class="fixed z-[99999] inset-0 hidden justify-center items-center">
+            <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
+
+            <div class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="flex justify-between items-center bg-gradient-to-r from-heading via-primary to-secondary p-5 relative overflow-hidden">
+                    <h1 class="text-xl text-white font-bold">Pilih Metode Hubungi Ulang</h1>
+                    <a href=""
+                        class="close-modal w-8 h-8 text-white flex justify-center items-center rounded-full hover:bg-white/30">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col justify-center space-y-4 p-5">
+                    <a href="https://wa.me/{{ $contact->phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Whatsapp
+                    </a>
+                    <a href="tel:{{ $contact->phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-amber-500 px-4 py-2 rounded-lg hover:bg-amber-600">
+                        <i class="fas fa-phone mr-2"></i>
+                        Telepon
+                    </a>
+                    <a href="mailto:{{ $contact->email }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const openDetail = document.querySelectorAll('.open-detail');
-        const closeModal2 = document.querySelectorAll('.close-modal-2');
+        const openModal = document.querySelectorAll('.open-modal');
+        const closeModal = document.querySelectorAll('.close-modal');
 
-        openDetail.forEach((btn) => {
+        openModal.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                const modal = document.querySelector('#detail-modal-' + btn.dataset.id);
+
+                const modal = document.querySelector('#call-modal-' + btn.dataset.id);
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
             });
         });
 
-        closeModal2.forEach((btn) => {
-            btn.addEventListener('click', () => {
+        closeModal.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+
                 const modalOpen = btn.closest('.fixed');
-                modalOpen.classList.add('hidden');
                 modalOpen.classList.remove('flex');
+                modalOpen.classList.add('hidden');
             });
         });
 
@@ -254,5 +292,6 @@
 </script>
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+{{-- <script src="{{ asset('asset-admin/js/contact.js') }}"></script> --}}
 
 </html>
