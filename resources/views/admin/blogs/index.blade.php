@@ -284,7 +284,7 @@
                             </label>
                             <input type="file" name="image" id="image" class="hidden"
                                 accept="image/png,image/jpeg,image/jpg">
-                            <label for="image"
+                            <label for="image" id="drop-area"
                                 class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                 <div class="mb-4">
                                     <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
@@ -298,25 +298,20 @@
                                     </p>
                                 </div>
                             </label>
-                            <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between">
+                            <div id="preview-file" class="hidden justify-between bg-text/10 p-4 mt-2 rounded-lg">
                                 <div class="flex items-center gap-3">
                                     <div>
                                         <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
                                     </div>
-                                    <div>
-                                        <h1 class="text-base text-darkChoco font-semibold">title.jpg</h1>
-                                        <div class="flex items-center gap-2 text-xs text-text">
-                                            <span>60KB of 120KB</span>
-                                            <span>•</span>
-                                            <span>
-                                                <i class="fa-solid fa-spinner text-blue-400"></i>
-                                                Uploading...
-                                            </span>
-                                        </div>
+                                    <div class="flex flex-col">
+                                        <h1 id="file-name" class="text-base text-darkChoco font-semibold">
+                                            apaweh
+                                        </h1>
+                                        <span id="file-size" class="text-xs text-text">100GB</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="">
+                                    <a href="" id="remove-file">
                                         <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
                                     </a>
                                 </div>
@@ -333,7 +328,8 @@
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
                                 @foreach ($blogStatus as $status)
                                     <option value="{{ $status->value }}"
-                                        {{ $status->value === $blog->status ? 'selected' : '' }}>{{ $status->value }}
+                                        {{ $status->value === $blog->status ? 'selected' : '' }}>
+                                        {{ $status->value }}
                                     </option>
                                 @endforeach
                             </select>
@@ -351,9 +347,10 @@
                             </button>
                         </div>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
+    </div>
     </div>
     {{-- Modal Create End --}}
 
@@ -606,7 +603,7 @@
                                 </label>
                                 <input type="file" name="image" id="image" class="hidden"
                                     accept="image/png,image/jpeg,image/jpg">
-                                <label for="image"
+                                <label for="image" id="drop-area"
                                     class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                     <div class="mb-4">
                                         <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
@@ -620,15 +617,16 @@
                                         </p>
                                     </div>
                                 </label>
-                                <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between">
+                                <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between" id="preview-file">
                                     <div class="flex items-center gap-3">
                                         <div>
                                             <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
                                         </div>
                                         <div>
-                                            <h1 class="text-base text-darkChoco font-semibold">title.jpg</h1>
+                                            <h1 class="text-base text-darkChoco font-semibold" id="file-name">
+                                                title.jpg</h1>
                                             <div class="flex items-center gap-2 text-xs text-text">
-                                                <span>60KB of 120KB</span>
+                                                <span class="file-size"></span>
                                                 <span>•</span>
                                                 <span>
                                                     <i class="fa-solid fa-spinner text-blue-400"></i>
@@ -638,9 +636,9 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="">
+                                        <button type="button" id="remove-file">
                                             <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -721,5 +719,6 @@
 
 <script src="{{ asset('asset-admin/js/blog.js') }}"></script>
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>
 
 </html>

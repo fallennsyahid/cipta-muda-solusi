@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\JobStatus;
+use App\Enums\Status;
 use App\Enums\JobType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('salary', 50);
             $table->string('description', 250);
             $table->json('skills');
-            $table->enum('status', JobStatus::values())->default(JobStatus::Active->value);
+            $table->enum('status', Status::values())->default(Status::Active->value);
             $table->timestamps();
         });
     }

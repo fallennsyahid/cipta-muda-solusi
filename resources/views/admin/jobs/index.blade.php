@@ -272,7 +272,6 @@
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize"
                                 required>
                                 <option value="-">Pilih tipe pekerjaan</option>
-                                {{-- <option value="full-time">Anjay</option> --}}
                                 @foreach ($jobType as $type)
                                     <option value="{{ $type->value }}">{{ $type->value }}
                                     </option>
@@ -337,10 +336,8 @@
                             <select name="status" id="status"
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
                                 <option value="-">Pilih Status Lowongan</option>
-                                {{-- <option value="Active">active</option> --}}
                                 @foreach ($jobStatus as $status)
-                                    <option value="{{ $status->value }}"
-                                        {{ $status->value === 'Active' ? 'selected' : '' }}>{{ $status->value }}
+                                    <option value="{{ $status->value }}">{{ $status->value }}
                                     </option>
                                 @endforeach
                             </select>
@@ -500,10 +497,9 @@
                                 </label>
                                 <select name="status" id="status"
                                     class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
-                                    <option value="-">Pilih Status Lowongan</option>
                                     @foreach ($jobStatus as $status)
                                         <option value="{{ $status->value }}"
-                                            {{ $status->value === 'Active' ? 'selected' : '' }}>
+                                            {{ $status->value === $job->status ? 'selected' : '' }}>
                                             {{ $status->value }}
                                         </option>
                                     @endforeach

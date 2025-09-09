@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\ContactStatus;
 use App\Enums\JobType;
-use App\Enums\JobStatus;
+use App\Enums\Status;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -20,9 +20,9 @@ class JobVacancyAdminController extends Controller
     {
         $jobs = JobVacancy::latest()->paginate(5);
         $jobType = JobType::cases();
-        $jobStatus = JobStatus::cases();
-        $totalJobActive = JobVacancy::where('status', JobStatus::Active->value)->count();
-        $totalJobNonActive = JobVacancy::where('status', JobStatus::NonActive->value)->count();
+        $jobStatus = Status::onlyActiveNonActive();
+        $totalJobActive = JobVacancy::where('status', Status::Active->value)->count();
+        $totalJobNonActive = JobVacancy::where('status', Status::NonActive->value)->count();
         return view('admin.jobs.index', compact('jobs', 'jobType', 'jobStatus', 'totalJobActive', 'totalJobNonActive'));
     }
 
@@ -48,7 +48,7 @@ class JobVacancyAdminController extends Controller
             'description' => 'required|string|min:50|max:250',
             'skills' => 'required|array|min:3|max:5',
             'skills.*' => 'nullable|string|max:50',
-            'status' => ['required', Rule::in(JobStatus::values())],
+            'status' => ['required', Rule::in(Status::values())],
         ]);
 
         $validated['skills'] = array_values(array_filter(
@@ -95,7 +95,7 @@ class JobVacancyAdminController extends Controller
             'description' => ['sometimes', 'string', 'min:50', 'max:250'],
             'skills' => ['sometimes', 'array', 'min:3', 'max:5'],
             'skills.*' => ['nullable', 'string', 'max:50'],
-            'status' => ['sometimes', Rule::in(JobStatus::values())],
+            'status' => ['sometimes', Rule::in(Status::values())],
         ]);
 
         $validated['skills'] = array_values(array_filter($validated['skills'], function ($skill) {

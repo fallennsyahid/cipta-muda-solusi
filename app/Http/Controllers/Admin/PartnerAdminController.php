@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\PartnerTypes;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
@@ -13,8 +14,10 @@ class PartnerAdminController extends Controller
      */
     public function index()
     {
-        $partners = Partner::paginate(9);
-        return view('admin.partner.index', compact('partners'));
+        // $partners = Partner::paginate(9);
+        $partnerTypes = PartnerTypes::cases();
+        $totalPartners = Partner::count();
+        return view('admin.partner.index', compact('partnerTypes', 'totalPartners'));
     }
 
     /**
