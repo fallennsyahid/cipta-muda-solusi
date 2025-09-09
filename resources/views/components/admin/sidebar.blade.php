@@ -80,6 +80,16 @@
                 Blog
             </span>
         </a>
+
+        <a href="{{ route('portfolios.index') }}"
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('portfolios.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            <i
+                class="fas fa-layer-group {{ request()->routeIs('portfolios.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
+            <span class="font-medium pl-2">
+                Portfolio
+            </span>
+        </a>
+
         <a href="{{ route('contact.index') }}"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('contact.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i

@@ -165,7 +165,7 @@
                 <div class="bg-white border-1 border-text shadow-1 rounded-xl">
                     <div class="aspect-video overflow-hidden rounded-t-xl">
                         <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 transition-all duration-300">
+                            class="w-full h-full opacity-90 object-cover hover:opacity-100 hover:scale-105 transition-all duration-300">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center gap-3 mb-3">

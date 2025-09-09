@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\JobsController as JobsAdminController;
 use App\Http\Controllers\Admin\JobVacancyAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
 use App\Http\Controllers\Admin\PartnerReqAdminController;
+use App\Http\Controllers\Admin\PortfoliosAdminController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CvAdminController;
@@ -45,9 +46,12 @@ Route::resource('/dashboard', DashboardAdminController::class)->middleware(['aut
 
 Route::resource('admin/jobs', JobVacancyAdminController::class);
 
+Route::resource('admin/portfolios', PortfoliosAdminController::class);
+
 Route::resource('admin/faqs', FaqsAdminController::class);
 
 Route::resource('admin/blogs', BlogsAdminController::class);
+Route::patch('blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');
 
 Route::resource('admin/contact', ContactAdminController::class);
 

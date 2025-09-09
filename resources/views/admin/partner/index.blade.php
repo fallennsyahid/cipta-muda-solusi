@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Cipta Muda Solusi - Jobs</title>
+    <title>Cipta Muda Solusi - Partner</title>
 
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])

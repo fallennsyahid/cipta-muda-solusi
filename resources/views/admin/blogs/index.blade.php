@@ -33,7 +33,7 @@
                 <p class="text-text font-lato">Create and manage blog posts and articles</p>
             </div>
             <div>
-                <button type="button"
+                <button type="button" id="open-modal"
                     class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-heading via-primary to-secondary cursor-pointer hover:from-secondary hover:via-primary hover:to-heading">
                     <i class="fas fa-plus"></i>
                     Tambahkan Blog Baru
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $blogsTotal }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $blogsPublished }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -78,143 +78,648 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $blogsPending }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
                 <div class="flex flex-row justify-between items-center space-y-0 pb-2">
                     <h1 class="text-sm font-medium text-text">
-                        Total Kategori Blog
+                        Archived
                     </h1>
                     <div class="w-8 h-8 rounded-lg bg-gray-600 flex justify-center items-center">
-                        <i class="fas fa-layer-group text-white text-base"></i>
+                        <i class="fas fa-box-archive text-white text-base"></i>
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $blogsArchived }}
                 </div>
             </div>
         </div>
 
         <div class="flex flex-col gap-6">
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between items-start">
-                    <div class="flex items-center gap-3">
-                        <div class="aspect-video w-25 h-20 overflow-hidden rounded-lg">
-                            <img src="https://placehold.co/100x80.png" alt="" class="rounded-lg">
+            @foreach ($blogs as $blog)
+                <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
+                    <div class="flex justify-between items-start">
+                        <div class="flex items-center gap-3">
+                            <div class="aspect-video w-40 overflow-hidden rounded-lg">
+                                <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}"
+                                    class="rounded-lg">
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <div class="flex items-center space-x-3 flex-wrap">
+                                    <h1 class="text-base text-heading font-semibold capitalize truncate max-w-sm">
+                                        {{ $blog->title }}
+                                    </h1>
+                                    @if ($blog->status === 'Published')
+                                        <span
+                                            class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
+                                    @elseif ($blog->status === 'Pending')
+                                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                    @else
+                                        <span class="bg-gray-200 px-2 py-1 rounded-full text-gray-700">Archived</span>
+                                    @endif
+
+                                    <span
+                                        class="bg-primary px-2 py-1 rounded-full text-white capitalize">{{ $blog->category }}</span>
+                                </div>
+
+                                <div>
+                                    <p class="text-base text-text">
+                                        {{ $blog->description }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex flex-col space-y-1">
-                            <div class="flex items-center space-x-3 flex-wrap">
-                                <h1 class="text-base text-heading font-semibold">
-                                    Panduan Memilih Framework Web Development yang Tepat
-                                </h1>
-                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
-                                <span class="bg-primary px-2 py-1 rounded-full text-white">Development</span>
-                            </div>
-                            <div>
-                                <p class="text-base text-text">
-                                    React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan
-                                    kebutuhan proyek Anda.
-                                </p>
-                            </div>
+                        <div class="relative z-50 flex items-center gap-2">
+                            @if ($blog->is_featured === 0)
+                                <form action="{{ route('blogs.toggleFeatured', $blog->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="px-3 py-1 text-lg text-yellow-400 cursor-pointer">
+                                        <i class="far fa-star"></i>
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{ route('blogs.toggleFeatured', $blog->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="px-3 py-1 text-lg text-yellow-400 cursor-pointer">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                </form>
+                            @endif
+                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button class="cursor-pointer">
+                                    <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
+
+                    <div class="mt-5 flex justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="flex items-center text-sm text-text">
+                                <i class="fas fa-user mr-2"></i>
+                                {{ $blog->author }}
+                            </span>
+                            <span class="flex items-center text-sm text-text">
+                                <i class="fas fa-calendar mr-2"></i>
+                                {{ $blog->created_at->format('d/m/Y') }}
+                            </span>
+                            <span class="flex items-center text-sm text-text">
+                                <i class="fas fa-clock mr-2"></i>
+                                {{ $blog->created_at->diffForHumans() }}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button" data-id="{{ $blog->slug }}"
+                                class="open-modal-detail flex items-center text-white bg-gray-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-500">
+                                <i class="fas fa-eye mr-2"></i>
+                                Detail
+                            </button>
+                            <button type="button" data-id="{{ $blog->slug }}"
+                                class="open-modal-edit flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
+                                <i class="fas fa-edit mr-2"></i>
+                                Edit Blog
+                            </button>
+                        </div>
                     </div>
+                </div>
+            @endforeach
+        </div>
+    </x-admin.layout>
+
+    {{-- Modal Create Start --}}
+    <div id="create-new-blog" class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
+        <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+        <div class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+            <div
+                class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative z-10">
+                    <div
+                        class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                        <i class="fas fa-newspaper text-3xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white mb-2">Tambah Blog Baru</h1>
+                    <p class="text-white/90 text-base font-lato">Mari ciptakan sebuah berita terkini</p>
                 </div>
 
-                <div class="mt-5 flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="flex items-center text-sm text-text">
-                            <i class="fas fa-user mr-2"></i>
-                            Abraham Lincoln
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="fas fa-calendar mr-2"></i>
-                            04/09/2025
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="fas fa-clock mr-2"></i>
-                            8 menit lalu
-                        </span>
-                    </div>
-                    <button type="button"
-                        class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                        <i class="fas fa-edit mr-2"></i>
-                        Edit Lowongan
-                    </button>
-                </div>
+                <button
+                    class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
             </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between items-start">
-                    <div class="flex items-center gap-3">
-                        <div class="aspect-video w-25 h-20 overflow-hidden rounded-lg">
-                            <img src="https://placehold.co/100x80.png" alt="" class="rounded-lg">
+
+            <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="space-y-6">
+                        <div class="group">
+                            <label for="title"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-heading"></i>
+                                Judul Blog <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="title" name="title" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Panduan Memilih Framework Web Development yang Tepat">
                         </div>
-                        <div class="flex flex-col space-y-1">
-                            <div class="flex items-center space-x-3 flex-wrap">
-                                <h1 class="text-base text-heading font-semibold">
-                                    Panduan Memilih Framework Web Development yang Tepat
-                                </h1>
-                                <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
-                                <span class="bg-secondary px-2 py-1 rounded-full text-white">Mobile Development</span>
+
+                        <div class="group">
+                            <label for="category"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-list"></i>
+                                Kategori <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="category" name="category" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Teknologi">
+                        </div>
+
+                        <div class="group">
+                            <label for="author"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-user"></i>
+                                Penulis/Pencipta <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="author" name="author" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Jakarta">
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Deksripsi<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="description" name="description" rows="4" maxlength="250" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda."></textarea>
+                            <p class="text-sm text-text">
+                                <span id="char-count">0</span>/250 Karakter
+                            </p>
+                        </div>
+
+                        <div class="group">
+                            <label for="content"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-table"></i>
+                                Content<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="content" name="content" rows="6" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor..."></textarea>
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-file"></i>
+                                Upload Gambar<span class="text-red-400">*</span>
+                            </label>
+                            <input type="file" name="image" id="image" class="hidden"
+                                accept="image/png,image/jpeg,image/jpg">
+                            <label for="image"
+                                class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                                <div class="mb-4">
+                                    <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                                </div>
+                                <div>
+                                    <h1 class="text-base font-medium text-darkChoco">
+                                        Choose a file or drag & drop it here
+                                    </h1>
+                                    <p class="text-text text-sm font-medium font-lato">
+                                        JPEG, PNG, JPG format, max. 5MB
+                                    </p>
+                                </div>
+                            </label>
+                            <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span>60KB of 120KB</span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-spinner text-blue-400"></i>
+                                                Uploading...
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="">
+                                        <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                <p class="text-base text-text">
-                                    React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan
-                                    kebutuhan proyek Anda.
-                                </p>
-                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label for="status"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Status <span class="text-red-400">*</span>
+                            </label>
+                            <select name="status" id="status"
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
+                                @foreach ($blogStatus as $status)
+                                    <option value="{{ $status->value }}"
+                                        {{ $status->value === $blog->status ? 'selected' : '' }}>{{ $status->value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button type="button"
+                                class="close-modal flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                <i class="fas fa-times mr-2"></i>
+                                Batal
+                            </button>
+                            <button type="submit"
+                                class="px-4 flex-1 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 cursor-pointer">
+                                <i class="fas fa-save mr-2"></i> Simpan
+                            </button>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Create End --}}
+
+    {{-- Modal Detail Start --}}
+    @foreach ($blogs as $blog)
+        <div id="detail-blog-{{ $blog->slug }}"
+            class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-eye text-3xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-white mb-2">Detail Blog</h1>
+                        <p class="text-white/90 text-base font-lato">Lihat semua detail blog</p>
                     </div>
+
+                    <button
+                        class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
                 </div>
 
-                <div class="mt-5 flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="flex items-center text-sm text-text">
-                            <i class="fas fa-user mr-2"></i>
-                            Abraham Lincoln
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="fas fa-calendar mr-2"></i>
-                            04/09/2025
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="fas fa-clock mr-2"></i>
-                            8 menit lalu
-                        </span>
+                <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                    <div class="space-y-6">
+                        <div class="group">
+                            <label for="title"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-heading"></i>
+                                Judul Blog <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="title" name="title" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $blog->title }}">
+                        </div>
+
+                        <div class="group">
+                            <label for="category"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-list"></i>
+                                Kategori <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="category" name="category" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $blog->category }}" placeholder="Teknologi">
+                        </div>
+
+                        <div class="group">
+                            <label for="author"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-user"></i>
+                                Penulis/Pencipta <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="author" name="author" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $blog->author }}" placeholder="Jakarta">
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Deksripsi<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="description" name="description" rows="4" maxlength="250" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
+                            <p class="text-sm text-text">
+                                <span id="char-count">0</span>/250 Karakter
+                            </p>
+                        </div>
+
+                        <div class="group">
+                            <label for="content"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-table"></i>
+                                Content<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="content" name="content" rows="6" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor...">{{ $blog->content }}</textarea>
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-file"></i>
+                                Upload Gambar<span class="text-red-400">*</span>
+                            </label>
+                            <input type="file" name="image" id="image" class="hidden"
+                                accept="image/png,image/jpeg,image/jpg" readonly>
+                            <label for="image"
+                                class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                                <div class="mb-4">
+                                    <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                                </div>
+                                <div>
+                                    <h1 class="text-base font-medium text-darkChoco">
+                                        Choose a file or drag & drop it here
+                                    </h1>
+                                    <p class="text-text text-sm font-medium font-lato">
+                                        JPEG, PNG, JPG format, max. 5MB
+                                    </p>
+                                </div>
+                            </label>
+                            <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span>60KB of 120KB</span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-spinner text-blue-400"></i>
+                                                Uploading...
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="">
+                                        <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label for="status"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Status <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="status" name="status" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $blog->status }}" placeholder="Jakarta">
+                        </div>
                     </div>
-                    <button type="button"
-                        class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                        <i class="fas fa-edit mr-2"></i>
-                        Edit Lowongan
-                    </button>
                 </div>
             </div>
         </div>
+    @endforeach
+    {{-- Modal Detail End --}}
 
+    {{-- Modal Edit Start --}}
+    @foreach ($blogs as $blog)
+        <div id="edit-blog-{{ $blog->slug }}"
+            class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-    </x-admin.layout>
+            <div
+                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-pen text-3xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-white mb-2">Edit Blog</h1>
+                        <p class="text-white/90 text-base font-lato">Edit atau perbaiki blog</p>
+                    </div>
+
+                    <button
+                        class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                    <form action="{{ route('blogs.update', $blog->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="space-y-6">
+                            <div class="group">
+                                <label for="title"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-heading"></i>
+                                    Judul Blog <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="title" name="title"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    value="{{ $blog->title }}"
+                                    placeholder="Panduan Memilih Framework Web Development yang Tepat">
+                            </div>
+
+                            <div class="group">
+                                <label for="category"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-list"></i>
+                                    Kategori <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="category" name="category"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    value="{{ $blog->category }}" placeholder="Teknologi">
+                            </div>
+
+                            <div class="group">
+                                <label for="author"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-user"></i>
+                                    Penulis/Pencipta <span class="text-red-400">*</span>
+                                </label>
+                                <input type="text" id="author" name="author"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    value="{{ $blog->author }}" placeholder="Abraham">
+                            </div>
+
+                            <div class="group">
+                                <label for="description"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-align-left"></i>
+                                    Deksripsi<span class="text-red-400">*</span>
+                                </label>
+                                <textarea id="description" name="description" rows="4" maxlength="250"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
+                                <p class="text-sm text-text">
+                                    <span id="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
+
+                            <div class="group">
+                                <label for="content"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-table"></i>
+                                    Content<span class="text-red-400">*</span>
+                                </label>
+                                <textarea id="content" name="content" rows="6"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor...">{{ $blog->content }}</textarea>
+                            </div>
+
+                            <div class="group">
+                                <label for="description"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-file"></i>
+                                    Upload Gambar<span class="text-red-400">*</span>
+                                </label>
+                                <input type="file" name="image" id="image" class="hidden"
+                                    accept="image/png,image/jpeg,image/jpg">
+                                <label for="image"
+                                    class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                                    <div class="mb-4">
+                                        <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-base font-medium text-darkChoco">
+                                            Choose a file or drag & drop it here
+                                        </h1>
+                                        <p class="text-text text-sm font-medium font-lato">
+                                            JPEG, PNG, JPG format, max. 5MB
+                                        </p>
+                                    </div>
+                                </label>
+                                <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
+                                        </div>
+                                        <div>
+                                            <h1 class="text-base text-darkChoco font-semibold">title.jpg</h1>
+                                            <div class="flex items-center gap-2 text-xs text-text">
+                                                <span>60KB of 120KB</span>
+                                                <span>•</span>
+                                                <span>
+                                                    <i class="fa-solid fa-spinner text-blue-400"></i>
+                                                    Uploading...
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="">
+                                            <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <label for="status"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-toggle-on"></i>
+                                    Status <span class="text-red-400">*</span>
+                                </label>
+                                <select name="status" id="status"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
+                                    @foreach ($blogStatus as $status)
+                                        <option value="{{ $status->value }}"
+                                            {{ $status->value === $blog->status ? 'selected' : '' }}>
+                                            {{ $status->value }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <button type="button"
+                                    class="close-modal flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <i class="fas fa-times mr-2"></i>
+                                    Batal
+                                </button>
+                                <button type="submit"
+                                    class="px-4 flex-1 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 cursor-pointer">
+                                    <i class="fas fa-save mr-2"></i> Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Modal Edit End --}}
 
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const deleteForms = document.querySelectorAll('.delete-form');
 
+    deleteForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus',
+                text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e3342f',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    @endif
+</script>
+
+<script src="{{ asset('asset-admin/js/blog.js') }}"></script>
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 
 </html>
