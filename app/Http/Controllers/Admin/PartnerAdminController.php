@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\PartnerTypes;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class PartnerAdminController extends Controller
 {
@@ -14,10 +17,14 @@ class PartnerAdminController extends Controller
      */
     public function index()
     {
-        // $partners = Partner::paginate(9);
+        $partners = Partner::paginate(5);
         $partnerTypes = PartnerTypes::cases();
         $totalPartners = Partner::count();
-        return view('admin.partner.index', compact('partnerTypes', 'totalPartners'));
+        $partnerStatus = Status::onlyActiveNonActive();
+        $totalPartnersActive = Partner::where('status', Status::Active->value)->count();
+        $totalPartnersNonActive = Partner::where('status', Status::NonActive->value)->count();
+        $totalPartnersType = Partner::distinct('partner_type')->count('partner_type');
+        return view('admin.partner.index', compact('partners', 'partnerTypes', 'totalPartners', 'partnerStatus', 'totalPartnersActive', 'totalPartnersNonActive', 'totalPartnersType'));
     }
 
     /**
@@ -34,18 +41,29 @@ class PartnerAdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'partner_image' => 'required',
+            'name' => 'required',
+            'image' => 'nullable',
+            'partner_type' => 'required',
+            'partner_other_type' => 'nullable',
+            'partner_email' => 'required',
+            'partner_phone_number' => 'required',
+            'partner_links' => 'nullable',
+            'description' => 'required',
+            'status' => 'required',
         ]);
 
-        $path = $request->file('partner_image')->store('partners', 'public');
+        $data = $request->all();
 
-        Partner::create([
-            'title' => $request->title,
-            'partner_image' => $path,
-        ]);
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('partners', 'public');
+        }
 
-        return redirect()->route('partner.index')->with('success', 'Data berhasil dibuat!');
+        try {
+            Partner::create($data);
+            return redirect()->route('partner.index')->with('success', 'Partner berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -70,21 +88,34 @@ class PartnerAdminController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $request->validate([
-            'title' => 'nullable',
-            'partner_image' => 'nullable',
+            'name' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'partner_type' => 'nullable',
+            'partner_other_type' => 'nullable',
+            'partner_email' => 'nullable',
+            'partner_phone_number' => 'nullable',
+            'partner_links' => 'nullable',
+            'description' => 'nullable',
+            'status' => ['nullable', Rule::in(Status::onlyActiveNonActive())],
         ]);
 
-        $path = $partner->partner_image;
-        if ($request->hasFile('partner_image')) {
-            $path = $request->file('partner_image')->store('partners', 'public');
+        $data = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            if ($partner->image && Storage::disk('public')->exists($partner->image)) {
+                Storage::disk('public')->delete($partner->image);
+            }
+
+            $data['image'] = $request->file('image')->store('partners', 'public');
         }
 
-        $partner->update([
-            'title' => $request->title,
-            'partner_image' => $path,
-        ]);
+        try {
+            $partner->update($data);
 
-        return redirect()->route('partner.index')->with('success', 'Data berhasil diupdate!');
+            return redirect()->route('partner.index')->with('success', 'Data berhasil diupdate!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error',  $e->getMessage());
+        }
     }
 
     /**
@@ -93,6 +124,6 @@ class PartnerAdminController extends Controller
     public function destroy(Partner $partner)
     {
         $partner->delete();
-        return redirect()->route('partner.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('partner.index')->with('success', 'Partner berhasil dihapus!');
     }
 }

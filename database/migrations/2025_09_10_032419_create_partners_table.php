@@ -1,10 +1,10 @@
 <?php
 
-use App\Enums\PartnerTypes;
 use App\Enums\Status;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Enums\PartnerTypes;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->enum('partner_type', PartnerTypes::values());
             $table->string('partner_other_type')->nullable();
             $table->string('partner_email');
             $table->string('partner_phone_number');
-            $table->string('partner_links');
+            $table->string('partner_links')->nullable();
             $table->text('description');
             $table->enum('status', Status::values())->default(Status::Pending->value);
             $table->timestamps();
