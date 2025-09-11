@@ -14,6 +14,9 @@ enum Status: string
     case SudahDijawab = 'Sudah Dijawab';
     case BelumDijawab = 'Belum Dijawab';
 
+    case Diterima = 'Diterima';
+    case Ditolak = 'Ditolak';
+
     public static function values(): array
     {
         return array_column(self::cases(), 'value');
@@ -32,5 +35,10 @@ enum Status: string
     public static function onlySudahDijawabBelumDijawab(): array
     {
         return array_filter(self::cases(), fn($status) => in_array($status, [self::SudahDijawab, self::BelumDijawab]));
+    }
+
+    public static function request(): array
+    {
+        return array_filter(self::cases(), fn($status) => in_array($status, [self::Diterima, self::Ditolak, self::Pending]));
     }
 }

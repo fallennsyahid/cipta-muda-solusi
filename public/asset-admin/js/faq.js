@@ -56,3 +56,16 @@ openModalCreateFaq.addEventListener('click', function (e) {
     modalCreateFaq.classList.toggle('hidden');
     modalCreateFaq.classList.toggle('flex');
 });
+
+// Edit Jawaban
+const openEditAnswerModal = document.querySelectorAll('.edit-answer');
+
+openEditAnswerModal.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const modalEdit = document.querySelector('#edit-answer-modal-' + btn.dataset.id);
+        modalEdit.classList.remove('hidden');
+        modalEdit.classList.add('flex');
+    });
+});

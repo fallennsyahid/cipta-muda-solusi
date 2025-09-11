@@ -90,218 +90,79 @@
         </div>
 
         <div class="flex flex-col gap-6">
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex flex-col">
-                            <div class="flex items-center gap-3">
-                                <h1 class="text-2xl text-heading font-semibold">Tech Solutions Inc.</h1>
-                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
+            @foreach ($partnerReq as $request)
+                <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="flex flex-col">
+                                <div class="flex items-center gap-3">
+                                    <h1 class="text-2xl text-heading font-semibold">{{ $request->company_name }}</h1>
+                                    <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                </div>
+                                <span class="block mt-2 text-text font-medium">
+                                    Service
+                                </span>
                             </div>
-                            <span class="block mt-2 text-text font-medium">
-                                Service
-                            </span>
+                        </div>
+                        <div class="relative z-50 flex items-center gap-2">
+                            <button type="button"
+                                class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
+                                <i class="fas fa-ellipsis"></i>
+                            </button>
+                            <button class="cursor-pointer">
+                                <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-6">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        email@perusahaan.com
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-4567-890
-                    </div>
-                    <a href="www.instagram.com" target="_blank" class="flex items-center text-primary text-base group">
-                        <i class="fas fa-globe mr-2 text-text"></i>
-                        <span class="group-hover:underline">
-                            Website / Social Media
-                        </span>
-                    </a>
-                    <a href="" target="_blank" class="flex items-center text-primary text-base group">
-                        <i class="fas fa-file mr-2 text-text"></i>
-                        <span class="group-hover:underline">
-                            Lampiran
-                        </span>
-                    </a>
-                </div>
-
-                <p class="mt-5 text-text font-lato">
-                    Leading technology solutions provider specializing in enterprise software development.
-                </p>
-
-                <div class="flex justify-between items-center mt-5">
-                    <div class="text-sm text-text">
-                        <i class="fas fa-calendar mr-1"></i>
-                        Masuk pada 03/09/2025
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button"
-                            class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                            <i class="fas fa-edit mr-2"></i>
-                            Update Status
-                        </button>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-6">
+                        <div class="flex items-center text-text text-base">
+                            <i class="fas fa-envelope mr-2"></i>
+                            email@perusahaan.com
+                        </div>
+                        <div class="flex items-center text-text text-base">
                             <i class="fas fa-phone mr-2"></i>
-                            Contact Partner
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex flex-col">
-                            <div class="flex items-center gap-3">
-                                <h1 class="text-2xl text-heading font-semibold">Tech Solutions Inc.</h1>
-                                <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
-                            </div>
-                            <span class="block mt-2 text-text font-medium">
-                                Service
+                            +62 123-4567-890
+                        </div>
+                        <a href="www.instagram.com" target="_blank"
+                            class="flex items-center text-primary text-base group">
+                            <i class="fas fa-globe mr-2 text-text"></i>
+                            <span class="group-hover:underline">
+                                Website / Social Media
                             </span>
+                        </a>
+                        <a href="" target="_blank" class="flex items-center text-primary text-base group">
+                            <i class="fas fa-file mr-2 text-text"></i>
+                            <span class="group-hover:underline">
+                                Lampiran
+                            </span>
+                        </a>
+                    </div>
+
+                    <p class="mt-5 text-text font-lato">
+                        Leading technology solutions provider specializing in enterprise software development.
+                    </p>
+
+                    <div class="flex justify-between items-center mt-5">
+                        <div class="text-sm text-text">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Masuk pada 03/09/2025
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button"
+                                class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
+                                <i class="fas fa-edit mr-2"></i>
+                                Update Status
+                            </button>
+                            <button type="button"
+                                class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
+                                <i class="fas fa-phone mr-2"></i>
+                                Contact Partner
+                            </button>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-6">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        email@perusahaan.com
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-4567-890
-                    </div>
-                    <a href="www.instagram.com" target="_blank"
-                        class="flex items-center text-primary text-base group">
-                        <i class="fas fa-globe mr-2 text-text"></i>
-                        <span class="group-hover:underline">
-                            Website / Social Media
-                        </span>
-                    </a>
-                    <a href="" target="_blank" class="flex items-center text-primary text-base group">
-                        <i class="fas fa-file mr-2 text-text"></i>
-                        <span class="group-hover:underline">
-                            Lampiran
-                        </span>
-                    </a>
-                </div>
-
-                <p class="mt-5 text-text font-lato">
-                    Leading technology solutions provider specializing in enterprise software development.
-                </p>
-
-                <div class="flex justify-between items-center mt-5">
-                    <div class="text-sm text-text">
-                        <i class="fas fa-calendar mr-1"></i>
-                        Masuk pada 03/09/2025
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button"
-                            class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                            <i class="fas fa-edit mr-2"></i>
-                            Update Status
-                        </button>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-phone mr-2"></i>
-                            Contact Partner
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex flex-col">
-                            <div class="flex items-center gap-3">
-                                <h1 class="text-2xl text-heading font-semibold">Tech Solutions Inc.</h1>
-                                <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Ditolak</span>
-                            </div>
-                            <span class="block mt-2 text-text font-medium">
-                                Service
-                            </span>
-                        </div>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-6">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        email@perusahaan.com
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-4567-890
-                    </div>
-                    <a href="www.instagram.com" target="_blank"
-                        class="flex items-center text-primary text-base group">
-                        <i class="fas fa-globe mr-2 text-text"></i>
-                        <span class="group-hover:underline">
-                            Website / Social Media
-                        </span>
-                    </a>
-                    <a href="" target="_blank" class="flex items-center text-primary text-base group">
-                        <i class="fas fa-file mr-2 text-text"></i>
-                        <span class="group-hover:underline">
-                            Lampiran
-                        </span>
-                    </a>
-                </div>
-
-                <p class="mt-5 text-text font-lato">
-                    Leading technology solutions provider specializing in enterprise software development.
-                </p>
-
-                <div class="flex justify-between items-center mt-5">
-                    <div class="text-sm text-text">
-                        <i class="fas fa-calendar mr-1"></i>
-                        Masuk pada 03/09/2025
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button"
-                            class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                            <i class="fas fa-edit mr-2"></i>
-                            Update Status
-                        </button>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-phone mr-2"></i>
-                            Contact Partner
-                        </button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
 

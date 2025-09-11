@@ -43,6 +43,7 @@ class FaqsAdminController extends Controller
         Faq::create([
             'question' => $request->question_input,
             'answer' => $request->answer_input,
+            'status' => $request->answer_input ? 'Sudah Dijawab' : 'Belum Dijawab',
         ]);
 
         return redirect()->route('faqs.index')->with('success', 'FAQ berhasil dibuat');
@@ -68,6 +69,19 @@ class FaqsAdminController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Faq $faq)
+    {
+        $request->validate([
+            'edit_answer_input' => 'required|string',
+        ]);
+
+        $faq->update([
+            'answer' => $request->edit_answer_input,
+        ]);
+
+        return redirect()->route('faqs.index')->with('success', 'Jawaban berhasil di update');
+    }
+
+    public function answerQuestion(Request $request, Faq $faq)
     {
         $request->validate([
             'answer_input' => 'required|string|min:150|max:300',

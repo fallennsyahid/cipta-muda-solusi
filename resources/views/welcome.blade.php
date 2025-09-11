@@ -981,70 +981,70 @@
             </div>
 
             <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
-                <form action="" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form action="{{ route('user.partnerReq') }}" method="POST" enctype="multipart/form-data"
+                    class="space-y-6">
+                    @csrf
                     <div class="group">
-                        <label for="company"
+                        <label for="company_name"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-building"></i>
                             Nama Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <input type="text" id="company" name="company" required
+                        <input type="text" id="company_name" name="company_name" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="PT. Nama Perusahaan">
                     </div>
 
                     <div class="group">
-                        <label for="company-email"
+                        <label for="company_email"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-envelope"></i>
                             Email <span class="text-red-400">*</span>
                         </label>
-                        <input type="email" id="company-email" name="company-email" required
+                        <input type="email" id="company_email" name="company_email" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="nama@perusahaan.com">
                     </div>
 
                     <div class="group">
-                        <label for="company-number"
+                        <label for="company_phone_number"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-mobile-screen"></i>
                             Nomor Telepon <span class="text-red-400">*</span>
                         </label>
-                        <input type="tel" id="company-number" name="company-number" required
+                        <input type="tel" id="company_phone_number" name="company_phone_number" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="+62 123-3456-7890">
                     </div>
 
                     <div class="group">
-                        <label for="company-number"
+                        <label for="company_category"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-industry"></i>
                             Jenis Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <select name="company-type" id="company-type"
+                        <select name="company_category" id="company_category"
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
                             <option value="-" disabled selected>Pilih Kategori Perusahaan Anda</option>
-                            <option value="fnb">🍔 Food & Beverage</option>
-                            <option value="tech">💻 Teknologi</option>
-                            <option value="education">📚 Pendidikan</option>
-                            <option value="retail">🛍️ Retail</option>
-                            <option value="finance">💰 Keuangan</option>
-                            <option value="healthcare">🏥 Kesehatan</option>
-                            <option value="other">✨ Lainnya</option>
+                            @foreach ($partnerTypes as $type)
+                                <option value="{{ $type->value }}">{{ $type->value }}</option>
+                            @endforeach
+                            <option value="other_category_company" disabled selected>Pilih Kategori Perusahaan Anda
+                            </option>
                         </select>
 
-                        <input type="text" id="other-company-type" name="other-company-type"
+                        <input type="text" id="other_category_company" name="other_category_company"
                             class="hidden mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="Ceritakan jenis bisnis Anda...">
                     </div>
 
                     <div class="group">
-                        <label for="company-message"
+                        <label for="company_description"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-building-circle-check"></i>
                             Penjelasan Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <textarea name="company-message" id="company-message" rows="4" required maxlength="400"
+                        <textarea name="company_description" id="company_description" rows="4" required maxlength="400"
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
                             placeholder="Perusahaan kami bergerak di bidang... dengan fokus utama pada..."></textarea>
                         <div class="flex justify-between items-center mt-2">
@@ -1054,24 +1054,25 @@
                     </div>
 
                     <div class="group">
-                        <label for="company-website"
+                        <label for="company_link"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-globe"></i>
                             Website / Media Sosial <span class="text-slate-400 text-xs">(Opsional)</span>
                         </label>
-                        <input type="url" id="company-website" name="company-website" required
+                        <input type="url" id="company_link" name="company_link" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="www.perusahaan.com atau www.instagram.com/perusahaan">
                     </div>
 
                     <div class="group">
-                        <label for="company-message"
+                        <label for="file_attachments"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-paperclip"></i>
                             Lampiran <span class="text-slate-400 text-xs">(Opsional)</span>
                         </label>
-                        <input type="file" name="cv-upload" id="cv-upload" class="hidden" accept="file/.pdf">
-                        <label for="cv-upload"
+                        <input type="file" name="file_attachments" id="file_attachments" class="hidden"
+                            accept="file/.pdf">
+                        <label for="file_attachments"
                             class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
                                 <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>

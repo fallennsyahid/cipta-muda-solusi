@@ -91,7 +91,7 @@
                     </nav>
                 </div> --}}
                 <div id="clock" data-time="{{ now()->timezone('Asia/Jakarta')->format('Y-m-d\TH:i:s') }}"
-                    class="mr-10 text-darkChoco font-bold text-2xl"></div>
+                    class="mr-10 text-darkChoco font-bold text-2xl relative z-50"></div>
             </div>
         </div>
     </header>

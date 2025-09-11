@@ -162,45 +162,45 @@
                                 </span>
                             </div>
                             <div class="flex items-center gap-2">
-                                {{-- @if ($faq->status === 'Belum Dijawab')
+                                @if ($faq->status === 'Belum Dijawab')
                                     <button type="submit"
                                         class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500/75 cursor-not-allowed">
                                         <i class="fas fa-check-circle mr-2"></i>
                                         Publish
                                     </button>
-                                @else --}}
-                                @if ($faq->is_published === 'Pending')
-                                    <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit"
-                                            class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500 hover:bg-green-600 cursor-pointer">
-                                            <i class="fas fa-check-circle mr-2"></i>
-                                            Publish
-                                        </button>
-                                    </form>
-                                @elseif ($faq->is_published === 'Published')
-                                    <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit"
-                                            class="flex items-center text-white px-4 py-2 rounded-lg  bg-red-500 hover:bg-red-600 cursor-pointer">
-                                            <i class="fas fa-circle-xmark mr-2"></i>
-                                            Unpublished
-                                        </button>
-                                    </form>
                                 @else
-                                    <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit"
-                                            class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500 hover:bg-green-600 cursor-pointer">
-                                            <i class="fas fa-check-circle mr-2"></i>
-                                            Publish
-                                        </button>
-                                    </form>
+                                    @if ($faq->is_published === 'Pending')
+                                        <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500 hover:bg-green-600 cursor-pointer">
+                                                <i class="fas fa-check-circle mr-2"></i>
+                                                Publish
+                                            </button>
+                                        </form>
+                                    @elseif ($faq->is_published === 'Published')
+                                        <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="flex items-center text-white px-4 py-2 rounded-lg  bg-red-500 hover:bg-red-600 cursor-pointer">
+                                                <i class="fas fa-circle-xmark mr-2"></i>
+                                                Unpublished
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500 hover:bg-green-600 cursor-pointer">
+                                                <i class="fas fa-check-circle mr-2"></i>
+                                                Publish
+                                            </button>
+                                        </form>
+                                    @endif
                                 @endif
-                                {{-- @endif --}}
 
                                 @if ($faq->answer === '-')
                                     <button type="button" data-id="{{ $faq->id }}"
@@ -209,10 +209,10 @@
                                         Jawab
                                     </button>
                                 @else
-                                    <button type="button" disabled
-                                        class="answer-question flex items-center text-white px-4 py-2 rounded-lg bg-secondary/75 cursor-not-allowed">
-                                        <i class="fas fa-reply mr-2"></i>
-                                        Jawab
+                                    <button type="button" data-id="{{ $faq->id }}"
+                                        class="edit-answer flex items-center text-white px-4 py-2 rounded-lg bg-amber-400 hover:bg-amber-500 cursor-pointer">
+                                        <i class="fas fa-pen mr-2"></i>
+                                        Edit Jawaban
                                     </button>
                                 @endif
                             </div>
@@ -334,9 +334,9 @@
                             <textarea name="question" id="question" rows="5" readonly
                                 class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
                         </div>
-                        <form action="{{ route('faqs.update', $faq->id) }}" id="question-form" method="POST">
+                        <form action="{{ route('faq.answer', $faq->id) }}" id="question-form" method="POST">
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <div class="space-y-3">
                                 <div class="mb-2">
                                     <label for="answer_input" class="text-base text-heading font-medium">Masukkan
@@ -375,6 +375,81 @@
             </div>
         @endforeach
         {{-- Modal Jawab Pertanyaan End --}}
+
+        {{-- Edit Jawaban FAQ Start --}}
+        @foreach ($faqs as $faq)
+            <div id="edit-answer-modal-{{ $faq->id }}"
+                class="fixed inset-0 z-[99999] min-h-screen hidden items-center justify-center animate-fade-in">
+                <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+                <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full my-4">
+                    <div class="flex items-center justify-between p-6 border-b border-text/25">
+                        <div>
+                            <h1 class="text-heading text-2xl font-bold">Edit Jawaban</h1>
+                            <h2 class="text-text font-lato text-base">Koreksi jawaban jika ada kesalahan</h2>
+
+                        </div>
+                        <div>
+                            <a href="#"
+                                class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
+                                <i class="fas fa-times text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <div class="mb-2">
+                            <label for="question" class="text-base text-heading font-medium">Pertanyaan
+                            </label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                <i class="fas fa-question text-text"></i>
+                            </div>
+                            <textarea name="question" id="question" rows="5" readonly
+                                class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
+                        </div>
+                        <form action="{{ route('faqs.update', $faq->id) }}" id="question-form" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="space-y-3">
+                                <div class="mb-2">
+                                    <label for="edit_answer_input" class="text-base text-heading font-medium">Masukkan
+                                        Jawaban</label>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                        <i class="fas fa-message text-text"></i>
+                                    </div>
+                                    <textarea name="edit_answer_input" id="edit_answer_input" rows="5" maxlength="300"
+                                        placeholder="Masukkan Jawaban" required
+                                        class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->answer }}</textarea>
+                                    <p class="text-sm text-text">
+                                        <span id="char-count">0</span>/300 Karakter
+                                    </p>
+                                </div>
+                                <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
+                                </p>
+                            </div>
+
+                            <div class="flex gap-3 pt-2">
+                                <button type="button"
+                                    class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
+                                    <i class="fas fa-times"></i>
+                                    Batal
+                                </button>
+                                <button type="submit" id="submit-button"
+                                    class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Kirim
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{-- Edit Jawaban FAQ End --}}
 
     </x-admin.layout>
 

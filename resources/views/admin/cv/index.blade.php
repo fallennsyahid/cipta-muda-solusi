@@ -32,13 +32,6 @@
                 <h1 class="text-2xl text-heading font-bold">CV Management</h1>
                 <p class="text-text font-lato">Manage job applications and candidate CVs</p>
             </div>
-            <div>
-                <button type="button"
-                    class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-heading via-primary to-secondary cursor-pointer hover:from-secondary hover:via-primary hover:to-heading">
-                    <i class="fas fa-plus"></i>
-                    Tambahkan Lowongan Baru
-                </button>
-            </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\PartnerRequest;
 use Illuminate\Http\Request;
 
 class CvAdminController extends Controller

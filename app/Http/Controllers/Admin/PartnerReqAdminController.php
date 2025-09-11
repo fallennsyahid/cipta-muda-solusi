@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\PartnerRequest;
+use App\Http\Controllers\Controller;
 
 class PartnerReqAdminController extends Controller
 {
@@ -12,7 +13,8 @@ class PartnerReqAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.partnerReq.index');
+        $partnerReq = PartnerRequest::latest()->paginate(5);
+        return view('admin.partnerReq.index', compact('partnerReq'));
     }
 
     /**

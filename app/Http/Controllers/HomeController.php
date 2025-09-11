@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PartnerTypes;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class HomeController extends Controller
     public function index()
     {
         // $partners = Partner::all();
-        return view('welcome');
+        $partnerTypes = PartnerTypes::cases();
+        return view('welcome', compact('partnerTypes'));
     }
 
     /**
