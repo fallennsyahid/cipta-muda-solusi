@@ -181,7 +181,7 @@
     </x-admin.layout>
 
     {{-- Modal Create Start --}}
-    <div id="create-new-partner"
+    {{-- <div id="create-new-partner"
         class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
         <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
@@ -353,7 +353,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- Modal Create End --}}
 
     {{-- Modal Edit Start --}}

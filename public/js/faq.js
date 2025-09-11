@@ -44,7 +44,7 @@ closeBtn.forEach(btn => {
 });
 
 // Character Count
-const textarea = document.querySelector('#question-input');
+const textarea = document.querySelector('#question_input');
 const charCount = document.querySelector('#char-count');
 
 textarea.addEventListener('input', () => {
@@ -53,7 +53,7 @@ textarea.addEventListener('input', () => {
 
 // Validate Form
 const sendBtn = document.querySelector('#submit-button');
-const questionField = document.querySelector('#question-input');
+const questionField = document.querySelector('#question_input');
 
 function validateForm() {
     const isFilled = questionField.value.trim() !== '' && questionField.value !== "-";

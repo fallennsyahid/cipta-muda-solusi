@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class FaqsController extends Controller
@@ -28,9 +29,18 @@ class FaqsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email-input' => 'nullable',
-            'question-input' => 'nullable',
+            'email_input' => 'nullable|string|email',
+            'question_input' => 'required|string|min:50|max:150',
         ]);
+
+        Faq::create([
+            'email' => $request->email_input,
+            'question' => $request->question_input,
+            'answer' => '-',
+            'status' => 'Belum Dijawab',
+        ]);
+
+        return redirect()->route('user.faqs.index')->with('success', 'Pertanyaan berhasil terkirim');
     }
 
     /**

@@ -29,6 +29,7 @@ Route::post('/', [ContactController::class, 'store'])->name('index.store');
 Route::get('/jobs', [JobsController::class, 'index'])->name('user.jobs.index');
 
 Route::get('/faqs', [FaqsController::class, 'index'])->name('user.faqs.index');
+Route::post('/faqs/store', [FaqsController::class, 'store'])->name('user.faqs.store');
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('user.blogs.index');
 Route::get('blogs/show', [BlogsController::class, 'index2'])->name('user-blogs-blog');
@@ -49,6 +50,7 @@ Route::resource('admin/jobs', JobVacancyAdminController::class);
 Route::resource('admin/portfolios', PortfoliosAdminController::class);
 
 Route::resource('admin/faqs', FaqsAdminController::class);
+Route::patch('faqs/{faq}/status', [FaqsAdminController::class, 'updateStatus'])->name('faqs.updateStatus');
 
 Route::resource('admin/blogs', BlogsAdminController::class);
 Route::patch('blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');

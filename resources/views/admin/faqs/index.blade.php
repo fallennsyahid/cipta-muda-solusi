@@ -33,7 +33,7 @@
                 <p class="text-text font-lato">Manage frequently asked questions and help content</p>
             </div>
             <div>
-                <button type="button"
+                <button type="button" id="open-modal"
                     class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-heading via-primary to-secondary cursor-pointer hover:from-secondary hover:via-primary hover:to-heading">
                     <i class="fas fa-plus"></i>
                     Tambahkan FAQ Baru
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalFaqs }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPublished }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPending }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -91,159 +91,345 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalBelumDijawab }}
                 </div>
             </div>
         </div>
 
         <div class="flex flex-col gap-6">
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
-                            #1
-                        </span>
-                        <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
-                        <span class="bg-indigo-200 px-2 py-1 rounded-full text-indigo-700">Sudah Dijawab</span>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
+            @foreach ($faqs as $index => $faq)
+                <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
+                                #{{ $index + 1 }}
+                            </span>
+                            @if ($faq->is_published === 'Pending')
+                                <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                            @elseif ($faq->is_published === 'Published')
+                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
+                            @else
+                                <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Unpublished</span>
+                            @endif
 
-                <div class="cursor-pointer">
-                    <div class="flex items-center gap-3 mt-3">
-                        <i class="fas fa-chevron-right text-text text-sm"></i>
-                        <h1 class="text-heading font-semibold text-xl">Teknologi apa yang digunakan oleh Cipta Muda
-                            Solusi?
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
-                            #2
-                        </span>
-                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
-                        <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Belum Dijawab</span>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="cursor-pointer">
-                    <div class="flex items-center gap-3 mt-3">
-                        <i class="fas fa-chevron-right text-text text-sm"></i>
-                        <h1 class="text-heading font-semibold text-xl">Teknologi apa yang digunakan oleh Cipta Muda
-                            Solusi?
-                        </h1>
+                            @if ($faq->status === 'Sudah Dijawab')
+                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Sudah Dijawab</span>
+                            @else
+                                <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Belum Dijawab</span>
+                            @endif
+                        </div>
+                        <div class="relative z-50 flex items-center gap-2">
+                            <button type="button"
+                                class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
+                                <i class="fas fa-ellipsis"></i>
+                            </button>
+                            <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button class="cursor-pointer">
+                                    <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
-                    <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
-                        <p class="text-text font-lato">
-                            -
-                        </p>
+                    <button type="button" class="dropdown-button cursor-pointer">
+                        <div class="flex items-start gap-3 mt-3">
+                            <i class="dropdown-icon fas fa-chevron-right text-text text-sm mt-2"></i>
+                            <h1 class="text-heading font-semibold text-xl text-start line-clamp-1">
+                                {{ $faq->question }}
+                            </h1>
+                        </div>
+                    </button>
+
+                    <div
+                        class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
+                        <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4 w-full">
+                            <p class="text-text text-start font-lato">
+                                {{ $faq->answer }}
+                            </p>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="flex space-x-3">
+                                <span class="flex items-center text-sm text-text">
+                                    <i class="far fa-calendar mr-2"></i>
+                                    Masuk pada: {{ $faq->created_at->format('d/m/Y') }}
+                                </span>
+                                <span class="flex items-center text-sm text-text">
+                                    <i class="far fa-edit mr-2"></i>
+                                    Dijawab pada: {{ $faq->updated_at->format('d/m/Y') }}
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                {{-- @if ($faq->status === 'Belum Dijawab')
+                                    <button type="submit"
+                                        class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500/75 cursor-not-allowed">
+                                        <i class="fas fa-check-circle mr-2"></i>
+                                        Publish
+                                    </button>
+                                @else --}}
+                                @if ($faq->is_published === 'Pending')
+                                    <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500 hover:bg-green-600 cursor-pointer">
+                                            <i class="fas fa-check-circle mr-2"></i>
+                                            Publish
+                                        </button>
+                                    </form>
+                                @elseif ($faq->is_published === 'Published')
+                                    <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="flex items-center text-white px-4 py-2 rounded-lg  bg-red-500 hover:bg-red-600 cursor-pointer">
+                                            <i class="fas fa-circle-xmark mr-2"></i>
+                                            Unpublished
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('faqs.updateStatus', $faq->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="flex items-center text-white px-4 py-2 rounded-lg  bg-green-500 hover:bg-green-600 cursor-pointer">
+                                            <i class="fas fa-check-circle mr-2"></i>
+                                            Publish
+                                        </button>
+                                    </form>
+                                @endif
+                                {{-- @endif --}}
+
+                                @if ($faq->answer === '-')
+                                    <button type="button" data-id="{{ $faq->id }}"
+                                        class="answer-question flex items-center text-white px-4 py-2 rounded-lg bg-secondary hover:bg-secondary/90 cursor-pointer">
+                                        <i class="fas fa-reply mr-2"></i>
+                                        Jawab
+                                    </button>
+                                @else
+                                    <button type="button" disabled
+                                        class="answer-question flex items-center text-white px-4 py-2 rounded-lg bg-secondary/75 cursor-not-allowed">
+                                        <i class="fas fa-reply mr-2"></i>
+                                        Jawab
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
+            @endforeach
+        </div>
 
-                <div class="flex justify-between">
-                    <div class="flex space-x-3">
-                        <span class="flex items-center text-sm text-text">
-                            <i class="far fa-calendar mr-2"></i>
-                            Created: 04/09/2025
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="far fa-edit mr-2"></i>
-                            Updated: -
-                        </span>
+        {{-- Create FAQ Start --}}
+        <div id="create-faq-modal"
+            class="fixed inset-0 z-[99999] hidden items-center justify-center min-h-screen animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+            <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full">
+                <div class="flex items-center justify-between p-6 border-b border-text/25">
+                    <div>
+                        <h1 class="text-heading text-2xl font-bold">Buat FAQ Baru</h1>
+                        <h2 class="text-text font-lato text-base">
+                            Tambahkan pertanyaan dan jawaban yang akan tampil di halaman FAQ
+                        </h2>
                     </div>
                     <div>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-reply mr-2"></i>
-                            Jawab
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="py-1 px-3 bg-secondary/25 rounded-sm text-text">
-                            #3
-                        </span>
-                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
-                        <span class="bg-indigo-200 px-2 py-1 rounded-full text-indigo-700">Sudah Dijawab</span>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
+                        <a href="#"
+                            class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
+                            <i class="fas fa-times text-primary"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="cursor-pointer">
-                    <div class="flex items-center gap-3 mt-3">
-                        <i class="fas fa-chevron-down text-text text-sm"></i>
-                        <h1 class="text-heading font-semibold text-xl">Teknologi apa yang digunakan oleh Cipta Muda
-                            Solusi?
-                        </h1>
-                    </div>
+                <div class="p-6 max-h-96 overflow-y-auto custom-scrollbar">
+                    <form action="{{ route('faqs.store') }}" method="POST" class="space-y-6">
+                        @csrf
+                        <div class="space-y-3">
+                            <div class="mb-2">
+                                <label for="question_input" class="text-base text-heading font-medium">
+                                    Masukkan Pertanyaan
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                    <i class="fas fa-question text-text"></i>
+                                </div>
+                                <textarea name="question_input" id="question_input" rows="5" maxlength="150"
+                                    placeholder="Masukkan pertanyaan" required
+                                    class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                                <p class="text-sm text-text">
+                                    <span id="char-count">0</span>/150 Karakter
+                                </p>
+                            </div>
+                            <div class="mb-2">
+                                <label for="answer_input" class="text-base text-heading font-medium">Masukkan
+                                    Jawaban</label>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                    <i class="fas fa-message text-text"></i>
+                                </div>
+                                <textarea name="answer_input" id="answer_input" rows="5" maxlength="300"
+                                    placeholder="Masukkan jawaban dari pertanyaan" required
+                                    class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                                <p class="text-sm text-text">
+                            </div>
+                            <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
+                            </p>
+                        </div>
 
-                    <div class="bg-gray-100 p-4 font-lato rounded-lg mt-2 mb-4">
-                        <p class="text-text font-lato">
-                            Kami menggunakan Laravel untuk backend, React untuk frontend, serta Tailwind CSS untuk
-                            styling. Selain itu juga terintegrasi dengan Firebase & Midtrans untuk pembayaran.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex justify-between">
-                    <div class="flex space-x-3">
-                        <span class="flex items-center text-sm text-text">
-                            <i class="far fa-calendar mr-2"></i>
-                            Created: 04/09/2025
-                        </span>
-                        <span class="flex items-center text-sm text-text">
-                            <i class="far fa-edit mr-2"></i>
-                            Updated: 04/09/2025
-                        </span>
-                    </div>
-                    <div>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-pen-to-square mr-2"></i>
-                            Edit Jawaban
-                        </button>
-                    </div>
+                        <div class="flex gap-3 pt-2">
+                            <button type="button"
+                                class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
+                                <i class="fas fa-times"></i>
+                                Batal
+                            </button>
+                            <button type="submit" id="submit-button"
+                                class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                                <i class="fas fa-paper-plane"></i>
+                                Kirim
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        {{-- Create FAQ End --}}
 
+        {{-- Modal Jawab Pertanyaan Start --}}
+        @foreach ($faqs as $faq)
+            <div id="answer-question-modal-{{ $faq->id }}"
+                class="fixed inset-0 z-[99999] min-h-screen hidden items-center justify-center animate-fade-in">
+                <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+                <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full my-4">
+                    <div class="flex items-center justify-between p-6 border-b border-text/25">
+                        <div>
+                            <h1 class="text-heading text-2xl font-bold">Jawab Pertanyaan</h1>
+                            @if ($faq->email)
+                                <h2 class="text-text font-lato text-base">Pengirim: {{ $faq->email }}</h2>
+                            @else
+                                <h2 class="text-text font-lato text-base">Pengirim: -</h2>
+                            @endif
+                        </div>
+                        <div>
+                            <a href="#"
+                                class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
+                                <i class="fas fa-times text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <div class="mb-2">
+                            <label for="question" class="text-base text-heading font-medium">Pertanyaan
+                            </label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                <i class="fas fa-question text-text"></i>
+                            </div>
+                            <textarea name="question" id="question" rows="5" readonly
+                                class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
+                        </div>
+                        <form action="{{ route('faqs.update', $faq->id) }}" id="question-form" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="space-y-3">
+                                <div class="mb-2">
+                                    <label for="answer_input" class="text-base text-heading font-medium">Masukkan
+                                        Jawaban</label>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                        <i class="fas fa-message text-text"></i>
+                                    </div>
+                                    <textarea name="answer_input" id="answer_input" rows="5" maxlength="300"
+                                        placeholder="Masukkan pertanyaan (Max. 300 karakter)" required
+                                        class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                                    <p class="text-sm text-text">
+                                        <span id="char-count">0</span>/300 Karakter
+                                    </p>
+                                </div>
+                                <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
+                                </p>
+                            </div>
+
+                            <div class="flex gap-3 pt-2">
+                                <button type="button"
+                                    class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
+                                    <i class="fas fa-times"></i>
+                                    Batal
+                                </button>
+                                <button type="submit" id="submit-button"
+                                    class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Kirim
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{-- Modal Jawab Pertanyaan End --}}
 
     </x-admin.layout>
 
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            showConfirmButton: true,
+        });
+    </script>
+@endif
+
+<script>
+    const deleteForms = document.querySelectorAll('.delete-form');
+
+    deleteForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus',
+                text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e3342f',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
+
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/faq.js') }}"></script>
 
 </html>

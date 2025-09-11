@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            18
+                            {{ $totalActivePartners }}
                             <p class="text-xs text-green-600 font-lato flex mt-1">
                                 <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
                                 8% from last month
@@ -87,14 +87,14 @@
                     <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
                         <div class="flex flex-row justify-between items-center space-y-0 pb-2">
                             <h1 class="text-sm font-medium text-text">
-                                Blog Posts
+                                Blog Published
                             </h1>
                             <div class="w-8 h-8 rounded-lg bg-green-500 flex justify-center items-center">
                                 <i class="fas fa-newspaper text-white text-base"></i>
                             </div>
                         </div>
                         <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            14
+                            {{ $totalBlogPublished }}
                             <p class="text-xs text-green-600 font-lato flex mt-1">
                                 <i class="fas fa-arrow-trend-up text-xs mr-1"></i>
                                 4% from last month
@@ -162,5 +162,30 @@
 </body>
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const logoutForm = document.querySelector('#logout-form');
+    const logoutBtn = document.querySelector('#logout-btn');
+
+    logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: 'Sesi Anda akan berakhir!',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logoutForm.submit();
+            }
+        })
+    });
+</script>
 
 </html>

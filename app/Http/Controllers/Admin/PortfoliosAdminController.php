@@ -18,9 +18,12 @@ class PortfoliosAdminController extends Controller
     public function index()
     {
         $portfolios = Portfolio::latest()->paginate(9);
+        $totalPortfolios = Portfolio::count();
+        $totalPortfoliosPublished = Portfolio::where('status', Status::Published->value)->count();
+        $totalPortfoliosUnPublished = Portfolio::where('status', Status::UnPublished->value)->count();
         $portfolioCategory = CategoryPortfolio::cases();
+        $totalPortfoliosCategory = Portfolio::distinct('category')->count('category');
         $portfolioStatus = Status::onlyPublishedUnPublished();
-        // $monthYear = Carbon::parse($portfolios->event_time)->locale('id')->translatedFormat('F Y');
         $categoryColors = [
             'Web Development' => 'bg-blue-500 text-white',
             'Software Development' => 'bg-purple-500 text-white',
@@ -30,7 +33,7 @@ class PortfoliosAdminController extends Controller
             'Event Organizer' => 'bg-pink-500 text-white',
             'IT Operation & Maintenance' => 'bg-indigo-600 text-white',
         ];
-        return view('admin.portfolios.index', compact('portfolios', 'portfolioCategory', 'portfolioStatus', 'categoryColors'));
+        return view('admin.portfolios.index', compact('portfolios', 'totalPortfolios', 'totalPortfoliosPublished', 'totalPortfoliosUnPublished', 'totalPortfoliosCategory', 'portfolioCategory', 'portfolioStatus', 'categoryColors'));
     }
 
     /**

@@ -330,26 +330,27 @@
                 </div>
             </div>
 
-            <form id="question-form" action="" method="POST" class="space-y-6 p-6">
+            <form action="{{ route('user.faqs.store') }}" id="question-form" method="POST" class="space-y-6 p-6">
+                @csrf
                 <div class="space-y-3">
                     <div class="mb-2">
-                        <label for="email" class="text-base text-heading font-medium">Email (Opsional)</label>
+                        <label for="email_input" class="text-base text-heading font-medium">Email (Opsional)</label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-text"></i>
                         </div>
-                        <input type="email" name="email-input" id="email-input" placeholder="Masukkan email"
+                        <input type="email" name="email_input" id="email_input" placeholder="Masukkan email"
                             class="w-full pl-10 py-3 pr-3 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
                     <div class="mb-2">
-                        <label for="question" class="text-base text-heading font-medium">Pertanyaan Anda</label>
+                        <label for="question_input" class="text-base text-heading font-medium">Pertanyaan Anda</label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
                             <i class="fas fa-message text-text"></i>
                         </div>
-                        <textarea name="question-input" id="question-input" rows="5" maxlength="150"
+                        <textarea name="question_input" id="question_input" rows="5" maxlength="150"
                             placeholder="Masukkan pertanyaan (Max. 300 karakter)" required
                             class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
                         <p class="text-sm text-text">
@@ -376,6 +377,31 @@
     </div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            showConfirmButton: true,
+        });
+    </script>
+@endif
+
 <script src="{{ asset('js/faq.js') }}"></script>
+
 
 </html>

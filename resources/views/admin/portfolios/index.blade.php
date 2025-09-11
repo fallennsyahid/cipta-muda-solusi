@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPortfolios }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -65,20 +65,20 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPortfoliosPublished }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
                 <div class="flex flex-row justify-between items-center space-y-0 pb-2">
                     <h1 class="text-sm font-medium text-text">
-                        Non-Published
+                        Un-Published
                     </h1>
                     <div class="w-8 h-8 rounded-lg bg-red-600 flex justify-center items-center">
                         <i class="fas fa-circle-xmark text-white text-base"></i>
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPortfoliosUnPublished }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPortfoliosCategory }}
                 </div>
             </div>
         </div>
@@ -128,7 +128,8 @@
                                 {{ $portfolio->project_name }}
                             </span>
                             <div class="flex items-center space-x-2">
-                                <h1 class="flex items-center text-lg text-heading font-bold">{{ $portfolio->title }}
+                                <h1 class="flex items-center text-lg text-heading font-bold truncate">
+                                    {{ $portfolio->title }}
                                 </h1>
                                 <a href="" class="text-blue-600 hover:text-blue-700 text-lg">
                                     <i class="fas fa-arrow-up-right-from-square"></i>
@@ -175,11 +176,12 @@
                                 <i class="fas fa-eye mr-2"></i>
                                 Detail
                             </a>
-                            <form action="{{ route('portfolios.destroy', $portfolio->id) }}" method="POST">
+                            <form action="{{ route('portfolios.destroy', $portfolio->id) }}" method="POST"
+                                class="delete-form">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="flex justify-center items-center bg-red-500 text-white py-1 px-2 rounded-lg hover:bg-red-600">
+                                    class="flex justify-center items-center bg-red-500 text-white py-1 px-2 rounded-lg hover:bg-red-600 cursor-pointer">
                                     <i class="fas fa-trash mr-2"></i>
                                     Delete
                                 </button>
@@ -308,7 +310,7 @@
                                 Upload Gambar<span class="text-red-400">*</span>
                             </label>
                             <input type="file" name="image" id="image" class="hidden"
-                                accept="image/png,image/jpeg,image/jpg">
+                                accept="image/png,image/jpeg,image/jpg,image/webp">
                             <label for="image" id="drop-area"
                                 class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                 <div class="mb-4">
@@ -386,6 +388,148 @@
     </div>
     {{-- Create Modal End --}}
 
+    {{-- Detail Modal Start --}}
+    @foreach ($portfolios as $portfolio)
+        <div id="detail-portfolio-{{ $portfolio->id }}"
+            class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-eye text-3xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-white mb-2">Detail Portfolio</h1>
+                        <p class="text-white/90 text-base font-lato">Lihat semua detail portfolio</p>
+                    </div>
+
+                    <button
+                        class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                    <div class="space-y-6">
+                        <div class="group">
+                            <label for="title"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-heading"></i>
+                                Judul Blog <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="title" name="title" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->title }}">
+                        </div>
+
+                        <div class="group">
+                            <label for="project_name"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-list"></i>
+                                Kategori <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="project_name" name="project_name" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->project_name }}" placeholder="Teknologi">
+                        </div>
+
+                        <div class="group">
+                            <label for="category"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-list"></i>
+                                Kategori <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="category" name="category" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->category }}" placeholder="Teknologi">
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Deksripsi<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="description" name="description" rows="4" maxlength="250" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $portfolio->description }}</textarea>
+                            <p class="text-sm text-text">
+                                <span id="char-count">0</span>/250 Karakter
+                            </p>
+                        </div>
+
+                        <div class="group">
+                            <label for="skills"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Skills<span class="text-red-400">*</span>
+                            </label>
+                            @foreach ($portfolio->tools as $i => $tool)
+                                <input type="text" name="tools" placeholder="Skill {{ $i + 1 }}"
+                                    value="{{ $tool }}"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                            @endforeach
+                        </div>
+
+                        <div class="group">
+                            <label for="update_image"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-file"></i>
+                                Upload Gambar<span class="text-red-400">*</span>
+                            </label>
+
+                            <input type="file" name="update_image" id="update_image" class="hidden"
+                                accept="image/png,image/jpeg,image/jpg">
+
+                            <label for="update_image"
+                                class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                                <div class="mb-4">
+                                    <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                                </div>
+                                <div>
+                                    <h1 class="text-base font-medium text-darkChoco">
+                                        Choose a file or drag & drop it here
+                                    </h1>
+                                    <p class="text-text text-sm font-medium font-lato">
+                                        JPEG, PNG, JPG format, max. 5MB
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="group">
+                            <label for="status"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Status <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="status" name="status" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->status }}" placeholder="Jakarta">
+                        </div>
+
+                        <div class="group">
+                            <label for="event_time"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Tanggal Pengerjaan<span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="event_time" name="event_time" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->event_time }}" placeholder="Jakarta">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Detail Modal End --}}
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -411,6 +555,31 @@
         });
     </script>
 @endif
+
+<script>
+    const deleteForms = document.querySelectorAll('.delete-form');
+
+    deleteForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus',
+                text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e3342f',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 <script src="{{ asset('asset-admin/js/portfolio.js') }}"></script>
