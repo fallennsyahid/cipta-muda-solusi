@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalRequest }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalPendings }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalAccepts }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalDenieds }}
                 </div>
             </div>
         </div>
@@ -97,18 +97,25 @@
                             <div class="flex flex-col">
                                 <div class="flex items-center gap-3">
                                     <h1 class="text-2xl text-heading font-semibold">{{ $request->company_name }}</h1>
-                                    <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                    @if ($request->company_status === 'Pending')
+                                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                    @elseif ($request->company_status === 'Diterima')
+                                        <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
+                                    @else
+                                        <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Ditolak</span>
+                                    @endif
                                 </div>
                                 <span class="block mt-2 text-text font-medium">
-                                    Service
+                                    {{ $request->company_category }}
                                 </span>
                             </div>
                         </div>
                         <div class="relative z-50 flex items-center gap-2">
-                            <button type="button"
-                                class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                                <i class="fas fa-ellipsis"></i>
-                            </button>
+                            <a href="{{ Storage::url($request->file_attachments) }}"
+                                download="{{ $request->company_name }}.pdf" title="Download Lampiran"
+                                class="h-9 w-9 rounded-full flex text-lg items-center justify-center cursor-pointer text-darkChoco hover:bg-text/20">
+                                <i class="fas fa-download"></i>
+                            </a>
                             <button class="cursor-pointer">
                                 <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
                             </button>
@@ -118,20 +125,21 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-6">
                         <div class="flex items-center text-text text-base">
                             <i class="fas fa-envelope mr-2"></i>
-                            email@perusahaan.com
+                            {{ $request->company_email }}
                         </div>
                         <div class="flex items-center text-text text-base">
                             <i class="fas fa-phone mr-2"></i>
-                            +62 123-4567-890
+                            {{ $request->company_phone_number }}
                         </div>
-                        <a href="www.instagram.com" target="_blank"
+                        <a href="{{ $request->company_link }}" target="_blank"
                             class="flex items-center text-primary text-base group">
                             <i class="fas fa-globe mr-2 text-text"></i>
                             <span class="group-hover:underline">
                                 Website / Social Media
                             </span>
                         </a>
-                        <a href="" target="_blank" class="flex items-center text-primary text-base group">
+                        <a href="{{ Storage::url($request->file_attachments) }}" target="_blank"
+                            class="flex items-center text-primary text-base group">
                             <i class="fas fa-file mr-2 text-text"></i>
                             <span class="group-hover:underline">
                                 Lampiran
@@ -140,36 +148,135 @@
                     </div>
 
                     <p class="mt-5 text-text font-lato">
-                        Leading technology solutions provider specializing in enterprise software development.
+                        {{ $request->company_description }}
                     </p>
 
                     <div class="flex justify-between items-center mt-5">
                         <div class="text-sm text-text">
                             <i class="fas fa-calendar mr-1"></i>
-                            Masuk pada 03/09/2025
+                            Masuk pada {{ $request->created_at->format('d/m/Y') }}
                         </div>
                         <div class="flex items-center gap-2">
-                            <button type="button"
-                                class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                                <i class="fas fa-edit mr-2"></i>
-                                Update Status
-                            </button>
-                            <button type="button"
-                                class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
+                            @if ($request->company_status === 'Pending')
+                                <button type="button" data-id="{{ $request->id }}"
+                                    class="update-status-btn flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
+                                    <i class="fas fa-edit mr-2"></i>
+                                    Update Status
+                                </button>
+                            @else
+                                <button type="button" disabled
+                                    class="flex items-center text-white bg-amber-400/50 px-4 py-2 rounded-lg cursor-not-allowed">
+                                    <i class="fas fa-edit mr-2"></i>
+                                    Update Status
+                                </button>
+                            @endif
+
+                            <button type="button" data-id="{{ $request->id }}"
+                                class="call-partner flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
                                 <i class="fas fa-phone mr-2"></i>
-                                Contact Partner
+                                Contact
                             </button>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-
-
     </x-admin.layout>
+
+    {{-- Update Status Start --}}
+    @foreach ($partnerReq as $request)
+        <div id="update-status-{{ $request->id }}"
+            class="fixed z-[99999] inset-0 hidden justify-center items-center">
+            <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden p-4">
+                <div class="flex justify-end">
+                    <a href=""
+                        class="close-modal w-8 h-8 text-darkChoco flex justify-center items-center rounded-full hover:bg-text/30">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col items-center justify-center my-3 space-y-5">
+                    <i class="fas fa-circle-exclamation text-7xl text-darkChoco/75"></i>
+                    <h1 class="text-lg text-darkChoco font-semibold">Update Status untuk Permohonan Kerjasama</h1>
+                    {{-- <p>{{ $request->company_status }}</p> --}}
+                </div>
+
+                <div class="flex items-center justify-center space-x-3">
+                    <form action="{{ route('partner-request.updateStatus', $request->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="company_status" id="company_status" value="Diterima">
+                        <button type="submit"
+                            class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer">
+                            <i class="fas fa-circle-check mr-2"></i>
+                            Accept
+                        </button>
+                    </form>
+                    <form action="{{ route('partner-request.updateStatus', $request->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="company_status" id="company_status" value="Ditolak">
+                        <button type="submit"
+                            class="flex items-center justify-center text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer">
+                            <i class="fas fa-circle-xmark mr-2"></i>
+                            Denied
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Update Status End --}}
+
+    {{-- Call Modal Start --}}
+    @foreach ($partnerReq as $request)
+        <div id="call-modal-{{ $request->id }}" class="fixed z-[99999] inset-0 hidden justify-center items-center">
+            <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="flex justify-between items-center bg-gradient-to-r from-heading via-primary to-secondary p-5 relative overflow-hidden">
+                    <h1 class="text-xl text-white font-bold">Pilih Metode Hubungi</h1>
+                    <a href=""
+                        class="close-modal w-8 h-8 text-white flex justify-center items-center rounded-full hover:bg-white/30">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col justify-center space-y-4 p-5">
+                    <a href="https://wa.me/{{ $request->company_phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Whatsapp
+                    </a>
+                    <a href="tel:{{ $request->company_phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-amber-500 px-4 py-2 rounded-lg hover:bg-amber-600">
+                        <i class="fas fa-phone mr-2"></i>
+                        Telepon
+                    </a>
+                    <a href="mailto:{{ $request->company_email }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Email
+                    </a>
+                    <a href="{{ $request->company_link }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600">
+                        <i class="fas fa-globe mr-2"></i>
+                        Website / Social Media
+                    </a>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Call Modal End --}}
 
 </body>
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/partner-req.js') }}"></script>
 
 </html>

@@ -1,5 +1,6 @@
 const openModal = document.querySelector('#open-modal');
 const openModalEdit = document.querySelectorAll('.open-edit-modal');
+const openContactPartner = document.querySelectorAll('.contact-partner');
 const modalCreate = document.querySelector('#create-new-partner');
 const closeModal = document.querySelectorAll('.close-modal');
 
@@ -15,6 +16,16 @@ openModalEdit.forEach(btn => {
         e.preventDefault();
 
         const modal = document.querySelector('#edit-partner-' + btn.dataset.id);
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    });
+});
+
+openContactPartner.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const modal = document.querySelector('#call-partner-modal-' + btn.dataset.id);
         modal.classList.remove('hidden');
         modal.classList.add('flex');
     });

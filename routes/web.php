@@ -63,6 +63,7 @@ Route::resource('admin/contact', ContactAdminController::class);
 Route::resource('admin/partner', PartnerAdminController::class);
 
 Route::resource('admin/partnerReq', PartnerReqAdminController::class);
+Route::put('partnerReq/{id}/status', [PartnerReqAdminController::class, 'updateStatus'])->name('partner-request.updateStatus');
 
 Route::resource('admin/cv', CvAdminController::class);
 

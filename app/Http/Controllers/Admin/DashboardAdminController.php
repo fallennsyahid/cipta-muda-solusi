@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Status;
-use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use App\Models\Blog;
-use App\Models\JobVacancy;
+use App\Enums\Status;
 use App\Models\Partner;
+use App\Models\JobVacancy;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardAdminController extends Controller
 {
@@ -19,7 +20,8 @@ class DashboardAdminController extends Controller
         $totalJobs = JobVacancy::count();
         $totalActivePartners = Partner::where('status', Status::Active->value)->count();
         $totalBlogPublished = Blog::where('status', Status::Published->value)->count();
-        return view('admin.dashboard', compact('totalJobs', 'totalActivePartners', 'totalBlogPublished'));
+        $totalFaqs = Faq::count();
+        return view('admin.dashboard', compact('totalJobs', 'totalActivePartners', 'totalBlogPublished', 'totalFaqs'));
     }
 
     /**

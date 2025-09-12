@@ -168,8 +168,8 @@
                                 <i class="fas fa-edit mr-2"></i>
                                 Edit Data Partner
                             </button>
-                            <button type="button"
-                                class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
+                            <button type="button" data-id="{{ $partner->id }}"
+                                class="contact-partner flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
                                 <i class="fas fa-phone mr-2"></i>
                                 Contact Partner
                             </button>
@@ -181,7 +181,7 @@
     </x-admin.layout>
 
     {{-- Modal Create Start --}}
-    {{-- <div id="create-new-partner"
+    <div id="create-new-partner"
         class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
         <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
@@ -353,7 +353,7 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
     {{-- Modal Create End --}}
 
     {{-- Modal Edit Start --}}
@@ -555,6 +555,50 @@
         </div>
     @endforeach
     {{-- Modal Edit End --}}
+
+    {{-- Call Partner Modal Start --}}
+    @foreach ($partners as $partner)
+        <div id="call-partner-modal-{{ $partner->id }}"
+            class="fixed z-[99999] inset-0 hidden justify-center items-center">
+            <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="flex justify-between items-center bg-gradient-to-r from-heading via-primary to-secondary p-5 relative overflow-hidden">
+                    <h1 class="text-xl text-white font-bold">Pilih Metode Hubungi</h1>
+                    <a href=""
+                        class="close-modal w-8 h-8 text-white flex justify-center items-center rounded-full hover:bg-white/30">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col justify-center space-y-4 p-5">
+                    <a href="https://wa.me/{{ $partner->partner_phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Whatsapp
+                    </a>
+                    <a href="tel:{{ $partner->partner_phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-amber-500 px-4 py-2 rounded-lg hover:bg-amber-600">
+                        <i class="fas fa-phone mr-2"></i>
+                        Telepon
+                    </a>
+                    <a href="mailto:{{ $partner->partner_email }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Email
+                    </a>
+                    <a href="{{ $partner->partner_links }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600">
+                        <i class="fas fa-globe mr-2"></i>
+                        Website / Social Media
+                    </a>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Call Partner Modal End --}}
 
 </body>
 
