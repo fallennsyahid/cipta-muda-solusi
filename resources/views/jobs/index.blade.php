@@ -425,8 +425,8 @@
                         <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                     </div>
                     <div>
-                        <h1 class="text-heading font-semibold text-xl">Upload Files</h1>
-                        <h2 class="text-text font-medium text-base">Pilih dan upload file yang Anda pilih</h2>
+                        <h1 class="text-heading font-semibold text-xl">Upload CV Anda</h1>
+                        <h2 class="text-text font-medium text-sm">Kami akan menghubungi Anda jika tertarik</h2>
                     </div>
                 </div>
                 <div>
@@ -436,24 +436,78 @@
                     </a>
                 </div>
             </div>
-            <form action="" class="space-y-6 p-8">
+            <form action="{{ route('user.jobs.store') }}" method="POST" enctype="multipart/form-data"
+                class="space-y-6 p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                @csrf
                 <div class="space-y-3">
                     <div class="mb-2">
-                        <label for="email" class="text-primary text-base font-medium">Email</label>
+                        <label for="applicant_name" class="text-primary text-base font-medium">Nama Lengkap</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-text"></i>
+                        </div>
+                        <input type="text" name="applicant_name" id="applicant_name"
+                            placeholder="Masukkan Nama Lengkap Anda"
+                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="date_of_birth" class="text-primary text-base font-medium">Tanggal Lahir</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-calendar-days text-text"></i>
+                        </div>
+                        <input type="date" name="date_of_birth" id="date_of_birth"
+                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="applicant_email" class="text-primary text-base font-medium">Email</label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-text"></i>
                         </div>
-                        <input type="email" name="email" id="email" placeholder="Masukkan email Anda.."
+                        <input type="email" name="applicant_email" id="applicant_email"
+                            placeholder="Masukkan email Anda.."
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
+
+                    <div class="mb-2">
+                        <label for="applicant_phone_number" class="text-primary text-base font-medium">Nomor
+                            Telepon</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-phone text-text"></i>
+                        </div>
+                        <input type="tel" name="applicant_phone_number" id="applicant_phone_number"
+                            placeholder="Masukkan nomor telepon Anda.."
+                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="applicant_experience" class="text-primary text-base font-medium">Nomor
+                            Telepon</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 top-4 left-0 pl-4 flex pointer-events-none">
+                            <i class="fas fa-message text-text"></i>
+                        </div>
+                        <textarea name="applicant_experience" id="applicant_experience" placeholder="Cerita pengalaman Anda.."
+                            rows="6" maxlength="1000"
+                            class="w-full pl-12 py-3 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary resize-none"></textarea>
+                    </div>
+
                     <div>
                         <div class="mb-2">
-                            <label for="title" class="text-primary text-base font-medium">Upload CV</label>
+                            <label for="applicant_file" class="text-primary text-base font-medium">Upload CV</label>
                         </div>
-                        <input type="file" name="cv-upload" id="cv-upload" class="hidden" accept="file/.pdf">
-                        <label for="cv-upload"
+                        <input type="file" name="applicant_file" id="applicant_file" class="hidden"
+                            accept=".pdf">
+                        <label for="applicant_file"
                             class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
                                 <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
@@ -516,7 +570,7 @@
                     </div> --}}
                 </div>
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-primary to-secondary py-3 flex items-center justify-center text-white font-semibold text-lg rounded-lg">
+                    class="w-full bg-gradient-to-r from-primary to-secondary py-3 flex items-center justify-center text-white font-semibold text-lg rounded-lg cursor-pointer hover:from-secondary hover:to-primary">
                     <i class="fas fa-upload mr-2"></i>
                     Upload
                 </button>

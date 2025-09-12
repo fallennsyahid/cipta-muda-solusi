@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CvApplicant;
 use App\Models\Jobs;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,29 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'applicant_name' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'applicant_email' => 'required|string',
+            'applicant_phone_number' => 'required|string',
+            'applicant_file' => 'required|file|mimes:pdf|max:5120',
+            'applicant_experience' => 'required|string',
+        ]);
+        $fillPath = null;
+        if ($request->hasFile('applicant_file')) {
+            $fillPath = $request->file('applicant_file')->store('cv_applicants', 'public');
+        }
+
+        CvApplicant::create([
+            'applicant_name' => $request->applicant_name,
+            'date_of_birth' => $request->date_of_birth,
+            'applicant_email' => $request->applicant_email,
+            'applicant_phone_number' => $request->applicant_phone_number,
+            'applicant_file' => $fillPath,
+            'applicant_experience' => $request->applicant_experience,
+        ]);
+
+        return redirect()->route('user.jobs.index')->with('success', 'CV Berhasil Terkirim');
     }
 
     /**

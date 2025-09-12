@@ -16,9 +16,9 @@
 
     <nav class="flex-1 p-6 space-y-3 overflow-y-auto custom-scrollbar">
         <a href="{{ route('dashboard.index') }}"
-            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('dashboard.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
-                class="fas fa-table-cells-large {{ request()->routeIs('dashboard') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
+                class="fas fa-table-cells-large {{ request()->routeIs('dashboard.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
             <span class="font-medium pl-2">
                 Dashboard
             </span>

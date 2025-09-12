@@ -129,9 +129,18 @@
                     </a>
                 </div>
 
-                <p class="mt-5 text-text font-lato">
-                    Pernah menjadi bagian dari sebuah bagian yang akhirnya menjadi sebuah bagian yang menjadi bagian
-                    dari bagian lain.
+                <p class="mt-5 text-text font-lato text-justify line-clamp-2">
+                    Selama lebih dari tiga tahun bekerja sebagai Software Developer di sebuah perusahaan teknologi, saya
+                    bertanggung jawab penuh terhadap pengembangan aplikasi berbasis web dan mobile yang digunakan oleh
+                    lebih dari 20.000 pengguna aktif setiap bulannya. Tugas saya meliputi merancang arsitektur sistem,
+                    mengoptimalkan database agar mampu menangani transaksi dalam jumlah besar, serta mengimplementasikan
+                    API yang aman dan efisien. Selain itu, saya terbiasa berkolaborasi dengan tim lintas divisi seperti
+                    UI/UX designer, QA engineer, dan project manager untuk memastikan setiap proyek berjalan sesuai
+                    jadwal. Saya juga pernah memimpin sebuah sub-tim kecil yang fokus pada refactoring kode lama agar
+                    lebih modern, scalable, dan mudah dipelihara. Pencapaian terbesar saya adalah berhasil menurunkan
+                    waktu loading aplikasi hingga 40% dan meningkatkan kepuasan pengguna berdasarkan survei internal
+                    perusahaan. Dari pengalaman tersebut, saya mengasah kemampuan problem solving, komunikasi tim, serta
+                    adaptasi terhadap teknologi baru yang terus berkembang.
                 </p>
 
                 <div class="flex justify-between items-center mt-5">

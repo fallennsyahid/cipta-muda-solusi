@@ -1071,7 +1071,7 @@
                             Lampiran <span class="text-slate-400 text-xs">(Opsional)</span>
                         </label>
                         <input type="file" name="file_attachments" id="file_attachments" class="hidden"
-                            accept="file/.pdf">
+                            accept=".pdf">
                         <label for="file_attachments"
                             class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
