@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\JobVacancyAdminController;
 use App\Http\Controllers\Admin\PartnerReqAdminController;
 use App\Http\Controllers\Admin\PortfoliosAdminController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\PartnerRequestController;
 
 // Route::get('/welcome', function () {
@@ -28,6 +29,7 @@ Route::post('/', [ContactController::class, 'store'])->name('index.store');
 
 Route::get('/jobs', [JobsController::class, 'index'])->name('user.jobs.index');
 Route::post('/jobs/cv-upload', [JobsController::class, 'store'])->name('user.jobs.store');
+Route::post('/jobs/{job}/apply', [JobsController::class, 'applicantStore'])->name('applicants.store');
 
 Route::get('/faqs', [FaqsController::class, 'index'])->name('user.faqs.index');
 Route::post('/faqs/store', [FaqsController::class, 'store'])->name('user.faqs.store');

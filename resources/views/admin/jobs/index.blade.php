@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $totalApplicants }}
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="flex items-center text-text text-base">
                             <i class="fas fa-user-group mr-2"></i>
-                            24 Applicants
+                            {{ $job->applicants_count }} Pelamar
                         </div>
                     </div>
 
@@ -177,11 +177,11 @@
                                 <i class="fas fa-edit mr-2"></i>
                                 Edit Lowongan
                             </button>
-                            <button type="button"
+                            <a href="{{ route('jobs.show', $job->id) }}"
                                 class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
                                 <i class="fas fa-user-group mr-2"></i>
                                 Lihat Pelamar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

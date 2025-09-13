@@ -133,7 +133,7 @@
     <section id="jobs" class="py-12 bg-section">
         <div class="container max-w-full">
             <div class="flex items-center justify-between mx-10 mb-10">
-                <h1 class="font-bold text-2xl text-heading">Daftar Lowongan Kerja (6)</h1>
+                <h1 class="font-bold text-2xl text-heading">Daftar Lowongan Kerja ({{ $totalJobs }})</h1>
                 <div class="flex items-center gap-6">
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -153,182 +153,49 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-10">
-                <div class="bg-white rounded-xl shadow-1 p-6">
-                    <div class="flex justify-between items-center mb-2">
-                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
-                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
-                    </div>
-                    <p class="font-lato text-sm max-w-md text-text mb-3">
-                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
-                        engineering kami.
-                    </p>
-                    <div class="flex items-center gap-6 mb-4">
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-location-dot mr-2"></i>
-                            Jakarta, Indonesia
+                @foreach ($jobs as $job)
+                    <div class="bg-white rounded-xl shadow-1 p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h1 class="font-bold text-xl text-heading">{{ $job->position }}</h1>
+                            <span class="text-white bg-secondary px-3 py-2 rounded-sm">{{ $job->departement }}</span>
                         </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-clock mr-2"></i>
-                            Full-Time
+                        <p class="font-lato text-sm max-w-md text-text mb-3">
+                            {{ $job->description }}
+                        </p>
+                        <div class="flex items-center gap-6 mb-4">
+                            <div class="flex items-center text-text text-xs">
+                                <i class="fas fa-location-dot mr-2"></i>
+                                {{ $job->location }}
+                            </div>
+                            <div class="flex items-center text-text text-xs capitalize">
+                                <i class="fas fa-clock mr-2"></i>
+                                {{ $job->job_type }}
+                            </div>
+                            <div class="flex items-center text-text text-xs">
+                                <i class="fas fa-briefcase mr-2"></i>
+                                3-5 Tahun
+                            </div>
                         </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-briefcase mr-2"></i>
-                            3-5 Tahun
+                        <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
+                        <div class="flex  flex-wrap items-center gap-4 mb-5">
+                            @foreach ($job->skills as $skill)
+                                <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                                    {{ $skill }}
+                                </div>
+                            @endforeach
                         </div>
-                    </div>
-                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            React.Js, Node.Js
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            Database Management
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            API Development
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
-                        <a href="#"
-                            class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
-                            Lamar Sekarang
-                            <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-1 p-6">
-                    <div class="flex justify-between items-center mb-2">
-                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
-                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
-                    </div>
-                    <p class="font-lato text-sm max-w-md text-text mb-3">
-                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
-                        engineering kami.
-                    </p>
-                    <div class="flex items-center gap-6 mb-4">
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-location-dot mr-2"></i>
-                            Jakarta, Indonesia
-                        </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-clock mr-2"></i>
-                            Full-Time
-                        </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-briefcase mr-2"></i>
-                            3-5 Tahun
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-medium text-text">Diposting
+                                {{ $job->created_at->locale('id')->diffForHumans() }}
+                            </h3>
+                            <a href="#" data-id="{{ $job->id }}"
+                                class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm hover:bg-primary/90">
+                                Lamar Sekarang
+                                <i class="fas fa-chevron-right ml-2"></i>
+                            </a>
                         </div>
                     </div>
-                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            React.Js, Node.Js
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            Database Management
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            API Development
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
-                        <a href="#"
-                            class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
-                            Lamar Sekarang
-                            <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-1 p-6">
-                    <div class="flex justify-between items-center mb-2">
-                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
-                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
-                    </div>
-                    <p class="font-lato text-sm max-w-md text-text mb-3">
-                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
-                        engineering kami.
-                    </p>
-                    <div class="flex items-center gap-6 mb-4">
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-location-dot mr-2"></i>
-                            Jakarta, Indonesia
-                        </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-clock mr-2"></i>
-                            Full-Time
-                        </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-briefcase mr-2"></i>
-                            3-5 Tahun
-                        </div>
-                    </div>
-                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            React.Js, Node.Js
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            Database Management
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            API Development
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
-                        <a href="#"
-                            class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
-                            Lamar Sekarang
-                            <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-1 p-6">
-                    <div class="flex justify-between items-center mb-2">
-                        <h1 class="font-bold text-xl text-heading">Senior Full Stack Developer</h1>
-                        <span class="text-white bg-secondary px-3 py-2 rounded-sm">Engineering</span>
-                    </div>
-                    <p class="font-lato text-sm max-w-md text-text mb-3">
-                        Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim
-                        engineering kami.
-                    </p>
-                    <div class="flex items-center gap-6 mb-4">
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-location-dot mr-2"></i>
-                            Jakarta, Indonesia
-                        </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-clock mr-2"></i>
-                            Full-Time
-                        </div>
-                        <div class="flex items-center text-text text-xs">
-                            <i class="fas fa-briefcase mr-2"></i>
-                            3-5 Tahun
-                        </div>
-                    </div>
-                    <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            React.Js, Node.Js
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            Database Management
-                        </div>
-                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                            API Development
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-medium text-text">Diposting 2 hari yang lalu</h3>
-                        <a href="#"
-                            class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm">
-                            Lamar Sekarang
-                            <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -578,150 +445,200 @@
         </div>
     </div>
 
-    {{-- Lamar Sekarang --}}
-    <div id="modal-container" class="fixed inset-0 z-[99999] hidden justify-center items-end transition-all">
-        <div class="close-apply-modal absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+    @foreach ($jobs as $job)
+        {{-- Lamar Sekarang --}}
+        <div id="modal-container-{{ $job->id }}"
+            class="fixed inset-0 z-[99999] hidden justify-center items-end transition-all">
+            <div class="close-apply-modal absolute inset-0 bg-black/40 backdrop-blur-md"></div>
 
-        <div id="modal-content"
-            class="bg-white relative rounded-t-xl shadow-xl max-w-lg w-full transform translate-y-full transition-transform duration-300 ease-out">
-            <div class="p-6">
-                <div class="w-16 h-1 bg-secondary rounded-full mx-auto mb-4"></div>
+            <div
+                class="modal-content bg-white relative rounded-t-xl shadow-xl max-w-lg w-full transform translate-y-full transition-transform duration-300 ease-out">
+                <div class="p-6">
+                    <div class="w-16 h-1 bg-secondary rounded-full mx-auto mb-4"></div>
 
-                <div class="flex justify-between items-center mb-4">
-                    <h1 class="text-heading text-2xl font-bold">Form Lamaran</h1>
-                    <a href=""
-                        class="close-apply-modal w-10 h-10 rounded-full flex justify-center items-center border-2 border-darkChoco hover:bg-darkChoco transition-colors duration-200 ease-linear group">
-                        <i class="fas fa-times text-xl text-darkChoco group-hover:text-white"></i>
-                    </a>
+                    <div class="flex justify-between items-center mb-4">
+                        <h1 class="text-heading text-2xl font-bold">Form Lamaran</h1>
+                        <a href=""
+                            class="close-apply-modal w-10 h-10 rounded-full flex justify-center items-center border-2 border-darkChoco hover:bg-darkChoco transition-colors duration-200 ease-linear group">
+                            <i class="fas fa-times text-xl text-darkChoco group-hover:text-white"></i>
+                        </a>
+                    </div>
+
+                    <p class="text-text text-sm mb-6">
+                        Isi form berikut untuk melamar posisi
+                        <strong>
+                            {{ $job->position }}
+                        </strong>
+                    </p>
                 </div>
 
-                <p class="text-text text-sm mb-6">
-                    Isi form berikut untuk melamar posisi
-                    <strong>
-                        Senior Full Stack Developer
-                    </strong>
-                </p>
-            </div>
+                <form action="{{ route('applicants.store', $job->id) }}" method="POST"
+                    enctype="multipart/form-data"
+                    class="space-y-6 max-h-96 overflow-y-auto p-6 border-t border-t-text/15">
+                    @csrf
+                    <div class="space-y-3">
 
-            <form action="" class="space-y-6 max-h-96 overflow-y-auto p-6 border-t border-t-text/15">
-                <div class="space-y-3">
+                        <input type="hidden" name="job_vacancy_id" id="job_vacancy_id"
+                            value="{{ $job->id }}">
 
-                    {{-- Nama Lengkap --}}
-                    <div class="mb-2">
-                        <label for="full-name" class="text-primary text-base font-medium">Nama Lengkap</label>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-user text-text"></i>
+                        {{-- Nama Lengkap --}}
+                        <div class="mb-2">
+                            <label for="full_name" class="text-primary text-base font-medium">Nama Lengkap</label>
                         </div>
-                        <input type="text" name="full-name" id="full-name" placeholder="Masukkan nama lengkap.."
-                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
-                    </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-user text-text"></i>
+                            </div>
+                            <input type="text" name="full_name" id="full_name"
+                                placeholder="Masukkan nama lengkap.."
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
 
-                    {{-- Date of Birth --}}
-                    <div class="mb-2">
-                        <label for="dob" class="text-primary text-base font-medium">Tanggal Lahir</label>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-calendar-days text-text"></i>
+                        {{-- Date of Birth --}}
+                        <div class="mb-2">
+                            <label for="date_of_birth" class="text-primary text-base font-medium">Tanggal
+                                Lahir</label>
                         </div>
-                        <input type="date" name="dob" id="dob"
-                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
-                    </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-calendar-days text-text"></i>
+                            </div>
+                            <input type="date" name="date_of_birth" id="date_of_birth"
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
 
-                    {{-- Email --}}
-                    <div class="mb-2">
-                        <label for="email" class="text-primary text-base font-medium">Email</label>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-envelope text-text"></i>
+                        {{-- Email --}}
+                        <div class="mb-2">
+                            <label for="email" class="text-primary text-base font-medium">Email</label>
                         </div>
-                        <input type="email" name="email" id="email" placeholder="Masukkan email Anda.."
-                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
-                    </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-text"></i>
+                            </div>
+                            <input type="email" name="email" id="email" placeholder="Masukkan email Anda.."
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
 
-                    {{-- Phone Number --}}
-                    <div class="mb-2">
-                        <label for="phone-number" class="text-primary text-base font-medium">Nomor Telepon</label>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-phone text-text"></i>
+                        {{-- Phone Number --}}
+                        <div class="mb-2">
+                            <label for="phone_number" class="text-primary text-base font-medium">Nomor Telepon</label>
                         </div>
-                        <input type="tel" name="phone-number" id="phone-number" placeholder="Ex. +62xxx"
-                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
-                    </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-phone text-text"></i>
+                            </div>
+                            <input type="tel" name="phone_number" id="phone_number" placeholder="Ex. +62xxx"
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
 
-                    {{-- Experience --}}
-                    <div class="mb-2">
-                        <label for="experience" class="text-primary text-base font-medium">Pengalaman Anda</label>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 top-4 pl-4 pointer-events-none">
-                            <i class="fas fa-message text-text"></i>
+                        {{-- Experience --}}
+                        <div class="mb-2">
+                            <label for="experience" class="text-primary text-base font-medium">Pengalaman Anda</label>
                         </div>
-                        <textarea name="experience" id="experience" placeholder="Ceritakan pengalaman kerja Anda yang relevan.."
-                            rows="3"
-                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
-                    </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 top-4 pl-4 pointer-events-none">
+                                <i class="fas fa-message text-text"></i>
+                            </div>
+                            <textarea name="experience" id="experience" placeholder="Ceritakan pengalaman kerja Anda yang relevan.."
+                                rows="3"
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
+                        </div>
 
-                    {{-- Upload CV --}}
-                    <div class="mb-2">
-                        <label for="title" class="text-primary text-base font-medium">Upload CV</label>
-                    </div>
-                    <input type="file" name="cv-upload" id="cv-upload" class="hidden" accept="file/.pdf">
-                    <label for="cv-upload"
-                        class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
-                        <div class="mb-4">
-                            <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                        {{-- Upload CV --}}
+                        <div class="mb-2">
+                            <label for="cv_title" class="text-primary text-base font-medium">Upload CV</label>
                         </div>
-                        <div>
-                            <h1 class="text-base font-medium text-darkChoco">
-                                Choose a file or drag & drop it here
-                            </h1>
-                            <p class="text-text text-sm font-medium font-lato">
-                                PDF format, max. 5MB
-                            </p>
-                        </div>
-                    </label>
-                    <div class="bg-text/10 p-4 rounded-lg flex justify-between">
-                        <div class="flex items-center gap-3">
-                            <div>
-                                <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
+                        <label for="cv-{{ $job->id }}"
+                            class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                            <div class="mb-4">
+                                <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                             </div>
                             <div>
-                                <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
-                                <div class="flex items-center gap-2 text-xs text-text">
-                                    <span>60KB of 120KB</span>
-                                    <span>•</span>
-                                    <span>
-                                        <i class="fa-solid fa-spinner text-blue-400"></i>
-                                        Uploading...
-                                    </span>
+                                <h1 class="text-base font-medium text-darkChoco">
+                                    Choose a file or drag & drop it here
+                                </h1>
+                                <p class="text-text text-sm font-medium font-lato">
+                                    PDF format, max. 5MB
+                                </p>
+                            </div>
+                        </label>
+                        <input type="file" name="cv" id="cv-{{ $job->id }}" class="hidden"
+                            accept=".pdf">
+                        {{-- <p id="cv-filename-" class="text-sm text-darkChoco mt-2"></p>
+
+                        <script>
+                            document.getElementById('cv').addEventListener('change', function(e) {
+                                if (e.target.files.length > 0) {
+                                    document.getElementById('cv-filename').textContent = e.target.files[0].name;
+                                } else {
+                                    document.getElementById('cv-filename').textContent = '';
+                                }
+                            });
+                        </script> --}}
+                        <div class="bg-text/10 p-4 rounded-lg flex justify-between">
+                            {{-- <div class="flex items-center gap-3">
+                                <div>
+                                    <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
                                 </div>
+                                <div>
+                                    <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
+                                    <div class="flex items-center gap-2 text-xs text-text">
+                                        <span>60KB of 120KB</span>
+                                        <span>•</span>
+                                        <span>
+                                            <i class="fa-solid fa-spinner text-blue-400"></i>
+                                            Uploading...
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            <div>
+                                <a href="">
+                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                </a>
                             </div>
                         </div>
-                        <div>
-                            <a href="">
-                                <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                            </a>
+
+                        <div class="mb-2">
+                            <label for="cover_letter" class="text-primary text-base font-medium">Cover Letter
+                                (Opsional)
+                            </label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 top-4 pl-4 pointer-events-none">
+                                <i class="fas fa-message text-text"></i>
+                            </div>
+                            <textarea name="cover_letter" id="cover_letter" placeholder="Ceritakan pengalaman kerja Anda yang relevan.."
+                                rows="3"
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
+                                LinkedIn (Opsional)</label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-phone text-text"></i>
+                            </div>
+                            <input type="url" name="link" id="link"
+                                placeholder="https://www.github.com/username"
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
+
+                        {{-- Button Submit --}}
+                        <div class="flex justify-center items-center mt-4">
+                            <button type="submit"
+                                class="bg-secondary py-3 px-8 rounded-lg font-semibold text-white text-lg shadow-lg flex items-center gap-2 cursor-pointer hover:bg-secondary/90 hover:shadow-xl transition-all duration-200 ease-in-out">
+                                <i class="fas fa-paper-plane"></i>
+                                Kirim Lamaran
+                            </button>
                         </div>
                     </div>
-
-                    {{-- Button Submit --}}
-                    <div class="flex justify-center items-center mt-4">
-                        <button type="submit"
-                            class="bg-secondary py-3 px-8 rounded-lg font-semibold text-white text-lg shadow-lg flex items-center gap-2 cursor-pointer hover:bg-secondary/90 hover:shadow-xl transition-all duration-200 ease-in-out">
-                            <i class="fas fa-paper-plane"></i>
-                            Kirim Lamaran
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    @endforeach
 </body>
 
 <script src={{ asset('js/script.js') }}></script>

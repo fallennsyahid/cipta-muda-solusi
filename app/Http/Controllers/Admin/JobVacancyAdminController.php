@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\ContactStatus;
-use App\Enums\JobType;
 use App\Enums\Status;
+use App\Enums\JobType;
+use App\Models\Applicant;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Colors\Rgb\Channels\Red;
 
 class JobVacancyAdminController extends Controller
 {
@@ -18,12 +17,13 @@ class JobVacancyAdminController extends Controller
      */
     public function index()
     {
-        $jobs = JobVacancy::latest()->paginate(5);
+        $jobs = JobVacancy::withCount('applicants')->latest()->paginate(5);
         $jobType = JobType::cases();
         $jobStatus = Status::onlyActiveNonActive();
         $totalJobActive = JobVacancy::where('status', Status::Active->value)->count();
         $totalJobNonActive = JobVacancy::where('status', Status::NonActive->value)->count();
-        return view('admin.jobs.index', compact('jobs', 'jobType', 'jobStatus', 'totalJobActive', 'totalJobNonActive'));
+        $totalApplicants = Applicant::count();
+        return view('admin.jobs.index', compact('jobs', 'jobType', 'jobStatus', 'totalJobActive', 'totalJobNonActive', 'totalApplicants'));
     }
 
     /**
@@ -68,9 +68,11 @@ class JobVacancyAdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(JobVacancy $job)
     {
-        //
+        $applicants =  $job->applicants()->latest()->get();
+
+        return view('admin.jobs.show', compact('job', 'applicants'));
     }
 
     /**

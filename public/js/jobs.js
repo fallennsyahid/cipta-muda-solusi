@@ -18,8 +18,6 @@ closeModalBtn.forEach(btn => {
     });
 });
 
-const applyModalContainer = document.querySelector('#modal-container');
-const applyModalContent = document.querySelector('#modal-content');
 const openApplyModalBtn = document.querySelectorAll('.open-apply');
 const closeApplyModalBtn = document.querySelectorAll('.close-apply-modal');
 
@@ -27,8 +25,11 @@ openApplyModalBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        applyModalContainer.classList.toggle('hidden');
-        applyModalContainer.classList.toggle('flex');
+        const applyModalContainer = document.querySelector('#modal-container-' + btn.dataset.id);
+        const applyModalContent = applyModalContainer.querySelector('.modal-content');
+
+        applyModalContainer.classList.remove('hidden');
+        applyModalContainer.classList.add('flex');
 
         setTimeout(() => {
             applyModalContent.classList.remove('translate-y-full');
@@ -40,11 +41,14 @@ closeApplyModalBtn.forEach(cls => {
     cls.addEventListener('click', (e) => {
         e.preventDefault();
 
-        applyModalContent.classList.add('translate-y-full');
+        const modalContainer = cls.closest('[id^="modal-container-"]');
+        const modalContent = modalContainer.querySelector('.modal-content');
+
+        modalContent.classList.add('translate-y-full');
 
         setTimeout(() => {
-            applyModalContainer.classList.remove('flex');
-            applyModalContainer.classList.add('hidden');
+            modalContainer.classList.remove('flex');
+            modalContainer.classList.add('hidden');
         }, 100);
     });
 });

@@ -20,4 +20,9 @@ class JobVacancy extends Model
     protected $casts = [
         'skills' => 'array',
     ];
+
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class);
+    }
 }

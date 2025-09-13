@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CvApplicant;
+use App\Enums\Status;
 use App\Models\Jobs;
+use App\Models\Applicant;
+use App\Models\JobVacancy;
+use App\Models\CvApplicant;
 use Illuminate\Http\Request;
 
 class JobsController extends Controller
@@ -13,9 +16,10 @@ class JobsController extends Controller
      */
     public function index()
     {
-        // $jobs = Jobs::paginate(9);
+        $jobs = JobVacancy::where('status', Status::Active->value)->latest()->paginate(9);
+        $totalJobs = JobVacancy::count();
         // return view('jobs.index', compact('jobs'));
-        return view('jobs.index');
+        return view('jobs.index', compact('jobs', 'totalJobs'));
     }
 
     /**
@@ -54,6 +58,33 @@ class JobsController extends Controller
         ]);
 
         return redirect()->route('user.jobs.index')->with('success', 'CV Berhasil Terkirim');
+    }
+
+    public function applicantStore(Request $request, JobVacancy $job)
+    {
+
+        // dd($request->all());
+
+        $validated = $request->validate([
+            'full_name' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'experience' => 'required|string',
+            'cv' => 'required|file|mimes:pdf|max:5120',
+            'cover_letter' => 'nullable|string',
+            'link' => 'nullable|url',
+        ]);
+
+        if ($request->hasFile('cv')) {
+            $validated['cv'] = $request->file('cv')->store('cvs', 'public');
+        }
+
+        $validated['job_vacancy_id'] = $job->id;
+
+        Applicant::create($validated);
+
+        return back()->with('success', 'Lamaran berhasil terkirim!');
     }
 
     /**

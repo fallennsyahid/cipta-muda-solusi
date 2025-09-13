@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $applicants }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $applicantsPending }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $applicantsAccept }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -84,210 +84,83 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    24
+                    {{ $applicantsDenied }}
                 </div>
             </div>
         </div>
 
         <div class="flex flex-col gap-6">
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
+            @foreach ($cvs as $cv)
+                <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
+                    <div class="flex justify-between">
                         <div class="flex items-center gap-3">
-                            <h1 class="text-2xl text-heading font-semibold">Cristiano Ronaldo</h1>
-                            <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
+                            <div class="flex items-center gap-3">
+                                <h1 class="text-2xl text-heading font-semibold">{{ $cv->applicant_name }}</h1>
+                                @if ($cv->status === 'Diterima')
+                                    <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
+                                @elseif ($cv->status === 'Pending')
+                                    <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                @else
+                                    <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Ditolak</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="relative z-50 flex items-center gap-2">
+                            <a href="{{ Storage::url($cv->applicant_file) }}" download="{{ $cv->applicant_name }}.pdf"
+                                class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
+                                <i class="fas fa-download"></i>
+                            </a>
+                            <button class="cursor-pointer">
+                                <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
 
-                <span class="block mt-2 text-text font-medium text-lg">
-                    23-09-2008 (17 Tahun)
-                </span>
+                    <span class="block mt-2 text-text font-medium text-lg">
+                        {{ \Carbon\Carbon::parse($cv->date_of_birth)->format('d/m/Y') }}
+                        ({{ \Carbon\Carbon::parse($cv->date_of_birth)->age }} tahun)
+                    </span>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        pengguna@gmail.com
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
+                        <div class="flex items-center text-text text-base">
+                            <i class="fas fa-envelope mr-2"></i>
+                            {{ $cv->applicant_email }}
+                        </div>
+                        <div class="flex items-center text-text text-base">
+                            <i class="fas fa-phone mr-2"></i>
+                            {{ $cv->applicant_phone_number }}
+                        </div>
+                        <a href="{{ Storage::url($cv->applicant_file) }}" target="_blank"
+                            class="flex items-center text-secondary text-base hover:underline">
+                            <i class="fas fa-file text-text mr-2"></i>
+                            Lampiran
+                        </a>
                     </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-4567-890
-                    </div>
-                    <a href="" target="_blank"
-                        class="flex items-center text-secondary text-base hover:underline">
-                        <i class="fas fa-file text-text mr-2"></i>
-                        Lampiran
-                    </a>
-                </div>
 
-                <p class="mt-5 text-text font-lato text-justify line-clamp-2">
-                    Selama lebih dari tiga tahun bekerja sebagai Software Developer di sebuah perusahaan teknologi, saya
-                    bertanggung jawab penuh terhadap pengembangan aplikasi berbasis web dan mobile yang digunakan oleh
-                    lebih dari 20.000 pengguna aktif setiap bulannya. Tugas saya meliputi merancang arsitektur sistem,
-                    mengoptimalkan database agar mampu menangani transaksi dalam jumlah besar, serta mengimplementasikan
-                    API yang aman dan efisien. Selain itu, saya terbiasa berkolaborasi dengan tim lintas divisi seperti
-                    UI/UX designer, QA engineer, dan project manager untuk memastikan setiap proyek berjalan sesuai
-                    jadwal. Saya juga pernah memimpin sebuah sub-tim kecil yang fokus pada refactoring kode lama agar
-                    lebih modern, scalable, dan mudah dipelihara. Pencapaian terbesar saya adalah berhasil menurunkan
-                    waktu loading aplikasi hingga 40% dan meningkatkan kepuasan pengguna berdasarkan survei internal
-                    perusahaan. Dari pengalaman tersebut, saya mengasah kemampuan problem solving, komunikasi tim, serta
-                    adaptasi terhadap teknologi baru yang terus berkembang.
-                </p>
+                    <p class="mt-5 text-text font-lato text-justify line-clamp-2">
+                        {{ $cv->applicant_experience }}
+                    </p>
 
-                <div class="flex justify-between items-center mt-5">
-                    <div class="text-sm text-text">
-                        <i class="fas fa-calendar mr-1"></i>
-                        Melamar pada 03/09/2025
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button"
-                            class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                            <i class="fas fa-download mr-2"></i>
-                            Unduh CV
-                        </button>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-pen-to-square mr-2"></i>
-                            Update Status
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex items-center gap-3">
-                            <h1 class="text-2xl text-heading font-semibold">Toni Icikiwir</h1>
-                            <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                    <div class="flex justify-between items-center mt-5">
+                        <div class="text-sm text-text">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Melamar pada {{ $cv->created_at->format('d/m/Y') }}
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button"
+                                class="flex items-center text-white bg-gray-600 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-700">
+                                <i class="fas fa-eye mr-2"></i>
+                                Detail
+                            </button>
+                            <button type="button"
+                                class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
+                                <i class="fas fa-pen-to-square mr-2"></i>
+                                Update Status
+                            </button>
                         </div>
                     </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
                 </div>
-
-                <span class="block mt-2 text-text font-medium text-lg">
-                    23-09-2008 (17 Tahun)
-                </span>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        pengguna@gmail.com
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-4567-890
-                    </div>
-                    <a href="" target="_blank"
-                        class="flex items-center text-secondary text-base hover:underline">
-                        <i class="fas fa-file text-text mr-2"></i>
-                        Lampiran
-                    </a>
-                </div>
-
-                <p class="mt-5 text-text font-lato">
-                    Pernah menjadi bagian dari sebuah bagian yang akhirnya menjadi sebuah bagian yang menjadi bagian
-                    dari bagian lain.
-                </p>
-
-                <div class="flex justify-between items-center mt-5">
-                    <div class="text-sm text-text">
-                        <i class="fas fa-calendar mr-1"></i>
-                        Melamar pada 03/09/2025
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button"
-                            class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                            <i class="fas fa-download mr-2"></i>
-                            Unduh CV
-                        </button>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-pen-to-square mr-2"></i>
-                            Update Status
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="flex items-center gap-3">
-                            <h1 class="text-2xl text-heading font-semibold">Amar Zoni</h1>
-                            <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Ditolak</span>
-                        </div>
-                    </div>
-                    <div class="relative z-50 flex items-center gap-2">
-                        <button type="button"
-                            class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
-                            <i class="fas fa-ellipsis"></i>
-                        </button>
-                        <button class="cursor-pointer">
-                            <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <span class="block mt-2 text-text font-medium text-lg">
-                    23-09-2000 (25 Tahun)
-                </span>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-envelope mr-2"></i>
-                        pengguna@gmail.com
-                    </div>
-                    <div class="flex items-center text-text text-base">
-                        <i class="fas fa-phone mr-2"></i>
-                        +62 123-4567-890
-                    </div>
-                    <a href="" target="_blank"
-                        class="flex items-center text-secondary text-base hover:underline">
-                        <i class="fas fa-file text-text mr-2"></i>
-                        Lampiran
-                    </a>
-                </div>
-
-                <p class="mt-5 text-text font-lato">
-                    Pernah menjadi bagian dari sebuah bagian yang akhirnya menjadi sebuah bagian yang menjadi bagian
-                    dari bagian lain.
-                </p>
-
-                <div class="flex justify-between items-center mt-5">
-                    <div class="text-sm text-text">
-                        <i class="fas fa-calendar mr-1"></i>
-                        Melamar pada 03/09/2025
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button"
-                            class="flex items-center text-white bg-amber-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-500">
-                            <i class="fas fa-download mr-2"></i>
-                            Unduh CV
-                        </button>
-                        <button type="button"
-                            class="flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                            <i class="fas fa-pen-to-square mr-2"></i>
-                            Update Status
-                        </button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
     </x-admin.layout>

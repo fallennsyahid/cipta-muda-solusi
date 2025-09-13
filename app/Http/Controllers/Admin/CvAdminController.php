@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\CvApplicant;
 use App\Models\PartnerRequest;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,12 @@ class CvAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.cv.index');
+        $cvs = CvApplicant::latest()->paginate(5);
+        $applicants = CvApplicant::count();
+        $applicantsPending = CvApplicant::where('status', Status::Pending->value)->count();
+        $applicantsAccept = CvApplicant::where('status', Status::Diterima->value)->count();
+        $applicantsDenied = CvApplicant::where('status', Status::Ditolak->value)->count();
+        return view('admin.cv.index', compact('cvs', 'applicants', 'applicantsPending', 'applicantsAccept', 'applicantsDenied'));
     }
 
     /**
