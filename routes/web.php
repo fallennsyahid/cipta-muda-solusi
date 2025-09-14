@@ -51,6 +51,7 @@ Route::get('testing', function () {
 Route::resource('/dashboard', DashboardAdminController::class)->middleware(['auth', 'verified']);
 
 Route::resource('/admin/jobs', JobVacancyAdminController::class);
+Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');
 
 Route::resource('/admin/portfolios', PortfoliosAdminController::class);
 

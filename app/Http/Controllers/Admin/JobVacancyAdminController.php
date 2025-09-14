@@ -71,8 +71,24 @@ class JobVacancyAdminController extends Controller
     public function show(JobVacancy $job)
     {
         $applicants =  $job->applicants()->latest()->get();
+        $totalApplicants = $job->applicants()->count();
+        $pendingApplicants = $job->applicants()->where('status', Status::Pending->value)->count();
+        $acceptApplicants = $job->applicants()->where('status', Status::Diterima->value)->count();
+        $deniedApplicants = $job->applicants()->where('status', Status::Ditolak->value)->count();
 
-        return view('admin.jobs.show', compact('job', 'applicants'));
+        return view('admin.jobs.show', compact('job', 'applicants', 'totalApplicants', 'pendingApplicants', 'acceptApplicants', 'deniedApplicants'));
+    }
+
+    public function updateStatusApp(Request $request, Applicant $applicant)
+    {
+        $request->validate([
+            'status' => ['required', Rule::in(Status::request())],
+        ]);
+
+        $applicant->status = $request->status;
+        $applicant->save();
+
+        return redirect()->back()->with('success', 'Status Pelamar berhasil diperbarui.');
     }
 
     /**
