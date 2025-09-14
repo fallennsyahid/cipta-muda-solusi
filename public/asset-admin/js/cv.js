@@ -20,3 +20,27 @@ closeModal.forEach(btn => {
         modalOpen.classList.add('hidden');
     });
 });
+
+const openUpdateStatus = document.querySelectorAll('.open-update-status');
+
+openUpdateStatus.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const modal = document.querySelector('#update-status-' + btn.dataset.id);
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    });
+});
+
+const openCallApplicant = document.querySelectorAll('.open-call-applicant');
+
+openCallApplicant.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const modal = document.querySelector('#call-modal-' + btn.dataset.id);
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    });
+});

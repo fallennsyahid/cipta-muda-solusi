@@ -276,16 +276,18 @@
                                 placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor..."></textarea>
                         </div>
 
-                        <div class="group">
-                            <label for="description"
+                        <div class="upload-group">
+                            <label
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-file"></i>
                                 Upload Gambar<span class="text-red-400">*</span>
                             </label>
-                            <input type="file" name="image" id="image" class="hidden"
+
+                            <input type="file" name="image" class="file-input hidden"
                                 accept="image/png,image/jpeg,image/jpg">
-                            <label for="image" id="drop-area"
-                                class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+
+                            <label
+                                class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                 <div class="mb-4">
                                     <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                                 </div>
@@ -298,23 +300,26 @@
                                     </p>
                                 </div>
                             </label>
-                            <div id="preview-file" class="hidden justify-between bg-text/10 p-4 mt-2 rounded-lg">
+
+                            <!-- preview -->
+                            <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                                 <div class="flex items-center gap-3">
+                                    <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
                                     <div>
-                                        <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <h1 id="file-name" class="text-base text-darkChoco font-semibold">
-                                            apaweh
-                                        </h1>
-                                        <span id="file-size" class="text-xs text-text">100GB</span>
+                                        <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span class="file-size"></span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-spinner text-blue-400"></i>
+                                                Uploading...
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <a href="" id="remove-file">
-                                        <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                    </a>
-                                </div>
+                                <button type="button" class="remove-file">
+                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                </button>
                             </div>
                         </div>
 
@@ -347,10 +352,9 @@
                             </button>
                         </div>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
     </div>
     {{-- Modal Create End --}}
 
@@ -438,6 +442,19 @@
                             <textarea id="content" name="content" rows="6" readonly
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
                                 placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor...">{{ $blog->content }}</textarea>
+                        </div>
+
+
+                        <div class="group">
+                            <label for="image"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-image"></i>
+                                Gambar Blog <span class="text-red-400">*</span>
+                            </label>
+                            <div
+                                class="px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                                <img src="{{ Storage::url($blog->image) }}" alt="">
+                            </div>
                         </div>
 
                         <div class="group">
@@ -548,16 +565,18 @@
                                     placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor...">{{ $blog->content }}</textarea>
                             </div>
 
-                            <div class="group">
-                                <label for="description"
+                            <div class="upload-group">
+                                <label
                                     class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                     <i class="fas fa-file"></i>
                                     Upload Gambar<span class="text-red-400">*</span>
                                 </label>
-                                <input type="file" name="image" id="image" class="hidden"
+
+                                <input type="file" name="edit_image" class="file-input hidden"
                                     accept="image/png,image/jpeg,image/jpg">
-                                <label for="image" id="drop-area"
-                                    class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+
+                                <label
+                                    class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                     <div class="mb-4">
                                         <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                                     </div>
@@ -570,14 +589,14 @@
                                         </p>
                                     </div>
                                 </label>
-                                <div class="bg-text/10 p-4 mt-2 rounded-lg flex justify-between" id="preview-file">
+
+                                <!-- preview -->
+                                <div
+                                    class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                                     <div class="flex items-center gap-3">
+                                        <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
                                         <div>
-                                            <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                                        </div>
-                                        <div>
-                                            <h1 class="text-base text-darkChoco font-semibold" id="file-name">
-                                                title.jpg</h1>
+                                            <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
                                             <div class="flex items-center gap-2 text-xs text-text">
                                                 <span class="file-size"></span>
                                                 <span>•</span>
@@ -588,11 +607,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <button type="button" id="remove-file">
-                                            <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                        </button>
-                                    </div>
+                                    <button type="button" class="remove-file">
+                                        <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                    </button>
                                 </div>
                             </div>
 

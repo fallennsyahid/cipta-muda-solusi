@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\CategoryPortfolio;
 use App\Enums\Status;
-use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Enums\CategoryPortfolio;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PortfoliosAdminController extends Controller
 {
@@ -98,9 +98,45 @@ class PortfoliosAdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Portfolio $portfolio)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'project_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'description' => 'required|string|max:250',
+            'tools' => 'nullable|array',
+            'tools.*' => 'nullable|string|max:100',
+            'edit_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'status' => 'required|string',
+            'event_time' => 'required|string|max:255',
+        ]);
+
+        // Update field satu-satu
+        $portfolio->title = $request->title;
+        $portfolio->project_name = $request->project_name;
+        $portfolio->category = $request->category;
+        $portfolio->description = $request->description;
+        $portfolio->status = $request->status;
+        $portfolio->event_time = $request->event_time;
+
+        // simpan tools (array)
+        $portfolio->tools = array_filter($request->tools ?? []);
+
+        // kalau ada gambar baru
+        if ($request->hasFile('edit_image')) {
+            // hapus gambar lama
+            if ($portfolio->image && Storage::disk('public')->exists($portfolio->image)) {
+                Storage::disk('public')->delete($portfolio->image);
+            }
+
+            // simpan gambar baru
+            $portfolio->image = $request->file('edit_image')->store('portfolios', 'public');
+        }
+
+        $portfolio->save();
+
+        return redirect()->route('portfolios.index')->with('success', 'Portfolio berhasil diperbarui!');
     }
 
     /**

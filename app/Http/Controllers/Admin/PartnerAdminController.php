@@ -87,9 +87,9 @@ class PartnerAdminController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'nullable',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'edit_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'partner_type' => 'nullable',
             'partner_other_type' => 'nullable',
             'partner_email' => 'nullable',
@@ -99,14 +99,15 @@ class PartnerAdminController extends Controller
             'status' => ['nullable', Rule::in(Status::onlyActiveNonActive())],
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except('edit_image');
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('edit_image')) {
             if ($partner->image && Storage::disk('public')->exists($partner->image)) {
                 Storage::disk('public')->delete($partner->image);
             }
 
-            $data['image'] = $request->file('image')->store('partners', 'public');
+            // simpan langsung ke image
+            $data['image'] = $request->file('edit_image')->store('partners', 'public');
         }
 
         try {

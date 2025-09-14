@@ -82,24 +82,31 @@ class BlogsAdminController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'nullable',
             'category' => 'required',
             'author' => 'nullable',
-            'image' => 'nullable',
+            'edit_image' => 'nullable',
             'description' => 'nullable',
             'content' => 'nullable',
             'status' => 'nullable',
         ]);
 
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
+        $validated['slug'] = Str::slug($request->title);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('blogs', 'public');
+        if ($request->hasFile('edit_image')) {
+            $validated['edit_image'] = $request->file('edit_image')->store('blogs', 'public');
         }
 
-        $blog->update($data);
+        $blog->update([
+            'title' => $validated['title'],
+            'category' => $validated['category'],
+            'author' => $validated['author'],
+            'image' => $validated['edit_image'],
+            'description' => $validated['description'],
+            'content' => $validated['content'],
+            'status' => $validated['status'],
+        ]);
 
         return redirect()->route('blogs.index')->with('success', 'Blog berhasil diupdate!');
     }

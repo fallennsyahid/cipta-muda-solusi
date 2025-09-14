@@ -110,9 +110,13 @@
                                 class="h-9 w-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-text/20">
                                 <i class="fas fa-download"></i>
                             </a>
-                            <button class="cursor-pointer">
-                                <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                            </button>
+                            <form action="{{ route('cv.destroy', $cv->id) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="cursor-pointer">
+                                    <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
 
@@ -152,11 +156,19 @@
                                 <i class="fas fa-eye mr-2"></i>
                                 Detail
                             </button>
-                            <button type="button" data-id="{{ $cv->id }}"
-                                class="open-update-status flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
-                                <i class="fas fa-pen-to-square mr-2"></i>
-                                Update Status
-                            </button>
+                            @if ($cv->status === 'Pending')
+                                <button type="button" data-id="{{ $cv->id }}"
+                                    class="open-update-status flex items-center text-white bg-secondary px-4 py-2 rounded-lg cursor-pointer hover:bg-secondary/90">
+                                    <i class="fas fa-pen-to-square mr-2"></i>
+                                    Update Status
+                                </button>
+                            @else
+                                <button type="button" disabled
+                                    class="flex items-center text-white bg-secondary/50 px-4 py-2 rounded-lg cursor-not-allowed">
+                                    <i class="fas fa-pen-to-square mr-2"></i>
+                                    Update Status
+                                </button>
+                            @endif
                             <button type="button" data-id="{{ $cv->id }}"
                                 class="open-call-applicant flex items-center text-white bg-green-500 px-4 py-2 rounded-lg cursor-pointer hover:bg-green-600">
                                 <i class="fas fa-phone-volume mr-2"></i>
@@ -309,22 +321,20 @@
                 </div>
 
                 <div class="flex items-center justify-center space-x-3">
-                    <form action="" method="post">
+                    <form action="{{ route('cv.updateStatus', $cv->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="status" id="status" value="Diterima">
-                        <input type="hidden" name="company_status" id="company_status" value="Diterima">
                         <button type="submit"
                             class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer">
                             <i class="fas fa-circle-check mr-2"></i>
                             Terima
                         </button>
                     </form>
-                    <form action="" method="post">
+                    <form action="{{ route('cv.updateStatus', $cv->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="status" id="status" value="Ditolak">
-                        <input type="hidden" name="company_status" id="company_status" value="Ditolak">
                         <button type="submit"
                             class="flex items-center justify-center text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer">
                             <i class="fas fa-circle-xmark mr-2"></i>
@@ -335,9 +345,92 @@
             </div>
         </div>
         {{-- Update Status End --}}
+
+        {{-- Call Modal Start --}}
+        <div id="call-modal-{{ $cv->id }}" class="fixed z-[99999] inset-0 hidden justify-center items-center">
+            <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="flex justify-between items-center bg-gradient-to-r from-heading via-primary to-secondary p-5 relative overflow-hidden">
+                    <h1 class="text-xl text-white font-bold">Pilih Metode Hubungi</h1>
+                    <a href=""
+                        class="close-modal w-8 h-8 text-white flex justify-center items-center rounded-full hover:bg-white/30">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col justify-center space-y-4 p-5">
+                    <a href="https://wa.me/{{ $cv->applicant_phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Whatsapp
+                    </a>
+                    <a href="tel:{{ $cv->applicant_phone_number }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-amber-500 px-4 py-2 rounded-lg hover:bg-amber-600">
+                        <i class="fas fa-phone mr-2"></i>
+                        Telepon
+                    </a>
+                    <a href="mailto:{{ $cv->applicant_email }}" target="_blank"
+                        class="flex items-center justify-center text-white text-lg bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{-- Call Modal End --}}
     @endforeach
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const deleteForms = document.querySelectorAll('.delete-form');
+
+    deleteForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus',
+                text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e3342f',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    @endif
+</script>
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            showConfirmButton: true,
+        });
+    </script>
+@endif
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 <script src="{{ asset('asset-admin/js/cv.js') }}"></script>

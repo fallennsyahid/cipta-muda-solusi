@@ -70,6 +70,7 @@ Route::resource('admin/partnerReq', PartnerReqAdminController::class);
 Route::put('partnerReq/{id}/status', [PartnerReqAdminController::class, 'updateStatus'])->name('partner-request.updateStatus');
 
 Route::resource('admin/cv', CvAdminController::class);
+Route::put('/admin/{id}/status', [CvAdminController::class, 'updateStatus'])->name('cv.updateStatus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -144,13 +144,15 @@
                             <i class="fas fa-phone mr-2"></i>
                             {{ $partner->partner_phone_number }}
                         </div>
-                        <a href="{{ $partner->partner_links }}" target="_blank"
-                            class="flex items-center text-primary text-base group">
-                            <i class="fas fa-globe mr-2 text-text"></i>
-                            <span class="group-hover:underline">
-                                {{ $partner->partner_links }}
-                            </span>
-                        </a>
+                        @if ($partner->partner_links)
+                            <a href="{{ $partner->partner_links }}" target="_blank"
+                                class="flex items-center text-primary text-base group">
+                                <i class="fas fa-globe mr-2 text-text"></i>
+                                <span class="group-hover:underline">
+                                    {{ $partner->partner_links }}
+                                </span>
+                            </a>
+                        @endif
                     </div>
 
                     <p class="mt-5 text-text font-lato">
@@ -284,16 +286,18 @@
                             placeholder="www.perusahaan.com atau www.instagram.com/perusahaan">
                     </div>
 
-                    <div class="group">
-                        <label for="image"
+                    <div class="upload-group">
+                        <label
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-file"></i>
                             Upload Gambar<span class="text-red-400">*</span>
                         </label>
-                        <input type="file" name="image" id="image" class="hidden"
+
+                        <input type="file" name="image" class="file-input hidden"
                             accept="image/png,image/jpeg,image/jpg">
-                        <label for="image" id="drop-area"
-                            class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+
+                        <label
+                            class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
                                 <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                             </div>
@@ -306,21 +310,26 @@
                                 </p>
                             </div>
                         </label>
-                        <div id="preview-file" class="hidden justify-between bg-text/10 p-4 mt-2 rounded-lg">
+
+                        <!-- preview -->
+                        <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                             <div class="flex items-center gap-3">
+                                <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
                                 <div>
-                                    <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                                </div>
-                                <div class="flex flex-col">
-                                    <h1 id="file-name" class="text-base text-darkChoco font-semibold"></h1>
-                                    <span id="file-size" class="text-xs text-text"></span>
+                                    <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                    <div class="flex items-center gap-2 text-xs text-text">
+                                        <span class="file-size"></span>
+                                        <span>•</span>
+                                        <span>
+                                            <i class="fa-solid fa-circle-check text-green-400"></i>
+                                            Completed
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <a href="" id="remove-file">
-                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                </a>
-                            </div>
+                            <button type="button" class="remove-file">
+                                <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -466,16 +475,18 @@
                                 placeholder="www.perusahaan.com atau www.instagram.com/perusahaan">
                         </div>
 
-                        <div class="group">
-                            <label for="image"
+                        <div class="upload-group">
+                            <label
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-file"></i>
                                 Upload Gambar<span class="text-red-400">*</span>
                             </label>
-                            <input type="file" name="image" id="image" class="hidden"
+
+                            <input type="file" name="edit_image" class="file-input hidden"
                                 accept="image/png,image/jpeg,image/jpg">
-                            <label for="image" id="drop-area"
-                                class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+
+                            <label
+                                class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                 <div class="mb-4">
                                     <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                                 </div>
@@ -493,32 +504,37 @@
                                     <div class="flex justify-between bg-text/10 p-4 mt-2 rounded-lg">
                                         <div class="flex items-center gap-3">
                                             <div>
-                                                <i class="fas fa-image text-4xl text-darkChoco"></i>
+                                                <img src="{{ Storage::url($partner->image) }}" alt=""
+                                                    class="w-16 h-16 object-cover rounded-lg">
                                             </div>
                                             <a href="{{ Storage::url($partner->image) }}" target="_blank"
-                                                id="file-name" class="text-base text-darkChoco font-semibold">
+                                                class="text-base text-darkChoco font-semibold">
                                                 Foto Sebelumnya
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             @endif
-                            <div class="hidden justify-between bg-text/10 p-4 mt-2 rounded-lg">
+
+                            <!-- preview -->
+                            <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                                 <div class="flex items-center gap-3">
+                                    <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
                                     <div>
-                                        <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <h1" class="text-base text-darkChoco font-semibold">
-                                            </h1>
-                                            <span class="text-xs text-text"></span>
+                                        <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span class="file-size"></span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-circle-check text-green-400"></i>
+                                                Completed
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <a href="">
-                                        <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                    </a>
-                                </div>
+                                <button type="button" class="remove-file">
+                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                </button>
                             </div>
                         </div>
 
@@ -589,11 +605,13 @@
                         <i class="fas fa-envelope mr-2"></i>
                         Email
                     </a>
-                    <a href="{{ $partner->partner_links }}" target="_blank"
-                        class="flex items-center justify-center text-white text-lg bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600">
-                        <i class="fas fa-globe mr-2"></i>
-                        Website / Social Media
-                    </a>
+                    @if ($partner->partner_links)
+                        <a href="{{ $partner->partner_links }}" target="_blank"
+                            class="flex items-center justify-center text-white text-lg bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600">
+                            <i class="fas fa-globe mr-2"></i>
+                            Website / Social Media
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

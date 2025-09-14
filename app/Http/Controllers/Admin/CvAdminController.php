@@ -63,11 +63,20 @@ class CvAdminController extends Controller
         //
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $cvApplicants = CvApplicant::findOrFail($id);
+        $cvApplicants->update(['status' => $request->status]);
+
+        return back()->with('success', 'Status berhasil diupdate');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CvApplicant $cv)
     {
-        //
+        $cv->delete();
+        return redirect()->route('cv.index')->with('success', 'Data berhasil dihapus!');
     }
 }
