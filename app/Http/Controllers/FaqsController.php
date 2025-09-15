@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class FaqsController extends Controller
      */
     public function index()
     {
-        return view('faqs.index');
+        $faqs = Faq::where('is_published', Status::Published->value)->latest()->take(10)->get();
+        return view('faqs.index', compact('faqs'));
     }
 
     /**

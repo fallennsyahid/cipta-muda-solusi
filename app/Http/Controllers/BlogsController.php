@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::paginate(9);
+        $blogs = Blog::where('status', Status::Published->value)->paginate(9);
         return view('blogs.index', compact('blogs'));
     }
 

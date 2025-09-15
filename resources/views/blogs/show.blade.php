@@ -73,7 +73,7 @@
 
     <article class="mb-16">
         <div class="max-w-4xl mx-auto px-8">
-            <div class="font-lato text-xl text-primary prose">
+            <div class="font-lato text-xl prose">
                 {!! $blog->content !!}
             </div>
         </div>

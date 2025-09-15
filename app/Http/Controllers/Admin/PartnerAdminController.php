@@ -49,10 +49,14 @@ class PartnerAdminController extends Controller
             'partner_phone_number' => 'required',
             'partner_links' => 'nullable',
             'description' => 'required',
-            'status' => 'required',
+            'status' => ['required', Rule::in(Status::onlyActiveNonActive())],
         ]);
 
         $data = $request->all();
+
+        $data['partner_type'] = $request->partner_type;
+        $data['partner_other_type'] = $request->partner_type === PartnerTypes::Lainnya->value ? $request->partner_other_type : null;
+
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('partners', 'public');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PartnerTypes;
+use App\Enums\Status;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class HomeController extends Controller
     {
         // $partners = Partner::all();
         $partnerTypes = PartnerTypes::cases();
-        return view('welcome', compact('partnerTypes'));
+        $partners = Partner::where('status', Status::Active->value)->get();
+        return view('welcome', compact('partnerTypes', 'partners'));
     }
 
     /**

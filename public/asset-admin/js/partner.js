@@ -43,3 +43,24 @@ closeModal.forEach(btn => {
         modalOpen.classList.add('hidden');
     });
 });
+
+const partnerTypeSelect = document.getElementById('partner_type');
+const partnerOtherInput = document.getElementById('partner_other_type');
+
+// cek saat halaman load
+if (partnerTypeSelect.value === 'Lainnya') {
+    partnerOtherInput.classList.remove('hidden');
+} else {
+    partnerOtherInput.classList.add('hidden');
+    partnerOtherInput.value = '';
+}
+
+// cek saat user ganti select
+partnerTypeSelect.addEventListener('change', () => {
+    if (partnerTypeSelect.value === 'Lainnya') {
+        partnerOtherInput.classList.remove('hidden');
+    } else {
+        partnerOtherInput.classList.add('hidden');
+        partnerOtherInput.value = '';
+    }
+});

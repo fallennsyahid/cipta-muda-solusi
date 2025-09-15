@@ -930,18 +930,12 @@
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 mx-12 gap-6 my-10">
-                <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
-                    <img src="{{ asset('landing/webp/angkasa-pura.webp') }}" alt=""
-                        class="aspect-video h-36 w-full grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
-                </div>
-                <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
-                    <img src="{{ asset('landing/webp/telkom.webp') }}" alt=""
-                        class="aspect-square h-36 w-36 grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
-                </div>
-                <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
-                    <img src="{{ asset('landing/webp/kemenkop.webp') }}" alt=""
-                        class="aspect-video h-36 w-36 grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
-                </div>
+                @foreach ($partners as $partner)
+                    <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
+                        <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
+                            class="aspect-square grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
+                    </div>
+                @endforeach
             </div>
 
             <div class="flex flex-col gap-2 items-center justify-center">

@@ -50,6 +50,8 @@ Route::get('testing', function () {
 
 Route::resource('/dashboard', DashboardAdminController::class)->middleware(['auth', 'verified']);
 Route::post('/dashboard/job/store', [DashboardAdminController::class, 'jobCreate'])->name('newJob.store');
+Route::post('/dashboard/partner/store', [DashboardAdminController::class, 'addPartner'])->name('addPartner.store');
+Route::post('/dashboard/blog/status', [DashboardAdminController::class, 'createNewBlog'])->name('createBlog.store');
 
 Route::resource('/admin/jobs', JobVacancyAdminController::class);
 Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');

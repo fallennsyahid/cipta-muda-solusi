@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- Tiny --}}
+    <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
+        referrerpolicy="origin" crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -145,22 +149,75 @@
                                 <i class="fas fa-user-group mr-3"></i>
                                 Tambah Partner Baru
                             </a>
-                            <a href=""
+                            <a href="#" id="open-create-blog"
                                 class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
                                 <i class="fas fa-newspaper mr-3"></i>
                                 Buat Postingan Blog Baru
                             </a>
-                            <a href=""
+                            <a href="{{ route('faqs.index') }}"
                                 class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
                                 <i class="fas fa-question-circle mr-3"></i>
                                 Update FAQ
                             </a>
                         </div>
                     </div>
+
+                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
+                        <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
+                            <i class="fas fa-chart-line"></i>
+                            Dashboard Statistik
+                        </div>
+                        <canvas id="dashboardChart" class="w-full h-64"></canvas>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('dashboardChart').getContext('2d');
+        const dashboardChart = new Chart(ctx, {
+            type: 'area', // bisa diganti 'line', 'doughnut', dll
+            data: {
+                labels: ['Lowongan', 'Partner', 'Blog', 'FAQ'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [12, 8, 5, 20], // data statis, nanti bisa diganti dinamis
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // biru
+                        'rgba(34, 197, 94, 0.7)', // hijau
+                        'rgba(234, 179, 8, 0.7)', // kuning
+                        'rgba(239, 68, 68, 0.7)' // merah
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(34, 197, 94, 1)',
+                        'rgba(234, 179, 8, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 
     {{-- Create New Jobs Start --}}
     <div id="create-new-job" class="fixed inset-0 z-99999 hidden justify-center items-center animate-fade-in">
@@ -345,7 +402,7 @@
             </div>
 
             <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
-                <form action="{{ route('partner.store') }}" method="POST" enctype="multipart/form-data"
+                <form action="{{ route('addPartner.store') }}" method="POST" enctype="multipart/form-data"
                     class="space-y-6">
                     @csrf
                     <div class="group">
@@ -502,7 +559,213 @@
         </div>
     </div>
     {{-- Add Partner End --}}
+
+    {{-- Create Blog Start --}}
+    <div id="create-new-blog" class="fixed inset-0 z-99999 hidden items-center justify-center p-4 animate-fade-in">
+        <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+        <div class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+            <div
+                class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative z-10">
+                    <div
+                        class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                        <i class="fas fa-newspaper text-3xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white mb-2">Tambah Blog Baru</h1>
+                    <p class="text-white/90 text-base font-lato">Mari ciptakan sebuah berita terkini</p>
+                </div>
+
+                <button
+                    class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                <form action="{{ route('createBlog.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="space-y-6">
+                        <div class="group">
+                            <label for="title"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-heading"></i>
+                                Judul Blog <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="title" name="title" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Panduan Memilih Framework Web Development yang Tepat">
+                        </div>
+
+                        <div class="group">
+                            <label for="category"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-list"></i>
+                                Kategori <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="category" name="category" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Teknologi">
+                        </div>
+
+                        <div class="group">
+                            <label for="author"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-user"></i>
+                                Penulis/Pencipta <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="author" name="author" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Jakarta">
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Deksripsi<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="description" name="description" rows="4" maxlength="250" required
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda."></textarea>
+                            <p class="text-sm text-text">
+                                <span id="char-count">0</span>/250 Karakter
+                            </p>
+                        </div>
+
+                        <div class="group">
+                            <label for="content_create"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-table"></i>
+                                Content<span class="text-red-400">*</span>
+                            </label>
+                            <textarea id="content_create" name="content_create" rows="6" required class="tinymce-editor w-full px-4 py-3"></textarea>
+                        </div>
+
+                        <div class="upload-group">
+                            <label
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-file"></i>
+                                Upload Gambar<span class="text-red-400">*</span>
+                            </label>
+
+                            <input type="file" name="image" class="file-input hidden"
+                                accept="image/png,image/jpeg,image/jpg">
+
+                            <label
+                                class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                                <div class="mb-4">
+                                    <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                                </div>
+                                <div>
+                                    <h1 class="text-base font-medium text-darkChoco">
+                                        Choose a file or drag & drop it here
+                                    </h1>
+                                    <p class="text-text text-sm font-medium font-lato">
+                                        JPEG, PNG, JPG format, max. 5MB
+                                    </p>
+                                </div>
+                            </label>
+
+                            <!-- preview -->
+                            <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
+                                    <div>
+                                        <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span class="file-size"></span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-spinner text-blue-400"></i>
+                                                Uploading...
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="remove-file">
+                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label for="status"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Status <span class="text-red-400">*</span>
+                            </label>
+                            <select name="status" id="status"
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
+                                <option value="-">Pilih Status Blog</option>
+                                @foreach ($blogStatus as $status)
+                                    <option value="{{ $status->value }}">
+                                        {{ $status->value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button type="button"
+                                class="close-modal flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                <i class="fas fa-times mr-2"></i>
+                                Batal
+                            </button>
+                            <button type="submit"
+                                class="relative z-50 px-4 flex-1 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 cursor-pointer">
+                                <i class="fas fa-save mr-2"></i> Simpan
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Create Blog End --}}
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        tinymce.init({
+            selector: 'textarea.tinymce-editor',
+            plugins: [
+                // Core editing features
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists',
+                'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                // Your account includes a free trial of TinyMCE premium features
+                // Try the most popular premium features until Sep 29, 2025:
+                'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed',
+                'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable',
+                'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments',
+                'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography',
+                'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
+                'See docs to implement AI Assistant')),
+            uploadcare_public_key: '909f4161f60569b19c78',
+
+            setup: function(editor) {
+                editor.on('change', function() {
+                    tinymce.triggerSave(); // simpan isi editor ke <textarea>
+                });
+            }
+        });
+    });
+</script>
 
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 <script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>

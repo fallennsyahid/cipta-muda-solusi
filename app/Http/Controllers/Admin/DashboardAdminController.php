@@ -6,11 +6,14 @@ use App\Models\Faq;
 use App\Models\Blog;
 use App\Enums\Status;
 use App\Enums\JobType;
-use App\Enums\PartnerTypes;
 use App\Models\Partner;
+use App\Enums\BlogStatus;
 use App\Models\JobVacancy;
+use App\Enums\PartnerTypes;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Mews\Purifier\Facades\Purifier;
 use App\Http\Controllers\Controller;
 
 class DashboardAdminController extends Controller
@@ -54,6 +57,8 @@ class DashboardAdminController extends Controller
         $partnerTypes = PartnerTypes::cases();
         $partnerStatus = Status::onlyActiveNonActive();
 
+        $blogStatus = BlogStatus::cases();
+
         return view('admin.dashboard', compact(
             'totalJobsThisMonth',
             'percentageJobChange',
@@ -67,6 +72,7 @@ class DashboardAdminController extends Controller
             'jobStatus',
             'partnerTypes',
             'partnerStatus',
+            'blogStatus',
         ));
     }
 
@@ -142,6 +148,39 @@ class DashboardAdminController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function createNewBlog(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable',
+            'category' => 'nullable',
+            'author' => 'nullable',
+            'image' => 'nullable',
+            'description' => 'nullable',
+            'content_create' => 'nullable',
+            'status' => 'nullable',
+        ]);
+
+        $validated['slug'] = Str::slug($request->title);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('blogs', 'public');
+        }
+
+        $validated['content'] = Purifier::clean($validated['content_create']);
+
+        Blog::create([
+            'title' => $validated['title'],
+            'category' => $validated['category'],
+            'author' => $validated['author'],
+            'image' => $validated['image'],
+            'description' => $validated['description'],
+            'content' => $validated['content_create'],
+            'status' => $validated['status'],
+        ]);
+
+        return redirect()->route('blogs.index')->with('success', 'Blog berhasil dibuat!');
     }
 
     /**

@@ -10,6 +10,7 @@ enum PartnerTypes: string
     case Retail = 'Retail';
     case Keuangan = 'Keuangan';
     case Kesehatan = 'Kesehatan';
+    case Lainnya = 'Lainnya';
 
     public static function values(): array
     {

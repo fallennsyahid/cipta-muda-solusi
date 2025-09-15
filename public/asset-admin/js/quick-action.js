@@ -30,3 +30,14 @@ openModalAddPartner.addEventListener('click', function (e) {
     modalAddNewPartner.classList.toggle('hidden');
     modalAddNewPartner.classList.toggle('flex');
 });
+
+// Modal Add New Blog
+const openModalCreateBlog = document.querySelector('#open-create-blog');
+const modalCreateBlog = document.querySelector('#create-new-blog');
+
+openModalCreateBlog.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    modalCreateBlog.classList.toggle('hidden');
+    modalCreateBlog.classList.toggle('flex');
+});

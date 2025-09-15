@@ -69,8 +69,8 @@
                     <h1 class="text-sm font-medium text-text">
                         Belum Dibalas
                     </h1>
-                    <div class="w-8 h-8 rounded-lg bg-amber-600 flex justify-center items-center">
-                        <i class="fas fa-clock text-white text-base"></i>
+                    <div class="w-8 h-8 rounded-lg bg-red-600 flex justify-center items-center">
+                        <i class="fas fa-circle-xmark text-white text-base"></i>
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">

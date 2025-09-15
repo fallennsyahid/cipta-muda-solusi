@@ -108,15 +108,21 @@
                             <div class="flex flex-col">
                                 <div class="flex items-center gap-3">
                                     <h1 class="text-2xl text-heading font-semibold">{{ $partner->name }}</h1>
-                                    @if ($partner->status = 'Active')
+                                    @if ($partner->status === 'Active')
                                         <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Active</span>
                                     @else
                                         <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Non-Active</span>
                                     @endif
                                 </div>
-                                <span class="block mt-2 text-text font-medium">
-                                    {{ $partner->partner_type }}
-                                </span>
+                                @if ($partner->partner_type === 'Lainnya')
+                                    <span class="block mt-2 text-text font-medium">
+                                        {{ $partner->partner_other_type }}
+                                    </span>
+                                @else
+                                    <span class="block mt-2 text-text font-medium">
+                                        {{ $partner->partner_type }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="relative z-50 flex items-center gap-2">
@@ -180,6 +186,11 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="mt-4">
+            {{ $partners->links() }}
+        </div>
+
     </x-admin.layout>
 
     {{-- Modal Create Start --}}
@@ -255,7 +266,6 @@
                             @foreach ($partnerTypes as $partnerType)
                                 <option value="{{ $partnerType->value }}">{{ $partnerType->value }}</option>
                             @endforeach
-                            <option value="other">Lainnya</option>
                         </select>
 
                         <input type="text" id="partner_other_type" name="partner_other_type"
