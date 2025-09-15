@@ -33,27 +33,28 @@
 
             <div class="mb-6">
                 <span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium text-sm">
-                    Development
+                    {{ $blog->category }}
                 </span>
             </div>
 
             <h1 class="text-4xl md:text-5xl font-bold text-heading mb-6 text-balance">
-                Panduan Memilih Framework Web Development yang Tepat
+                {{ $blog->title }}
             </h1>
 
             <div class="flex flex-wrap items-center gap-6 text-text mb-8">
                 <div class="flex items-center gap-2">
                     <i class="fas fa-user"></i>
-                    <span class="font-medium">Author</span>
+                    <span class="font-medium">{{ $blog->author }}</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fas fa-calendar"></i>
-                    <span class="">10 Januari 2089</span>
+                    <span class="">{{ $blog->created_at->locale('id')->translatedFormat('d F Y') }}</span>
                 </div>
             </div>
 
             <div class="mb-8">
-                <button type="button"
+                <button type="button" id="shareBtn" data-url="{{ route('user-blog-show', $blog->slug) }}"
+                    data-title="{{ $blog->title }}" data-category="{{ $blog->category }}"
                     class="flex items-center gap-2 bg-transparent text-lg rounded-lg border-2 border-text/25 text-primary px-6 py-2 cursor-pointer hover:bg-secondary/15">
                     <i class="fas fa-share-nodes"></i>
                     Share
@@ -65,58 +66,21 @@
     <section class="mb-12">
         <div class="max-w-4xl mx-auto px-8">
             <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
-                <img src="{{ asset('landing/webp/blogs/blog-1.webp') }}" alt=""
-                    class="w-full h-full object-cover">
+                <img src="{{ Storage::url($blog->image) }}" alt="" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
 
     <article class="mb-16">
         <div class="max-w-4xl mx-auto px-8">
-            <div class="font-lato text-xl text-primary">
-                <p>
-                    Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil
-                    dan
-                    Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak
-                    beradaptasi berisiko tertinggal dari kompetitor.
-                </p>
-
-                <h2 class="text-2xl font-semibold mt-6">Apa itu Transformasi Digital?</h2>
-                <p>
-                    Transformasi digital adalah proses mengintegrasikan teknologi digital ke dalam semua aspek bisnis,
-                    mengubah cara perusahaan beroperasi dan memberikan nilai kepada pelanggan. Ini bukan hanya tentang
-                    menggunakan teknologi, tetapi mengubah mindset dan budaya perusahaan.
-                </p>
-
-                <h2 class="text-2xl font-semibold mt-6">Manfaat untuk UKM</h2>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>
-                        <strong>Efisiensi Operasional</strong> – Otomatisasi proses bisnis dapat menghemat waktu dan
-                        mengurangi kesalahan manual. Sistem manajemen inventori digital, misalnya, dapat membantu UKM
-                        melacak stok dengan lebih akurat.
-                    </li>
-                    <li>
-                        <strong>Jangkauan Pasar yang Lebih Luas</strong> – Platform e-commerce dan media sosial
-                        memungkinkan
-                        UKM menjangkau pelanggan di luar area geografis mereka, membuka peluang pasar yang lebih besar.
-                    </li>
-                    <li>
-                        <strong>Pengambilan Keputusan Berbasis Data</strong> – Tools analitik membantu UKM memahami
-                        perilaku
-                        pelanggan dan tren pasar, memungkinkan pengambilan keputusan yang lebih informed.
-                    </li>
-                </ol>
-
-                <h2 class="text-2xl font-semibold mt-6">Langkah-langkah Memulai</h2>
-                <p>
-                    Mulailah dengan mengidentifikasi proses bisnis yang paling membutuhkan digitalisasi. Investasi tidak
-                    harus besar – mulai dari tools sederhana seperti sistem POS digital atau platform media sosial untuk
-                    marketing.
-                </p>
+            <div class="font-lato text-xl text-primary prose">
+                {!! $blog->content !!}
             </div>
         </div>
     </article>
 
 </body>
+
+<script src="{{ asset('js/blog.js') }}"></script>
 
 </html>

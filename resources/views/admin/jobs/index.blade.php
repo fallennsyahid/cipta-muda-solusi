@@ -434,7 +434,6 @@
                                 </label>
                                 <select name="job_type" id="job_type"
                                     class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
-                                    <option value="-">Pilih tipe pekerjaan</option>
                                     @foreach ($jobType as $type)
                                         <option value="{{ $type->value }}"
                                             {{ $job->job_type === $type->value ? 'selected' : '' }}>

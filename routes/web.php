@@ -35,7 +35,7 @@ Route::get('/faqs', [FaqsController::class, 'index'])->name('user.faqs.index');
 Route::post('/faqs/store', [FaqsController::class, 'store'])->name('user.faqs.store');
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('user.blogs.index');
-Route::get('blogs/show', [BlogsController::class, 'index2'])->name('user-blogs-blog');
+Route::get('blogs/{slug}/show', [BlogsController::class, 'show'])->name('user-blog-show');
 
 Route::post('/partner-request', [PartnerRequestController::class, 'store'])->name('user.partnerReq');
 
@@ -49,9 +49,11 @@ Route::get('testing', function () {
 
 
 Route::resource('/dashboard', DashboardAdminController::class)->middleware(['auth', 'verified']);
+Route::post('/dashboard/job/store', [DashboardAdminController::class, 'jobCreate'])->name('newJob.store');
 
 Route::resource('/admin/jobs', JobVacancyAdminController::class);
 Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');
+Route::delete('/admin/job/applicants/{applicant}', [JobVacancyAdminController::class, 'deleteApplicant'])->name('applicant.delete');
 
 Route::resource('/admin/portfolios', PortfoliosAdminController::class);
 

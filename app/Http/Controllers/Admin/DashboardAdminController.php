@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Faq;
 use App\Models\Blog;
 use App\Enums\Status;
+use App\Enums\JobType;
+use App\Enums\PartnerTypes;
 use App\Models\Partner;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class DashboardAdminController extends Controller
@@ -17,11 +20,54 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        $totalJobs = JobVacancy::count();
-        $totalActivePartners = Partner::where('status', Status::Active->value)->count();
-        $totalBlogPublished = Blog::where('status', Status::Published->value)->count();
-        $totalFaqs = Faq::count();
-        return view('admin.dashboard', compact('totalJobs', 'totalActivePartners', 'totalBlogPublished', 'totalFaqs'));
+        $totalJobsThisMonth = JobVacancy::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $totalJobsLastMonth = JobVacancy::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $percentageJobChange = 0;
+        if ($totalJobsLastMonth > 0) {
+            $percentageJobChange = (($totalJobsThisMonth - $totalJobsLastMonth) / $totalJobsLastMonth) * 100;
+        }
+
+        $totalActivePartnersThisMonth = Partner::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $totalActivePartnersLastMonth = Partner::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $percentageActivePartnersChange = 0;
+        if ($totalActivePartnersLastMonth > 0) {
+            $percentageActivePartnersChange = (($totalActivePartnersThisMonth - $totalActivePartnersLastMonth) / $totalActivePartnersLastMonth) * 100;
+        }
+
+        $totalBlogPublishedThisMonth = Blog::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $totalBlogPublishedLastMonth = Blog::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $percentageBlogPublishedChange = 0;
+        if ($totalBlogPublishedLastMonth > 0) {
+            $percentageBlogPublishedChange = (($totalBlogPublishedThisMonth - $totalBlogPublishedLastMonth) / $totalBlogPublishedLastMonth) * 100;
+        }
+
+        $totalFaqsThisMonth = Faq::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $totalFaqsLastMonth = Faq::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $percentageFaqsChange = 0;
+        if ($totalFaqsLastMonth) {
+            $percentageFaqsChange = (($totalFaqsThisMonth - $totalFaqsLastMonth) / $totalFaqsLastMonth) * 100;
+        }
+
+        $jobTypes = JobType::cases();
+        $jobStatus = Status::onlyActiveNonActive();
+
+        $partnerTypes = PartnerTypes::cases();
+        $partnerStatus = Status::onlyActiveNonActive();
+
+        return view('admin.dashboard', compact(
+            'totalJobsThisMonth',
+            'percentageJobChange',
+            'totalActivePartnersThisMonth',
+            'percentageActivePartnersChange',
+            'totalBlogPublishedThisMonth',
+            'percentageBlogPublishedChange',
+            'totalFaqsThisMonth',
+            'percentageFaqsChange',
+            'jobTypes',
+            'jobStatus',
+            'partnerTypes',
+            'partnerStatus',
+        ));
     }
 
     /**
@@ -38,6 +84,64 @@ class DashboardAdminController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function jobCreate(Request $request)
+    {
+        // dd($request->all());
+
+        $validated = $request->validate([
+            'position' => 'required|string|min:5|max:100',
+            'departement' => 'required|string|max:100',
+            'location' => 'required|string|max:100',
+            'job_type' => ['required', Rule::in(JobType::values())],
+            'salary' => 'required|string|max:50',
+            'description' => 'required|string|min:50|max:250',
+            'skills' => 'required|array|min:3|max:5',
+            'skills.*' => 'nullable|string|max:50',
+            'status' => ['required', Rule::in(Status::onlyActiveNonActive())],
+        ]);
+
+        $validated['skills'] = array_values(array_filter(
+            $validated['skills'],
+            fn($value) => !is_null($value) && $value !== ''
+        ));
+
+        try {
+            JobVacancy::create($validated);
+
+            return redirect()->route('dashboard.index')->with('success', 'Lowongan berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan, coba lagi..');
+        }
+    }
+
+    public function addPartner(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'image' => 'nullable',
+            'partner_type' => 'required',
+            'partner_other_type' => 'nullable',
+            'partner_email' => 'required',
+            'partner_phone_number' => 'required',
+            'partner_links' => 'nullable',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('partners', 'public');
+        }
+
+        try {
+            Partner::create($data);
+            return redirect()->route('dashboard.index')->with('success', 'Partner berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**

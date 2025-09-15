@@ -12,8 +12,8 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        // $blogs = Blog::paginate(9);
-        return view('blogs.index');
+        $blogs = Blog::paginate(9);
+        return view('blogs.index', compact('blogs'));
     }
 
     public function index2()
@@ -40,9 +40,9 @@ class BlogsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::where('slug', $slug)->firstOrFail();
         return view('blogs.show', compact('blog'));
     }
 

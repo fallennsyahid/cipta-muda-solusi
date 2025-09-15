@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -67,6 +68,10 @@ select:focus {
 
 .hamburger-active > span:nth-child(3) {
     @apply -rotate-45;
+}
+
+.tox {
+    z-index: 99999 !important;
 }
 
 .shadow-1 {

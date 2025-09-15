@@ -118,19 +118,29 @@
                                         {{ \Carbon\Carbon::parse($applicant->date_of_birth)->age }} thn</span>
                                 </div>
                             </div>
-                            @if ($applicant->status === 'Pending')
-                                <div class="bg-amber-200 px-4 py-2 rounded-full text-amber-700">
-                                    {{ $applicant->status }}
-                                </div>
-                            @elseif ($applicant->status === 'Diterima')
-                                <div class="bg-green-200 px-4 py-2 rounded-full text-green-700">
-                                    {{ $applicant->status }}
-                                </div>
-                            @else
-                                <div class="bg-red-200 px-4 py-2 rounded-full text-red-700">
-                                    {{ $applicant->status }}
-                                </div>
-                            @endif
+                            <div class="flex items-center space-x-3 relative z-50">
+                                @if ($applicant->status === 'Pending')
+                                    <div class="bg-amber-200 px-4 py-2 rounded-full text-amber-700">
+                                        {{ $applicant->status }}
+                                    </div>
+                                @elseif ($applicant->status === 'Diterima')
+                                    <div class="bg-green-200 px-4 py-2 rounded-full text-green-700">
+                                        {{ $applicant->status }}
+                                    </div>
+                                @else
+                                    <div class="bg-red-200 px-4 py-2 rounded-full text-red-700">
+                                        {{ $applicant->status }}
+                                    </div>
+                                @endif
+                                <form action="{{ route('applicant.delete', $applicant->id) }}" method="post"
+                                    class="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="cursor-pointer">
+                                        <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
 
                         {{-- Info --}}
@@ -209,7 +219,8 @@
 
     {{-- Modal Cover Letter Start --}}
     @foreach ($applicants as $applicant)
-        <div id="cover-letter-{{ $applicant->id }}" class="fixed z-[99999] inset-0 hidden justify-center items-center">
+        <div id="cover-letter-{{ $applicant->id }}"
+            class="fixed z-[99999] inset-0 hidden justify-center items-center">
             <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
             <div
@@ -333,8 +344,6 @@
         </div>
         {{-- Modall Call Applicant End --}}
     @endforeach
-
-    d
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

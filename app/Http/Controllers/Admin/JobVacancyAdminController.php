@@ -48,7 +48,7 @@ class JobVacancyAdminController extends Controller
             'description' => 'required|string|min:50|max:250',
             'skills' => 'required|array|min:3|max:5',
             'skills.*' => 'nullable|string|max:50',
-            'status' => ['required', Rule::in(Status::values())],
+            'status' => ['required', Rule::in(Status::onlyActiveNonActive())],
         ]);
 
         $validated['skills'] = array_values(array_filter(
@@ -89,6 +89,12 @@ class JobVacancyAdminController extends Controller
         $applicant->save();
 
         return redirect()->back()->with('success', 'Status Pelamar berhasil diperbarui.');
+    }
+
+    public function deleteApplicant(Applicant $applicant)
+    {
+        $applicant->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
     }
 
     /**

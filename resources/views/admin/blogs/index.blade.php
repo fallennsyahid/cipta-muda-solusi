@@ -22,10 +22,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- Tiny --}}
+    <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
+        referrerpolicy="origin" crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
-
     <x-admin.layout>
         <div class="flex flex-wrap items-center justify-between">
             <div class="space-y-2">
@@ -266,14 +269,12 @@
                         </div>
 
                         <div class="group">
-                            <label for="content"
+                            <label for="content_create"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-table"></i>
                                 Content<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="content" name="content" rows="6" required
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor..."></textarea>
+                            <textarea id="content_create" name="content_create" rows="6" required class="tinymce-editor w-full px-4 py-3"></textarea>
                         </div>
 
                         <div class="upload-group">
@@ -285,6 +286,8 @@
 
                             <input type="file" name="image" class="file-input hidden"
                                 accept="image/png,image/jpeg,image/jpg">
+
+                            {{-- <input type="file" name="image" id="image"> --}}
 
                             <label
                                 class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
@@ -347,7 +350,7 @@
                                 Batal
                             </button>
                             <button type="submit"
-                                class="px-4 flex-1 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 cursor-pointer">
+                                class="relative z-50 px-4 flex-1 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 cursor-pointer">
                                 <i class="fas fa-save mr-2"></i> Simpan
                             </button>
                         </div>
@@ -439,9 +442,10 @@
                                 <i class="fas fa-table"></i>
                                 Content<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="content" name="content" rows="6" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor...">{{ $blog->content }}</textarea>
+                            <div
+                                class="prose w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                                {!! $blog->content !!}
+                            </div>
                         </div>
 
 
@@ -561,7 +565,7 @@
                                     Content<span class="text-red-400">*</span>
                                 </label>
                                 <textarea id="content" name="content" rows="6"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    class="tinymce-editor w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
                                     placeholder="Transformasi digital telah menjadi kebutuhan mendesak bagi semua jenis bisnis, termasuk Usaha Kecil dan Menengah (UKM). Pandemi COVID-19 telah mempercepat adopsi teknologi digital, dan UKM yang tidak beradaptasi berisiko tertinggal dari kompetitor...">{{ $blog->content }}</textarea>
                             </div>
 
@@ -650,6 +654,46 @@
     {{-- Modal Edit End --}}
 
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        tinymce.init({
+            selector: 'textarea.tinymce-editor',
+            plugins: [
+                // Core editing features
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists',
+                'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                // Your account includes a free trial of TinyMCE premium features
+                // Try the most popular premium features until Sep 29, 2025:
+                'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed',
+                'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable',
+                'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments',
+                'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography',
+                'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
+                'See docs to implement AI Assistant')),
+            uploadcare_public_key: '909f4161f60569b19c78',
+
+            setup: function(editor) {
+                editor.on('change', function() {
+                    tinymce.triggerSave(); // simpan isi editor ke <textarea>
+                });
+            }
+        });
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>

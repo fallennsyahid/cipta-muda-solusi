@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use COM;
+use Mews\Purifier\Facades\Purifier;
 use App\Enums\BlogStatus;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
-use Intervention\Image\Colors\Rgb\Channels\Red;
 
 class BlogsAdminController extends Controller
 {
@@ -39,24 +39,33 @@ class BlogsAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'nullable',
             'category' => 'nullable',
             'author' => 'nullable',
             'image' => 'nullable',
             'description' => 'nullable',
-            'content' => 'nullable',
+            'content_create' => 'nullable',
             'status' => 'nullable',
         ]);
 
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->title);
+        $validated['slug'] = Str::slug($request->title);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('blogs', 'public');
+            $validated['image'] = $request->file('image')->store('blogs', 'public');
         }
 
-        Blog::create($data);
+        $validated['content'] = Purifier::clean($validated['content_create']);
+
+        Blog::create([
+            'title' => $validated['title'],
+            'category' => $validated['category'],
+            'author' => $validated['author'],
+            'image' => $validated['image'],
+            'description' => $validated['description'],
+            'content' => $validated['content_create'],
+            'status' => $validated['status'],
+        ]);
 
         return redirect()->route('blogs.index')->with('success', 'Blog berhasil dibuat!');
     }
@@ -99,13 +108,13 @@ class BlogsAdminController extends Controller
         }
 
         $blog->update([
-            'title' => $validated['title'],
-            'category' => $validated['category'],
-            'author' => $validated['author'],
-            'image' => $validated['edit_image'],
-            'description' => $validated['description'],
-            'content' => $validated['content'],
-            'status' => $validated['status'],
+            'title' => $validated['title'] ?? $blog->title,
+            'category' => $validated['category'] ?? $blog->category,
+            'author' => $validated['author'] ?? $blog->author,
+            'image' => $validated['edit_image'] ?? $blog->image,
+            'description' => $validated['description'] ?? $blog->description,
+            'content' => $validated['content'] ?? $blog->content,
+            'status' => $validated['status'] ?? $blog->status,
         ]);
 
         return redirect()->route('blogs.index')->with('success', 'Blog berhasil diupdate!');
