@@ -91,7 +91,7 @@ class PartnerAdminController extends Controller
      */
     public function update(Request $request, Partner $partner)
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'name' => 'nullable',
             'edit_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'partner_type' => 'nullable',

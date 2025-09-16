@@ -45,3 +45,20 @@ openEditModal.forEach(btn => {
         modalEdit.classList.add('flex');
     });
 });
+
+document.querySelectorAll('.category').forEach((select, index) => {
+    const otherInput = document.querySelectorAll('.other_category')[index];
+
+    if (select.value === 'Other' || select.value === 'Lainnya') {
+        otherInput.classList.remove('hidden');
+    }
+
+    select.addEventListener('change', function () {
+        if (this.value === 'Other' || this.value === 'Lainnya') {
+            otherInput.classList.remove('hidden');
+        } else {
+            otherInput.classList.add('hidden');
+            otherInput.value = '';
+        }
+    });
+});

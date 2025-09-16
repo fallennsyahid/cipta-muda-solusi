@@ -31,74 +31,76 @@
     <x-header>
         <div class="flex items-center justify-center px-4 py-6">
             <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
-                class="block absolute right-4 lg:hidden">
+                class="block absolute right-4 lg:hidden cursor-pointer">
                 <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
                 <span class="hamburger-line transition duration-300 ease-in-out"></span>
                 <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
             </button>
 
-            <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
+            <nav class="navbar-effect shadow-2 px-6 py-4 rounded-full hidden lg:block">
                 <ul class="flex items-center justify-center gap-8" id="#nav-active">
                     <li class="group">
-                        <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Beranda
+                        <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">Beranda
                         </a>
                     </li>
-                    <li class="group">
-                        <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Tentang
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Layanan
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Portfolio
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Team
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="#partner" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Partner
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                            Contact
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="{{ route('user.jobs.index') }}"
-                            class="text-base font-medium text-black2 group-hover:text-primary">
-                            Karir
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="{{ route('user.faqs.index') }}"
-                            class="text-base font-medium text-black2 group-hover:text-primary">
-                            Faq
-                        </a>
-                    </li>
-                    <li class="group">
-                        <a href="{{ route('user.blogs.index') }}"
-                            class="text-base font-medium text-black2 group-hover:text-primary">
-                            Blog
-                        </a>
-                    </li>
-                    <li class="group">
-                        <i class="fas fa-sun text-darkChoco text-2xl"></i>
-                    </li>
+                    <li class="group"> <a href="#about"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Tentang </a> </li>
+                    <li class="group"> <a href="#service"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Layanan </a> </li>
+                    <li class="group"> <a href="#portfolio"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Portfolio </a> </li>
+                    <li class="group"> <a href="#team"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Team </a> </li>
+                    <li class="group"> <a href="#partner"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Partner </a> </li>
+                    <li class="group"> <a href="#contact"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Contact </a> </li>
+                    <li class="group"> <a href="{{ route('user.jobs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Karir </a> </li>
+                    <li class="group"> <a href="{{ route('user.faqs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Faq </a> </li>
+                    <li class="group"> <a href="{{ route('user.blogs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary"> Blog </a> </li>
                 </ul>
             </nav>
         </div>
+
+        <nav id="nav-menu"
+            class="fixed top-0 right-0 h-full bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden">
+            <div class="flex justify-end p-6">
+                <button
+                    class="close-navbar flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/10 group duration-200 transition-all ease-in-out cursor-pointer">
+                    <i
+                        class="fas fa-times text-xl text-darkChoco transform transition-transform group-hover:rotate-90"></i>
+                </button>
+            </div>
+            <ul class="flex flex-col gap-6 p-6">
+                <li class="group">
+                    <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">Beranda
+                    </a>
+                </li>
+                <li class="group"> <a href="#about"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Tentang </a> </li>
+                <li class="group"> <a href="#service"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Layanan </a> </li>
+                <li class="group"> <a href="#portfolio"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Portfolio </a> </li>
+                <li class="group"> <a href="#team"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Team </a> </li>
+                <li class="group"> <a href="#partner"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Partner </a> </li>
+                <li class="group"> <a href="#contact"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Contact </a> </li>
+                <li class="group"> <a href="{{ route('user.jobs.index') }}"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Karir </a> </li>
+                <li class="group"> <a href="{{ route('user.faqs.index') }}"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Faq </a> </li>
+                <li class="group"> <a href="{{ route('user.blogs.index') }}"
+                        class="text-base font-medium text-black2 group-hover:text-primary"> Blog </a> </li>
+            </ul>
+        </nav>
     </x-header>
+
     {{-- Header Start --}}
 
     {{-- Hero Section Start --}}
@@ -571,51 +573,52 @@
             </p>
 
             <div class="mx-12 flex flex-col gap-y-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
-                    <div class="flex flex-col items-start gap-3">
-                        <span class="flex items-center text-secondary font-lato text-xl font-semibold">
-                            <i class="fas fa-gears rotate-90 text-text mr-2"></i>
-                            Switch dan Router MIKROTIK
-                        </span>
-                        <h1 class="font-bold text-4xl text-heading">INFRASTRUCTURE INSTALATION</h1>
-                        <p class="text-text text-xl">
-                            Instalasi dan konfigurasi switch Catalyst 2960X dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
-                        </p>
-                        <div
-                            class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl">
-                            APRIL 2020
-                        </div>
+                @foreach ($portfolios as $index => $portfolio)
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
+                        {{-- Kalau index genap: teks kiri, gambar kanan --}}
+                        @if ($index % 2 == 0)
+                            <div class="flex flex-col items-start gap-3">
+                                <span class="flex items-center text-secondary font-lato text-xl font-semibold">
+                                    <i class="fas fa-gears rotate-90 text-text mr-2"></i>
+                                    {{ $portfolio->project_name }}
+                                </span>
+                                <h1 class="font-bold text-4xl text-heading">{{ $portfolio->title }}</h1>
+                                <p class="text-text text-xl">
+                                    {{ $portfolio->description }}
+                                </p>
+                                <div
+                                    class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl uppercase">
+                                    {{ \Carbon\Carbon::parse($portfolio->event_time)->locale('id')->translatedFormat('F Y') }}
+                                </div>
+                            </div>
+                            <div>
+                                <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
+                                    width="600" height="300" class="hidden md:block">
+                            </div>
+                        @else
+                            {{-- Kalau index ganjil: gambar kiri, teks kanan --}}
+                            <div>
+                                <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
+                                    width="600" height="300" class="hidden md:block">
+                            </div>
+                            <div class="flex flex-col items-start gap-3">
+                                <span class="flex items-center text-secondary font-lato text-xl font-semibold">
+                                    <i class="fas fa-gears rotate-90 text-text mr-2"></i>
+                                    {{ $portfolio->project_name }}
+                                </span>
+                                <h1 class="font-bold text-4xl text-heading">{{ $portfolio->title }}</h1>
+                                <p class="text-text text-xl">
+                                    {{ $portfolio->description }}
+                                </p>
+                                <div
+                                    class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl uppercase">
+                                    {{ \Carbon\Carbon::parse($portfolio->event_time)->locale('id')->translatedFormat('F Y') }}
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                    <div>
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_3.webp') }}" alt=""
-                            width="600" height="300" class="hidden md:block">
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
-                    <div>
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
-                            width="600" height="300">
-                    </div>
-                    <div class="flex flex-col items-start gap-3">
-                        <span class="flex items-center text-secondary font-lato text-xl font-semibold">
-                            <i class="fas fa-gears rotate-90 text-text mr-2"></i>
-                            Lamikro dan Database Kewirausahaan
-                        </span>
-                        <h1 class="font-bold text-4xl text-heading">WEB BASED PRODUCTION</h1>
-                        <p class="text-text text-xl">
-                            Jasa pembuatan website berbasis Big Data, yang
-                            dikelola oleh tim kami bekerjasama dengan
-                            Kementerian Koperasi dan UKM.
-                            Kami juga mengelola maintain dan operasional
-                            kegiatan didalamnya.
-                        </p>
-                        <div
-                            class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl">
-                            AGUSTUS 2020
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
                 <button type="button" id="open-overlay"
                     class="text-heading font-semibold text-base px-9 py-2 border border-[#c8c8c8] mx-auto rounded-lg shadow-4 cursor-pointer hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out">
                     Lihat Semua
@@ -664,38 +667,32 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mx-10">
-                <div class="bg-white shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_1.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium flex items-center gap-2">
-                            <i class="fas fa-layer-group text-text"></i>
-                            Web Development
-                        </h1>
-                        <h2 class="text-heading font-bold text-xl">Web Based Development</h2>
-                        <p class="text-base text-text">
-                            Jasa pembuatan website berbasis Big Data, yang
-                            dikelola oleh tim kami bekerjasama dengan
-                            Kementerian Koperasi dan UKM.
-                            Kami juga mengelola maintain dan operasional
-                            kegiatan didalamnya.
-                        </p>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
-                                Bootstrap
-                            </span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
-                                PHP
-                            </span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
-                                JQuery
-                            </span>
+                @foreach ($allPortfolios as $portfolio)
+                    <div class="bg-white shadow-1 rounded-xl">
+                        <div class="aspect-video overflow-hidden rounded-t-xl">
+                            <img src="{{ Storage::url($portfolio->image) }}" alt=""
+                                class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
+                        </div>
+                        <div class="p-6 flex flex-col gap-3">
+                            <h1 class="text-primary text-lg font-medium flex items-center gap-2">
+                                <i class="fas fa-layer-group text-text"></i>
+                                {{ $portfolio->category }}
+                            </h1>
+                            <h2 class="text-heading font-bold text-xl">{{ $portfolio->title }}</h2>
+                            <p class="text-base text-text">
+                                {{ $portfolio->description }}
+                            </p>
+                            <div class="flex items-center gap-2">
+                                @foreach ($portfolio->tools as $tool)
+                                    <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full text-sm">
+                                        {{ $tool }}
+                                    </span>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-white shadow-1 rounded-xl">
+                @endforeach
+                {{-- <div class="bg-white shadow-1 rounded-xl">
                     <div class="aspect-video overflow-hidden rounded-t-xl">
                         <img src="{{ asset('landing/webp/portfolios/portfolio_2.webp') }}" alt=""
                             class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
@@ -746,7 +743,7 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -932,8 +929,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 mx-12 gap-6 my-10">
                 @foreach ($partners as $partner)
                     <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
-                        <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
-                            class="aspect-square grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
+                        <div class="w-32 h-32 flex items-center justify-center">
+                            <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
+                                class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
+                        </div>
                     </div>
                 @endforeach
             </div>

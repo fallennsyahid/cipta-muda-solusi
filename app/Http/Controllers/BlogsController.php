@@ -13,7 +13,7 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::where('status', Status::Published->value)->paginate(9);
+        $blogs = Blog::where('status', Status::Published->value)->orderByDesc('is_featured')->latest()->paginate(9);
         return view('blogs.index', compact('blogs'));
     }
 

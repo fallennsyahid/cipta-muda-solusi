@@ -68,13 +68,23 @@ if (openBtn && closeBtn && portfolioOverlay) {
 }
 
 // Hamburger Menu
-// const hamburger = document.querySelector('#hamburger');
-// const navMenu = document.querySelector('#nav-menu');
+const hamburger = document.querySelector('#hamburger');
+const navMenu = document.querySelector('#nav-menu');
+const closeNav = document.querySelectorAll('.close-navbar');
 
-// hamburger.addEventListener('click', function () {
-//     hamburger.classList.toggle('hamburger-active');
-//     navMenu.classList.toggle('hidden');
-// });
+hamburger.addEventListener('click', function () {
+    navMenu.classList.toggle('translate-x-full');
+    navMenu.classList.toggle('translate-x-0');
+});
+
+closeNav.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        navMenu.classList.remove('translate-x-0');
+        navMenu.classList.add('translate-x-full');
+    });
+});
 
 // window.addEventListener('click', function (e) {
 //     if (e.target != hamburger && e.target != navMenu) {

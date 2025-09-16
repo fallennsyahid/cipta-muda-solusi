@@ -261,7 +261,7 @@
                             Jenis Perusahaan <span class="text-red-400">*</span>
                         </label>
                         <select name="partner_type" id="partner_type"
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
+                            class="partner_type w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
                             <option value="-" disabled selected>Pilih Jenis Perusahaan</option>
                             @foreach ($partnerTypes as $partnerType)
                                 <option value="{{ $partnerType->value }}">{{ $partnerType->value }}</option>
@@ -269,7 +269,7 @@
                         </select>
 
                         <input type="text" id="partner_other_type" name="partner_other_type"
-                            class="hidden mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            class="partner_other_type hidden mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="Masukan jenis perusahaan..">
                     </div>
 
@@ -446,19 +446,18 @@
                                 Jenis Perusahaan <span class="text-red-400">*</span>
                             </label>
                             <select name="partner_type" id="partner_type"
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
+                                class="partner_type w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
                                 @foreach ($partnerTypes as $partnerType)
                                     <option value="{{ $partnerType->value }}"
                                         {{ $partnerType->value === $partner->partner_type ? 'selected' : '' }}>
                                         {{ $partnerType->value }}
                                     </option>
                                 @endforeach
-                                <option value="other">Lainnya</option>
                             </select>
 
-                            <input type="text" id="partner_other_type" name="partner_other_type"
-                                class="hidden mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                placeholder="Masukan jenis perusahaan..">
+                            <input type="text" name="partner_other_type"
+                                class="partner_other_type {{ $partner->partner_other_type ? '' : 'hidden' }} mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $partner->partner_other_type }}" placeholder="Masukan jenis perusahaan..">
                         </div>
 
                         <div class="group">

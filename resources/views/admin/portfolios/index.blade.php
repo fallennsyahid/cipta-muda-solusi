@@ -135,11 +135,19 @@
                                     <i class="fas fa-arrow-up-right-from-square"></i>
                                 </a>
                             </div>
-                            <span
-                                class="inline-flex w-fit items-center px-3 py-1 rounded-full text-xs {{ $categoryColors[$portfolio->category] ?? 'bg-gray-300 text-black' }}">
-                                <i class="fas fa-layer-group mr-2"></i>
-                                {{ $portfolio->category }}
-                            </span>
+                            @if ($portfolio->category === 'Lainnya')
+                                <span
+                                    class="inline-flex w-fit items-center px-3 py-1 rounded-full text-xs {{ $categoryColors[$portfolio->category] ?? 'bg-gray-300 text-black' }}">
+                                    <i class="fas fa-layer-group mr-2"></i>
+                                    {{ $portfolio->other_category }}
+                                </span>
+                            @else
+                                <span
+                                    class="inline-flex w-fit items-center px-3 py-1 rounded-full text-xs {{ $categoryColors[$portfolio->category] ?? 'bg-gray-300 text-black' }}">
+                                    <i class="fas fa-layer-group mr-2"></i>
+                                    {{ $portfolio->category }}
+                                </span>
+                            @endif
                         </div>
 
                         <p class="text-darkChoco text-justify line-clamp-2">
@@ -246,18 +254,17 @@
                                 Category <span class="text-red-400">*</span>
                             </label>
                             <select name="category" id="category"
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize"
+                                class="category w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize"
                                 required>
                                 <option value="-" disabled selected>Pilih Tipe Proyek</option>
                                 @foreach ($portfolioCategory as $category)
                                     <option value="{{ $category->value }}">{{ $category->value }}
                                     </option>
                                 @endforeach
-                                <option value="other_category">Lainnya</option>
                             </select>
 
                             <input type="text" id="other_category" name="other_category"
-                                class="hidden w-full mt-2 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                class="other_category hidden w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                 placeholder="Finance">
                         </div>
 
@@ -298,16 +305,18 @@
                             </div>
                         </div>
 
-                        <div class="group">
-                            <label for="image"
+                        <div class="upload-group">
+                            <label
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-file"></i>
                                 Upload Gambar<span class="text-red-400">*</span>
                             </label>
-                            <input type="file" name="image" id="image" class="hidden"
-                                accept="image/png,image/jpeg,image/jpg,image/webp">
-                            <label for="image" id="drop-area"
-                                class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+
+                            <input type="file" name="image" class="file-input hidden"
+                                accept="image/png,image/jpeg,image/jpg">
+
+                            <label
+                                class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                                 <div class="mb-4">
                                     <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                                 </div>
@@ -320,22 +329,26 @@
                                     </p>
                                 </div>
                             </label>
-                            <div class="hidden justify-between bg-text/10 p-4 mt-2 rounded-lg">
+
+                            <!-- preview -->
+                            <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                                 <div class="flex items-center gap-3">
+                                    <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
                                     <div>
-                                        <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <h1" class="text-base text-darkChoco font-semibold">
-                                            </h1>
-                                            <span class="text-xs text-text"></span>
+                                        <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span class="file-size"></span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-circle-check text-green-400"></i>
+                                                Completed
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <a href="">
-                                        <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                    </a>
-                                </div>
+                                <button type="button" class="remove-file">
+                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                                </button>
                             </div>
                         </div>
 
@@ -425,8 +438,8 @@
                         <div class="group">
                             <label for="project_name"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-list"></i>
-                                Kategori <span class="text-red-400">*</span>
+                                <i class="fas fa-tag"></i>
+                                Nama Project <span class="text-red-400">*</span>
                             </label>
                             <input type="text" id="project_name" name="project_name" readonly
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
@@ -439,9 +452,13 @@
                                 <i class="fas fa-list"></i>
                                 Kategori <span class="text-red-400">*</span>
                             </label>
-                            <input type="text" id="category" name="category" readonly
+                            <input type="text" id="detail_category" name="detail_category" readonly
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                 value="{{ $portfolio->category }}" placeholder="Teknologi">
+
+                            <input type="text" id="detail_other_category" name="detail_other_category" readonly
+                                class="other_category {{ $portfolio->other_category ? 'block' : 'hidden' }} w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->other_category }}">
                         </div>
 
                         <div class="group">
@@ -527,10 +544,10 @@
                     <div class="relative z-10">
                         <div
                             class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
-                            <i class="fas fa-eye text-3xl"></i>
+                            <i class="fas fa-pen text-3xl"></i>
                         </div>
-                        <h1 class="text-2xl font-bold text-white mb-2">Detail Portfolio</h1>
-                        <p class="text-white/90 text-base font-lato">Lihat semua detail portfolio</p>
+                        <h1 class="text-2xl font-bold text-white mb-2">Edit Portfolio</h1>
+                        <p class="text-white/90 text-base font-lato">Perbaiki detail jika ada yang kurang tepat</p>
                     </div>
 
                     <button
@@ -559,8 +576,8 @@
                             <div class="group">
                                 <label for="project_name"
                                     class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                    <i class="fas fa-list"></i>
-                                    Kategori <span class="text-red-400">*</span>
+                                    <i class="fas fa-tag"></i>
+                                    Nama Project <span class="text-red-400">*</span>
                                 </label>
                                 <input type="text" id="project_name" name="project_name"
                                     class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
@@ -573,9 +590,21 @@
                                     <i class="fas fa-list"></i>
                                     Kategori <span class="text-red-400">*</span>
                                 </label>
-                                <input type="text" id="category" name="category"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                    value="{{ $portfolio->category }}" placeholder="Teknologi">
+
+                                <select name="category" id="category"
+                                    class="category w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
+                                    @foreach ($portfolioCategory as $category)
+                                        <option value="{{ $category->value }}"
+                                            {{ $category->value === $portfolio->category ? 'selected' : '' }}>
+                                            {{ $category->value }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                <input type="text" name="other_category"
+                                    class="other_category {{ $portfolio->other_category ? '' : 'hidden' }} mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    value="{{ $portfolio->other_category }}"
+                                    placeholder="Masukan jenis perusahaan..">
                             </div>
 
                             <div class="group">
@@ -620,7 +649,7 @@
                                 </label>
 
                                 <input type="file" name="edit_image" class="file-input hidden"
-                                    accept="image/png,image/jpeg,image/jpg">
+                                    accept="image/png,image/jpeg,image/jpg,image/webp">
 
                                 <label
                                     class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">

@@ -11,6 +11,7 @@ enum CategoryPortfolio: string
     case SalesMarketing = 'Sales & Marketing';
     case EventOrganizer = 'Event Organizer';
     case ITOperationMain = 'IT Operation & Maintenance';
+    case Lainnya = 'Lainnya';
 
     public static function values(): array
     {

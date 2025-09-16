@@ -54,7 +54,7 @@ class PortfoliosAdminController extends Controller
             'project_name' => 'required|string',
             'category' => ['required', Rule::in(CategoryPortfolio::values())],
             'other_category' => 'nullable|string',
-            'image' => 'required|image',
+            'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:5120',
             'description' => 'required',
             'tools' => 'required|array|min:3|max:5',
             'tools.*' => 'nullable|string',
@@ -66,6 +66,9 @@ class PortfoliosAdminController extends Controller
             $validated['tools'],
             fn($value) => !is_null($value) && $value !== ''
         ));
+
+        $validated['category'] = $request->category;
+        $validated['other_category'] = $request->category === CategoryPortfolio::Lainnya->value ? $request->other_category : null;
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('portfolios', 'public');
@@ -104,33 +107,30 @@ class PortfoliosAdminController extends Controller
             'title' => 'required|string|max:255',
             'project_name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
+            'other_category' => 'nullable|string',
             'description' => 'required|string|max:250',
             'tools' => 'nullable|array',
             'tools.*' => 'nullable|string|max:100',
-            'edit_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'edit_image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:5120',
             'status' => 'required|string',
             'event_time' => 'required|string|max:255',
         ]);
 
-        // Update field satu-satu
         $portfolio->title = $request->title;
         $portfolio->project_name = $request->project_name;
         $portfolio->category = $request->category;
+        $portfolio->other_category = $request->other_category;
         $portfolio->description = $request->description;
         $portfolio->status = $request->status;
         $portfolio->event_time = $request->event_time;
 
-        // simpan tools (array)
         $portfolio->tools = array_filter($request->tools ?? []);
 
-        // kalau ada gambar baru
         if ($request->hasFile('edit_image')) {
-            // hapus gambar lama
             if ($portfolio->image && Storage::disk('public')->exists($portfolio->image)) {
                 Storage::disk('public')->delete($portfolio->image);
             }
 
-            // simpan gambar baru
             $portfolio->image = $request->file('edit_image')->store('portfolios', 'public');
         }
 

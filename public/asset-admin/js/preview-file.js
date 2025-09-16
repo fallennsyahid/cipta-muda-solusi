@@ -15,8 +15,8 @@ document.querySelectorAll('.upload-group').forEach(group => {
         const file = e.target.files[0];
         if (!file) return;
 
-        if (!["image/jpeg", "image/png", "image/jpg"].includes(file.type)) {
-            alert('File harus JPEG/PNG/JPG');
+        if (!["image/jpeg", "image/png", "image/jpg", "image/webp"].includes(file.type)) {
+            alert('File harus JPEG/PNG/JPG/WEBP');
             return;
         }
 
@@ -57,8 +57,8 @@ document.querySelectorAll('.upload-group').forEach(group => {
             const file = e.dataTransfer.files[0];
             input.files = e.dataTransfer.files;
 
-            if (!["image/jpeg", "image/png", "image/jpg"].includes(file.type)) {
-                alert('File harus JPEG/PNG/JPG');
+            if (!["image/jpeg", "image/png", "image/jpg", "image/webp"].includes(file.type)) {
+                alert('File harus JPEG/PNG/JPG/WEBP');
                 return;
             }
 

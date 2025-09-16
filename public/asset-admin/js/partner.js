@@ -44,16 +44,22 @@ closeModal.forEach(btn => {
     });
 });
 
-const partnerTypeSelect = document.getElementById('partner_type');
-const partnerOtherInput = document.getElementById('partner_other_type');
+document.querySelectorAll('.partner_type').forEach((select, index) => {
+    const otherInput = document.querySelectorAll('.partner_other_type')[index];
 
-// cek saat halaman load
-if (partnerTypeSelect.value === 'Lainnya') {
-    partnerOtherInput.classList.remove('hidden');
-} else {
-    partnerOtherInput.classList.add('hidden');
-    partnerOtherInput.value = '';
-}
+    if (select.value === 'Other' || select.value === 'Lainnya') {
+        otherInput.classList.remove('hidden');
+    }
+
+    select.addEventListener('change', function () {
+        if (this.value === 'Other' || this.value === 'Lainnya') {
+            otherInput.classList.remove('hidden');
+        } else {
+            otherInput.classList.add('hidden');
+            otherInput.value = '';
+        }
+    });
+});
 
 // cek saat user ganti select
 partnerTypeSelect.addEventListener('change', () => {
