@@ -69,3 +69,14 @@ openEditAnswerModal.forEach(btn => {
         modalEdit.classList.add('flex');
     });
 });
+
+document.querySelectorAll('.char-counter').forEach(group => {
+    const textarea = group.querySelector('textarea');
+    const counter = group.querySelector('.char-count');
+
+    counter.textContent = textarea.value.length;
+
+    textarea.addEventListener('input', () => {
+        counter.textContent = textarea.value.length;
+    });
+});

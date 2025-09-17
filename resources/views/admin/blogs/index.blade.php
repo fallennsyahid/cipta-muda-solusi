@@ -260,12 +260,14 @@
                                 <i class="fas fa-align-left"></i>
                                 Deksripsi<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="description" name="description" rows="4" maxlength="250" required
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda."></textarea>
-                            <p class="text-sm text-text">
-                                <span id="char-count">0</span>/250 Karakter
-                            </p>
+                            <div class="char-counter">
+                                <textarea id="description" name="description" rows="4" maxlength="250" required
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda."></textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
                         </div>
 
                         <div class="group">
@@ -286,8 +288,6 @@
 
                             <input type="file" name="image" class="file-input hidden"
                                 accept="image/png,image/jpeg,image/jpg">
-
-                            {{-- <input type="file" name="image" id="image"> --}}
 
                             <label
                                 class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
@@ -428,12 +428,14 @@
                                 <i class="fas fa-align-left"></i>
                                 Deksripsi<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="description" name="description" rows="4" maxlength="250" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
-                            <p class="text-sm text-text">
-                                <span id="char-count">0</span>/250 Karakter
-                            </p>
+                            <div class="char-counter">
+                                <textarea id="description" name="description" rows="4" maxlength="250" readonly
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
                         </div>
 
                         <div class="group">
@@ -550,12 +552,14 @@
                                     <i class="fas fa-align-left"></i>
                                     Deksripsi<span class="text-red-400">*</span>
                                 </label>
-                                <textarea id="description" name="description" rows="4" maxlength="250"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                    placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
-                                <p class="text-sm text-text">
-                                    <span id="char-count">0</span>/250 Karakter
-                                </p>
+                                <div class="char-counter">
+                                    <textarea id="description" name="description" rows="4" maxlength="250"
+                                        class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                        placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
+                                    <p class="text-sm text-text">
+                                        <span class="char-count">0</span>/250 Karakter
+                                    </p>
+                                </div>
                             </div>
 
                             <div class="group">
@@ -593,6 +597,22 @@
                                         </p>
                                     </div>
                                 </label>
+                                @if ($blog->image)
+                                    <div class="border-b border-text/25 pb-2">
+                                        <div class="flex justify-between bg-text/10 p-4 mt-2 rounded-lg">
+                                            <div class="flex items-center gap-3">
+                                                <div>
+                                                    <img src="{{ Storage::url($blog->image) }}" alt=""
+                                                        class="w-16 h-16 object-cover rounded-lg">
+                                                </div>
+                                                <a href="{{ Storage::url($blog->image) }}" target="_blank"
+                                                    class="text-base text-darkChoco font-semibold">
+                                                    Foto Sebelumnya
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
 
                                 <!-- preview -->
                                 <div

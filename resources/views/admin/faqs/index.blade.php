@@ -256,12 +256,14 @@
                                 <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
                                     <i class="fas fa-question text-text"></i>
                                 </div>
-                                <textarea name="question_input" id="question_input" rows="5" maxlength="150"
-                                    placeholder="Masukkan pertanyaan" required
-                                    class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                                <p class="text-sm text-text">
-                                    <span id="char-count">0</span>/150 Karakter
-                                </p>
+                                <div class="char-counter">
+                                    <textarea name="question_input" id="question_input" rows="5" maxlength="150"
+                                        placeholder="Masukkan pertanyaan" required
+                                        class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                                    <p class="text-sm text-text">
+                                        <span class="char-count">0</span>/150 Karakter
+                                    </p>
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <label for="answer_input" class="text-base text-heading font-medium">Masukkan

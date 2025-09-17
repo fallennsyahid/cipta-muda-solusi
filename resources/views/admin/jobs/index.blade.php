@@ -296,12 +296,14 @@
                                 <i class="fas fa-align-left"></i>
                                 Deksripsi Singkat Pekerjaan<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="description" name="description" rows="4" maxlength="250" required
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim engineering kami."></textarea>
-                            <p class="text-sm text-text">
-                                <span id="char-count">0</span>/250 Karakter
-                            </p>
+                            <div class="char-counter">
+                                <textarea id="description" name="description" rows="4" maxlength="250" required
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim engineering kami."></textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
                         </div>
 
                         <div class="group">
@@ -460,12 +462,14 @@
                                     <i class="fas fa-align-left"></i>
                                     Deksripsi Singkat Pekerjaan<span class="text-red-400">*</span>
                                 </label>
-                                <textarea id="description" name="description" rows="4" maxlength="250"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                    placeholder="Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim engineering kami.">{{ $job->description }}</textarea>
-                                <p class="text-sm text-text">
-                                    <span id="char-count">0</span>/250 Karakter
-                                </p>
+                                <div class="char-counter">
+                                    <textarea id="description" name="description" rows="4" maxlength="250"
+                                        class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                        placeholder="Kami mencari Senior Full Stack Developer yang berpengalaman untuk bergabung dengan tim engineering kami.">{{ $job->description }}</textarea>
+                                    <p class="text-sm text-text">
+                                        <span class="char-count">0</span>/250 Karakter
+                                    </p>
+                                </div>
                             </div>
 
                             <div class="group">

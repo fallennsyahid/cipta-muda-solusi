@@ -164,10 +164,39 @@
 
                     <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
                         <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
-                            <i class="fas fa-chart-line"></i>
-                            Dashboard Statistik
+                            <i class="fas fa-clock"></i>
+                            Aktivitas Terbaru
                         </div>
-                        <canvas id="dashboardChart" class="w-full h-64"></canvas>
+                        <div class="space-y-2 relative z-10 h-[90%] overflow-y-auto custom-scrollbar">
+                            @foreach ($activities as $activity)
+                                <div
+                                    class="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent transition-colors">
+                                    <div class="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-base font-medium text-heading">{{ ucfirst($activity->action) }}:
+                                            {{ $activity->target_type }}
+                                        </p>
+                                        <p class="text-sm text-text font-lato">{{ $activity->target_name }}</p>
+                                        <p class="text-xs text-text font-lato mt-1">
+                                            {{ $activity->created_at->diffForHumans() }}</p>
+
+                                        @if ($activity->action === 'update' && $activity->changes)
+                                            <div class="ml-4 text-xs text-gray-600">
+                                                @foreach ($activity->changes['old'] as $field => $old)
+                                                    @php
+                                                        $new = $activity->changes['new'][$field] ?? null;
+                                                    @endphp
+                                                    @if ($old != $new)
+                                                        <div>{{ $field }}: "{{ $old }}" →
+                                                            "{{ $new }}"</div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

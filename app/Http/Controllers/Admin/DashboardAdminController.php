@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Mews\Purifier\Facades\Purifier;
 use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
 
 class DashboardAdminController extends Controller
 {
@@ -59,6 +60,8 @@ class DashboardAdminController extends Controller
 
         $blogStatus = BlogStatus::cases();
 
+        $activities = ActivityLog::latest()->take(10)->get();
+
         return view('admin.dashboard', compact(
             'totalJobsThisMonth',
             'percentageJobChange',
@@ -73,6 +76,7 @@ class DashboardAdminController extends Controller
             'partnerTypes',
             'partnerStatus',
             'blogStatus',
+            'activities',
         ));
     }
 

@@ -62,3 +62,14 @@ document.querySelectorAll('.category').forEach((select, index) => {
         }
     });
 });
+
+document.querySelectorAll('.char-counter').forEach(group => {
+    const textarea = group.querySelector('textarea');
+    const counter = group.querySelector('.char-count');
+
+    counter.textContent = textarea.value.length;
+
+    textarea.addEventListener('input', () => {
+        counter.textContent = textarea.value.length;
+    });
+});

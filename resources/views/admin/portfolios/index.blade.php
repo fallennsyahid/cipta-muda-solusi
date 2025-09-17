@@ -131,9 +131,12 @@
                                 <h1 class="flex items-center text-lg text-heading font-bold truncate">
                                     {{ $portfolio->title }}
                                 </h1>
-                                <a href="" class="text-blue-600 hover:text-blue-700 text-lg">
-                                    <i class="fas fa-arrow-up-right-from-square"></i>
-                                </a>
+                                @if ($portfolio->visit_link)
+                                    <a href="{{ $portfolio->visit_link }}" target="_blank" title="Visit Link"
+                                        class="text-blue-600 hover:text-blue-700 text-lg">
+                                        <i class="fas fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                @endif
                             </div>
                             @if ($portfolio->category === 'Lainnya')
                                 <span
@@ -274,12 +277,14 @@
                                 <i class="fas fa-align-left"></i>
                                 Deksripsi Portfolio<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="description" name="description" rows="4" maxlength="250" required
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="Jasa pembuatan website berbasis Big Data..."></textarea>
-                            <p class="text-sm text-text">
-                                <span id="char-count">0</span>/250 Karakter
-                            </p>
+                            <div class="char-counter">
+                                <textarea id="description" name="description" rows="4" maxlength="250" required
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="Jasa pembuatan website berbasis Big Data..."></textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
                         </div>
 
                         <div class="group">
@@ -378,6 +383,17 @@
                             </select>
                         </div>
 
+                        <div class="group">
+                            <label for="visit_link"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-link"></i>
+                                Visit Link (Opsional)
+                            </label>
+                            <input type="url" id="visit_link" name="visit_link"
+                                placeholder="https://www.link.com"
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                        </div>
+
                         <div class="flex items-center gap-3">
                             <button type="button"
                                 class="close-modal flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
@@ -396,142 +412,8 @@
     </div>
     {{-- Create Modal End --}}
 
+    {{-- Edit Portfolio Start --}}
     @foreach ($portfolios as $portfolio)
-        {{-- Detail Modal Start --}}
-        <div id="detail-portfolio-{{ $portfolio->id }}"
-            class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
-            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-
-            <div
-                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
-                <div
-                    class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
-                    <div class="absolute inset-0 bg-black/10"></div>
-                    <div class="relative z-10">
-                        <div
-                            class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
-                            <i class="fas fa-eye text-3xl"></i>
-                        </div>
-                        <h1 class="text-2xl font-bold text-white mb-2">Detail Portfolio</h1>
-                        <p class="text-white/90 text-base font-lato">Lihat semua detail portfolio</p>
-                    </div>
-
-                    <button
-                        class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
-                        <i class="fas fa-times text-lg"></i>
-                    </button>
-                </div>
-
-                <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
-                    <div class="space-y-6">
-                        <div class="group">
-                            <label for="title"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-heading"></i>
-                                Judul Blog <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="title" name="title" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $portfolio->title }}">
-                        </div>
-
-                        <div class="group">
-                            <label for="project_name"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-tag"></i>
-                                Nama Project <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="project_name" name="project_name" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $portfolio->project_name }}" placeholder="Teknologi">
-                        </div>
-
-                        <div class="group">
-                            <label for="category"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-list"></i>
-                                Kategori <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="detail_category" name="detail_category" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $portfolio->category }}" placeholder="Teknologi">
-
-                            <input type="text" id="detail_other_category" name="detail_other_category" readonly
-                                class="other_category {{ $portfolio->other_category ? 'block' : 'hidden' }} w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $portfolio->other_category }}">
-                        </div>
-
-                        <div class="group">
-                            <label for="description"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-align-left"></i>
-                                Deksripsi<span class="text-red-400">*</span>
-                            </label>
-                            <textarea id="description" name="description" rows="4" maxlength="250" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $portfolio->description }}</textarea>
-                            <p class="text-sm text-text">
-                                <span id="char-count">0</span>/250 Karakter
-                            </p>
-                        </div>
-
-                        <div class="group">
-                            <label for="skills"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-align-left"></i>
-                                Skills<span class="text-red-400">*</span>
-                            </label>
-                            <div class="space-y-3">
-                                @foreach ($portfolio->tools as $i => $tool)
-                                    <input type="text" name="tools" placeholder="Skill {{ $i + 1 }}"
-                                        readonly value="{{ $tool }}"
-                                        class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <label for="image"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-image"></i>
-                                Gambar Portfolio <span class="text-red-400">*</span>
-                            </label>
-                            <div
-                                class="px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
-                                <img src="{{ Storage::url($portfolio->image) }}" alt="">
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <label for="status"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-toggle-on"></i>
-                                Status <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="status" name="status" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $portfolio->status }}" placeholder="Jakarta">
-                        </div>
-
-                        <div class="group">
-                            <label for="event_time"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-toggle-on"></i>
-                                Tanggal Pengerjaan<span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="event_time" name="event_time" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $portfolio->event_time }}" placeholder="Jakarta">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Detail Modal End --}}
-    @endforeach
-
-    @foreach ($portfolios as $portfolio)
-        {{-- Edit Portfolio Start --}}
         <div id="edit-portfolio-{{ $portfolio->id }}"
             class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
             <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
@@ -613,12 +495,14 @@
                                     <i class="fas fa-align-left"></i>
                                     Deksripsi<span class="text-red-400">*</span>
                                 </label>
-                                <textarea id="description" name="description" rows="4" maxlength="250"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
-                                    placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $portfolio->description }}</textarea>
-                                <p class="text-sm text-text">
-                                    <span id="char-count">0</span>/250 Karakter
-                                </p>
+                                <div class="char-counter">
+                                    <textarea id="description" name="description" rows="4" maxlength="250"
+                                        class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                        placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $portfolio->description }}</textarea>
+                                    <p class="text-sm text-text">
+                                        <span class="char-count">0</span>/250 Karakter
+                                    </p>
+                                </div>
                             </div>
 
                             <div class="group">
@@ -733,9 +617,21 @@
                                     value="{{ $portfolio->event_time }}" placeholder="Jakarta">
                             </div>
 
+                            <div class="group">
+                                <label for="edit_visit_link"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-link"></i>
+                                    Visit Link
+                                </label>
+                                <input type="text" id="edit_visit_link" name="edit_visit_link"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    value="{{ $portfolio->visit_link ? $portfolio->visit_link : '' }}"
+                                    placeholder="Tambahkan Visit Link">
+                            </div>
+
                             <div class="flex items-center gap-3">
                                 <button type="button"
-                                    class="close-modal-2 flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    class="close-modal flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
                                     <i class="fas fa-times mr-2"></i>
                                     Batal
                                 </button>
@@ -749,8 +645,157 @@
                 </div>
             </div>
         </div>
-        {{-- Edit Portfolio End --}}
     @endforeach
+    {{-- Edit Portfolio End --}}
+
+    {{-- Detail Modal Start --}}
+    @foreach ($portfolios as $portfolio)
+        <div id="detail-portfolio-{{ $portfolio->id }}"
+            class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-eye text-3xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-white mb-2">Detail Portfolio</h1>
+                        <p class="text-white/90 text-base font-lato">Lihat semua detail portfolio</p>
+                    </div>
+
+                    <button
+                        class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+                    <div class="space-y-6">
+                        <div class="group">
+                            <label for="title"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-heading"></i>
+                                Judul Blog <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="title" name="title" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->title }}">
+                        </div>
+
+                        <div class="group">
+                            <label for="project_name"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-tag"></i>
+                                Nama Project <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="project_name" name="project_name" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->project_name }}" placeholder="Teknologi">
+                        </div>
+
+                        <div class="group">
+                            <label for="category"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-list"></i>
+                                Kategori <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="detail_category" name="detail_category" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->category }}" placeholder="Teknologi">
+
+                            <input type="text" id="detail_other_category" name="detail_other_category" readonly
+                                class="other_category {{ $portfolio->other_category ? '' : 'hidden' }} w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->other_category }}">
+                        </div>
+
+                        <div class="group">
+                            <label for="description"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Deksripsi<span class="text-red-400">*</span>
+                            </label>
+                            <div class="char-counter">
+                                <textarea id="description" name="description" rows="4" maxlength="250" readonly
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $portfolio->description }}</textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label for="skills"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-align-left"></i>
+                                Skills<span class="text-red-400">*</span>
+                            </label>
+                            <div class="space-y-3">
+                                @foreach ($portfolio->tools as $i => $tool)
+                                    <input type="text" name="tools" placeholder="Skill {{ $i + 1 }}"
+                                        readonly value="{{ $tool }}"
+                                        class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label for="image"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-image"></i>
+                                Gambar Portfolio <span class="text-red-400">*</span>
+                            </label>
+                            <div
+                                class="px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                                <img src="{{ Storage::url($portfolio->image) }}" alt="">
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <label for="status"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Status <span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="status" name="status" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->status }}" placeholder="Jakarta">
+                        </div>
+
+                        <div class="group">
+                            <label for="event_time"
+                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                <i class="fas fa-toggle-on"></i>
+                                Tanggal Pengerjaan<span class="text-red-400">*</span>
+                            </label>
+                            <input type="text" id="event_time" name="event_time" readonly
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                value="{{ $portfolio->event_time }}">
+                        </div>
+
+                        @if ($portfolio->visit_link)
+                            <div class="group">
+                                <label for="detail_visit_link"
+                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                                    <i class="fas fa-link"></i>
+                                    Visit Link
+                                </label>
+                                <input type="text" id="detail_visit_link" name="detail_visit_link" readonly
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    value="{{ $portfolio->visit_link }}">
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- Detail Modal End --}}
 
 </body>
 

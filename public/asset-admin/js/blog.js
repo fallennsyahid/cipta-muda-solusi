@@ -43,3 +43,16 @@ openModalEdit.forEach(btn => {
         modal.classList.add('flex');
     });
 });
+
+const charCounterGroup = document.querySelectorAll('.char-counter');
+
+charCounterGroup.forEach(group => {
+    const textarea = group.querySelector('textarea');
+    const counter = group.querySelector('.char-count');
+
+    counter.textContent = textarea.value.length;
+
+    textarea.addEventListener('input', () => {
+        counter.textContent = textarea.value.length;
+    });
+});

@@ -545,57 +545,50 @@
                         </div>
 
                         {{-- Upload CV --}}
-                        <div class="mb-2">
-                            <label for="cv_title" class="text-primary text-base font-medium">Upload CV</label>
-                        </div>
-                        <label for="cv-{{ $job->id }}"
-                            class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
-                            <div class="mb-4">
-                                <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
+                        <div class="upload-group">
+                            <div class="mb-2">
+                                <label for="experience" class="text-primary text-base font-medium">
+                                    Upload CV Anda
+                                </label>
                             </div>
-                            <div>
-                                <h1 class="text-base font-medium text-darkChoco">
-                                    Choose a file or drag & drop it here
-                                </h1>
-                                <p class="text-text text-sm font-medium font-lato">
-                                    PDF format, max. 5MB
-                                </p>
-                            </div>
-                        </label>
-                        <input type="file" name="cv" id="cv-{{ $job->id }}" class="hidden"
-                            accept=".pdf">
-                        {{-- <p id="cv-filename-" class="text-sm text-darkChoco mt-2"></p>
 
-                        <script>
-                            document.getElementById('cv').addEventListener('change', function(e) {
-                                if (e.target.files.length > 0) {
-                                    document.getElementById('cv-filename').textContent = e.target.files[0].name;
-                                } else {
-                                    document.getElementById('cv-filename').textContent = '';
-                                }
-                            });
-                        </script> --}}
-                        <div class="bg-text/10 p-4 rounded-lg flex justify-between">
-                            {{-- <div class="flex items-center gap-3">
-                                <div>
-                                    <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
+                            <input type="file" name="cv" id="cv-{{ $job->id }}" class="hidden"
+                                accept=".pdf">
+
+                            <label
+                                class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                                <div class="mb-4">
+                                    <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                                 </div>
                                 <div>
-                                    <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
-                                    <div class="flex items-center gap-2 text-xs text-text">
-                                        <span>60KB of 120KB</span>
-                                        <span>•</span>
-                                        <span>
-                                            <i class="fa-solid fa-spinner text-blue-400"></i>
-                                            Uploading...
-                                        </span>
+                                    <h1 class="text-base font-medium text-darkChoco">
+                                        Choose a file or drag & drop it here
+                                    </h1>
+                                    <p class="text-text text-sm font-medium font-lato">
+                                        PDF format, max. 5MB
+                                    </p>
+                                </div>
+                            </label>
+
+                            <!-- preview -->
+                            <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
+                                    <div>
+                                        <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                        <div class="flex items-center gap-2 text-xs text-text">
+                                            <span class="file-size"></span>
+                                            <span>•</span>
+                                            <span>
+                                                <i class="fa-solid fa-circle-check text-green-400"></i>
+                                                Completed
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div> --}}
-                            <div>
-                                <a href="">
+                                <button type="button" class="remove-file">
                                     <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -641,7 +634,132 @@
     @endforeach
 </body>
 
-<script src={{ asset('js/script.js') }}></script>
+<script>
+    // Watch
+    const clockEl = document.getElementById("clock");
+    let serverTime = new Date(clockEl.dataset.time);
+
+    const updateClock = () => {
+        serverTime.setSeconds(serverTime.getSeconds() + 1);
+
+        let hours = serverTime.getHours();
+        let minutes = serverTime.getMinutes();
+        let seconds = serverTime.getSeconds();
+
+        let ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12 || 12;
+
+        clockEl.innerText =
+            `${hours.toString().padStart(2, '0')}:` +
+            `${minutes.toString().padStart(2, '0')}:` +
+            `${seconds.toString().padStart(2, '0')} ${ampm}`;
+    };
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    document.querySelectorAll('.upload-group').forEach(group => {
+        const input = group.querySelector('input[type="file"]');
+        const dropArea = group.querySelector('.drop-area');
+        const preview = group.querySelector('.preview');
+        const fileName = group.querySelector('.file-name');
+        const fileSize = group.querySelector('.file-size');
+        const previewImage = group.querySelector('.preview-image');
+        const removeBtn = group.querySelector('.remove-file');
+
+        // klik area = trigger input file
+        dropArea.addEventListener('click', () => input.click());
+
+        // fungsi render file
+        const renderFile = (file) => {
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file maksimal 5MB!');
+                return;
+            }
+
+            fileName.textContent = file.name;
+            fileSize.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+            // reset tampilan dulu
+            previewImage.src = "";
+            previewImage.classList.add('hidden');
+            const oldPdfIcon = group.querySelector('.pdf-icon');
+            if (oldPdfIcon) oldPdfIcon.remove();
+
+            // kalau gambar → tampilkan thumbnail
+            if (["image/jpeg", "image/png", "image/jpg", "image/webp"].includes(file.type)) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    previewImage.src = ev.target.result;
+                    previewImage.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // kalau PDF → pakai icon font awesome
+            else if (file.type === "application/pdf") {
+                const pdfUrl = URL.createObjectURL(file);
+
+                let pdfIcon = document.createElement("i");
+                pdfIcon.className = "fa-solid fa-file-pdf text-red-500 text-5xl pdf-icon cursor-pointer";
+                pdfIcon.onclick = () => window.open(pdfUrl, "_blank");
+
+                preview.querySelector('.flex').prepend(pdfIcon);
+            } else {
+                alert('File harus berupa JPEG/PNG/JPG/WEBP atau PDF!');
+                return;
+            }
+
+            preview.classList.remove('hidden');
+            preview.classList.add('flex');
+        };
+
+        // pilih file manual
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            renderFile(file);
+        });
+
+        // drag file
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('bg-text/5');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('bg-text/5');
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('bg-text/5');
+
+            if (e.dataTransfer.files.length > 0) {
+                const file = e.dataTransfer.files[0];
+                input.files = e.dataTransfer.files;
+                renderFile(file);
+            }
+        });
+
+        // hapus file
+        removeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            input.value = "";
+            preview.classList.remove('flex');
+            preview.classList.add('hidden');
+            previewImage.src = "";
+            fileName.textContent = "";
+            fileSize.textContent = "";
+
+            const pdfIcon = group.querySelector('.pdf-icon');
+            if (pdfIcon) pdfIcon.remove();
+        });
+    });
+</script>
+
+{{-- <script src={{ asset('js/script.js') }}></script> --}}
 <script src="{{ asset('js/jobs.js') }}"></script>
 
 </html>

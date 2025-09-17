@@ -60,6 +60,7 @@ class PortfoliosAdminController extends Controller
             'tools.*' => 'nullable|string',
             'status' => ['required', Rule::in(Status::onlyPublishedUnPublished())],
             'event_time' => 'required|date',
+            'visit_link' => 'nullable|url',
         ]);
 
         $validated['tools'] = array_values(array_filter(
@@ -114,6 +115,7 @@ class PortfoliosAdminController extends Controller
             'edit_image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:5120',
             'status' => 'required|string',
             'event_time' => 'required|string|max:255',
+            'edit_visit_link' => 'nullable|url',
         ]);
 
         $portfolio->title = $request->title;
@@ -123,6 +125,7 @@ class PortfoliosAdminController extends Controller
         $portfolio->description = $request->description;
         $portfolio->status = $request->status;
         $portfolio->event_time = $request->event_time;
+        $portfolio->visit_link = $request->edit_visit_link;
 
         $portfolio->tools = array_filter($request->tools ?? []);
 

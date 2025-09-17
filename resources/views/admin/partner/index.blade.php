@@ -29,14 +29,14 @@
     <x-admin.layout>
         <div class="flex flex-wrap items-center justify-between">
             <div class="space-y-2">
-                <h1 class="text-2xl text-heading font-bold">Jobs Management</h1>
+                <h1 class="text-2xl text-heading font-bold">Partner Management</h1>
                 <p class="text-text font-lato">Manage business partnerships and collaborations</p>
             </div>
             <div>
                 <button type="button" id="open-modal"
                     class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-heading via-primary to-secondary cursor-pointer hover:from-secondary hover:via-primary hover:to-heading">
                     <i class="fas fa-plus"></i>
-                    Tambahkan Lowongan Baru
+                    Tambahkan Mitra Baru
                 </button>
             </div>
         </div>
@@ -279,10 +279,14 @@
                             <i class="fas fa-building-circle-check"></i>
                             Deskripsi Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <textarea name="description" id="description" rows="4" required maxlength="400"
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
-                            placeholder="Perusahaan kami bergerak di bidang... dengan fokus utama pada..."></textarea>
-                        <p class="text-xs font-medium text-slate-600" id="charCount"></p>
+                        <div class="char-counter">
+                            <textarea name="description" id="description" rows="4" required maxlength="250"
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
+                                placeholder="Perusahaan kami bergerak di bidang... dengan fokus utama pada..."></textarea>
+                            <p class="text-sm text-text">
+                                <span class="char-count">0</span>/250 Karakter
+                            </p>
+                        </div>
                     </div>
 
                     <div class="group">
@@ -466,10 +470,14 @@
                                 <i class="fas fa-building-circle-check"></i>
                                 Deskripsi Perusahaan <span class="text-red-400">*</span>
                             </label>
-                            <textarea name="description" id="description" rows="4" maxlength="400"
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
-                                placeholder="Perusahaan kami bergerak di bidang... dengan fokus utama pada...">{{ $partner->description }}</textarea>
-                            <p class="text-xs font-medium text-slate-600" id="charCount"></p>
+                            <div class="char-counter">
+                                <textarea name="description" id="description" rows="4" maxlength="250"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
+                                    placeholder="Perusahaan kami bergerak di bidang... dengan fokus utama pada...">{{ $partner->description }}</textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/250 Karakter
+                                </p>
+                            </div>
                         </div>
 
                         <div class="group">

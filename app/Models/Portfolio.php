@@ -16,6 +16,7 @@ class Portfolio extends Model
         'tools',
         'status',
         'event_time',
+        'visit_link',
     ];
 
     protected $casts = [

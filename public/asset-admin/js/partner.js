@@ -44,6 +44,17 @@ closeModal.forEach(btn => {
     });
 });
 
+document.querySelectorAll('.char-counter').forEach(group => {
+    const textarea = group.querySelector('textarea');
+    const counter = group.querySelector('.char-count');
+
+    counter.textContent = textarea.value.length;
+
+    textarea.addEventListener('input', () => {
+        counter.textContent = textarea.value.length;
+    });
+});
+
 document.querySelectorAll('.partner_type').forEach((select, index) => {
     const otherInput = document.querySelectorAll('.partner_other_type')[index];
 
@@ -70,3 +81,4 @@ partnerTypeSelect.addEventListener('change', () => {
         partnerOtherInput.value = '';
     }
 });
+

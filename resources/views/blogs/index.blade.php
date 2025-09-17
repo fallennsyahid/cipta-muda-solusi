@@ -24,86 +24,64 @@
 
 <body>
     {{-- Header Start --}}
-    <header class="absolute top-0 left-0 w-full flex items-center">
-        <div class="container max-w-full relative">
-            <div class="flex items-center justify-between">
-                <div class="pl-10 py-6">
-                    <a href="{{ route('index') }}">
-                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
-                            class="h-14 w-auto relative z-50" width="675" height="200">
-                    </a>
-                </div>
+    <x-header>
+        {{-- <div class="flex items-center justify-center px-4 py-6">
+            <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
+                class="block absolute right-4 lg:hidden">
+                <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+                <span class="hamburger-line transition duration-300 ease-in-out"></span>
+                <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+            </button>
 
-                {{-- <div class="flex items-center justify-center px-4 py-6">
-                    <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
-                        class="block absolute right-4 lg:hidden">
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
-                    </button>
-
-                    <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
-                        <ul class="flex items-center justify-center gap-8" id="#nav-active">
-                            <li class="group">
-                                <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Beranda
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Tentang
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Layanan
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Team
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Contact
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Faq
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Blog
-                                </a>
-                            </li>
-                            <li class="group">
-                                <i class="fas fa-sun text-darkChoco text-2xl"></i>
-                            </li>
-                        </ul>
-                    </nav>
-                </div> --}}
-                <div class="relative z-10 mr-10 group ">
-                    <div class="absolute z-1 inset-y-0 right-0 flex items-center">
-                        <button type="button" id="search-button"
-                            class="search-button text-2xl text-darkChoco w-14 h-14 bg-black/10 rounded-full flex items-center justify-center transition-all duration-200 ease-in-out cursor-pointer hover:bg-black/20"
-                            aria-label="Buka Pencarian">
-                            <i class="fas fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                    <input type="search" name="input-search" id="input-search" placeholder="Cari sesuatu..." autofocus
-                        class="bg-white text-darkChoco pr-10 pl-4 py-4 rounded-full focus:outline-none shadow-3 w-0 group-hover:w-64 origin-right transition-all duration-500 ease-in-out">
-                </div>
-            </div>
-        </div>
-    </header>
+            <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
+                <ul class="flex items-center justify-center gap-8" id="#nav-active">
+                    <li class="group">
+                        <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Beranda
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Tentang
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Layanan
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Team
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Faq
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="group">
+                        <i class="fas fa-sun text-darkChoco text-2xl"></i>
+                    </li>
+                </ul>
+            </nav>
+        </div> --}}
+    </x-header>
     {{-- Header Start --}}
 
     <section id="hero"
@@ -202,5 +180,30 @@
         </div>
     </section>
 </body>
+
+<script>
+    // Watch
+    const clockEl = document.getElementById("clock");
+    let serverTime = new Date(clockEl.dataset.time);
+
+    const updateClock = () => {
+        serverTime.setSeconds(serverTime.getSeconds() + 1);
+
+        let hours = serverTime.getHours();
+        let minutes = serverTime.getMinutes();
+        let seconds = serverTime.getSeconds();
+
+        let ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12 || 12;
+
+        clockEl.innerText =
+            `${hours.toString().padStart(2, '0')}:` +
+            `${minutes.toString().padStart(2, '0')}:` +
+            `${seconds.toString().padStart(2, '0')} ${ampm}`;
+    };
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
 
 </html>

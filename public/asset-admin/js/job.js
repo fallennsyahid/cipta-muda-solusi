@@ -19,12 +19,17 @@ closeModalBtn.forEach(btn => {
 });
 
 // Character Count
-const textarea = document.querySelector('#description');
-const charCount = document.querySelector('#char-count');
+document.querySelectorAll('.char-counter').forEach(group => {
+    const textarea = group.querySelector('textarea');
+    const counter = group.querySelector('.char-count');
 
-textarea.addEventListener('input', () => {
-    charCount.textContent = textarea.value.length;
+    counter.textContent = textarea.value.length;
+
+    textarea.addEventListener('input', () => {
+        counter.textContent = textarea.value.length;
+    });
 });
+
 
 // Modal Detail
 const openEdit = document.querySelectorAll('.open-edit-modal');
