@@ -769,7 +769,7 @@
                             class="rounded-full h-20 w-20 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Randy Khairu Basyar</h1>
-                    <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisarin Utama</h2>
+                    <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisaris Utama</h2>
                     <p class="text-text text-sm italic text-center mb-6">
                         “Dengan menghadapi dunia digital 4.0, kami berkomitmen untuk terus berkembang dan menjadi poros
                         teknologi di Indonesia.”
@@ -865,7 +865,7 @@
                     <h1 class="text-base text-heading font-bold text-center mb-1">Nanda
                         Ikhsanabdullah Utama
                     </h1>
-                    <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisarin Utama</h2>
+                    <h2 class="text-sm font-semibold text-heading text-center mb-3">Event Director</h2>
                     <p class="text-text text-sm italic text-center mb-6">
                         “Digitalisasi merupakan
                         perkembangan dunia
@@ -1274,24 +1274,6 @@
                         digital bisnis Anda. Dengan tim profesional dan teknologi terdepan, kami siap membantu
                         mewujudkan visi digital perusahaan Anda.
                     </p>
-                    <div class="my-3">
-                        <h1 class="font-bold text-xl text-heading mb-2">Subscribe Newslatter</h1>
-                        <div class="flex items-center gap-2">
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                    <i class="fas fa-envelope text-black/50"></i>
-                                </div>
-                                <input type="email" name="newslatter" id="newslatter" placeholder="Email Anda"
-                                    class="w-full py-3 pl-12 pr-4 text-base bg-white text-darkChoco rounded-lg focus:outline-none">
-                            </div>
-                            <div>
-                                <button type="submit"
-                                    class="bg-secondary w-11 h-11 flex justify-center items-center border border-secondary rounded-lg cursor-pointer group hover:bg-transparent hover:border-2 hover:border-white transition-all duration-200 ease-in-out">
-                                    <i class="fas fa-envelope text-white group-hover:text-secondary"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="w-full md:w-[13%]">
                     <h1 class="font-bold text-2xl text-heading">Perusahaan</h1>

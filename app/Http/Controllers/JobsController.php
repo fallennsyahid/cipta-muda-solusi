@@ -17,8 +17,7 @@ class JobsController extends Controller
     public function index()
     {
         $jobs = JobVacancy::where('status', Status::Active->value)->latest()->paginate(9);
-        $totalJobs = JobVacancy::count();
-        // return view('jobs.index', compact('jobs'));
+        $totalJobs = JobVacancy::where('status', Status::Active->value)->count();
         return view('jobs.index', compact('jobs', 'totalJobs'));
     }
 
@@ -62,8 +61,6 @@ class JobsController extends Controller
 
     public function applicantStore(Request $request, JobVacancy $job)
     {
-
-        // dd($request->all());
 
         $validated = $request->validate([
             'full_name' => 'required|string',

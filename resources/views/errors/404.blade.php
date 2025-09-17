@@ -28,14 +28,15 @@
             Sepertinya halaman yang kamu cari tidak tersedia atau sudah dipindahkan.
         </p>
 
-        <a href="/"
+        <a href=""
+            onclick="if(document.referrer !== '') { history.back(); } else { window.location.href = '/'; }"
             class="inline-block mt-8 px-6 py-3 rounded-lg text-white font-medium bg-primary hover:bg-secondary transition duration-300">
             Kembali ke Beranda
         </a>
 
         <div class="mt-10">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-40 h-40 text-[var(--color-primary)] opacity-70"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto w-40 h-40 text-primary opacity-70" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17.25L4.5 12m0 0l5.25-5.25M4.5 12h15" />
             </svg>
         </div>

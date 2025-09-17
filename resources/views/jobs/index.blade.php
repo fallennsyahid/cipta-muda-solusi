@@ -153,49 +153,58 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-10">
-                @foreach ($jobs as $job)
-                    <div class="bg-white rounded-xl shadow-1 p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <h1 class="font-bold text-xl text-heading">{{ $job->position }}</h1>
-                            <span class="text-white bg-secondary px-3 py-2 rounded-sm">{{ $job->departement }}</span>
-                        </div>
-                        <p class="font-lato text-sm max-w-md text-text mb-3">
-                            {{ $job->description }}
-                        </p>
-                        <div class="flex items-center gap-6 mb-4">
-                            <div class="flex items-center text-text text-xs">
-                                <i class="fas fa-location-dot mr-2"></i>
-                                {{ $job->location }}
-                            </div>
-                            <div class="flex items-center text-text text-xs capitalize">
-                                <i class="fas fa-clock mr-2"></i>
-                                {{ $job->job_type }}
-                            </div>
-                            <div class="flex items-center text-text text-xs">
-                                <i class="fas fa-briefcase mr-2"></i>
-                                3-5 Tahun
-                            </div>
-                        </div>
-                        <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
-                        <div class="flex  flex-wrap items-center gap-4 mb-5">
-                            @foreach ($job->skills as $skill)
-                                <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                                    {{ $skill }}
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-sm font-medium text-text">Diposting
-                                {{ $job->created_at->locale('id')->diffForHumans() }}
-                            </h3>
-                            <a href="#" data-id="{{ $job->id }}"
-                                class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm hover:bg-primary/90">
-                                Lamar Sekarang
-                                <i class="fas fa-chevron-right ml-2"></i>
-                            </a>
-                        </div>
+                @if ($jobs->isEmpty())
+                    <div class="col-span-1 lg:col-span-2 bg-white rounded-xl shadow-1 p-10 text-center">
+                        <i class="fas fa-briefcase text-6xl text-primary/50 mb-6"></i>
+                        <h2 class="text-2xl font-bold text-heading">Tidak Ada Lowongan</h2>
+                        <p class="text-text mt-2">Kami belum membuka rekrutmen untuk saat ini.</p>
                     </div>
-                @endforeach
+                @else
+                    @foreach ($jobs as $job)
+                        <div class="bg-white rounded-xl shadow-1 p-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <h1 class="font-bold text-xl text-heading">{{ $job->position }}</h1>
+                                <span
+                                    class="text-white bg-secondary px-3 py-2 rounded-sm">{{ $job->departement }}</span>
+                            </div>
+                            <p class="font-lato text-sm max-w-md text-text mb-3">
+                                {{ $job->description }}
+                            </p>
+                            <div class="flex items-center gap-6 mb-4">
+                                <div class="flex items-center text-text text-xs">
+                                    <i class="fas fa-location-dot mr-2"></i>
+                                    {{ $job->location }}
+                                </div>
+                                <div class="flex items-center text-text text-xs capitalize">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    {{ $job->job_type }}
+                                </div>
+                                <div class="flex items-center text-text text-xs">
+                                    <i class="fas fa-briefcase mr-2"></i>
+                                    3-5 Tahun
+                                </div>
+                            </div>
+                            <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
+                            <div class="flex  flex-wrap items-center gap-4 mb-5">
+                                @foreach ($job->skills as $skill)
+                                    <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                                        {{ $skill }}
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-sm font-medium text-text">Diposting
+                                    {{ $job->created_at->locale('id')->diffForHumans() }}
+                                </h3>
+                                <a href="#" data-id="{{ $job->id }}"
+                                    class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm hover:bg-primary/90">
+                                    Lamar Sekarang
+                                    <i class="fas fa-chevron-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -368,14 +377,14 @@
                             class="w-full pl-12 py-3 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary resize-none"></textarea>
                     </div>
 
-                    <div>
+                    <div class="upload-group">
                         <div class="mb-2">
                             <label for="applicant_file" class="text-primary text-base font-medium">Upload CV</label>
                         </div>
                         <input type="file" name="applicant_file" id="applicant_file" class="hidden"
                             accept=".pdf">
-                        <label for="applicant_file"
-                            class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                        <label
+                            class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
                                 <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                             </div>
@@ -388,53 +397,26 @@
                                 </p>
                             </div>
                         </label>
-                    </div>
-                    <div class="bg-text/10 p-4 rounded-lg flex justify-between">
-                        <div class="flex items-center gap-3">
-                            <div>
-                                <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                            </div>
-                            <div>
-                                <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
-                                <div class="flex items-center gap-2 text-xs text-text">
-                                    <span>60KB of 120KB</span>
-                                    <span>•</span>
-                                    <span>
-                                        <i class="fa-solid fa-spinner text-blue-400"></i>
-                                        Uploading...
-                                    </span>
+                        <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
+                                <div>
+                                    <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
+                                    <div class="flex items-center gap-2 text-xs text-text">
+                                        <span class="file-size"></span>
+                                        <span>•</span>
+                                        <span>
+                                            <i class="fa-solid fa-circle-check text-green-400"></i>
+                                            Completed
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <a href="">
+                            <button type="button" class="remove-file">
                                 <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
-                    {{-- <div class="bg-text/10 p-4 rounded-lg flex justify-between">
-                        <div class="flex items-center gap-3">
-                            <div>
-                                <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                            </div>
-                            <div>
-                                <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
-                                <div class="flex items-center gap-2 text-xs text-text">
-                                    <span>120KB of 120KB</span>
-                                    <span>•</span>
-                                    <span>
-                                        <i class="fa-solid fa-circle-check text-green-400"></i>
-                                        Completed
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="">
-                                <i class="fa-solid fa-trash text-lg text-darkChoco"></i>
-                            </a>
-                        </div>
-                    </div> --}}
                 </div>
                 <button type="submit"
                     class="w-full bg-gradient-to-r from-primary to-secondary py-3 flex items-center justify-center text-white font-semibold text-lg rounded-lg cursor-pointer hover:from-secondary hover:to-primary">
@@ -474,7 +456,7 @@
 
                 <form action="{{ route('applicants.store', $job->id) }}" method="POST"
                     enctype="multipart/form-data"
-                    class="space-y-6 max-h-96 overflow-y-auto p-6 border-t border-t-text/15">
+                    class="space-y-6 max-h-96 overflow-y-auto p-6 border-t border-t-text/15 custom-scrollbar">
                     @csrf
                     <div class="space-y-3">
 
@@ -634,6 +616,19 @@
     @endforeach
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    @endif
+</script>
+
 <script>
     // Watch
     const clockEl = document.getElementById("clock");
@@ -759,7 +754,7 @@
     });
 </script>
 
-{{-- <script src={{ asset('js/script.js') }}></script> --}}
 <script src="{{ asset('js/jobs.js') }}"></script>
+<script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>
 
 </html>
