@@ -85,23 +85,23 @@
 
     <section id="hero"
         class="relative h-screen bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-center">
-        <div class="absolute top-28 right-10 w-32 h-32 bg-accent rotate-45 animate-pulse"></div>
+        <div class="absolute top-28 right-10 w-32 h-32 bg-accent rotate-45 animate-pulse -z-10"></div>
         <div
             class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-primary/20 rounded-full blur-md">
         </div>
-        <div class="absolute bottom-28 left-10 w-32 h-32 bg-accent rotate-45 animate-pulse"></div>
+        <div class="absolute bottom-28 left-10 w-32 h-32 bg-accent rotate-45 animate-pulse -z-10"></div>
 
         <div class="container max-w-full">
             <h1
-                class="text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text leading-relaxed">
+                class="text-4xl lg:text-6xl font-bold mb-3 lg:mb-6 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text leading-relaxed">
                 Pertanyaan yang Sering Ditanyakan
             </h1>
-            <p class="font-lato text-text text-xl font-semibold mb-6">
+            <p class="font-lato text-text text-xl font-semibold mb-3 lg:mb-6">
                 Temukan jawaban untuk pertanyaan yang sering diajukan tentang layanan kami
             </p>
             <div class="flex items-center justify-center">
                 <a href="#question"
-                    class="bg-gradient-to-r bg-primary to-secondary py-4 px-6 text-xl font-semibold text-white flex items-center rounded-xl relative z-10 group">
+                    class="bg-gradient-to-r bg-primary to-secondary py-3 lg:py-4 px-5 lg:px-6 text-lg lg:text-xl font-semibold text-white flex items-center rounded-xl relative z-10 group">
                     Lihat Pertanyaan
                     <i
                         class="fas fa-arrow-right ml-2 group-hover:rotate-90 transition-transform duration-200 ease-in-out"></i>
@@ -117,8 +117,8 @@
                     <div class="flex flex-col gap-6">
                         <div class="bg-white shadow-1 rounded-xl transition-colors duration-200 ease-in-out">
                             <div
-                                class="flex items-center justify-between px-8 py-6 hover:bg-accent/30 transition-all duration-200 ease-in-out">
-                                <h1 class="font-semibold text-2xl text-heading">
+                                class="flex items-center justify-between px-8 py-6 gap-3 hover:bg-accent/30 transition-all duration-200 ease-in-out">
+                                <h1 class="font-semibold text-lg lg:text-2xl text-heading">
                                     {{ $faq->question }}
                                 </h1>
                                 <div
@@ -130,7 +130,7 @@
 
                             <div
                                 class="dropdown-content opacity-0 scale-y-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out origin-top">
-                                <p class="px-8 text-base font-medium text-text leading-relaxed">
+                                <p class="px-8 text-sm lg:text-base font-medium text-text leading-relaxed">
                                     {{ $faq->answer }}
                                 </p>
                             </div>
@@ -143,7 +143,7 @@
 
     <div class="bg-gradient-to-br from-primary to-secondary py-16 flex flex-col justify-center items-center">
         <h1 class="text-3xl text-white font-bold mb-5">Masih Ada Pertanyaan?</h1>
-        <p class="text-white/90 font-lato font-medium text-base mb-7">
+        <p class="text-white/90 font-lato font-medium text-base md:text-lg lg:text-xl mb-7">
             Tim kami siap membantu menjawab pertanyaanspesifik Anda
         </p>
         <a href="#" id="add-question"

@@ -100,7 +100,6 @@
             </ul>
         </nav>
     </x-header>
-
     {{-- Header Start --}}
 
     {{-- Hero Section Start --}}
@@ -159,17 +158,17 @@
     <section id="about" class="pt-36 pb-32 bg-section overflow-hidden">
         <div class="container max-w-full">
             <div class="mb-5">
-                <h1 class="font-bold text-5xl text-heading text-center mb-5">Tentang Kami</h1>
+                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">Tentang Kami</h1>
                 <div class="w-25 h-1 mx-auto bg-secondary rounded-full"></div>
             </div>
 
-            <p class="font-lato text-text text-2xl text-center max-w-3xl mx-auto">
+            <p class="font-lato text-text text-lg md:text-xl lg:text-2xl text-center max-w-3xl mx-auto px-4 lg:px-0">
                 Kami berkomitmen membangun kepercayaan dan kerjasama dengan mitra strategis dalam menghadapi era digital
                 4.0.
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-12 gap-4 mt-12 mb-14">
-                <div class="relative w-80 mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-4 md:mx-12 gap-6 mt-12 mb-14">
+                <div class="relative w-full max-w-sm mx-auto">
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
@@ -178,7 +177,7 @@
                         <h1 class="font-semibold text-2xl text-heading text-center">Young</h1>
                     </div>
                 </div>
-                <div class="relative w-74 mx-auto">
+                <div class="relative w-full max-w-sm mx-auto">
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
@@ -187,16 +186,16 @@
                         <h1 class="font-semibold text-2xl text-heading text-center">Strong</h1>
                     </div>
                 </div>
-                <div class="relative w-74 mx-auto">
+                <div class="relative w-full max-w-sm mx-auto">
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
                             <i class="fas fa-lightbulb text-2xl text-white"></i>
                         </div>
-                        <h1 class="font-semibold text-2xl text-heading text-center">Innovotive</h1>
+                        <h1 class="font-semibold text-2xl text-heading text-center">Innovative</h1>
                     </div>
                 </div>
-                <div class="relative w-74 mx-auto">
+                <div class="relative w-full max-w-sm mx-auto">
                     <div class="absolute inset-0 bg-secondary/45 rounded-lg rotate-4 z-0"></div>
                     <div class="relative z-10 bg-accent p-6 rounded-lg flex flex-col items-center">
                         <div class="inline-flex bg-secondary items-center justify-center rounded-sm py-3 px-2 mb-3">
@@ -208,9 +207,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 mx-12">
-                <div>
-                    <h1 class="font-bold text-4xl text-heading mb-3">Perjalanan Kami</h1>
-                    <p class="max-w-2xl font-lato text-text text-lg mb-9">
+                <div class="mb-12 lg:mb-0">
+                    <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl text-heading mb-3 text-center lg:text-left">
+                        Perjalanan Kami</h1>
+                    <p class="max-w-2xl font-lato text-text text-base md:text-lg mb-9 text-center lg:text-left">
                         Dari startup kecil hingga menjadi partner teknologi terpercaya, kami terus berinovasi dan
                         berkembang untuk memberikan nilai terbaik bagi klien.
                     </p>
@@ -221,7 +221,7 @@
                                 20
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-xl">Perjalanan Kami</h1>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
                                 <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
                                     partner
                                     teknologi
@@ -234,7 +234,7 @@
                                 20
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-xl">Perjalanan Kami</h1>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
                                 <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
                                     partner
                                     teknologi
@@ -247,7 +247,7 @@
                                 20
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-xl">Perjalanan Kami</h1>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
                                 <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
                                     partner
                                     teknologi
@@ -260,7 +260,7 @@
                                 20
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-xl">Perjalanan Kami</h1>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
                                 <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
                                     partner
                                     teknologi
@@ -270,47 +270,57 @@
                     </div>
                 </div>
                 <div class="my-auto">
-                    <div class="relative w-165">
-                        <div class="absolute inset-0 bg-accent rounded-xl rotate-3 z-0 p-6">
-                            <h1 class="text-heading font-bold text-4xl mb-4 text-center -rotate-3">Motto</h1>
-                            <div class="flex justify-center items-center mt-10">
-                                <div
-                                    class="relative flex justify-center items-center p-16 border-2 border-text rounded-xl -rotate-3">
+                    <div class="relative w-full max-w-4xl mx-auto">
+                        <!-- Motto Card -->
+                        <div
+                            class="absolute inset-0 bg-accent rounded-xl rotate-3 z-0 p-6 md:p-10 flex justify-center items-center">
+                            <div>
+                                <h1 class="text-heading font-bold text-4xl mb-4 text-center -rotate-3">
+                                    Motto
+                                </h1>
+                                <div class="flex justify-center items-center mt-6 md:mt-10">
                                     <div
-                                        class="absolute right-6 -top-7 text-3xl text-secondary bg-accent p-3 rounded-full">
-                                        <i class="fas fa-quote-right"></i>
-                                    </div>
-                                    <p class="font-medium text-darkChoco text-xl italic text-center font-lato">
-                                        "Kepuasaan
-                                        Perusahaan Mitra adalah yang Utama"
-                                    </p>
-                                    <div
-                                        class="absolute left-6 -bottom-7 text-3xl text-secondary bg-accent p-3 rounded-full">
-                                        <i class="fas fa-quote-left"></i>
+                                        class="relative flex justify-center items-center p-6 md:p-16 border-2 border-text rounded-xl -rotate-3">
+                                        <div
+                                            class="absolute right-4 md:right-6 -top-6 md:-top-7 text-xl md:text-3xl text-secondary bg-accent p-2 md:p-3 rounded-full">
+                                            <i class="fas fa-quote-right"></i>
+                                        </div>
+                                        <p
+                                            class="font-medium text-darkChoco text-2xl md:text-xl italic text-center font-lato">
+                                            "Kepuasaan Perusahaan Mitra adalah yang Utama"
+                                        </p>
+                                        <div
+                                            class="absolute left-4 md:left-6 -bottom-6 md:-bottom-7 text-xl md:text-3xl text-secondary bg-accent p-2 md:p-3 rounded-full">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Visi & Misi Card -->
                         <div
-                            class="relative z-10 bg-white border-2 border-[#d2d2d2] p-10 rounded-xl flex flex-col origin-top-right transition-transform duration-1000 ease-in-out hover:-rotate-90 hover:-translate-x-2 will-change-transform">
-                            <h1 class="text-heading font-semibold text-xl mb-2.5">Visi & Misi</h1>
-                            <h2 class="flex items-center text-heading text-xl font-semibold mb-2">
+                            class="relative z-10 bg-white border-2 border-[#d2d2d2] p-6 md:p-10 rounded-xl flex flex-col origin-top-right transition-transform duration-1000 ease-in-out hover:-rotate-90 hover:-translate-x-2 will-change-transform">
+                            <h1 class="text-heading font-semibold text-lg md:text-xl mb-2.5">Visi & Misi</h1>
+
+                            <h2 class="flex items-center text-heading text-lg md:text-xl font-semibold mb-2">
                                 <i class="fas fa-eye mr-2"></i>
                                 Visi
                             </h2>
-                            <p class="text-text font-lato text-sm mb-5">
+                            <p class="text-text font-lato text-sm md:text-base mb-5">
                                 "Menjadi perusahaan Jasa Solusi IT, Marketing, dan Event Organizer terpercaya di
                                 Indonesia”
                             </p>
-                            <h3 class="flex items-center text-heading text-xl font-semibold mb-2">
+
+                            <h3 class="flex items-center text-heading text-lg md:text-xl font-semibold mb-2">
                                 <i class="fas fa-bullseye mr-2"></i>
                                 Misi
                             </h3>
-                            <p class="max-w-xl text-sm flex items-center text-text mb-2">
+                            <p class="max-w-xl text-sm md:text-base flex items-center text-text mb-2">
                                 <i class="fas fa-circle-check mr-2 text-secondary"></i>
                                 Memberikan jasa pelayanan terbaik secara konsisten kepada semua perusahaan mitra
                             </p>
-                            <p class="max-w-xl text-sm flex items-center text-text">
+                            <p class="max-w-xl text-sm md:text-base flex items-center text-text">
                                 <i class="fas fa-circle-check mr-2 text-secondary"></i>
                                 Memberikan jasa pelayanan terbaik secara konsisten kepada semua perusahaan mitra
                             </p>
@@ -326,11 +336,12 @@
     <section id="service" class="pt-36 pb-32 bg-section">
         <div class="container max-w-full">
             <div class="mb-5">
-                <h1 class="font-bold text-5xl text-heading text-center mb-5">Layanan Unggulan Kami</h1>
+                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">Layanan Unggulan
+                    Kami</h1>
                 <div class="w-25 h-1 mx-auto bg-secondary rounded-full"></div>
             </div>
 
-            <p class="max-w-4xl text-center mx-auto font-lato text-text text-2xl">
+            <p class="max-w-4xl text-center mx-auto font-lato text-text text-lg md:text-xl lg:text-2xl">
                 Kami menyediakan berbagai layanan teknologi yang komprehensif untuk mendukung transformasi digital
                 bisnis Anda
             </p>
@@ -564,56 +575,67 @@
     <section id="portfolio" class="pt-36 pb-32 bg-white">
         <div class="container max-w-full relative">
             <div class="mb-5">
-                <h1 class="font-bold text-5xl text-heading text-center mb-5">Portfolio Perusahaan</h1>
+                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-3 md:mb-5">Portfolio
+                    Perusahaan</h1>
                 <div class="w-25 h-1 mx-auto bg-secondary rounded-full"></div>
             </div>
 
-            <p class="text-2xl text-text mb-12 text-center max-w-3xl mx-auto">
+            <p class="text-lg md:text-xl lg:text-2xl text-text mb-12 text-center max-w-3xl mx-auto">
                 Beberapa pengalaman pekerjaan yang sudah kami jalankan dengan baik, benar, dan cepat.
             </p>
 
             <div class="mx-12 flex flex-col gap-y-12">
                 @foreach ($portfolios as $index => $portfolio)
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 place-items-center">
-                        {{-- Kalau index genap: teks kiri, gambar kanan --}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10 place-items-center">
                         @if ($index % 2 == 0)
+                            <div class="block md:hidden">
+                                <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
+                                    width="600" height="300" class="rounded-md">
+                            </div>
                             <div class="flex flex-col items-start gap-3">
-                                <span class="flex items-center text-secondary font-lato text-xl font-semibold">
+                                <span
+                                    class="flex items-center text-secondary font-lato text-lg md:text-xl font-semibold">
                                     <i class="fas fa-gears rotate-90 text-text mr-2"></i>
                                     {{ $portfolio->project_name }}
                                 </span>
-                                <h1 class="font-bold text-4xl text-heading">{{ $portfolio->title }}</h1>
-                                <p class="text-text text-xl">
+                                <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl text-heading">
+                                    {{ $portfolio->title }}</h1>
+                                <p class="text-text text-lg md:text-xl">
                                     {{ $portfolio->description }}
                                 </p>
                                 <div
-                                    class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl uppercase">
+                                    class="bg-secondary/25 text-secondary font-semibold text-base md:text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl uppercase">
                                     {{ \Carbon\Carbon::parse($portfolio->event_time)->locale('id')->translatedFormat('F Y') }}
                                 </div>
                             </div>
-                            <div>
+                            <div class="hidden md:block">
                                 <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
-                                    width="600" height="300" class="hidden md:block">
+                                    width="600" height="300" class="rounded-md">
                             </div>
                         @else
-                            {{-- Kalau index ganjil: gambar kiri, teks kanan --}}
-                            <div>
+                            <div class="block md:hidden">
                                 <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
-                                    width="600" height="300" class="hidden md:block">
+                                    width="600" height="300" class="rounded-md">
                             </div>
                             <div class="flex flex-col items-start gap-3">
-                                <span class="flex items-center text-secondary font-lato text-xl font-semibold">
+                                <span
+                                    class="flex items-center text-secondary font-lato text-lg md:text-xl font-semibold">
                                     <i class="fas fa-gears rotate-90 text-text mr-2"></i>
                                     {{ $portfolio->project_name }}
                                 </span>
-                                <h1 class="font-bold text-4xl text-heading">{{ $portfolio->title }}</h1>
-                                <p class="text-text text-xl">
+                                <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl text-heading">
+                                    {{ $portfolio->title }}</h1>
+                                <p class="text-text text-lg md:text-xl">
                                     {{ $portfolio->description }}
                                 </p>
                                 <div
-                                    class="bg-secondary/25 text-secondary font-semibold text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl uppercase">
+                                    class="bg-secondary/25 text-secondary font-semibold text-base md:text-lg py-2 px-6 rounded-tl-lg rounded-br-lg rounded-bl-3xl rounded-tr-3xl uppercase">
                                     {{ \Carbon\Carbon::parse($portfolio->event_time)->locale('id')->translatedFormat('F Y') }}
                                 </div>
+                            </div>
+                            <div class="hidden md:block">
+                                <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
+                                    width="600" height="300" class="rounded-md">
                             </div>
                         @endif
                     </div>
@@ -631,60 +653,75 @@
 
     {{-- Detail Portfolio Overlay Start --}}
     <div id="portfolio-overlay"
-        class="fixed inset-0 z-[99999] bg-black2/20 backdrop-blur-xl overflow-y-auto transform translate-x-full transition-transform duration-700 ease-in-out">
-        <div class="ml-12 mt-12">
+        class="fixed inset-0 z-[99999] bg-black/30 backdrop-blur-xl overflow-y-auto transform translate-x-full transition-transform duration-700 ease-in-out">
+
+        <!-- Close Button -->
+        <div class="ml-6 mt-6">
             <a href="#" id="close-overlay"
-                class="flex items-center justify-center w-12 h-12 bg-white rounded-full hover:bg-white/75 duration-200 transition-all ease-in-out group">
-                <i
-                    class="fas fa-times block text-2xl text-darkChoco/80 group-hover:text-darkChoco transform transition-transform duration-200 ease-in-out group-hover:rotate-90"></i>
+                class="flex items-center justify-center w-12 h-12 bg-white/90 shadow-md rounded-full hover:bg-white transition duration-200 group">
+                <i class="fas fa-times text-2xl text-darkChoco group-hover:rotate-90 transition-transform"></i>
             </a>
         </div>
 
-        <div class="min-h-screen flex flex-col items-center justify-start py-12">
-            <div class="flex flex-col justify-between items-center mb-8">
-                <div class="mb-5">
-                    <h1 class="text-5xl font-bold text-white mb-3">Portfolio Perusahaan</h1>
-                    <div class="w-25 h-1 bg-white mx-auto rounded-full"></div>
-                </div>
-                <div class="flex gap-4">
-                    <button type="button"
-                        class="px-3 py-1 text-white rounded-full bg-darkChoco font-medium cursor-pointer">
-                        Semua
-                    </button>
-                    <button type="button"
-                        class="px-3 py-1 text-darkChoco border border-darkChoco rounded-full font-medium cursor-pointer hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
-                        Event
-                    </button>
-                    <button type="button"
-                        class="px-3 py-1 border border-darkChoco rounded-full text-darkChoco font-medium cursor-pointer hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
-                        IoT
-                    </button>
-                    <button type="button"
-                        class="px-3 py-1 border border-darkChoco rounded-full text-darkChoco font-medium cursor-pointer hover:text-white hover:bg-darkChoco transition-colors duration-200 ease-in-out">
-                        Web Development
-                    </button>
-                </div>
+        <!-- Content -->
+        <div class="min-h-screen flex flex-col items-center py-12 px-6 lg:px-16">
+
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-white mb-3">
+                    Portfolio <span class="text-secondary">Perusahaan</span>
+                </h1>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+                <p class="text-white/80 mt-4 max-w-2xl mx-auto text-base">
+                    Beberapa proyek terbaik yang pernah kami kerjakan dalam bidang Event, IoT, dan Web Development.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mx-10">
+            <!-- Filter -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button type="button"
+                    class="px-4 py-2 text-white rounded-full bg-secondary font-medium shadow-md hover:scale-105 transition">
+                    Semua
+                </button>
+                <button type="button"
+                    class="px-4 py-2 border border-darkChoco rounded-full text-darkChoco font-medium hover:bg-darkChoco hover:text-white transition">
+                    Event
+                </button>
+                <button type="button"
+                    class="px-4 py-2 border border-darkChoco rounded-full text-darkChoco font-medium hover:bg-darkChoco hover:text-white transition">
+                    IoT
+                </button>
+                <button type="button"
+                    class="px-4 py-2 border border-darkChoco rounded-full text-darkChoco font-medium hover:bg-darkChoco hover:text-white transition">
+                    Web Development
+                </button>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-10 w-full">
                 @foreach ($allPortfolios as $portfolio)
-                    <div class="bg-white shadow-1 rounded-xl">
-                        <div class="aspect-video overflow-hidden rounded-t-xl">
-                            <img src="{{ Storage::url($portfolio->image) }}" alt=""
-                                class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
+                    <div
+                        class="bg-white rounded-2xl shadow-md hover:shadow-xl transition hover:-translate-y-2 duration-300">
+                        <div class="relative aspect-video overflow-hidden rounded-t-2xl group">
+                            <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
+                                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition duration-500" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-500">
+                                <i class="fas fa-search text-white text-3xl"></i>
+                            </div>
                         </div>
                         <div class="p-6 flex flex-col gap-3">
-                            <h1 class="text-primary text-lg font-medium flex items-center gap-2">
-                                <i class="fas fa-layer-group text-text"></i>
+                            <h1 class="text-secondary text-sm uppercase tracking-wide font-semibold">
                                 {{ $portfolio->category }}
                             </h1>
-                            <h2 class="text-heading font-bold text-xl">{{ $portfolio->title }}</h2>
-                            <p class="text-base text-text">
+                            <h2 class="text-heading font-bold text-xl line-clamp-2">{{ $portfolio->title }}</h2>
+                            <p class="text-sm text-text line-clamp-3">
                                 {{ $portfolio->description }}
                             </p>
-                            <div class="flex items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
                                 @foreach ($portfolio->tools as $tool)
-                                    <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full text-sm">
+                                    <span
+                                        class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-xs font-medium">
                                         {{ $tool }}
                                     </span>
                                 @endforeach
@@ -692,58 +729,6 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- <div class="bg-white shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_2.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium flex items-center gap-2">
-                            <i class="fas fa-layer-group text-text"></i>
-                            Event Organizer
-                        </h1>
-                        <h2 class="text-heading font-bold text-xl">
-                            SUNLIFE FINANCIAL ANNUAL AWARD NIGHT
-                        </h2>
-                        <p class="text-base text-text">
-                            Malam Penghargaan agensi Sunlife Financial
-                            Indonesia yang di laksanakan secara virtual
-                            melalui zoom meeting yang di ikuti sebanyak 8000
-                            peserta (Agent) di seluruh Indonesia
-                        </p>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
-                                Zoom
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white shadow-1 rounded-xl">
-                    <div class="aspect-video overflow-hidden rounded-t-xl">
-                        <img src="{{ asset('landing/webp/portfolios/portfolio_3.webp') }}" alt=""
-                            class="w-full h-full opacity-90 object-conver hover:opacity-100 hover:scale-105 5transition-all duration-300" />
-                    </div>
-                    <div class="p-6 flex flex-col gap-3">
-                        <h1 class="text-primary text-lg font-medium flex items-center gap-2">
-                            <i class="fas fa-layer-group text-text"></i>
-                            IT Operation dan Maintenance
-                        </h1>
-                        <h2 class="text-heading font-bold text-xl">INFRASTRUCTURE INSTALATION</h2>
-                        <p class="text-base text-text">
-                            Instalasi dan konfigurasi switch Catalyst 2960X
-                            dan Mikrotik RB 1100 AH pada server Angkasa
-                            Pura 1 – Kemayoran , Jakarta Pusat.
-                        </p>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
-                                Catalyst 2960X
-                            </span>
-                            <span class="bg-secondary/25 text-primary px-3 py-1 rounded-full">
-                                Mikrotik RB 1100 AH
-                            </span>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -753,11 +738,12 @@
     <section id="team" class="pt-36 pb-32 bg-white">
         <div class="container max-w-full relative z-10">
             <div class="mb-5">
-                <h1 class="font-bold text-5xl text-heading text-center mb-5">Tim Kami</h1>
+                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-3 md:mb-5">Tim Kami
+                </h1>
                 <div class="w-25 h-1 mx-auto bg-secondary rounded-full"></div>
             </div>
 
-            <p class="font-lato text-text text-2xl text-center max-w-5xl mx-auto">
+            <p class="font-lato text-text text-lg md:text-xl lg:text-2xl text-center max-w-5xl mx-auto">
                 Berdiri bersama dalam mewujudkan industri kreatif Indonesia didalam segala bidang terutama pada sektor
                 Teknologi Informasi, Pemasaran (Marketing), dan bidang industri kreatif (MICE).
             </p>
@@ -792,7 +778,7 @@
                 </div>
 
                 <div
-                    class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-6">
+                    class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-0 lg:translate-y-6">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/aditya_bayu.webp') }}" alt=""
                             class="rounded-full h-20 w-20 object-contain">
@@ -857,7 +843,7 @@
                 </div>
 
                 <div
-                    class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-6">
+                    class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-0 lg:translate-y-6">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/nanda.webp') }}" alt=""
                             class="rounded-full h-20 w-20 object-contain">
@@ -896,15 +882,15 @@
             <div class="flex justify-center mt-20">
                 <div class="flex items-end">
                     <div
-                        class="flex items-center justify-center p-10 text-center text-xl font-bold text-white w-48 h-48 bg-primary translate-x-14 relative z-1 [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]">
+                        class="flex items-center justify-center p-10 text-center text-base md:text-lg lg:text-xl font-bold text-white w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-primary translate-x-12 lg:translate-x-14 relative z-1 [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]">
                         "Muda Bersolusi"
                     </div>
                     <div
-                        class="flex items-center justify-center p-10 text-center text-xl font-bold text-white w-72 h-72 bg-secondary/80 [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]">
+                        class="flex items-center justify-center p-10 text-center text-base md:text-lg lg:text-xl font-bold text-white w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 bg-secondary/80 [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]">
                         “Kepuasaan Perusahaan Mitra adalah yang Utama”
                     </div>
                     <div
-                        class="flex items-center justify-center p-10 text-center text-xl font-bold text-white w-48 h-48 bg-primary -translate-x-14 relative -z-1 [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]">
+                        class="flex items-center justify-center p-10 text-center text-base md:text-lg lg:text-xl font-bold text-white w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-primary -translate-x-12 lg:-translate-x-12 relative -z-1 [clip-path:polygon(25%_6.7%,75%_6.7%,100%_50%,75%_93.3%,25%_93.3%,0%_50%)]">
                         "Semua Pasti ada Solusi"
                     </div>
                 </div>
@@ -917,11 +903,13 @@
     <section id="partner" class="pt-36 pb-32 bg-section">
         <div class="container max-w-full">
             <div class="mb-5">
-                <h1 class="font-bold text-5xl text-heading text-center mb-5">Partner Terpercaya</h1>
+                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-3 md:mb-5">Partner
+                    Terpercaya
+                </h1>
                 <div class="w-25 h-1 mx-auto bg-secondary rounded-full"></div>
             </div>
 
-            <p class="font-lato text-text text-2xl text-center max-w-5xl mx-auto">
+            <p class="font-lato text-text text-lg md:text-xl lg:text-2xl text-center max-w-5xl mx-auto">
                 Sebuah kebanggaan dapat bekerja sama dengan perusahaan-perusahaan terkemuka untuk memberikan solusi
                 terbaik.
             </p>
@@ -1117,72 +1105,87 @@
     </div>
 
     {{-- Contact & Maps Section Start --}}
-    <section id="contact" class="pt-32 pb-32 px-12 bg-section">
+    <section id="contact" class="pt-20 md:pt-32 pb-20 md:pb-32 px-4 sm:px-8 lg:px-12 bg-section">
         <div id="container" class="container max-w-full">
-            <div class="bg-accent rounded-2xl p-6 mb-6">
-                <div class="flex flex-wrap md:flex-nowrap gap-10" id="formKontak">
+            <div class="bg-accent rounded-2xl p-6 md:p-10 mb-6">
+                <div class="flex flex-wrap md:flex-nowrap gap-8 lg:gap-10" id="formKontak">
+
+                    <!-- Form -->
                     <div class="w-full lg:w-1/2">
-                        <h1 class="text-heading text-2xl font-bold">Konsultasi Gratis</h1>
+                        <h1 class="text-heading text-xl md:text-2xl font-bold">Konsultasi Gratis</h1>
                         <form action="{{ route('index.store') }}" method="POST" class="space-y-4 py-4">
                             @csrf
                             <div class="space-y-4">
+                                <!-- Nama + Nomor -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="full_name"
-                                            class="block mb-2 font-medium text-base text-heading">Nama
-                                            Lengkap</label>
+                                            class="block mb-2 font-medium text-sm md:text-base text-heading">
+                                            Nama Lengkap
+                                        </label>
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <i class="fas fa-user text-base text-text"></i>
+                                                <i class="fas fa-user text-sm md:text-base text-text"></i>
                                             </div>
                                             <input type="text" name="full_name" id="full_name"
                                                 placeholder="Masukkan nama lengkap"
-                                                class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none">
+                                                class="w-full bg-white pl-12 py-3 md:py-4 pr-4 text-sm md:text-base text-darkChoco rounded-lg focus:outline-none">
                                         </div>
                                     </div>
                                     <div>
                                         <label for="phone_number"
-                                            class="block mb-2 font-medium text-base text-heading">Nomor
-                                            Telepon</label>
+                                            class="block mb-2 font-medium text-sm md:text-base text-heading">
+                                            Nomor Telepon
+                                        </label>
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                <i class="fas fa-phone text-base text-text"></i>
+                                                <i class="fas fa-phone text-sm md:text-base text-text"></i>
                                             </div>
                                             <input type="tel" name="phone_number" id="phone_number"
                                                 placeholder="Masukkan nomor telepon"
-                                                class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none">
+                                                class="w-full bg-white pl-12 py-3 md:py-4 pr-4 text-sm md:text-base text-darkChoco rounded-lg focus:outline-none">
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Email -->
                                 <div>
                                     <label for="email"
-                                        class="block mb-2 font-medium text-base text-heading">Email</label>
+                                        class="block mb-2 font-medium text-sm md:text-base text-heading">
+                                        Email
+                                    </label>
                                     <div class="relative">
                                         <div
                                             class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <i class="fas fa-envelope text-base text-text"></i>
+                                            <i class="fas fa-envelope text-sm md:text-base text-text"></i>
                                         </div>
                                         <input type="email" name="email" id="email"
                                             placeholder="Masukkan email"
-                                            class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none">
+                                            class="w-full bg-white pl-12 py-3 md:py-4 pr-4 text-sm md:text-base text-darkChoco rounded-lg focus:outline-none">
                                     </div>
                                 </div>
+
+                                <!-- Pesan -->
                                 <div>
                                     <label for="message"
-                                        class="block mb-2 font-medium text-base text-heading">Email</label>
+                                        class="block mb-2 font-medium text-sm md:text-base text-heading">
+                                        Pesan
+                                    </label>
                                     <div class="relative">
-                                        <div class="absolute inset-y-0 left-0 top-4 pl-4 pointer-events-none">
-                                            <i class="fas fa-message text-base text-text"></i>
+                                        <div class="absolute top-3 left-0 pl-4 pointer-events-none">
+                                            <i class="fas fa-message text-sm md:text-base text-text"></i>
                                         </div>
                                         <textarea name="message" id="message" rows="4" placeholder="Pesan Anda"
-                                            class="w-full bg-white pl-12 py-4 pr-4 text-base text-darkChoco rounded-lg focus:outline-none"></textarea>
+                                            class="w-full bg-white pl-12 py-3 md:py-4 pr-4 text-sm md:text-base text-darkChoco rounded-lg focus:outline-none"></textarea>
                                     </div>
                                 </div>
+
+                                <!-- Button -->
                                 <div class="flex">
                                     <button type="submit"
-                                        class="flex flex-1 items-center justify-center py-3 px-6 gap-2 text-white text-base font-semibold bg-gradient-to-br from-primary to-secondary hover:from-secondary hover:to-primary rounded-lg cursor-pointer">
+                                        class="flex flex-1 items-center justify-center py-3 md:py-4 px-6 gap-2 text-white text-sm md:text-base font-semibold bg-gradient-to-br from-primary to-secondary hover:from-secondary hover:to-primary rounded-lg cursor-pointer">
                                         <i class="fas fa-paper-plane"></i>
                                         Kirim
                                     </button>
@@ -1190,66 +1193,71 @@
                             </div>
                         </form>
                     </div>
-                    <div class="w-full md:w-1/2">
-                        <h1 class="font-bold text-2xl text-heading">Informasi Kontak</h1>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-                            <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg gap-2.5">
+
+                    <!-- Informasi Kontak -->
+                    <div class="w-full lg:w-1/2">
+                        <h1 class="font-bold text-xl md:text-2xl text-heading">Informasi Kontak</h1>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                            <!-- Alamat -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
-                                    class="inline-flex w-12 h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
-                                    <i class="fas fa-location-dot text-xl"></i>
+                                    class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
+                                    <i class="fas fa-location-dot text-base md:text-xl"></i>
                                 </div>
-                                <h1 class="font-semibold text-primary text-xl">Telepon</h1>
-                                <p class="text-text text-base font-lato text-center">
-                                    Komplek Ruko Imperium Park Blok C No. 6, Jalan Mayor Oking, Kec. Cibinong,
-                                    Kab.
-                                    Bogor.
+                                <h1 class="font-semibold text-primary text-lg md:text-xl">Alamat</h1>
+                                <p class="text-text text-sm md:text-base font-lato">
+                                    Komplek Ruko Imperium Park Blok C No. 6, Jalan Mayor Oking, Cibinong, Bogor.
                                 </p>
                             </div>
-                            <div class="flex flex-col items-center justify-center p-3 bg-white rounded-lg gap-2.5">
+
+                            <!-- Telepon -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
-                                    class="inline-flex w-12 h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
-                                    <i class="fas fa-phone text-xl"></i>
+                                    class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
+                                    <i class="fas fa-phone text-base md:text-xl"></i>
                                 </div>
-                                <h1 class="font-semibold text-primary text-xl">Alamat Kantor</h1>
-                                <p class="text-text text-base font-lato text-center flex flex-col gap-1">
-                                    <span>
-                                        <strong class="font-bold">Mobile:</strong> 0812 1029 4688
-                                    </span>
-                                    <span>
-                                        <strong class="font-bold">Kantor:</strong> 021 83731722
-                                    </span>
+                                <h1 class="font-semibold text-primary text-lg md:text-xl">Telepon</h1>
+                                <p class="text-text text-sm md:text-base font-lato flex flex-col gap-1">
+                                    <span><strong>Mobile:</strong> 0812 1029 4688</span>
+                                    <span><strong>Kantor:</strong> 021 83731722</span>
                                 </p>
                             </div>
-                            <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg gap-2.5">
+
+                            <!-- Email -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
-                                    class="inline-flex w-12 h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
-                                    <i class="fas fa-envelope text-xl"></i>
+                                    class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
+                                    <i class="fas fa-envelope text-base md:text-xl"></i>
                                 </div>
-                                <h1 class="font-semibold text-primary text-xl">Email</h1>
-                                <p class="text-text text-base font-lato text-center">
+                                <h1 class="font-semibold text-primary text-lg md:text-xl">Email</h1>
+                                <p class="text-text text-sm md:text-base font-lato">
                                     ciptamudasolusi@gmail.com
                                 </p>
                             </div>
-                            <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg gap-2.5">
+
+                            <!-- Jam Operasional -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
-                                    class="inline-flex w-12 h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
-                                    <i class="fas fa-clock text-xl"></i>
+                                    class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
+                                    <i class="fas fa-clock text-base md:text-xl"></i>
                                 </div>
-                                <h1 class="font-semibold text-primary text-xl">Jam Operasional</h1>
-                                <p class="text-text text-base font-lato text-center">
+                                <h1 class="font-semibold text-primary text-lg md:text-xl">Jam Operasional</h1>
+                                <p class="text-text text-sm md:text-base font-lato">
                                     Senin - Jumat: 09.00 - 17.00
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
+
+                <!-- Map -->
+                <div class="mt-6 md:mt-10">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.0444291674!2d-118.74139030403776!3d34.020608403183566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20California%2C%20Amerika%20Serikat!5e0!3m2!1sid!2sid!4v1756612201402!5m2!1sid!2sid"
-                        class="rounded-lg w-full h-96" loading="lazy"></iframe>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.523771473663!2d106.86139437457845!3d-6.474206763300091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c152c12a0d77%3A0xefa0990a4a4506b!2sPT%20Cipta%20Muda%20Solusi!5e1!3m2!1sid!2sid!4v1758164619067!5m2!1sid!2sid"
+                        class="rounded-lg w-full h-72 md:h-96" loading="lazy"></iframe>
                     <div class="flex justify-center mt-4">
                         <a href="" target="_blank"
-                            class="py-4 bg-gradient-to-r from-primary to-secondary px-8 text-lg font-semibold text-white rounded-lg flex items-center justify-center gap-2 transition-transform duration-300 ease-linear hover:scale-105 active:scale-95">
+                            class="py-3 md:py-4 px-6 md:px-8 text-sm md:text-lg font-semibold text-white bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center gap-2 transition-transform duration-300 hover:scale-105 active:scale-95">
                             <i class="fas fa-map-location-dot"></i>
                             Lihat Petunjuk Arah
                         </a>
@@ -1263,154 +1271,70 @@
     {{-- Footer Section Start --}}
     <footer class="bg-accent pt-10">
         <div class="container max-w-full">
-            <div class="flex flex-wrap gap-20 mx-10">
+            <div class="flex flex-wrap gap-10 md:gap-16 lg:gap-20 mx-4 justify-center">
                 <div class="w-full md:w-2/5">
                     <div class="flex items-center mb-2">
-                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="" class="h-14 w-auto">
-                        <h1 class="font-bold text-heading text-2xl">Cipta Muda Solusi</h1>
+                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt=""
+                            class="h-12 md:h-14 w-auto mr-2">
+                        <h1 class="font-bold text-heading text-xl md:text-2xl">Cipta Muda Solusi</h1>
                     </div>
-                    <p class="font-lato text-darkChoco text-base">
+                    <p class="font-lato text-darkChoco font-medium text-sm md:text-base">
                         Kami adalah partner teknologi terpercaya yang menghadirkan solusi inovatif untuk transformasi
                         digital bisnis Anda. Dengan tim profesional dan teknologi terdepan, kami siap membantu
                         mewujudkan visi digital perusahaan Anda.
                     </p>
                 </div>
-                <div class="w-full md:w-[13%]">
-                    <h1 class="font-bold text-2xl text-heading">Perusahaan</h1>
-                    <ul class="mt-3 flex flex-col space-y-3">
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Tentang Kami
-                            </a>
+
+                <div class="w-1/2 md:w-[13%]">
+                    <h1 class="font-bold text-xl md:text-2xl text-heading">Perusahaan</h1>
+                    <ul class="mt-3 flex flex-col space-y-2 md:space-y-3 text-sm md:text-base">
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Tentang Kami</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Tim
-                            </a>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Tim</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Portfolio</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Faq
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.jobs.index') }}"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Lowongan
-                            </a>
-                        </li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Faq</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Blog</a></li>
+                        <li><a href="{{ route('user.jobs.index') }}"
+                                class="text-text hover:text-primary transition-colors">Karir</a></li>
                     </ul>
                 </div>
-                <div class="w-full md:w-[13%]">
-                    <h1 class="font-bold text-2xl text-heading">Layanan</h1>
-                    <ul class="mt-3 flex flex-col space-y-3">
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                IT Solution
-                            </a>
+
+                <div class="w-1/2 md:w-[13%]">
+                    <h1 class="font-bold text-xl md:text-2xl text-heading">Layanan</h1>
+                    <ul class="mt-3 flex flex-col space-y-2 md:space-y-3 text-sm md:text-base">
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">IT Solution</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Sales & Marketing
-                            </a>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Sales &
+                                Marketing</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Event
+                                Organizer</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Software
+                                Development</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Event Organizer
-                            </a>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Data Center</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Software Development
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Data Center
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                IT Operation & Maintanance
-                            </a>
-                        </li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">IT Operation &
+                                Maintanance</a></li>
                     </ul>
                 </div>
-                <div class="w-full md:w-[13%]">
-                    <h1 class="font-bold text-2xl text-heading">Quick Links</h1>
-                    <ul class="mt-3 flex flex-col space-y-3">
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Beranda
-                            </a>
+
+                <div class="w-1/2 md:w-[13%]">
+                    <h1 class="font-bold text-xl md:text-2xl text-heading">Quick Links</h1>
+                    <ul class="mt-3 flex flex-col space-y-2 md:space-y-3 text-sm md:text-base">
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Beranda</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Tentang</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Layanan</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Portfolio</a>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Tentang
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Layanan
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Contact
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Faq
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="font-lato text-base text-text hover:text-primary transition-colors duration-200 ease-in-out">
-                                Blog
-                            </a>
-                        </li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Tim</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Faq</a></li>
+                        <li><a href="#" class="text-text hover:text-primary transition-colors">Blog</a></li>
                     </ul>
                 </div>
             </div>
+
             <div class="flex justify-center gap-3 my-6">
                 <a href="#" target="_blank"
                     class="w-10 h-10 bg-primary rounded-full flex justify-center items-center text-center">
@@ -1434,7 +1358,8 @@
                 </a>
             </div>
             <div class="border-t border-text py-4">
-                <p class="text-center text-text font-lato font-semibold text-base">&copy; {{ date('Y') }} Cipta
+                <p class="text-center text-text font-lato font-semibold text-sm md:text-base">&copy;
+                    {{ date('Y') }} Cipta
                     Muda Solusi. All
                     Right Reserved.</p>
             </div>

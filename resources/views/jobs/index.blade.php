@@ -106,14 +106,14 @@
 
         <div class="container max-w-full">
             <h1
-                class="font-bold text-3xl lg:text-6xl mx-auto mb-6 text-center leading-snug bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text max-w-4xl">
+                class="font-bold text-3xl md:text-4xl lg:text-6xl mx-auto mb-6 text-center leading-snug bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text max-w-4xl">
                 Bergabung Menjadi Bagian dari Tim Kami
             </h1>
-            <p class="font-semibold text-xl text-text max-w-6xl mx-auto">
+            <p class="font-semibold text-base md:text-lg lg:text-xl text-text max-w-2xl lg:max-w-6xl mx-6 lg:mx-auto">
                 Wujudkan karir impian Anda bersama Cipta Muda Solusi. Kami mencari talenta terbaik untuk bergabung dalam
                 misi menciptakan solusi teknologi inovatif.
             </p>
-            <div class="flex items-center justify-center mt-6 gap-8">
+            <div class="flex items-center justify-center mt-6 gap-8 mx-10 md:mx-5 lg:mx-0">
                 <div class="flex items-center text-text text-base">
                     <i class="fas fa-users mr-2 text-primary"></i>
                     50+ Tim Profesional
@@ -132,32 +132,40 @@
 
     <section id="jobs" class="py-12 bg-section">
         <div class="container max-w-full">
-            <div class="flex items-center justify-between mx-10 mb-10">
-                <h1 class="font-bold text-2xl text-heading">Daftar Lowongan Kerja ({{ $totalJobs }})</h1>
-                <div class="flex items-center gap-6">
-                    <div class="relative">
+            <div
+                class="flex flex-col md:flex-row md:items-center md:justify-between mx-4 md:mx-10 mb-6 md:mb-10 gap-4 md:gap-0">
+                <h1 class="font-bold text-lg md:text-xl lg:text-2xl text-heading text-center md:text-left">
+                    Daftar Lowongan Kerja ({{ $totalJobs }})
+                </h1>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 w-full md:w-auto">
+                    <div class="relative flex-1 sm:w-64">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-magnifying-glass text-black/50"></i>
                         </div>
                         <input type="search" name="input-search" id="input-search" placeholder="Cari Lowongan..."
-                            class="border border-text text-base text-black2 rounded-lg pl-10 p-4 pr-3 focus:outline-none placeholder:text-black/50">
+                            class="border border-text text-base text-black2 rounded-lg pl-10 p-3 w-full focus:outline-none placeholder:text-black/50">
                     </div>
-                    <div>
+
+                    <div class="flex-1 sm:flex-none sm:w-48">
                         <select name="filter" id="filter"
-                            class="p-4 rounded-lg border border-text text-base focus:outline-none text-black2">
+                            class="p-3 w-full rounded-lg border border-text text-base focus:outline-none text-black2">
                             <option value="-">Semua Kategori</option>
-                            <option value="-">Semua Kategori</option>
+                            <option value="-">IT Solution</option>
+                            <option value="-">Sales & Marketing</option>
+                            <option value="-">Event Organizer</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-10">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-4 md:mx-10">
                 @if ($jobs->isEmpty())
                     <div class="col-span-1 lg:col-span-2 bg-white rounded-xl shadow-1 p-10 text-center">
-                        <i class="fas fa-briefcase text-6xl text-primary/50 mb-6"></i>
-                        <h2 class="text-2xl font-bold text-heading">Tidak Ada Lowongan</h2>
-                        <p class="text-text mt-2">Kami belum membuka rekrutmen untuk saat ini.</p>
+                        <i class="fas fa-briefcase text-5xl md:text-6xl text-primary/50 mb-3 md:mb-6"></i>
+                        <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-heading">Tidak Ada Lowongan</h2>
+                        <p class="text-text text-sm md:text-base mt-2">Kami belum membuka rekrutmen untuk saat ini.</p>
                     </div>
                 @else
                     @foreach ($jobs as $job)
@@ -212,8 +220,9 @@
     <section id="reason" class="bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 p-12">
         <div class="container max-w-full">
             <div class="text-center mb-10">
-                <h1 class="text-heading text-4xl font-bold mb-4">Mengapa Bergabung dengan Kami?</h1>
-                <p class="text-xl text-text max-w-3xl mx-auto font-lato">
+                <h1 class="text-heading text-3xl lg:text-4xl font-bold mb-4">Mengapa Bergabung dengan Kami?
+                </h1>
+                <p class="text-lg lg:text-xl text-text max-w-3xl mx-auto font-lato">
                     Kami menawarkan lingkungan kerja yang mendukung pertumbuhan karir dan inovasi.
                 </p>
             </div>
@@ -273,8 +282,8 @@
     <section id="upload-cv" class="bg-accent p-12">
         <div class="container max-w-full">
             <div class="text-center mb-6">
-                <h1 class="text-4xl font-black text-heading mb-4">Tidak Menemukan Posisi yang Cocok?</h1>
-                <p class="text-darkChoco text-xl max-w-3xl mx-auto font-lato">
+                <h1 class="text-3xl lg:text-4xl font-bold text-heading mb-4">Tidak Menemukan Posisi yang Cocok?</h1>
+                <p class="text-darkChoco text-lg lg:text-xl max-w-3xl mx-auto font-lato">
                     Kirimkan CV Anda kepada kami. Kami akan menghubungi Anda ketika ada posisi yang sesuai dengan
                     keahlian Anda.
                 </p>

@@ -87,20 +87,20 @@
     <section id="hero"
         class="relative h-screen bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-center">
 
-        <div class="absolute right-10 top-28 w-32 h-32 bg-accent rotate-45 animate-pulse"></div>
+        <div class="absolute right-10 top-28 w-32 h-32 bg-accent rotate-45 animate-pulse -z-10"></div>
         <div
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-primary/20 rounded-full blur-md">
         </div>
-        <div class="absolute left-10 bottom-28 w-32 h-32 bg-accent rotate-45 animate-pulse"></div>
+        <div class="absolute left-10 bottom-28 w-32 h-32 bg-accent rotate-45 animate-pulse -z-10"></div>
 
         <div class="container max-w-full">
-            <h1 class="font-bold text-6xl text-heading mb-6">Blog & Insight</h1>
+            <h1 class="font-bold text-5xl lg:text-6xl text-heading mb-6">Blog & Insight</h1>
             <p class="max-w-3xl text-text mx-auto font-semibold text-xl font-lato mb-6">
                 Dapatkan wawasan terbaru tentang teknologi, tips pengembangan, dan tren industri dari tim ahli kami
             </p>
             <div class="flex items-center justify-center">
                 <a href="#blogs"
-                    class="flex items-center justify-center bg-gradient-to-br from-primary to-secondary px-8 py-4 text-white text-xl font-semibold rounded-xl shadow-2 relative z-10 group">
+                    class="flex items-center justify-center bg-gradient-to-br from-primary to-secondary py-3 lg:py-4 px-5 lg:px-6 text-lg lg:text-xl text-white font-semibold rounded-xl shadow-2 relative z-10 group">
                     Lihat Blog
                     <i
                         class="fas fa-arrow-right ml-2 group-hover:rotate-90 transition-transform duration-200 ease-in-out"></i>
