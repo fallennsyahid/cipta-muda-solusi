@@ -138,12 +138,20 @@
                             <i class="fas fa-location-dot mr-2"></i>
                             {{ $job->location }}
                         </div>
-                        <div class="flex items-center text-text text-base capitalize">
-                            <i class="fas fa-clock mr-2"></i>
-                            {{ $job->job_type }}
-                        </div>
+                        @if ($job->job_type === 'contract')
+                            <div class="flex items-center text-text text-base capitalize">
+                                <i class="fas fa-clock mr-2"></i>
+                                {{ $job->job_type }} ({{ $job->contract_duration }})
+                            </div>
+                        @else
+                            <div class="flex items-center text-text text-base capitalize">
+                                <i class="fas fa-clock mr-2"></i>
+                                {{ $job->job_type }}
+                            </div>
+                        @endif
+
                         <div class="flex items-center text-text text-base">
-                            <i class="fas fa-dollar-sign mr-2"></i>
+                            <i class="fas fa-money-bill mr-2"></i>
                             {{ $job->salary }}
                         </div>
                         <div class="flex items-center text-text text-base">
@@ -269,14 +277,18 @@
                                 Jenis Pekerjaan <span class="text-red-400">*</span>
                             </label>
                             <select name="job_type" id="job_type"
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize"
+                                class="job_type w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize"
                                 required>
-                                <option value="-">Pilih tipe pekerjaan</option>
+                                <option value="-" disabled selected>Pilih tipe pekerjaan</option>
                                 @foreach ($jobType as $type)
                                     <option value="{{ $type->value }}">{{ $type->value }}
                                     </option>
                                 @endforeach
                             </select>
+
+                            <input type="text" id="contract_duration" name="contract_duration" required
+                                class="contract_duration w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="3-5 Tahun">
                         </div>
 
                         <div class="group">

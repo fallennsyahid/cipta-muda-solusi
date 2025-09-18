@@ -44,6 +44,7 @@ class JobVacancyAdminController extends Controller
             'departement' => 'required|string|max:100',
             'location' => 'required|string|max:100',
             'job_type' => ['required', Rule::in(JobType::values())],
+            'contract_duration' => 'nullable|string',
             'salary' => 'required|string|max:50',
             'description' => 'required|string|min:50|max:250',
             'skills' => 'required|array|min:3|max:5',

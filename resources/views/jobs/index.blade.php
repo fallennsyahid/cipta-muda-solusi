@@ -139,26 +139,37 @@
                 </h1>
 
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 w-full md:w-auto">
-                    <div class="relative flex-1 sm:w-64">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-magnifying-glass text-black/50"></i>
-                        </div>
-                        <input type="search" name="input-search" id="input-search" placeholder="Cari Lowongan..."
-                            class="border border-text text-base text-black2 rounded-lg pl-10 p-3 w-full focus:outline-none placeholder:text-black/50">
-                    </div>
+                    <form action="{{ route('user.jobs.index') }}#jobs" method="GET" class="w-full sm:w-72">
+                        <div class="flex items-center">
+                            <!-- Input -->
+                            <div class="relative flex-1">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-magnifying-glass text-gray-400"></i>
+                                </span>
+                                <input type="search" name="search" id="search" placeholder="Cari Lowongan.."
+                                    value="{{ $search }}"
+                                    class="w-full h-12 pl-10 pr-3 border border-gray-300 rounded-l-lg text-sm text-black placeholder-gray-400">
+                            </div>
 
-                    <div class="flex-1 sm:flex-none sm:w-48">
+                            <!-- Button -->
+                            <button type="submit"
+                                class="h-12 w-12 bg-secondary flex items-center justify-center text-white rounded-r-lg hover:bg-secondary/90 transition">
+                                <i class="fas fa-paper-plane text-sm"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    {{-- <div class="flex-1 sm:flex-none sm:w-48">
                         <select name="filter" id="filter"
-                            class="p-3 w-full rounded-lg border border-text text-base focus:outline-none text-black2">
-                            <option value="-">Semua Kategori</option>
+                            class="p-3 w-full rounded-lg border border-text text-base focus:outline-none text-black2" onchange="this.form.submit()">
+                            <option value="-" {{ request('filter') == '-' ? 'selected' : '' }}>Semua Kategori</option>
                             <option value="-">IT Solution</option>
                             <option value="-">Sales & Marketing</option>
                             <option value="-">Event Organizer</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
-
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-4 md:mx-10">
                 @if ($jobs->isEmpty())
@@ -187,10 +198,16 @@
                                     <i class="fas fa-clock mr-2"></i>
                                     {{ $job->job_type }}
                                 </div>
-                                <div class="flex items-center text-text text-xs">
-                                    <i class="fas fa-briefcase mr-2"></i>
-                                    3-5 Tahun
+                                <div class="flex items-center text-text text-xs capitalize">
+                                    <i class="fas fa-money-bill mr-2"></i>
+                                    {{ $job->salary }}
                                 </div>
+                                @if ($job->job_type === 'contract')
+                                    <div class="flex items-center text-text text-xs">
+                                        <i class="fas fa-briefcase mr-2"></i>
+                                        {{ $job->contract_duration }}
+                                    </div>
+                                @endif
                             </div>
                             <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
                             <div class="flex  flex-wrap items-center gap-4 mb-5">

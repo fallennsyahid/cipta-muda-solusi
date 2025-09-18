@@ -8,6 +8,7 @@ enum JobType: string
     case PartTime = 'part-time';
     case Internship = 'internship';
     case Freelance = 'freelance';
+    case Contract = 'contract';
 
     public static function values(): array
     {

@@ -103,7 +103,7 @@
     {{-- Header Start --}}
 
     {{-- Hero Section Start --}}
-    <section id="hero-section" class="pt-36 bg-section">
+    <section id="hero-section" class="pt-36 pb-24 lg:pb-0 bg-section">
         <div class="bg-[#CFE1F9] w-55 h-55 rounded-full absolute left-3/20 -top-16 blur-xl"></div>
         <div class="bg-[#CFE1F9] w-55 h-55 rounded-full absolute -left-10 bottom-44 blur-xl"></div>
         <div class="bg-[#CFE1F9] w-55 h-55 rounded-l-full absolute right-0 bottom-7 blur-xl"></div>
@@ -111,7 +111,7 @@
 
         <div class="container max-w-full relative z-20">
             <div class="flex flex-wrap">
-                <div class="w-full self-center px-8 lg:w-1/2">
+                <div class="w-full self-center mt-10 lg:mt-0 px-8 lg:w-1/2">
                     <h1 class="text-2xl font-semibold text-primary mb-3 text-center">
                         Young, Brave, Innovative, Strong
                     </h1>
@@ -131,9 +131,8 @@
                     </div>
                 </div>
 
-                <div class="w-full self-end px-4 lg:w-1/2 overflow-hidden">
+                <div class="w-full self-end px-4 lg:w-1/2 overflow-hidden hidden lg:block">
                     <div class="mt-10 relative lg:mt-9 lg:right-0">
-
                         <!-- SVG sebagai background -->
                         <span class="absolute inset-0 flex justify-center items-center">
                             <svg width="453" height="479" viewBox="0 0 453 479" fill="none"

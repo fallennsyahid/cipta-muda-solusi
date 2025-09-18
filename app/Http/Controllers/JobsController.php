@@ -7,6 +7,7 @@ use App\Models\Jobs;
 use App\Models\Applicant;
 use App\Models\JobVacancy;
 use App\Models\CvApplicant;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class JobsController extends Controller
@@ -14,11 +15,38 @@ class JobsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = JobVacancy::where('status', Status::Active->value)->latest()->paginate(9);
         $totalJobs = JobVacancy::where('status', Status::Active->value)->count();
-        return view('jobs.index', compact('jobs', 'totalJobs'));
+
+        $search = $request->input('search');
+        $filter = $request->input('filter');
+        $perPage = 9;
+
+        if ($search) {
+            $builder = JobVacancy::search($search);
+
+            if ($filter && $filter !== '-') {
+                $builder = $builder->where('departement', $filter);
+            }
+
+            $jobs = $builder->paginate($perPage);
+        } else {
+            $query = JobVacancy::where('status', Status::Active->value);
+
+            if ($filter && $filter !== '-') {
+                $query->where('departement', $filter);
+            }
+
+            $jobs = $query->latest()->paginate($perPage);
+        }
+
+        return view('jobs.index', compact('jobs', 'totalJobs', 'search', 'filter'));
+    }
+
+    public function search(Request $request)
+    {
+        //
     }
 
     /**
