@@ -506,7 +506,7 @@
     });
 </script>
 
-<script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
 <script src="{{ asset('asset-admin/js/faq.js') }}"></script>
 
 </html>

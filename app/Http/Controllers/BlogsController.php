@@ -17,11 +17,6 @@ class BlogsController extends Controller
         return view('blogs.index', compact('blogs'));
     }
 
-    public function index2()
-    {
-        return view('blogs.show');
-    }
-
     /**
      * Show the form for creating a new resource.
      */

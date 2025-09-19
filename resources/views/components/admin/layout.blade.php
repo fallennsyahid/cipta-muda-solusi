@@ -1,6 +1,6 @@
     <x-admin.sidebar></x-admin.sidebar>
 
-    <div class="ml-[20rem] mt-4 w-[calc(100%-18rem-2rem)]">
+    <div class="ml-74 mt-4 transition-all duration-700 ease-in-out" id="main-content">
         <x-admin.navbar></x-admin.navbar>
 
         <main class="p-6 pt-20">

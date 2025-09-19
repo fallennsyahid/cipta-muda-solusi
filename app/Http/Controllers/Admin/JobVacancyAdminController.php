@@ -46,7 +46,7 @@ class JobVacancyAdminController extends Controller
             'job_type' => ['required', Rule::in(JobType::values())],
             'contract_duration' => 'nullable|string',
             'salary' => 'required|string|max:50',
-            'description' => 'required|string|min:50|max:250',
+            'description' => 'required|string|max:250',
             'skills' => 'required|array|min:3|max:5',
             'skills.*' => 'nullable|string|max:50',
             'status' => ['required', Rule::in(Status::onlyActiveNonActive())],
@@ -112,12 +112,12 @@ class JobVacancyAdminController extends Controller
     public function update(Request $request, JobVacancy $job)
     {
         $validated = $request->validate([
-            'position' => ['sometimes', 'string', 'min:5', 'max:100'],
+            'position' => ['sometimes', 'string', 'max:100'],
             'departement' => ['sometimes', 'string', 'max:100'],
             'location' => ['sometimes', 'string', 'max:100'],
             'job_type' => ['sometimes', Rule::in(JobType::values())],
             'salary' => ['sometimes', 'string', 'max:50'],
-            'description' => ['sometimes', 'string', 'min:50', 'max:250'],
+            'description' => ['sometimes', 'string', 'max:250'],
             'skills' => ['sometimes', 'array', 'min:3', 'max:5'],
             'skills.*' => ['nullable', 'string', 'max:50'],
             'status' => ['sometimes', Rule::in(Status::values())],

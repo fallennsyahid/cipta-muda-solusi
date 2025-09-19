@@ -111,7 +111,7 @@
 
     <section id="blogs" class="bg-section">
         <div class="container max-w-full">
-            <div class="p-8 border-b border-b-text flex flex-wrap items-center gap-3">
+            {{-- <div class="p-8 border-b border-b-text flex flex-wrap items-center gap-3">
                 <button type="button"
                     class="bg-primary py-3 px-4 text-white font-medium text-base rounded-full cursor-pointer">
                     Semua
@@ -136,7 +136,7 @@
                     class="bg-accent py-3 px-4 text-text font-medium text-base rounded-full cursor-pointer hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out">
                     Teknologi
                 </button>
-            </div>
+            </div> --}}
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-8 gap-8">
                 @foreach ($blogs as $blog)
@@ -154,6 +154,9 @@
                                     {{ $blog->created_at->locale('id')->translatedFormat('d F Y') }}
                                 </p>
                                 <p class="text-text text-xs">{{ $blog->created_at->locale('id')->diffForHumans() }}</p>
+                                @if ($blog->is_featured === 1)
+                                    <i class="fas fa-star text-yellow-500 text-sm"></i>
+                                @endif
                             </div>
                             <h1 class="text-heading font-bold text-xl mb-3">
                                 {{ $blog->title }}

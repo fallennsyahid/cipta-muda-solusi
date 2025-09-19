@@ -1,6 +1,5 @@
 <div id="sidebar"
-    class="fixed top-24 left-4 bottom-4 z-50 w-72 bg-white/80 backdrop-blur-xl shadow-lg rounded-xl transition-all duration-700 ease-in-out flex flex-col">
-    <!-- Header Sidebar -->
+    class="fixed top-24 left-0 bottom-4 z-50 w-72 bg-white/80 shadow-lg rounded-xl transition-all duration-700 ease-in-out flex flex-col -translate-x-full lg:left-4 lg:translate-x-0">
     <div class="flex items-center justify-between py-3 px-6 bg-text/25 rounded-t-xl relative">
         <a href="#"
             class="sidebar-button inline-flex justify-center items-center bg-primary text-white font-bold text-base h-12 w-16 rounded-xl">
@@ -15,7 +14,7 @@
     </div>
 
     <nav class="flex-1 p-6 space-y-3 overflow-y-auto custom-scrollbar">
-        <a href="{{ route('dashboard.index') }}"
+        <a href="{{ route('dashboard.index') }}" title="Dashboard"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('dashboard.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
                 class="fas fa-table-cells-large {{ request()->routeIs('dashboard.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
@@ -24,7 +23,7 @@
             </span>
         </a>
 
-        <a href="{{ route('jobs.index') }}"
+        <a href="{{ route('jobs.index') }}" title="Jobs"
             class="flex items-center justify-between w-full px-4 py-3 rounded-xl transition-all duration-300 group overflow-hidden {{ request()->routeIs('jobs.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-3">
                 <i class="fas fa-briefcase"></i>
@@ -32,7 +31,7 @@
             </span>
         </a>
 
-        <a href="{{ route('cv.index') }}"
+        <a href="{{ route('cv.index') }}" title="CV"
             class="flex items-center justify-between w-full px-4 py-3 rounded-xl transition-all duration-300 group overflow-hidden {{ request()->routeIs('cv.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-3">
                 <i
@@ -41,7 +40,7 @@
             </span>
         </a>
 
-        <a href="{{ route('faqs.index') }}"
+        <a href="{{ route('faqs.index') }}" title="Faq"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('faqs.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
                 class="fas fa-question-circle {{ request()->routeIs('faqs.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
@@ -50,7 +49,7 @@
             </span>
         </a>
 
-        <a href="{{ route('partner.index') }}"
+        <a href="{{ route('partner.index') }}" title="Partner"
             class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('partner.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-5">
                 <i
@@ -61,7 +60,7 @@
             </span>
         </a>
 
-        <a href="{{ route('partnerReq.index') }}"
+        <a href="{{ route('partnerReq.index') }}" title="Partner Request"
             class="flex items-center justify-between space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('partnerReq.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <span class="flex items-center gap-5">
                 <i
@@ -72,7 +71,7 @@
             </span>
         </a>
 
-        <a href="{{ route('blogs.index') }}"
+        <a href="{{ route('blogs.index') }}" title="Blog"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('blogs.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
                 class="fas fa-newspaper {{ request()->routeIs('blogs.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
@@ -81,7 +80,7 @@
             </span>
         </a>
 
-        <a href="{{ route('portfolios.index') }}"
+        <a href="{{ route('portfolios.index') }}" title="Portfolio"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('portfolios.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
                 class="fas fa-layer-group {{ request()->routeIs('portfolios.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
@@ -90,7 +89,7 @@
             </span>
         </a>
 
-        <a href="{{ route('contact.index') }}"
+        <a href="{{ route('contact.index') }}" title="Contact"
             class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('contact.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
             <i
                 class="fas fa-comment-dots {{ request()->routeIs('contact.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>

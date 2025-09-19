@@ -177,7 +177,7 @@
                     <div class="flex justify-between items-center mt-5">
                         <div class="text-sm text-text">
                             <i class="fas fa-calendar mr-1"></i>
-                            {{ $job->created_at->format('d/m/Y') }}
+                            Dibuat pada: {{ $job->created_at->format('d/m/Y') }}
                         </div>
                         <div class="flex items-center gap-2">
                             <button type="button" data-id="{{ $job->id }}"
@@ -592,7 +592,7 @@
 </script>
 
 
-<script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
 <script src="{{ asset('asset-admin/js/job.js') }}"></script>
 
 </html>

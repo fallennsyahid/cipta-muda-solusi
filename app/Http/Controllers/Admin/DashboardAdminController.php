@@ -106,7 +106,7 @@ class DashboardAdminController extends Controller
             'location' => 'required|string|max:100',
             'job_type' => ['required', Rule::in(JobType::values())],
             'salary' => 'required|string|max:50',
-            'description' => 'required|string|min:50|max:250',
+            'description' => 'required|string|max:250',
             'skills' => 'required|array|min:3|max:5',
             'skills.*' => 'nullable|string|max:50',
             'status' => ['required', Rule::in(Status::onlyActiveNonActive())],

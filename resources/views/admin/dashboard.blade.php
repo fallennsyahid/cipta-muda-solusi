@@ -203,51 +203,6 @@
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('dashboardChart').getContext('2d');
-        const dashboardChart = new Chart(ctx, {
-            type: 'area', // bisa diganti 'line', 'doughnut', dll
-            data: {
-                labels: ['Lowongan', 'Partner', 'Blog', 'FAQ'],
-                datasets: [{
-                    label: 'Jumlah',
-                    data: [12, 8, 5, 20], // data statis, nanti bisa diganti dinamis
-                    backgroundColor: [
-                        'rgba(59, 130, 246, 0.7)', // biru
-                        'rgba(34, 197, 94, 0.7)', // hijau
-                        'rgba(234, 179, 8, 0.7)', // kuning
-                        'rgba(239, 68, 68, 0.7)' // merah
-                    ],
-                    borderColor: [
-                        'rgba(59, 130, 246, 1)',
-                        'rgba(34, 197, 94, 1)',
-                        'rgba(234, 179, 8, 1)',
-                        'rgba(239, 68, 68, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-
     {{-- Create New Jobs Start --}}
     <div id="create-new-job" class="fixed inset-0 z-99999 hidden justify-center items-center animate-fade-in">
         <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>

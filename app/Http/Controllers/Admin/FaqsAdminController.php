@@ -14,7 +14,7 @@ class FaqsAdminController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::latest()->paginate(6);
+        $faqs = Faq::orderByRaw("CASE WHEN is_published = 'Published' THEN 1 ELSE 0 END DESC")->latest()->paginate(6);
         $totalFaqs = Faq::count();
         $totalPublished = Faq::where('is_published', Status::Published->value)->count();
         $totalPending = Faq::where('is_published', Status::Pending->value)->count();
@@ -84,7 +84,7 @@ class FaqsAdminController extends Controller
     public function answerQuestion(Request $request, Faq $faq)
     {
         $request->validate([
-            'answer_input' => 'required|string|min:150|max:300',
+            'answer_input' => 'required|string|max:300',
         ]);
 
         $faq->answer = $request->answer_input;

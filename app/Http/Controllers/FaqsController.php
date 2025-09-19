@@ -32,7 +32,7 @@ class FaqsController extends Controller
     {
         $request->validate([
             'email_input' => 'nullable|string|email',
-            'question_input' => 'required|string|min:50|max:150',
+            'question_input' => 'required|string|max:150',
         ]);
 
         Faq::create([

@@ -1,7 +1,7 @@
 <header class="bg-white shadow-1 border-b border-white/20 mx-4 rounded-2xl fixed top-4 left-0 right-0 z-99">
     <div class="flex items-center justify-between py-2 px-6">
         <div class="flex items-center space-x-4">
-            <button class="block lg:hidden hover:bg-white/60 rounded-xl">
+            <button class="sidebar-button block lg:hidden hover:bg-white/60 rounded-xl">
                 <i class="fas fa-bars"></i>
             </button>
             <div>

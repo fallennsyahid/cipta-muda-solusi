@@ -753,7 +753,7 @@
 </script>
 
 <script src="{{ asset('asset-admin/js/blog.js') }}"></script>
-<script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
 <script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>
 
 </html>

@@ -128,7 +128,7 @@
                                 {{ $portfolio->project_name }}
                             </span>
                             <div class="flex items-center space-x-2">
-                                <h1 class="flex items-center text-lg text-heading font-bold truncate">
+                                <h1 class="flex items-center text-lg text-heading font-bold line-clamp-1">
                                     {{ $portfolio->title }}
                                 </h1>
                                 @if ($portfolio->visit_link)
@@ -848,7 +848,7 @@
     });
 </script>
 
-<script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
+<script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
 <script src="{{ asset('asset-admin/js/portfolio.js') }}"></script>
 <script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>
 

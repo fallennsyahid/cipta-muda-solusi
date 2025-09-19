@@ -66,37 +66,87 @@
         </div>
 
         <nav id="nav-menu"
-            class="fixed top-0 right-0 h-full bg-white w-64 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden">
+            class="fixed top-0 right-0 h-full bg-gradient-to-b from-white via-gray-50 to-gray-100 w-72 shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-50 lg:hidden rounded-l-2xl">
+
             <div class="flex justify-end p-6">
                 <button
-                    class="close-navbar flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/10 group duration-200 transition-all ease-in-out cursor-pointer">
+                    class="close-navbar flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-primary hover:text-white duration-300 transition-all ease-in-out cursor-pointer shadow-md">
                     <i
-                        class="fas fa-times text-xl text-darkChoco transform transition-transform group-hover:rotate-90"></i>
+                        class="fas fa-times text-lg transform transition-transform duration-500 group-hover:rotate-90"></i>
                 </button>
             </div>
-            <ul class="flex flex-col gap-6 p-6">
-                <li class="group">
-                    <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">Beranda
+
+            <ul class="flex flex-col gap-6 px-8 py-6 text-lg font-medium">
+                <li>
+                    <a href="#"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-home group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Beranda</span>
                     </a>
                 </li>
-                <li class="group"> <a href="#about"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Tentang </a> </li>
-                <li class="group"> <a href="#service"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Layanan </a> </li>
-                <li class="group"> <a href="#portfolio"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Portfolio </a> </li>
-                <li class="group"> <a href="#team"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Team </a> </li>
-                <li class="group"> <a href="#partner"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Partner </a> </li>
-                <li class="group"> <a href="#contact"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Contact </a> </li>
-                <li class="group"> <a href="{{ route('user.jobs.index') }}"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Karir </a> </li>
-                <li class="group"> <a href="{{ route('user.faqs.index') }}"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Faq </a> </li>
-                <li class="group"> <a href="{{ route('user.blogs.index') }}"
-                        class="text-base font-medium text-black2 group-hover:text-primary"> Blog </a> </li>
+                <li>
+                    <a href="#about"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-user group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Tentang</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#service"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-cogs group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Layanan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-briefcase group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#team"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-users group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#partner"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-handshake group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Partner</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-envelope group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.jobs.index') }}"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-briefcase group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Karir</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.faqs.index') }}"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-question-circle group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.blogs.index') }}"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-blog group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </x-header>
@@ -612,7 +662,7 @@
                                     width="600" height="300" class="rounded-md">
                             </div>
                         @else
-                            <div class="block md:hidden">
+                            <div class="block">
                                 <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
                                     width="600" height="300" class="rounded-md">
                             </div>
@@ -632,10 +682,10 @@
                                     {{ \Carbon\Carbon::parse($portfolio->event_time)->locale('id')->translatedFormat('F Y') }}
                                 </div>
                             </div>
-                            <div class="hidden md:block">
+                            {{-- <div class="md:hidden block">
                                 <img src="{{ Storage::url($portfolio->image) }}" alt="{{ $portfolio->title }}"
                                     width="600" height="300" class="rounded-md">
-                            </div>
+                            </div> --}}
                         @endif
                     </div>
                 @endforeach
@@ -676,8 +726,7 @@
                 </p>
             </div>
 
-            <!-- Filter -->
-            <div class="flex flex-wrap justify-center gap-3 mb-10">
+            {{-- <div class="flex flex-wrap justify-center gap-3 mb-10">
                 <button type="button"
                     class="px-4 py-2 text-white rounded-full bg-secondary font-medium shadow-md hover:scale-105 transition">
                     Semua
@@ -694,9 +743,8 @@
                     class="px-4 py-2 border border-darkChoco rounded-full text-darkChoco font-medium hover:bg-darkChoco hover:text-white transition">
                     Web Development
                 </button>
-            </div>
+            </div> --}}
 
-            <!-- Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-10 w-full">
                 @foreach ($allPortfolios as $portfolio)
                     <div
@@ -710,11 +758,12 @@
                             </div>
                         </div>
                         <div class="p-6 flex flex-col gap-3">
-                            <h1 class="text-secondary text-sm uppercase tracking-wide font-semibold">
+                            <h1 class="text-secondary text-sm uppercase tracking-wide font-semibold flex items-center">
+                                <i class="fas fa-layer-group mr-2 text-text"></i>
                                 {{ $portfolio->category }}
                             </h1>
                             <h2 class="text-heading font-bold text-xl line-clamp-2">{{ $portfolio->title }}</h2>
-                            <p class="text-sm text-text line-clamp-3">
+                            <p class="text-sm text-text">
                                 {{ $portfolio->description }}
                             </p>
                             <div class="flex flex-wrap items-center gap-2">
@@ -970,9 +1019,17 @@
                             <i class="fas fa-building"></i>
                             Nama Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <input type="text" id="company_name" name="company_name" required
+                        <input type="text" id="company_name" name="company_name"
+                            value="{{ old('company_name') }}" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="PT. Nama Perusahaan">
+
+                        @error('company_name')
+                            <p class="text-red-500 text-xs mt-1">
+                                <i class="fas fa-circle-exclamation"></i>
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <div class="group">
@@ -981,9 +1038,17 @@
                             <i class="fas fa-envelope"></i>
                             Email <span class="text-red-400">*</span>
                         </label>
-                        <input type="email" id="company_email" name="company_email" required
+                        <input type="email" id="company_email" name="company_email"
+                            value="{{ old('company_email') }}" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="nama@perusahaan.com">
+
+                        @error('company_email')
+                            <p class="text-red-500 text-xs mt-1">
+                                <i class="fas fa-circle-exclamation"></i>
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <div class="group">
@@ -1033,27 +1098,16 @@
                         </div>
                     </div>
 
-                    <div class="group">
-                        <label for="company_link"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                            <i class="fas fa-globe"></i>
-                            Website / Media Sosial <span class="text-slate-400 text-xs">(Opsional)</span>
-                        </label>
-                        <input type="url" id="company_link" name="company_link" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                            placeholder="www.perusahaan.com atau www.instagram.com/perusahaan">
-                    </div>
-
-                    <div class="group">
+                    <div class="upload-group">
                         <label for="file_attachments"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-paperclip"></i>
-                            Lampiran <span class="text-slate-400 text-xs">(Opsional)</span>
+                            Lampiran <span class="text-slate-400 text-xs"></span>
                         </label>
                         <input type="file" name="file_attachments" id="file_attachments" class="hidden"
                             accept=".pdf">
-                        <label for="file_attachments"
-                            class="p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
+                        <label
+                            class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
                                 <i class="fas fa-cloud-arrow-up text-2xl text-darkChoco"></i>
                             </div>
@@ -1066,29 +1120,36 @@
                                 </p>
                             </div>
                         </label>
-                        <div class="bg-text/10 p-4 rounded-lg flex justify-between mt-2">
+                        <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                             <div class="flex items-center gap-3">
+                                <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
                                 <div>
-                                    <i class="fas fa-file-pdf text-4xl text-darkChoco"></i>
-                                </div>
-                                <div>
-                                    <h1 class="text-base text-darkChoco font-semibold">title.pdf</h1>
+                                    <h1 class="file-name text-base text-darkChoco font-semibold">title.jpg</h1>
                                     <div class="flex items-center gap-2 text-xs text-text">
-                                        <span>60KB of 120KB</span>
+                                        <span class="file-size"></span>
                                         <span>•</span>
                                         <span>
-                                            <i class="fa-solid fa-spinner text-blue-400"></i>
-                                            Uploading...
+                                            <i class="fa-solid fa-circle-check text-green-400"></i>
+                                            Completed
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <a href="">
-                                    <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
-                                </a>
-                            </div>
+                            <button type="button" class="remove-file">
+                                <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
+                            </button>
                         </div>
+                    </div>
+
+                    <div class="group">
+                        <label for="company_link"
+                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            <i class="fas fa-globe"></i>
+                            Website / Media Sosial <span class="text-slate-400 text-xs">(Opsional)</span>
+                        </label>
+                        <input type="url" id="company_link" name="company_link" required
+                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            placeholder="www.perusahaan.com atau www.instagram.com/perusahaan">
                     </div>
 
                     <div class="flex justify-center">
@@ -1115,7 +1176,6 @@
                         <form action="{{ route('index.store') }}" method="POST" class="space-y-4 py-4">
                             @csrf
                             <div class="space-y-4">
-                                <!-- Nama + Nomor -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="full_name"
@@ -1149,7 +1209,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Email -->
                                 <div>
                                     <label for="email"
                                         class="block mb-2 font-medium text-sm md:text-base text-heading">
@@ -1166,7 +1225,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Pesan -->
                                 <div>
                                     <label for="message"
                                         class="block mb-2 font-medium text-sm md:text-base text-heading">
@@ -1181,7 +1239,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Button -->
                                 <div class="flex">
                                     <button type="submit"
                                         class="flex flex-1 items-center justify-center py-3 md:py-4 px-6 gap-2 text-white text-sm md:text-base font-semibold bg-gradient-to-br from-primary to-secondary hover:from-secondary hover:to-primary rounded-lg cursor-pointer">
@@ -1193,11 +1250,9 @@
                         </form>
                     </div>
 
-                    <!-- Informasi Kontak -->
                     <div class="w-full lg:w-1/2">
                         <h1 class="font-bold text-xl md:text-2xl text-heading">Informasi Kontak</h1>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
-                            <!-- Alamat -->
                             <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
                                     class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
@@ -1209,7 +1264,6 @@
                                 </p>
                             </div>
 
-                            <!-- Telepon -->
                             <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
                                     class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
@@ -1222,7 +1276,6 @@
                                 </p>
                             </div>
 
-                            <!-- Email -->
                             <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
                                     class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
@@ -1234,7 +1287,6 @@
                                 </p>
                             </div>
 
-                            <!-- Jam Operasional -->
                             <div class="flex flex-col items-center text-center p-4 bg-white rounded-lg gap-2.5">
                                 <div
                                     class="inline-flex w-10 h-10 md:w-12 md:h-12 justify-center items-center text-white bg-gradient-to-br from-primary to-secondary rounded-sm">
@@ -1255,7 +1307,7 @@
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.523771473663!2d106.86139437457845!3d-6.474206763300091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c152c12a0d77%3A0xefa0990a4a4506b!2sPT%20Cipta%20Muda%20Solusi!5e1!3m2!1sid!2sid!4v1758164619067!5m2!1sid!2sid"
                         class="rounded-lg w-full h-72 md:h-96" loading="lazy"></iframe>
                     <div class="flex justify-center mt-4">
-                        <a href="" target="_blank"
+                        <a href="https://maps.app.goo.gl/12ZW6SjfrobMqscM9" target="_blank"
                             class="py-3 md:py-4 px-6 md:px-8 text-sm md:text-lg font-semibold text-white bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center gap-2 transition-transform duration-300 hover:scale-105 active:scale-95">
                             <i class="fas fa-map-location-dot"></i>
                             Lihat Petunjuk Arah
@@ -1277,7 +1329,7 @@
                             class="h-12 md:h-14 w-auto mr-2">
                         <h1 class="font-bold text-heading text-xl md:text-2xl">Cipta Muda Solusi</h1>
                     </div>
-                    <p class="font-lato text-darkChoco font-medium text-sm md:text-base">
+                    <p class="font-lato text-darkChoco font-medium text-base md:text-lg text-justify">
                         Kami adalah partner teknologi terpercaya yang menghadirkan solusi inovatif untuk transformasi
                         digital bisnis Anda. Dengan tim profesional dan teknologi terdepan, kami siap membantu
                         mewujudkan visi digital perusahaan Anda.
@@ -1390,6 +1442,108 @@
         });
     </script>
 @endif
+
+<script>
+    document.querySelectorAll('.upload-group').forEach(group => {
+        const input = group.querySelector('input[type="file"]');
+        const dropArea = group.querySelector('.drop-area');
+        const preview = group.querySelector('.preview');
+        const fileName = group.querySelector('.file-name');
+        const fileSize = group.querySelector('.file-size');
+        const previewImage = group.querySelector('.preview-image');
+        const removeBtn = group.querySelector('.remove-file');
+
+        // klik area = trigger input file
+        dropArea.addEventListener('click', () => input.click());
+
+        // fungsi render file
+        const renderFile = (file) => {
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file maksimal 5MB!');
+                return;
+            }
+
+            fileName.textContent = file.name;
+            fileSize.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+            // reset tampilan dulu
+            previewImage.src = "";
+            previewImage.classList.add('hidden');
+            const oldPdfIcon = group.querySelector('.pdf-icon');
+            if (oldPdfIcon) oldPdfIcon.remove();
+
+            // kalau gambar → tampilkan thumbnail
+            if (["image/jpeg", "image/png", "image/jpg", "image/webp"].includes(file.type)) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    previewImage.src = ev.target.result;
+                    previewImage.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // kalau PDF → pakai icon font awesome
+            else if (file.type === "application/pdf") {
+                const pdfUrl = URL.createObjectURL(file);
+
+                let pdfIcon = document.createElement("i");
+                pdfIcon.className = "fa-solid fa-file-pdf text-red-500 text-5xl pdf-icon cursor-pointer";
+                pdfIcon.onclick = () => window.open(pdfUrl, "_blank");
+
+                preview.querySelector('.flex').prepend(pdfIcon);
+            } else {
+                alert('File harus berupa JPEG/PNG/JPG/WEBP atau PDF!');
+                return;
+            }
+
+            preview.classList.remove('hidden');
+            preview.classList.add('flex');
+        };
+
+        // pilih file manual
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            renderFile(file);
+        });
+
+        // drag file
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('bg-text/5');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('bg-text/5');
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('bg-text/5');
+
+            if (e.dataTransfer.files.length > 0) {
+                const file = e.dataTransfer.files[0];
+                input.files = e.dataTransfer.files;
+                renderFile(file);
+            }
+        });
+
+        // hapus file
+        removeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            input.value = "";
+            preview.classList.remove('flex');
+            preview.classList.add('hidden');
+            previewImage.src = "";
+            fileName.textContent = "";
+            fileSize.textContent = "";
+
+            const pdfIcon = group.querySelector('.pdf-icon');
+            if (pdfIcon) pdfIcon.remove();
+        });
+    });
+</script>
 
 <script src="{{ asset('js/script.js') }}"></script>
 

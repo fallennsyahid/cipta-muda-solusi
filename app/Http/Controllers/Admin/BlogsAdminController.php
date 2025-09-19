@@ -17,7 +17,7 @@ class BlogsAdminController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::latest()->paginate(5);
+        $blogs = Blog::orderByDesc('is_featured')->latest()->paginate(5);
         $blogsTotal = Blog::count();
         $blogStatus = BlogStatus::cases();
         $blogsPublished = Blog::where('status', BlogStatus::Published->value)->count();

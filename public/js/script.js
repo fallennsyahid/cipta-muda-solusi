@@ -86,12 +86,12 @@ closeNav.forEach(btn => {
     });
 });
 
-// window.addEventListener('click', function (e) {
-//     if (e.target != hamburger && e.target != navMenu) {
-//         hamburger.classList.remove('hamburger-active');
-//         navMenu.classList.add('hidden');
-//     }
-// });
+window.addEventListener('click', function (e) {
+    if (e.target != hamburger && e.target != navMenu) {
+        navMenu.classList.remove('translate-x-0');
+        navMenu.classList.add('translate-x-full');
+    }
+});
 
 // Watch
 const clockEl = document.getElementById("clock");
@@ -167,6 +167,8 @@ selectCompanyType.addEventListener('change', function () {
         otherCompanyType.value = "";
     }
 });
+
+
 
 // Dots
 // const container = document.querySelector('.dots-container');

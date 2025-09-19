@@ -296,7 +296,7 @@
         </div>
     </section>
 
-    <section id="upload-cv" class="bg-accent p-12">
+    <section class="bg-accent p-12">
         <div class="container max-w-full">
             <div class="text-center mb-6">
                 <h1 class="text-3xl lg:text-4xl font-bold text-heading mb-4">Tidak Menemukan Posisi yang Cocok?</h1>
