@@ -43,7 +43,9 @@
 
             <div class="flex flex-wrap items-center gap-6 text-text mb-8">
                 <div class="flex items-center gap-2">
-                    <i class="fas fa-user"></i>
+                    <span class="w-6 h-6 bg-text/25 flex items-center justify-center rounded-full overflow-hidden">
+                        <i class="fas fa-user"></i>
+                    </span>
                     <span class="font-medium">{{ $blog->author }}</span>
                 </div>
                 <div class="flex items-center gap-2">

@@ -174,13 +174,13 @@
                 @csrf
                 <div class="space-y-3">
                     <div class="mb-2">
-                        <label for="email_input" class="text-base text-heading font-medium">Email (Opsional)</label>
+                        <label for="email_input" class="text-base text-heading font-medium">Email</label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-text"></i>
                         </div>
-                        <input type="email" name="email_input" id="email_input" placeholder="Masukkan email"
+                        <input type="email" name="email_input" id="email_input" placeholder="Masukkan email" required
                             class="w-full pl-10 py-3 pr-3 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
                     <div class="mb-2">
@@ -190,11 +190,11 @@
                         <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
                             <i class="fas fa-message text-text"></i>
                         </div>
-                        <textarea name="question_input" id="question_input" rows="5" maxlength="150"
-                            placeholder="Masukkan pertanyaan (Max. 300 karakter)" required
+                        <textarea name="question_input" id="question_input" rows="5" maxlength="200"
+                            placeholder="Masukkan pertanyaan (Max. 200 karakter)" required
                             class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
                         <p class="text-sm text-text">
-                            <span id="char-count">0</span>/150 Karakter
+                            <span id="char-count">0</span>/200 Karakter
                         </p>
                     </div>
                     <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera</p>

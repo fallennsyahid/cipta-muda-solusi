@@ -16,7 +16,6 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\JobVacancyAdminController;
 use App\Http\Controllers\Admin\PartnerReqAdminController;
 use App\Http\Controllers\Admin\PortfoliosAdminController;
-use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\PartnerRequestController;
 
 // Route::get('/welcome', function () {

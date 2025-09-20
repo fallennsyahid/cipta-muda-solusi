@@ -349,7 +349,7 @@
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fas fa-user text-text"></i>
                         </div>
-                        <input type="text" name="applicant_name" id="applicant_name"
+                        <input type="text" name="applicant_name" id="applicant_name" required
                             placeholder="Masukkan Nama Lengkap Anda"
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
@@ -361,7 +361,7 @@
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fas fa-calendar-days text-text"></i>
                         </div>
-                        <input type="date" name="date_of_birth" id="date_of_birth"
+                        <input type="date" name="date_of_birth" id="date_of_birth" required
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
 
@@ -372,7 +372,7 @@
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-text"></i>
                         </div>
-                        <input type="email" name="applicant_email" id="applicant_email"
+                        <input type="email" name="applicant_email" id="applicant_email" required
                             placeholder="Masukkan email Anda.."
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
@@ -386,21 +386,35 @@
                             <i class="fas fa-phone text-text"></i>
                         </div>
                         <input type="tel" name="applicant_phone_number" id="applicant_phone_number"
-                            placeholder="Masukkan nomor telepon Anda.."
+                            placeholder="Masukkan nomor telepon Anda.." required
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
 
                     <div class="mb-2">
-                        <label for="applicant_experience" class="text-primary text-base font-medium">Nomor
-                            Telepon</label>
+                        <label for="applicant_experience" class="text-primary text-base font-medium">
+                            Pengalaman Anda
+                        </label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 top-4 left-0 pl-4 flex pointer-events-none">
                             <i class="fas fa-message text-text"></i>
                         </div>
                         <textarea name="applicant_experience" id="applicant_experience" placeholder="Cerita pengalaman Anda.."
-                            rows="6" maxlength="1000"
+                            rows="6" required
                             class="w-full pl-12 py-3 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary resize-none"></textarea>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
+                            LinkedIn</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-phone text-text"></i>
+                        </div>
+                        <input type="url" name="link" id="link" required
+                            placeholder="https://www.github.com/username"
+                            class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                     </div>
 
                     <div class="upload-group">
@@ -408,7 +422,7 @@
                             <label for="applicant_file" class="text-primary text-base font-medium">Upload CV</label>
                         </div>
                         <input type="file" name="applicant_file" id="applicant_file" class="hidden"
-                            accept=".pdf">
+                            accept=".pdf" required>
                         <label
                             class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
@@ -444,6 +458,7 @@
                         </div>
                     </div>
                 </div>
+
                 <button type="submit"
                     class="w-full bg-gradient-to-r from-primary to-secondary py-3 flex items-center justify-center text-white font-semibold text-lg rounded-lg cursor-pointer hover:from-secondary hover:to-primary">
                     <i class="fas fa-upload mr-2"></i>
@@ -498,7 +513,7 @@
                                 <i class="fas fa-user text-text"></i>
                             </div>
                             <input type="text" name="full_name" id="full_name"
-                                placeholder="Masukkan nama lengkap.."
+                                placeholder="Masukkan nama lengkap.." required
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>
 
@@ -511,7 +526,7 @@
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <i class="fas fa-calendar-days text-text"></i>
                             </div>
-                            <input type="date" name="date_of_birth" id="date_of_birth"
+                            <input type="date" name="date_of_birth" id="date_of_birth" required
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>
 
@@ -523,7 +538,8 @@
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <i class="fas fa-envelope text-text"></i>
                             </div>
-                            <input type="email" name="email" id="email" placeholder="Masukkan email Anda.."
+                            <input type="email" name="email" id="email" required
+                                placeholder="Masukkan email Anda.."
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>
 
@@ -535,7 +551,8 @@
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <i class="fas fa-phone text-text"></i>
                             </div>
-                            <input type="tel" name="phone_number" id="phone_number" placeholder="Ex. +62xxx"
+                            <input type="tel" name="phone_number" id="phone_number" required
+                                placeholder="Ex. +62xxx"
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>
 
@@ -548,8 +565,8 @@
                                 <i class="fas fa-message text-text"></i>
                             </div>
                             <textarea name="experience" id="experience" placeholder="Ceritakan pengalaman kerja Anda yang relevan.."
-                                rows="3"
-                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
+                                rows="6" required
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary resize-none"></textarea>
                         </div>
 
                         {{-- Upload CV --}}
@@ -561,7 +578,7 @@
                             </div>
 
                             <input type="file" name="cv" id="cv-{{ $job->id }}" class="hidden"
-                                accept=".pdf">
+                                accept=".pdf" required>
 
                             <label
                                 class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
@@ -601,28 +618,14 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="cover_letter" class="text-primary text-base font-medium">Cover Letter
-                                (Opsional)
-                            </label>
-                        </div>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 top-4 pl-4 pointer-events-none">
-                                <i class="fas fa-message text-text"></i>
-                            </div>
-                            <textarea name="cover_letter" id="cover_letter" placeholder="Ceritakan pengalaman kerja Anda yang relevan.."
-                                rows="3"
-                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
-                        </div>
-
-                        <div class="mb-2">
                             <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
-                                LinkedIn (Opsional)</label>
+                                LinkedIn</label>
                         </div>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <i class="fas fa-phone text-text"></i>
                             </div>
-                            <input type="url" name="link" id="link"
+                            <input type="url" name="link" id="link" required
                                 placeholder="https://www.github.com/username"
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>

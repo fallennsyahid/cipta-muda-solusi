@@ -165,10 +165,13 @@
                                 {{ $blog->description }}
                             </p>
                             <div class="flex justify-between">
-                                <span class="flex items-center text-text text-sm">
-                                    <i class="fas fa-user mr-2"></i>
+                                <div class="flex items-center text-text text-sm gap-2">
+                                    <span
+                                        class="w-6 h-6 bg-text/25 flex items-center justify-center rounded-full overflow-hidden">
+                                        <i class="fas fa-user"></i>
+                                    </span>
                                     {{ $blog->author }}
-                                </span>
+                                </div>
                                 <a href="{{ route('user-blog-show', $blog->slug) }}"
                                     class="text-primary
                                     text-sm flex items-center hover:text-primary/80 transition-colors duration-200">

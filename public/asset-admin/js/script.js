@@ -14,14 +14,4 @@ document.addEventListener('DOMContentLoaded', function () {
             passwordIcon.classList.add('fa-eye');
         }
     });
-
-    const hamburgerButton = document.querySelector('#close-sidebar');
-    const sidebar = document.querySelector('aside');
-
-    hamburgerButton.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        sidebar.classList.toggle('scale-x-100');
-        sidebar.classList.toggle('scale-x-0');
-    });
 });

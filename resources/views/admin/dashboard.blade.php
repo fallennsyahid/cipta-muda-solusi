@@ -26,6 +26,7 @@
     {{-- Tiny --}}
     <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
         referrerpolicy="origin" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -130,6 +131,11 @@
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div class="mx-auto p-4 border border-text/25 rounded-xl">
+                    <h1 class="text-center mb-2 font-black text-primary text-3xl">Blog Statistics</h1>
+                    <canvas id="myChart" class="block w-full h-full"></canvas>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
@@ -754,6 +760,114 @@
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 <script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>
 <script src="{{ asset('asset-admin/js/quick-action.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // ambil canvas
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // data contoh (sesuaikan nilai kalau mau)
+    const labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+
+    const data = {
+        labels,
+        datasets: [{
+                label: 'Series 1',
+                data: [4.3, 2.5, 3.5, 4.6], // nilai untuk tiap kategori
+                backgroundColor: 'rgba(59,130,246,0.95)', // biru (Tailwind blue-500 kira2)
+                borderRadius: 6,
+                barThickness: 18
+            },
+            {
+                label: 'Series 2',
+                data: [2.6, 4.5, 2.1, 2.8],
+                backgroundColor: 'rgba(249,115,22,0.95)', // orange
+                borderRadius: 6,
+                barThickness: 18
+            },
+        ]
+    };
+
+    // konfigurasi chart
+    const config = {
+        type: 'bar', // 'bar' + indexAxis:'y' => horizontal bar chart
+        data,
+        options: {
+            indexAxis: 'y', // horizontal bars
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 18,
+                        padding: 16
+                    }
+                },
+                title: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                }
+            },
+            layout: {
+                padding: {
+                    top: 6,
+                    right: 6,
+                    bottom: 6,
+                    left: 6
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.06)',
+                        borderColor: 'rgba(0,0,0,0.06)'
+                    },
+                    max: 6 // atur maksimal sumbu X kalau ingin mirip gambar (opsional)
+                },
+                y: {
+                    // tampilkan kategori dari bawah ke atas sama seperti gambar (Category 4 di atas)
+                    reverse: true,
+                    grid: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        padding: 12
+                    }
+                }
+            },
+            // gaya transisi halus
+            animation: {
+                duration: 600,
+                easing: 'easeOutQuart'
+            },
+            // menjaga gap antar kelompok bar
+            datasets: {
+                bar: {
+                    categoryPercentage: 0.7,
+                    barPercentage: 0.9
+                }
+            }
+        }
+    };
+
+    // buat chart
+    const myChart = new Chart(ctx, config);
+
+    // contoh: update data secara dinamis (opsional)
+    // setTimeout(() => {
+    //   myChart.data.datasets[0].data = [3.9, 2.0, 4.1, 4.9];
+    //   myChart.update();
+    // }, 2000);
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if (session('success'))

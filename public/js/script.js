@@ -93,6 +93,22 @@ window.addEventListener('click', function (e) {
     }
 });
 
+const visiMisiCard = document.querySelector('#visi-misi-card');
+const mottoBtn = document.querySelector('#see-motto');
+const visiMisiBtn = document.querySelector('#see-visi-misi');
+
+mottoBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    visiMisiCard.classList.add('-rotate-90', 'translate-x-2');
+});
+
+visiMisiBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    visiMisiCard.classList.remove('-rotate-90', 'translate-x-2');
+})
+
 // Watch
 const clockEl = document.getElementById("clock");
 let serverTime = new Date(clockEl.dataset.time);
@@ -104,13 +120,10 @@ const updateClock = () => {
     let minutes = serverTime.getMinutes();
     let seconds = serverTime.getSeconds();
 
-    let ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
-
     clockEl.innerText =
         `${hours.toString().padStart(2, '0')}:` +
         `${minutes.toString().padStart(2, '0')}:` +
-        `${seconds.toString().padStart(2, '0')} ${ampm}`;
+        `${seconds.toString().padStart(2, '0')}`;
 };
 
 setInterval(updateClock, 1000);
@@ -167,7 +180,6 @@ selectCompanyType.addEventListener('change', function () {
         otherCompanyType.value = "";
     }
 });
-
 
 
 // Dots

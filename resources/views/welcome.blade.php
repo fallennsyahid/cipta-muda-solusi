@@ -161,12 +161,12 @@
 
         <div class="container max-w-full relative z-20">
             <div class="flex flex-wrap">
-                <div class="w-full self-center mt-10 lg:mt-0 px-8 lg:w-1/2">
-                    <h1 class="text-2xl font-semibold text-primary mb-3 text-center">
+                <div class="w-full self-center mt-12 lg:mt-0 px-8 lg:w-1/2">
+                    <h1 class="text-xl font-semibold text-primary mb-3 text-center">
                         Young, Brave, Innovative, Strong
                     </h1>
-                    <h2 class="font-bold text-6xl text-heading text-center mb-5">
-                        Cipta Muda Solusi
+                    <h2 class="font-bold text-5xl text-heading text-center mb-5">
+                        PT. Cipta Muda Solusi
                     </h2>
                     <p class="text-secondary/90 text-xl font-lato font-medium mb-9 text-center max-w-md mx-auto">
                         Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda
@@ -255,7 +255,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 mx-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-12">
                 <div class="mb-12 lg:mb-0">
                     <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl text-heading mb-3 text-center lg:text-left">
                         Perjalanan Kami</h1>
@@ -263,64 +263,86 @@
                         Dari startup kecil hingga menjadi partner teknologi terpercaya, kami terus berinovasi dan
                         berkembang untuk memberikan nilai terbaik bagi klien.
                     </p>
-                    <div class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-6 h-96 overflow-y-auto custom-scrollbar">
+                        <!-- 2010 -->
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-14 h-14 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
-                                20
+                                class=" w-16 h-16 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
+                                2010
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
-                                <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
-                                    partner
-                                    teknologi
-                                    terpercaya.</p>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Awal Pertemanan</h1>
+                                <p class="font-lato text-text max-w-sm">
+                                    Aditya (Founder) dan Randy (Co-Founder) menjalin pertemanan sejak tahun 2010.
+                                </p>
                             </div>
                         </div>
+
+                        <!-- 2015 -->
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-14 h-14 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
-                                20
+                                class="w-16 h-16 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
+                                2015
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
-                                <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
-                                    partner
-                                    teknologi
-                                    terpercaya.</p>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Berdirinya CV. Mitra Abadi
+                                </h1>
+                                <p class="font-lato text-text max-w-sm">
+                                    Mendirikan usaha di bidang IT & Event Organizer dengan nama CV. Mitra Abadi.
+                                </p>
                             </div>
                         </div>
+
+                        <!-- 2019 -->
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-14 h-14 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
-                                20
+                                class="w-16 h-16 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
+                                2019
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
-                                <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
-                                    partner
-                                    teknologi
-                                    terpercaya.</p>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Proyek Besar</h1>
+                                <p class="font-lato text-text max-w-sm">
+                                    Mendapatkan proyek dari Kementerian Koperasi & UKM serta PT. Telkom Indonesia, Tbk.
+                                </p>
                             </div>
                         </div>
+
+                        <!-- 2020 -->
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-14 h-14 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
-                                20
+                                class="w-16 h-16 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
+                                2020
                             </div>
                             <div>
-                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Perjalanan Kami</h1>
-                                <p class="font-lato text-text max-w-sm">Cipta Muda Solusi didirikan dengan visi menjadi
-                                    partner
-                                    teknologi
-                                    terpercaya.</p>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Menjadi PT. Cipta Muda Solusi
+                                </h1>
+                                <p class="font-lato text-text max-w-sm">
+                                    Resmi berganti nama menjadi PT. Cipta Muda Solusi dengan legalitas lengkap.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 2020 - Sekarang -->
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-16 h-16 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
+                                Now
+                            </div>
+                            <div>
+                                <h1 class="text-heading font-semibold text-lg lg:text-xl">Visi & Perkembangan</h1>
+                                <p class="font-lato text-text max-w-sm">
+                                    Terus berkembang menjadi perusahaan mitra andal di bidang IT Solutions, Software
+                                    Development, Marketing,
+                                    dan Event Organizer dengan visi: “Menjadi perusahaan Jasa Solusi IT, Marketing, dan
+                                    Event Organizer terpercaya di Indonesia.”
+                                </p>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="my-auto">
                     <div class="relative w-full max-w-4xl mx-auto">
-                        <!-- Motto Card -->
                         <div
                             class="absolute inset-0 bg-accent rounded-xl rotate-3 z-0 p-6 md:p-10 flex justify-center items-center">
                             <div>
@@ -344,13 +366,21 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="flex justify-end mt-4">
+                                    <button type="button" id="see-visi-misi"
+                                        class="flex items-center text-primary text-lg font-semibold gap-2 cursor-pointer hover:text-primary/80">
+                                        Visi & Misi
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Visi & Misi Card -->
-                        <div
-                            class="relative z-10 bg-white border-2 border-[#d2d2d2] p-6 md:p-10 rounded-xl flex flex-col origin-top-right transition-transform duration-1000 ease-in-out hover:-rotate-90 hover:-translate-x-2 will-change-transform">
-                            <h1 class="text-heading font-semibold text-lg md:text-xl mb-2.5">Visi & Misi</h1>
+                        <div id="visi-misi-card"
+                            class="relative z-10 bg-white border-2 border-[#d2d2d2] p-6 md:p-10 rounded-xl flex flex-col origin-top-right transition-transform duration-1000 ease-in-out will-change-transform">
+                            <h1 class="text-heading font-semibold text-xl md:text-2xl text-center mb-2.5">Visi & Misi
+                            </h1>
 
                             <h2 class="flex items-center text-heading text-lg md:text-xl font-semibold mb-2">
                                 <i class="fas fa-eye mr-2"></i>
@@ -373,6 +403,14 @@
                                 <i class="fas fa-circle-check mr-2 text-secondary"></i>
                                 Memberikan jasa pelayanan terbaik secara konsisten kepada semua perusahaan mitra
                             </p>
+
+                            <div class="flex justify-end mt-2">
+                                <button type="button" id="see-motto"
+                                    class="flex items-center text-primary text-lg font-semibold gap-2 cursor-pointer hover:text-primary/80">
+                                    Motto
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -812,10 +850,6 @@
                     <div class="flex items-center gap-6">
                         <a href="#" target="_blank"
                             class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
-                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
-                        </a>
-                        <a href="#" target="_blank"
-                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
                             <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
                         </a>
                         <a href="#" target="_blank"
@@ -845,10 +879,6 @@
                     <div class="flex items-center gap-6">
                         <a href="#" target="_blank"
                             class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
-                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
-                        </a>
-                        <a href="#" target="_blank"
-                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
                             <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
                         </a>
                         <a href="#" target="_blank"
@@ -875,10 +905,6 @@
                     </p>
 
                     <div class="flex items-center gap-6">
-                        <a href="#" target="_blank"
-                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
-                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
-                        </a>
                         <a href="#" target="_blank"
                             class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
                             <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
@@ -911,10 +937,6 @@
                     </p>
 
                     <div class="flex items-center gap-6">
-                        <a href="#" target="_blank"
-                            class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
-                            <i class="fab fa-telegram text-2xl text-heading group-hover:text-white"></i>
-                        </a>
                         <a href="#" target="_blank"
                             class="w-10 h-10 bg-secondary/25 p-2 rounded-full flex justify-center items-center group hover:bg-primary transition-colors duration-300 ease-in-out">
                             <i class="fab fa-linkedin text-2xl text-heading group-hover:text-white"></i>
@@ -967,6 +989,7 @@
                     <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
                         <div class="w-32 h-32 flex items-center justify-center">
                             <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
+                                title="{{ $partner->name }}"
                                 class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
                         </div>
                     </div>
@@ -1083,7 +1106,7 @@
                             placeholder="Ceritakan jenis bisnis Anda...">
                     </div>
 
-                    <div class="group">
+                    {{-- <div class="group">
                         <label for="company_description"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-building-circle-check"></i>
@@ -1096,16 +1119,16 @@
                             <p class="text-xs text-slate-500">Ceritakan tentang Perusahaan Anda</p>
                             <p class="text-xs font-medium text-slate-600" id="charCount"></p>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="upload-group">
                         <label for="file_attachments"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-paperclip"></i>
-                            Lampiran <span class="text-slate-400 text-xs"></span>
+                            Logo Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <input type="file" name="file_attachments" id="file_attachments" class="hidden"
-                            accept=".pdf">
+                        <input type="file" name="file_attachments" id="file_attachments" class="hidden" required
+                            accept=".png,.webp,.jpg,.jpeg">
                         <label
                             class="drop-area p-6 flex flex-col items-center justify-center text-center border border-text border-dashed rounded-lg cursor-pointer hover:bg-text/5 transition-colors duration-100 ease-in-out">
                             <div class="mb-4">
@@ -1116,7 +1139,7 @@
                                     Choose a file or drag & drop it here
                                 </h1>
                                 <p class="text-text text-sm font-medium font-lato">
-                                    PDF format, max. 5MB
+                                    Webp, PNG, JPEG, JPG formats, max. 5MB
                                 </p>
                             </div>
                         </label>
@@ -1145,7 +1168,7 @@
                         <label for="company_link"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-globe"></i>
-                            Website / Media Sosial <span class="text-slate-400 text-xs">(Opsional)</span>
+                            Website / Media Sosial <span class="text-red-400">*</span>
                         </label>
                         <input type="url" id="company_link" name="company_link" required
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
@@ -1322,12 +1345,12 @@
     {{-- Footer Section Start --}}
     <footer class="bg-accent pt-10">
         <div class="container max-w-full">
-            <div class="flex flex-wrap gap-10 md:gap-16 lg:gap-20 mx-4 justify-center">
+            <div class="flex flex-wrap gap-10 md:gap-16 lg:gap-20 mx-4 mb-4 justify-center">
                 <div class="w-full md:w-2/5">
                     <div class="flex items-center mb-2">
                         <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt=""
                             class="h-12 md:h-14 w-auto mr-2">
-                        <h1 class="font-bold text-heading text-xl md:text-2xl">Cipta Muda Solusi</h1>
+                        <h1 class="font-bold text-heading text-xl md:text-2xl">PT. Cipta Muda Solusi</h1>
                     </div>
                     <p class="font-lato text-darkChoco font-medium text-base md:text-lg text-justify">
                         Kami adalah partner teknologi terpercaya yang menghadirkan solusi inovatif untuk transformasi
@@ -1336,22 +1359,7 @@
                     </p>
                 </div>
 
-                <div class="w-1/2 md:w-[13%]">
-                    <h1 class="font-bold text-xl md:text-2xl text-heading">Perusahaan</h1>
-                    <ul class="mt-3 flex flex-col space-y-2 md:space-y-3 text-sm md:text-base">
-                        <li><a href="#" class="text-text hover:text-primary transition-colors">Tentang Kami</a>
-                        </li>
-                        <li><a href="#" class="text-text hover:text-primary transition-colors">Tim</a></li>
-                        <li><a href="#" class="text-text hover:text-primary transition-colors">Portfolio</a>
-                        </li>
-                        <li><a href="#" class="text-text hover:text-primary transition-colors">Faq</a></li>
-                        <li><a href="#" class="text-text hover:text-primary transition-colors">Blog</a></li>
-                        <li><a href="{{ route('user.jobs.index') }}"
-                                class="text-text hover:text-primary transition-colors">Karir</a></li>
-                    </ul>
-                </div>
-
-                <div class="w-1/2 md:w-[13%]">
+                <div class="w-1/2 md:w-[20%]">
                     <h1 class="font-bold text-xl md:text-2xl text-heading">Layanan</h1>
                     <ul class="mt-3 flex flex-col space-y-2 md:space-y-3 text-sm md:text-base">
                         <li><a href="#" class="text-text hover:text-primary transition-colors">IT Solution</a>
@@ -1370,7 +1378,7 @@
                     </ul>
                 </div>
 
-                <div class="w-1/2 md:w-[13%]">
+                <div class="w-1/2 md:w-[20%]">
                     <h1 class="font-bold text-xl md:text-2xl text-heading">Quick Links</h1>
                     <ul class="mt-3 flex flex-col space-y-2 md:space-y-3 text-sm md:text-base">
                         <li><a href="#" class="text-text hover:text-primary transition-colors">Beranda</a></li>
@@ -1386,31 +1394,9 @@
                 </div>
             </div>
 
-            <div class="flex justify-center gap-3 my-6">
-                <a href="#" target="_blank"
-                    class="w-10 h-10 bg-primary rounded-full flex justify-center items-center text-center">
-                    <i class="fab fa-facebook text-white text-xl"></i>
-                </a>
-                <a href="#" target="_blank"
-                    class="w-10 h-10 bg-primary rounded-full flex justify-center items-center text-center">
-                    <i class="fab fa-linkedin text-white text-xl"></i>
-                </a>
-                <a href="#" target="_blank"
-                    class="w-10 h-10 bg-primary rounded-full flex justify-center items-center text-center">
-                    <i class="fab fa-instagram text-white text-xl"></i>
-                </a>
-                <a href="#" target="_blank"
-                    class="w-10 h-10 bg-primary rounded-full flex justify-center items-center text-center">
-                    <i class="fab fa-x-twitter text-white text-xl"></i>
-                </a>
-                <a href="#" target="_blank"
-                    class="w-10 h-10 bg-primary rounded-full flex justify-center items-center text-center">
-                    <i class="fab fa-youtube text-white text-xl"></i>
-                </a>
-            </div>
             <div class="border-t border-text py-4">
                 <p class="text-center text-text font-lato font-semibold text-sm md:text-base">&copy;
-                    {{ date('Y') }} Cipta
+                    {{ date('Y') }} PT. Cipta
                     Muda Solusi. All
                     Right Reserved.</p>
             </div>
