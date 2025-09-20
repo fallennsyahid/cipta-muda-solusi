@@ -143,7 +143,7 @@
 
     <div class="bg-gradient-to-br from-primary to-secondary py-16 flex flex-col justify-center items-center">
         <h1 class="text-3xl text-white font-bold mb-5">Masih Ada Pertanyaan?</h1>
-        <p class="text-white/90 font-lato font-medium text-base md:text-lg lg:text-xl mb-7">
+        <p class="text-white/90 font-lato font-medium text-base md:text-lg lg:text-xl mb-7 text-center">
             Tim kami siap membantu menjawab pertanyaanspesifik Anda
         </p>
         <a href="#" id="add-question"

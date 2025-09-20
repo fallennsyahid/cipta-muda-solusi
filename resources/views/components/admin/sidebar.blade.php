@@ -1,5 +1,7 @@
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden z-40 lg:hidden"></div>
 <div id="sidebar"
-    class="fixed top-24 left-0 bottom-4 z-50 w-72 bg-white/80 shadow-lg rounded-xl transition-all duration-700 ease-in-out flex flex-col -translate-x-full lg:left-4 lg:translate-x-0">
+    class="fixed top-28 lg:top-24 left-0 lg:left-4 bottom-4 z-50 w-72 bg-white/80 shadow-lg rounded-xl transition-all duration-700 ease-in-out flex flex-col -translate-x-full lg:translate-x-0">
+
     <div class="flex items-center justify-between py-3 px-6 bg-text/25 rounded-t-xl relative">
         <a href="#"
             class="sidebar-button inline-flex justify-center items-center bg-primary text-white font-bold text-base h-12 w-16 rounded-xl">

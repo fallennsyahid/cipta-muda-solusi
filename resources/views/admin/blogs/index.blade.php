@@ -672,7 +672,6 @@
         </div>
     @endforeach
     {{-- Modal Edit End --}}
-
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {

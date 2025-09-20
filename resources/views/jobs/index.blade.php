@@ -91,7 +91,7 @@
                     </nav>
                 </div> --}}
                 <div id="clock" data-time="{{ now()->timezone('Asia/Jakarta')->format('Y-m-d\TH:i:s') }}"
-                    class="mr-10 text-darkChoco font-bold text-2xl relative z-50"></div>
+                    class="mr-10 text-darkChoco font-bold text-xl lg:text-2xl relative z-50"></div>
             </div>
         </div>
     </header>
@@ -114,15 +114,15 @@
                 misi menciptakan solusi teknologi inovatif.
             </p>
             <div class="flex items-center justify-center mt-6 gap-8 mx-10 md:mx-5 lg:mx-0">
-                <div class="flex items-center text-text text-base">
+                <div class="flex items-center text-text text-sm lg:text-base">
                     <i class="fas fa-users mr-2 text-primary"></i>
                     50+ Tim Profesional
                 </div>
-                <div class="flex items-center text-text text-base">
+                <div class="flex items-center text-text text-sm lg:text-base">
                     <i class="fas fa-briefcase mr-2 text-primary"></i>
                     Lingkungan Kerja Fleksibel
                 </div>
-                <div class="flex items-center text-text text-base">
+                <div class="flex items-center text-text text-sm lg:text-base">
                     <i class="fas fa-location-dot mr-2 text-primary"></i>
                     Jakarta & Remote
                 </div>

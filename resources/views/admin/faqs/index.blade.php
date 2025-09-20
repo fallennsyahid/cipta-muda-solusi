@@ -348,12 +348,9 @@
                                     <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
                                         <i class="fas fa-message text-text"></i>
                                     </div>
-                                    <textarea name="answer_input" id="answer_input" rows="5" maxlength="300"
-                                        placeholder="Masukkan pertanyaan (Max. 300 karakter)" required
+                                    <textarea name="answer_input" id="answer_input" rows="5" placeholder="Masukkan pertanyaan (Max. 300 karakter)"
+                                        required
                                         class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                                    <p class="text-sm text-text">
-                                        <span id="char-count">0</span>/300 Karakter
-                                    </p>
                                 </div>
                                 <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
                                 </p>
