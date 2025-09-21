@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum BlogStatus: string
 {
-    case Pending = 'Pending';
+    case ReadyToPublish = 'Ready To Publish';
     case Published = 'Published';
     case Archived = 'Archived';
 

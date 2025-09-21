@@ -47,4 +47,14 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
         ];
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isBlogAdmin(): bool
+    {
+        return $this->role === 'admin_blog';
+    }
 }

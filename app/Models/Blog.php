@@ -19,6 +19,11 @@ class Blog extends Model
         'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected static function booted()
     {
         static::creating(function ($blog) {
