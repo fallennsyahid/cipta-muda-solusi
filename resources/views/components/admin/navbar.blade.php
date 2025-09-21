@@ -63,7 +63,6 @@
 </script>
 
 <script>
-    // Ambil waktu server dari Laravel
     const serverTimeString = "{{ now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') }}";
     let serverTime = new Date(serverTimeString);
 
@@ -74,13 +73,10 @@
         let minutes = serverTime.getMinutes();
         let seconds = serverTime.getSeconds();
 
-        let ampm = hours >= 12 ? "PM" : "AM";
-        hours = hours % 12 || 12;
-
         document.getElementById("clock").innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')} ${ampm}`;
+            `${seconds.toString().padStart(2, '0')}`;
     }
 
     setInterval(updateClock, 1000);
@@ -91,31 +87,16 @@
     function updateDate() {
         const now = new Date();
 
+        // nama hari & bulan pakai locale Indonesia
         const options = {
-            month: 'long'
-        }; // nama bulan panjang (August)
-        const month = new Intl.DateTimeFormat('en-US', options).format(now);
-        const day = now.getDate();
-        const year = now.getFullYear();
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        const formatted = new Intl.DateTimeFormat('id-ID', options).format(now);
 
-        function getDaySuffix(d) {
-            if (d > 3 && d < 21) return 'th';
-            switch (d % 10) {
-                case 1:
-                    return "st";
-                case 2:
-                    return "nd";
-                case 3:
-                    return "rd";
-                default:
-                    return "th";
-            }
-        }
-
-        const suffix = getDaySuffix(day);
-
-        document.getElementById("today-date").innerText =
-            `Today: ${month} ${day}${suffix} ${year}`;
+        document.getElementById("today-date").innerText = `Hari ini: ${formatted}`;
     }
 
     updateDate();

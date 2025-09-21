@@ -405,14 +405,15 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
-                            LinkedIn</label>
+                        <label for="applicant_link" class="text-primary text-base font-medium">
+                            Link Portfolio / Github / LinkedIn
+                        </label>
                     </div>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <i class="fas fa-phone text-text"></i>
                         </div>
-                        <input type="url" name="link" id="link" required
+                        <input type="url" name="applicant_link" id="applicant_link" required
                             placeholder="https://www.github.com/username"
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                     </div>
@@ -569,6 +570,19 @@
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary resize-none"></textarea>
                         </div>
 
+                        <div class="mb-2">
+                            <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
+                                LinkedIn</label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-phone text-text"></i>
+                            </div>
+                            <input type="url" name="link" id="link" required
+                                placeholder="https://www.github.com/username"
+                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
+
                         {{-- Upload CV --}}
                         <div class="upload-group">
                             <div class="mb-2">
@@ -615,19 +629,6 @@
                                     <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
                                 </button>
                             </div>
-                        </div>
-
-                        <div class="mb-2">
-                            <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
-                                LinkedIn</label>
-                        </div>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <i class="fas fa-phone text-text"></i>
-                            </div>
-                            <input type="url" name="link" id="link" required
-                                placeholder="https://www.github.com/username"
-                                class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>
 
                         {{-- Button Submit --}}

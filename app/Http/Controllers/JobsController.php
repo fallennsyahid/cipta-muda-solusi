@@ -69,6 +69,7 @@ class JobsController extends Controller
             'applicant_phone_number' => 'required|string',
             'applicant_file' => 'required|file|mimes:pdf|max:5120',
             'applicant_experience' => 'required|string',
+            'applicant_link' => 'required|url',
         ]);
         $fillPath = null;
         if ($request->hasFile('applicant_file')) {
@@ -82,6 +83,7 @@ class JobsController extends Controller
             'applicant_phone_number' => $request->applicant_phone_number,
             'applicant_file' => $fillPath,
             'applicant_experience' => $request->applicant_experience,
+            'applicant_link' => $request->applicant_link,
         ]);
 
         return redirect()->route('user.jobs.index')->with('success', 'CV Berhasil Terkirim');
@@ -97,8 +99,7 @@ class JobsController extends Controller
             'date_of_birth' => 'required|date',
             'experience' => 'required|string',
             'cv' => 'required|file|mimes:pdf|max:5120',
-            'cover_letter' => 'nullable|string',
-            'link' => 'nullable|url',
+            'link' => 'required|url',
         ]);
 
         if ($request->hasFile('cv')) {

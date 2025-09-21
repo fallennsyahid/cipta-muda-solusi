@@ -108,17 +108,19 @@
             </span>
         </a>
 
-        <a href="" title="Employee"
-            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
-            <i class="fas fa-user-tie text-text transition-all duration-300 group-hover:scale-110"></i>
+        <a href="{{ route('employee.index') }}" title="Employee"
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('employee.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            <i
+                class="fas fa-user-tie {{ request()->routeIs('employee.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
             <span class="font-medium pl-2">
                 Employee
             </span>
         </a>
 
-        <a href="" title="Account"
-            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
-            <i class="fas fa-user-circle text-text transition-all duration-300 group-hover:scale-110"></i>
+        <a href="{{ route('account.index') }}" title="Account"
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('account.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            <i
+                class="fas fa-user-circle {{ request()->routeIs('account.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}"></i>
             <span class="font-medium pl-2">
                 Account
             </span>

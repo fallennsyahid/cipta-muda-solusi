@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Status;
+use App\Exports\CvApplicantsExport;
 use App\Http\Controllers\Controller;
 use App\Models\CvApplicant;
 use App\Models\PartnerRequest;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CvAdminController extends Controller
 {
@@ -78,5 +80,10 @@ class CvAdminController extends Controller
     {
         $cv->delete();
         return redirect()->route('cv.index')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new CvApplicantsExport, 'cv_applicants.xlsx');
     }
 }

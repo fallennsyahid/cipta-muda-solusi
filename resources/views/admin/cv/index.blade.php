@@ -32,6 +32,13 @@
                 <h1 class="text-2xl text-heading font-bold">CV Management</h1>
                 <p class="text-text font-lato">Manage job applications and candidate CVs</p>
             </div>
+            <div>
+                <a href="{{ route('cv.export') }}"
+                    class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-green-500 via-green-600 to-green-700 cursor-pointer hover:from-green-600 hover:via-green-700 hover:to-green-800 transition">
+                    <i class="fas fa-file-excel"></i>
+                    Export Excel
+                </a>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

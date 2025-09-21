@@ -8,15 +8,17 @@ use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CvAdminController;
+use App\Http\Controllers\PartnerRequestController;
 use App\Http\Controllers\Admin\FaqsAdminController;
 use App\Http\Controllers\Admin\BlogsAdminController;
+use App\Http\Controllers\Admin\AccountAdminController;
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\EmployeeAdminController;
 use App\Http\Controllers\Admin\JobVacancyAdminController;
 use App\Http\Controllers\Admin\PartnerReqAdminController;
 use App\Http\Controllers\Admin\PortfoliosAdminController;
-use App\Http\Controllers\PartnerRequestController;
 
 // Route::get('/welcome', function () {
 //     return view('welcome');
@@ -74,6 +76,11 @@ Route::put('partnerReq/{id}/status', [PartnerReqAdminController::class, 'updateS
 
 Route::resource('admin/cv', CvAdminController::class);
 Route::put('/admin/{id}/status', [CvAdminController::class, 'updateStatus'])->name('cv.updateStatus');
+Route::get('/admin/cv-export', [CvAdminController::class, 'export'])->name('cv.export');
+
+Route::resource('/admin/account', AccountAdminController::class);
+
+Route::resource('/admin/employee', EmployeeAdminController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

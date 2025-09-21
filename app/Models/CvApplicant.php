@@ -13,6 +13,7 @@ class CvApplicant extends Model
         'applicant_phone_number',
         'applicant_file',
         'applicant_experience',
+        'applicant_link',
         'status',
     ];
 }
