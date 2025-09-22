@@ -3,7 +3,7 @@
     <div class="ml-74 mt-4 transition-all duration-700 ease-in-out" id="main-content">
         <x-admin.navbar></x-admin.navbar>
 
-        <main class="p-6 pt-20 mt-8">
+        <main class="p-6 pt-24">
             <div class="space-y-6">
                 {{ $slot }}
             </div>

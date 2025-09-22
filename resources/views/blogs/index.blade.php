@@ -183,6 +183,10 @@
                     </div>
                 @endforeach
             </div>
+
+            <div class="flex justify-end mt-4">
+                {{ $blogs->links() }}
+            </div>
         </div>
     </section>
 </body>

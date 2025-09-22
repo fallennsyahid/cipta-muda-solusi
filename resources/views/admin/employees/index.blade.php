@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    23
+                    {{ $totalActiveEmployees }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    0
+                    {{ $totalNonActiveEmployees }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    3
+                    {{ $totalNewHires }}
                 </div>
             </div>
         </div>
@@ -108,11 +108,47 @@
                                 </span>
                             </div>
                         </div>
-                        <div>
-                            <button
-                                class="flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:bg-gray-200 relative z-10">
+
+                        <div class="relative">
+                            <button type="button" data-id="{{ $employee->id }}"
+                                class="dropdown-button flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:bg-gray-200 relative z-10">
                                 <i class="fas fa-ellipsis-vertical text-darkChoco"></i>
                             </button>
+
+                            <div id="dropdown-menu-{{ $employee->id }}"
+                                class="absolute right-0 p-1 bg-white rounded-lg border border-text/25 min-w-16 shadow-md space-y-3 scale-y-0 origin-top transition-all duration-300 ease-in-out overflow-hidden">
+                                @if ($employee->status === 'Active')
+                                    <form action="{{ route('employee.toggleStatus', $employee->id) }}" method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="flex items-center gap-2 text-sm w-full px-3 py-1 font-medium text-darkChoco hover:bg-primary hover:text-white rounded-md cursor-pointer">
+                                            <i class="fas fa-user-xmark"></i>
+                                            Nonaktifkan
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('employee.toggleStatus', $employee->id) }}" method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="flex items-center gap-2 text-sm w-full px-3 py-1 font-medium text-darkChoco hover:bg-primary hover:text-white rounded-md cursor-pointer">
+                                            <i class="fas fa-user-check"></i>
+                                            Aktifkan
+                                        </button>
+                                    </form>
+                                @endif
+                                <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"
+                                    class="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="flex items-center gap-2 text-sm w-full px-3 py-1 font-medium text-red-700 hover:bg-primary hover:text-white rounded-md cursor-pointer">
+                                        <i class="fas fa-trash"></i>
+                                        Hapus
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -179,5 +215,6 @@
 </script>
 
 <script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
+<script src="{{ asset('asset-admin/js/employee.js') }}"></script>
 
 </html>

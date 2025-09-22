@@ -110,7 +110,7 @@
                 Bergabung Menjadi Bagian dari Tim Kami
             </h1>
             <p class="font-semibold text-base md:text-lg lg:text-xl text-text max-w-2xl lg:max-w-6xl mx-6 lg:mx-auto">
-                Wujudkan karir impian Anda bersama Cipta Muda Solusi. Kami mencari talenta terbaik untuk bergabung dalam
+                Wujudkan karir Anda bersama PT. Cipta Muda Solusi. Kami mencari talenta terbaik untuk bergabung dalam
                 misi menciptakan solusi teknologi inovatif.
             </p>
             <div class="flex items-center justify-center mt-6 gap-8 mx-10 md:mx-5 lg:mx-0">

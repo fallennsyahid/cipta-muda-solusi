@@ -83,6 +83,7 @@ Route::resource('/admin/account', AccountAdminController::class);
 Route::patch('/admin/{account}/toggle-status', [AccountAdminController::class, 'toggleStatus'])->name('account.toggleStatus');
 
 Route::resource('/admin/employee', EmployeeAdminController::class);
+Route::patch('/admin/employee/{employee}/toggle-status', [EmployeeAdminController::class, 'toggleStatus'])->name('employee.toggleStatus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

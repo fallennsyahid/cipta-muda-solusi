@@ -31,183 +31,174 @@
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
 
-    <x-admin.sidebar></x-admin.sidebar>
-
-    <x-admin.navbar></x-admin.navbar>
-
-    <div class="ml-74 mt-4 transition-all duration-700 ease-in-out" id="main-content">
-        <main class="p-6 pt-20">
-            <div class="space-y-6">
-                <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white geometric-shape">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h1 class="text-3xl text-white font-bold mb-2">
-                                Welcome back, {{ Auth::check() ? Auth::user()->name : 'Admin' }}
-                            </h1>
-                            <p class="font-lato text-lg">Here's what's happening with your company profile today.</p>
-                        </div>
-                        <div class="hidden md:block relative z-10 float-animation">
-                            <div class="w-24 h-24 bg-white rounded-full flex justify-center items-center">
-                                <i class="fa-solid fa-rocket text-darkChoco text-5xl"></i>
-                            </div>
-                        </div>
-                    </div>
+    <x-admin.layout>
+        <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white geometric-shape">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl text-white font-bold mb-2">
+                        Welcome back, {{ Auth::check() ? Auth::user()->name : 'Admin' }}
+                    </h1>
+                    <p class="font-lato text-lg">Here's what's happening with your company profile today.</p>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
-                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
-                            <h1 class="text-sm font-medium text-text">
-                                Total Jobs
-                            </h1>
-                            <div class="w-8 h-8 rounded-lg bg-heading flex justify-center items-center">
-                                <i class="fas fa-briefcase text-white text-base"></i>
-                            </div>
-                        </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            {{ $totalJobsThisMonth }}
-                            <p
-                                class="text-xs {{ $percentageJobChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                                <i
-                                    class="fas {{ $percentageJobChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                                {{ number_format($percentageJobChange, 1) }}% from last month
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
-                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
-                            <h1 class="text-sm font-medium text-text">
-                                Active Partners
-                            </h1>
-                            <div class="w-8 h-8 rounded-lg bg-secondary flex justify-center items-center">
-                                <i class="fas fa-user-group text-white text-base"></i>
-                            </div>
-                        </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            {{ $totalActivePartnersThisMonth }}
-                            <p
-                                class="text-xs {{ $percentageActivePartnersChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                                <i
-                                    class="fas {{ $percentageActivePartnersChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                                {{ number_format($percentageActivePartnersChange, 1) }}% from last month
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
-                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
-                            <h1 class="text-sm font-medium text-text">
-                                Blog Published
-                            </h1>
-                            <div class="w-8 h-8 rounded-lg bg-green-500 flex justify-center items-center">
-                                <i class="fas fa-newspaper text-white text-base"></i>
-                            </div>
-                        </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            {{ $totalBlogPublishedThisMonth }}
-                            <p
-                                class="text-xs {{ $percentageBlogPublishedChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                                <i
-                                    class="fas {{ $percentageBlogPublishedChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                                {{ number_format($percentageBlogPublishedChange, 1) }}% from last month
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
-                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
-                            <h1 class="text-sm font-medium text-text">
-                                FAQ
-                            </h1>
-                            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex justify-center items-center">
-                                <i class="fas fa-question-circle text-white text-base"></i>
-                            </div>
-                        </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                            {{ $totalFaqsThisMonth }}
-                            <p
-                                class="text-xs {{ $percentageFaqsChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                                <i
-                                    class="fas {{ $percentageFaqsChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                                {{ number_format($percentageFaqsChange, 1) }}% from last month
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mx-auto p-4 border border-text/25 rounded-xl">
-                    <h1 class="text-center mb-2 font-black text-primary text-3xl">Blog Statistics</h1>
-                    <canvas id="myChart" class="block w-full h-full"></canvas>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
-                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
-                        <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
-                            <i class="fas fa-calendar"></i>
-                            Quick Actions
-                        </div>
-                        <div class="space-y-3 relative z-10">
-                            <a href="#" id="open-modal-create-job"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-briefcase mr-3"></i>
-                                Buat Lowongan Kerja Baru
-                            </a>
-                            <a href="#" id="open-add-partner"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-user-group mr-3"></i>
-                                Tambah Partner Baru
-                            </a>
-                            <a href="#" id="open-create-blog"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-newspaper mr-3"></i>
-                                Buat Postingan Blog Baru
-                            </a>
-                            <a href="{{ route('faqs.index') }}"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-question-circle mr-3"></i>
-                                Update FAQ
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
-                        <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
-                            <i class="fas fa-clock"></i>
-                            Aktivitas Terbaru
-                        </div>
-                        <div class="space-y-2 relative z-10 h-[90%] overflow-y-auto custom-scrollbar">
-                            @foreach ($activities as $activity)
-                                <div
-                                    class="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent transition-colors">
-                                    <div class="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-base font-medium text-heading">{{ ucfirst($activity->action) }}:
-                                            {{ $activity->target_type }}
-                                        </p>
-                                        <p class="text-sm text-text font-lato">{{ $activity->target_name }}</p>
-                                        <p class="text-xs text-text font-lato mt-1">
-                                            {{ $activity->created_at->diffForHumans() }}</p>
-
-                                        @if ($activity->action === 'update' && $activity->changes)
-                                            <div class="ml-4 text-xs text-gray-600">
-                                                @foreach ($activity->changes['old'] as $field => $old)
-                                                    @php
-                                                        $new = $activity->changes['new'][$field] ?? null;
-                                                    @endphp
-                                                    @if ($old != $new)
-                                                        <div>{{ $field }}: "{{ $old }}" →
-                                                            "{{ $new }}"</div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                <div class="hidden md:block relative z-10 float-animation">
+                    <div class="w-24 h-24 bg-white rounded-full flex justify-center items-center">
+                        <i class="fa-solid fa-rocket text-darkChoco text-5xl"></i>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                    <h1 class="text-sm font-medium text-text">
+                        Total Jobs
+                    </h1>
+                    <div class="w-8 h-8 rounded-lg bg-heading flex justify-center items-center">
+                        <i class="fas fa-briefcase text-white text-base"></i>
+                    </div>
+                </div>
+                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                    {{ $totalJobsThisMonth }}
+                    <p
+                        class="text-xs {{ $percentageJobChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
+                        <i
+                            class="fas {{ $percentageJobChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
+                        {{ number_format($percentageJobChange, 1) }}% from last month
+                    </p>
+                </div>
+            </div>
+            <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                    <h1 class="text-sm font-medium text-text">
+                        Active Partners
+                    </h1>
+                    <div class="w-8 h-8 rounded-lg bg-secondary flex justify-center items-center">
+                        <i class="fas fa-user-group text-white text-base"></i>
+                    </div>
+                </div>
+                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                    {{ $totalActivePartnersThisMonth }}
+                    <p
+                        class="text-xs {{ $percentageActivePartnersChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
+                        <i
+                            class="fas {{ $percentageActivePartnersChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
+                        {{ number_format($percentageActivePartnersChange, 1) }}% from last month
+                    </p>
+                </div>
+            </div>
+            <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                    <h1 class="text-sm font-medium text-text">
+                        Blog Published
+                    </h1>
+                    <div class="w-8 h-8 rounded-lg bg-green-500 flex justify-center items-center">
+                        <i class="fas fa-newspaper text-white text-base"></i>
+                    </div>
+                </div>
+                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                    {{ $totalBlogPublishedThisMonth }}
+                    <p
+                        class="text-xs {{ $percentageBlogPublishedChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
+                        <i
+                            class="fas {{ $percentageBlogPublishedChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
+                        {{ number_format($percentageBlogPublishedChange, 1) }}% from last month
+                    </p>
+                </div>
+            </div>
+            <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                    <h1 class="text-sm font-medium text-text">
+                        FAQ
+                    </h1>
+                    <div class="w-8 h-8 rounded-lg bg-indigo-500 flex justify-center items-center">
+                        <i class="fas fa-question-circle text-white text-base"></i>
+                    </div>
+                </div>
+                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                    {{ $totalFaqsThisMonth }}
+                    <p
+                        class="text-xs {{ $percentageFaqsChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
+                        <i
+                            class="fas {{ $percentageFaqsChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
+                        {{ number_format($percentageFaqsChange, 1) }}% from last month
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto p-4 border border-text/25 rounded-xl">
+            <h1 class="text-center mb-2 font-black text-primary text-3xl">Blog Statistics</h1>
+            <canvas id="myChart" class="block w-full h-full"></canvas>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
+            <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
+                <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
+                    <i class="fas fa-calendar"></i>
+                    Quick Actions
+                </div>
+                <div class="space-y-3 relative z-10">
+                    <a href="#" id="open-modal-create-job"
+                        class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                        <i class="fas fa-briefcase mr-3"></i>
+                        Buat Lowongan Kerja Baru
+                    </a>
+                    <a href="#" id="open-add-partner"
+                        class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                        <i class="fas fa-user-group mr-3"></i>
+                        Tambah Partner Baru
+                    </a>
+                    <a href="#" id="open-create-blog"
+                        class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                        <i class="fas fa-newspaper mr-3"></i>
+                        Buat Postingan Blog Baru
+                    </a>
+                    <a href="{{ route('faqs.index') }}"
+                        class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
+                        <i class="fas fa-question-circle mr-3"></i>
+                        Update FAQ
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
+                <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
+                    <i class="fas fa-clock"></i>
+                    Aktivitas Terbaru
+                </div>
+                <div class="space-y-2 relative z-10 h-[90%] overflow-y-auto custom-scrollbar">
+                    @foreach ($activities as $activity)
+                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-accent transition-colors">
+                            <div class="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-base font-medium text-heading">{{ ucfirst($activity->action) }}:
+                                    {{ $activity->target_type }}
+                                </p>
+                                <p class="text-sm text-text font-lato">{{ $activity->target_name }}</p>
+                                <p class="text-xs text-text font-lato mt-1">
+                                    {{ $activity->created_at->diffForHumans() }}</p>
+
+                                @if ($activity->action === 'update' && $activity->changes)
+                                    <div class="ml-4 text-xs text-gray-600">
+                                        @foreach ($activity->changes['old'] as $field => $old)
+                                            @php
+                                                $new = $activity->changes['new'][$field] ?? null;
+                                            @endphp
+                                            @if ($old != $new)
+                                                <div>{{ $field }}: "{{ $old }}" →
+                                                    "{{ $new }}"</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </x-admin.layout>
 
     {{-- Create New Jobs Start --}}
     <div id="create-new-job" class="fixed inset-0 z-99999 hidden justify-center items-center animate-fade-in">

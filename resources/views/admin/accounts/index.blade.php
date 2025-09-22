@@ -118,6 +118,7 @@
                                 @endif
                             </div>
                         </div>
+
                         <div class="relative">
                             <button type="button" data-id="{{ $account->id }}"
                                 class="dropdown-button flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:bg-gray-200 relative z-10">
@@ -180,6 +181,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="flex justify-end mt-4">
+            {{ $accounts->links() }}
         </div>
     </x-admin.layout>
 
