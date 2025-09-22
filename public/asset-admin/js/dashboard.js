@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const profileDetails = document.getElementById('profile-details');
+
+    profileDropdown.addEventListener('click', () => {
+        profileDetails.classList.toggle('scale-y-0');
+        profileDetails.classList.toggle('scale-y-100');
+    });
+
+    // Sidebar Toggle
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('main-content');
     const sidebarButtons = document.querySelectorAll('.sidebar-button');

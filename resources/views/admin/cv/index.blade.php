@@ -104,7 +104,12 @@
                             <div class="flex items-center gap-3">
                                 <h1 class="text-2xl text-heading font-semibold">{{ $cv->applicant_name }}</h1>
                                 @if ($cv->status === 'Diterima')
-                                    <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
+                                        <span class="bg-blue-200 px-2 py-1 rounded-full text-blue-700">
+                                            {{ $cv->note }}
+                                        </span>
+                                    </div>
                                 @elseif ($cv->status === 'Pending')
                                     <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
                                 @else
@@ -328,22 +333,37 @@
                 </div>
 
                 <div class="flex items-center justify-center space-x-3">
-                    <form action="{{ route('cv.updateStatus', $cv->id) }}" method="post">
+                    <form action="{{ route('cv.updateStatus', $cv->id) }}" method="post"
+                        class="form-terima w-1/2 flex flex-col">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="status" id="status" value="Diterima">
-                        <button type="submit"
-                            class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer">
+                        <input type="hidden" name="status" value="Diterima">
+
+                        <button type="button"
+                            class="btn-terima flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer w-full">
                             <i class="fas fa-circle-check mr-2"></i>
                             Terima
                         </button>
+
+                        <div class="note-field hidden mt-3">
+                            <input type="text" name="note" required
+                                class="w-full p-2 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Diterima sebagai...">
+                        </div>
+
+                        <button type="submit"
+                            class="btn-kirim hidden items-center justify-center mt-2 text-white bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer w-full">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Kirim
+                        </button>
                     </form>
-                    <form action="{{ route('cv.updateStatus', $cv->id) }}" method="post">
+
+                    <form action="{{ route('cv.updateStatus', $cv->id) }}" method="post" class="w-1/2">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="status" id="status" value="Ditolak">
+                        <input type="hidden" name="status" value="Ditolak">
                         <button type="submit"
-                            class="flex items-center justify-center text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer">
+                            class="flex items-center justify-center text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer w-full">
                             <i class="fas fa-circle-xmark mr-2"></i>
                             Tolak
                         </button>

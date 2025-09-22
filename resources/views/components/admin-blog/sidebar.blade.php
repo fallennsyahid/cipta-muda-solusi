@@ -37,7 +37,7 @@
         </nav>
 
         <div class="p-6">
-            <form action="" method="POST" id="logout-form">
+            <form action="{{ route('logout') }}" method="POST" id="logout-form">
                 @csrf
                 <a href="javascript:void(0)" id="logout-btn"
                     class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden bg-red-600 text-white hover:bg-red-600/80 shadow-lg hover:scale-105">

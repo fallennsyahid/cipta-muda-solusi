@@ -33,6 +33,25 @@ openUpdateStatus.forEach(btn => {
     });
 });
 
+const formsTerima = document.querySelectorAll('.form-terima');
+
+formsTerima.forEach(form => {
+    const btnTerima = form.querySelector('.btn-terima');
+    const noteField = form.querySelector('.note-field');
+    const btnKirim = form.querySelector('.btn-kirim');
+
+    btnTerima.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        noteField.classList.remove('hidden');
+        btnKirim.classList.remove('hidden');
+        btnKirim.classList.add('flex');
+        btnTerima.classList.add('hidden');
+        btnTerima.classList.remove('flex');
+    });
+
+});
+
 const openCallApplicant = document.querySelectorAll('.open-call-applicant');
 
 openCallApplicant.forEach(btn => {

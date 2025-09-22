@@ -21,7 +21,7 @@ class BlogsAdminController extends Controller
         $blogsTotal = Blog::count();
         $blogStatus = BlogStatus::cases();
         $blogsPublished = Blog::where('status', BlogStatus::Published->value)->count();
-        $blogsPending = Blog::where('status', BlogStatus::Pending->value)->count();
+        $blogsPending = Blog::where('status', BlogStatus::ReadyToPublish->value)->count();
         $blogsArchived = Blog::where('status', BlogStatus::Archived->value)->count();
         return view('admin.blogs.index', compact('blogs', 'blogsTotal', 'blogStatus', 'blogsPublished', 'blogsPending', 'blogsArchived'));
     }

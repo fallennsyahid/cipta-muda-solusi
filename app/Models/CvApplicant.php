@@ -15,5 +15,6 @@ class CvApplicant extends Model
         'applicant_experience',
         'applicant_link',
         'status',
+        'note',
     ];
 }

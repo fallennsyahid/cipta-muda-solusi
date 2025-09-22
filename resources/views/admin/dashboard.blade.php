@@ -894,26 +894,27 @@
 @endif
 
 <script>
-    const logoutForm = document.querySelector('#logout-form');
-    const logoutBtn = document.querySelector('#logout-btn');
+    const logoutForms = document.querySelectorAll('.logout-form');
 
-    logoutBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    logoutForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        Swal.fire({
-            title: 'Yakin ingin logout?',
-            text: 'Sesi Anda akan berakhir!',
-            icon: 'warning',
-            showCancelButton: true,
-            cancelButtonColor: '#d33',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, Logout',
-            cancelButtonText: 'Batal',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                logoutForm.submit();
-            }
-        })
+            Swal.fire({
+                title: 'Yakin ingin logout?',
+                text: 'Sesi Anda akan berakhir!',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
     });
 </script>
 

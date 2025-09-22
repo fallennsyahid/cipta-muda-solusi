@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeAdminController extends Controller
@@ -12,7 +13,9 @@ class EmployeeAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.employees.index');
+        $employees = Employee::latest()->paginate(9);
+        $totalEmployees = Employee::count();
+        return view('admin.employees.index', compact('employees', 'totalEmployees'));
     }
 
     /**

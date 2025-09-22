@@ -80,6 +80,7 @@ Route::put('/admin/{id}/status', [CvAdminController::class, 'updateStatus'])->na
 Route::get('/admin/cv-export', [CvAdminController::class, 'export'])->name('cv.export');
 
 Route::resource('/admin/account', AccountAdminController::class);
+Route::patch('/admin/{account}/toggle-status', [AccountAdminController::class, 'toggleStatus'])->name('account.toggleStatus');
 
 Route::resource('/admin/employee', EmployeeAdminController::class);
 
@@ -89,6 +90,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('adminBlog/dashboard', DashboardController::class);
+Route::middleware(['auth', 'role:admin_blog'])->group(function () {
+    Route::get('adminBlog/dashboard', [DashboardController::class, 'index'])->name('adminBlog.dashboard');
+});
 
 require __DIR__ . '/auth.php';

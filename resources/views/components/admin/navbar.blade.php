@@ -21,18 +21,45 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-3">
-                <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="{{ Auth::user()->name }}"
-                    class="rounded-full w-10 h-10">
-                <div class="flex flex-col">
-                    <span
-                        class="text-base font-bold text-darkChoco">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
-                    <span class="text-sm font-medium text-text">
-                        @if (Auth::check() && Auth::user()->last_login_at)
-                            <span id="last-login" class="text-text font-medium text-sm"
-                                data-timestamp="{{ Auth::user()->last_login_at->timestamp }}"></span>
-                        @endif
-                    </span>
+            <div class="relative" id="profile-dropdown">
+                <div class="p-2 rounded-lg hover:bg-text/25 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="{{ Auth::user()->name }}"
+                            class="rounded-full w-10 h-10">
+                        <div class="flex flex-col">
+                            <span
+                                class="text-base font-bold text-darkChoco">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
+                            <span class="text-sm font-medium text-text">
+                                @if (Auth::check() && Auth::user()->last_login_at)
+                                    <span id="last-login" class="text-text font-medium text-sm"
+                                        data-timestamp="{{ Auth::user()->last_login_at->timestamp }}"></span>
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="profile-details"
+                    class="absolute top-16 right-0 min-w-72 bg-white rounded-lg border border-text/35 shadow-lg scale-y-0 origin-top transition-all duration-300 ease-in-out overflow-hidden">
+                    <div class="flex items-center p-3 gap-4">
+                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt=""
+                            class="rounded-full w-10 h-10">
+                        <div class="flex flex-col">
+                            <h1 class="text-base text-darkChoco font-bold">{{ Auth::user()->name }}</h1>
+                            <h2 class="text-sm font-medium text-text">{{ Auth::user()->email }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-text/25">
+                        <form action="{{ route('logout') }}" method="post" class="logout-form">
+                            @csrf
+                            <button type="submit"
+                                class="w-full text-left px-4 py-3 hover:bg-text/25 rounded-b-lg flex items-center gap-3 text-red-600 font-medium cursor-pointer">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

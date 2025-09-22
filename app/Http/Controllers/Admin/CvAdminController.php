@@ -68,7 +68,22 @@ class CvAdminController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $cvApplicants = CvApplicant::findOrFail($id);
-        $cvApplicants->update(['status' => $request->status]);
+
+        if ($request->status === Status::Diterima->value) {
+            $request->validate([
+                'note' => 'required|string|max:255',
+            ]);
+        }
+
+        $cvApplicants->status = $request->status;
+
+        if ($request->has('note')) {
+            $cvApplicants->note = $request->note;
+        }
+
+        $cvApplicants->save();
+
+        // $cvApplicants->update(['status' => $request->status]);
 
         return back()->with('success', 'Status berhasil diupdate');
     }

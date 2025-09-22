@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="text-2xl text-primary mt-1 font-bold">
-                    23
+                    {{ $totalEmployees }}
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -93,94 +93,49 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div
-                class="bg-white border-0 rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 geometric-shape">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <img src="{{ asset('landing/tim_cook.jpeg') }}" alt=""
-                            class="w-16 h-16 rounded-full border border-text/25">
-                        <div class="flex flex-col">
-                            <h1 class="text-lg font-semibold text-text">Tim Cook</h1>
-                            <span class="bg-green-200 py-1 px-3 rounded-full text-green-700 text-center text-sm w-fit">
-                                Aktif
-                            </span>
+            @foreach ($employees as $employee)
+                <div
+                    class="bg-white border-0 rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 geometric-shape">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <img src="{{ Avatar::create($employee->name)->toBase64() }}" alt="{{ $employee->name }}"
+                                class="w-16 h-16 rounded-full border border-text/25">
+                            <div class="flex flex-col">
+                                <h1 class="text-lg font-semibold text-text">{{ $employee->name }}</h1>
+                                <span
+                                    class="{{ $employee->status === 'Active' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700' }} py-1 px-3 rounded-full text-center text-sm w-fit">
+                                    {{ $employee->status === 'Active' ? 'Aktif' : 'Non-Aktif' }}
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <button
+                                class="flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:bg-gray-200 relative z-10">
+                                <i class="fas fa-ellipsis-vertical text-darkChoco"></i>
+                            </button>
                         </div>
                     </div>
-                    <div>
-                        <button
-                            class="flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:bg-gray-200 relative z-10">
-                            <i class="fas fa-ellipsis-vertical text-darkChoco"></i>
-                        </button>
-                    </div>
-                </div>
 
-                <div class="flex flex-col mt-4 space-y-2">
-                    <span
-                        class="bg-blue-200 py-1 px-3 rounded-full text-blue-700 border-blue-300 text-center text-sm w-fit">
-                        CTO
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-envelope mr-2"></i>
-                        anjay@gmail.com
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-phone mr-2"></i>
-                        09234567
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-money-bill mr-2"></i>
-                        Rp. 12.000.000
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-calendar-days mr-2"></i>
-                        Bergabung pada: 01/02/2023
-                    </span>
-                </div>
-            </div>
-            <div
-                class="bg-white border-0 rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 geometric-shape">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <img src="{{ asset('landing/tim_cook.jpeg') }}" alt=""
-                            class="w-16 h-16 rounded-full border border-text/25">
-                        <div class="flex flex-col">
-                            <h1 class="text-lg font-semibold text-text">Tim Cook</h1>
-                            <span class="bg-red-200 py-1 px-3 rounded-full text-red-700 text-center text-sm w-fit">
-                                Non-Aktif
-                            </span>
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            class="flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:bg-gray-200 relative z-10">
-                            <i class="fas fa-ellipsis-vertical text-darkChoco"></i>
-                        </button>
+                    <div class="flex flex-col mt-4 space-y-2">
+                        <span
+                            class="bg-blue-200 py-1 px-3 rounded-full text-blue-700 border-blue-300 text-center text-sm w-fit">
+                            {{ $employee->position }}
+                        </span>
+                        <span class="flex items-center text-text text-sm">
+                            <i class="fas fa-envelope mr-2"></i>
+                            {{ $employee->email }}
+                        </span>
+                        <span class="flex items-center text-text text-sm">
+                            <i class="fas fa-phone mr-2"></i>
+                            {{ $employee->phone_number }}
+                        </span>
+                        <span class="flex items-center text-text text-sm">
+                            <i class="fas fa-calendar-days mr-2"></i>
+                            Bergabung pada: {{ $employee->created_at->format('d/m/Y') }}
+                        </span>
                     </div>
                 </div>
-
-                <div class="flex flex-col mt-4 space-y-2">
-                    <span
-                        class="bg-blue-200 py-1 px-3 rounded-full text-blue-700 border-blue-300 text-center text-sm w-fit">
-                        HR Management
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-envelope mr-2"></i>
-                        anjay@gmail.com
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-phone mr-2"></i>
-                        09234567
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-money-bill mr-2"></i>
-                        Rp. 12.000.000
-                    </span>
-                    <span class="flex items-center text-text text-sm">
-                        <i class="fas fa-calendar-days mr-2"></i>
-                        Bergabung pada: 01/02/2023
-                    </span>
-                </div>
-            </div>
+            @endforeach
         </div>
 
     </x-admin.layout>

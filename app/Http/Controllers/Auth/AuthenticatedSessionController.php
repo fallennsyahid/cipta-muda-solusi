@@ -35,8 +35,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->role === 'admin_blog') {
+            return redirect()->route('adminBlog.dashboard');
+        } elseif (Auth::user()->role === 'admin') {
+            return redirect()->route('dashboard.index');
+        } else {
+            Auth::logout();
+            return redirect()->route('login')
+                ->withErrors(['error' => 'You do not have access to the admin panel.']);
+        }
+
         // return redirect()->intended(route('dashboard', absolute: false));
-        return redirect('/dashboard');
+        // return redirect('/dashboard');
     }
 
     /**
