@@ -100,11 +100,12 @@
             </span>
         </a>
 
-        <a href="" title="Category"
-            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md">
-            <i class="fas fa-list text-text transition-all duration-300 group-hover:scale-110"></i>
+        <a href="{{ route('category-partner.index') }}" title="Category Partner"
+            class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden {{ request()->routeIs('category-partner.index') ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105' : 'text-text hover:bg-white/60 hover:shadow-md hover:scale-102 backdrop-blur-md' }}">
+            <i
+                class="fas fa-list {{ request()->routeIs('category-partner.index') ? 'text-white transition-all duration-300' : 'text-text transition-all duration-300 group-hover:scale-110' }}0"></i>
             <span class="font-medium pl-2">
-                Kategori
+                Category Partner
             </span>
         </a>
 

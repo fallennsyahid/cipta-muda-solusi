@@ -12,6 +12,7 @@ use App\Http\Controllers\PartnerRequestController;
 use App\Http\Controllers\Admin\FaqsAdminController;
 use App\Http\Controllers\Admin\BlogsAdminController;
 use App\Http\Controllers\Admin\AccountAdminController;
+use App\Http\Controllers\Admin\CategoryPartnerAdminController;
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\PartnerAdminController;
 use App\Http\Controllers\Admin\DashboardAdminController;
@@ -84,6 +85,9 @@ Route::patch('/admin/{account}/toggle-status', [AccountAdminController::class, '
 
 Route::resource('/admin/employee', EmployeeAdminController::class);
 Route::patch('/admin/employee/{employee}/toggle-status', [EmployeeAdminController::class, 'toggleStatus'])->name('employee.toggleStatus');
+
+Route::resource('/admin/category-partner', CategoryPartnerAdminController::class);
+Route::patch('/admin/category-partner/{category}/toggle-status', [CategoryPartnerAdminController::class, 'toggleStatus'])->name('category-partner.toggleStatus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -114,15 +114,9 @@
                                         <span class="bg-red-200 px-2 py-1 rounded-full text-red-700">Non-Active</span>
                                     @endif
                                 </div>
-                                @if ($partner->partner_type === 'Lainnya')
-                                    <span class="block mt-2 text-text font-medium">
-                                        {{ $partner->partner_other_type }}
-                                    </span>
-                                @else
-                                    <span class="block mt-2 text-text font-medium">
-                                        {{ $partner->partner_type }}
-                                    </span>
-                                @endif
+                                <span class="block mt-2 text-text font-medium">
+                                    {{ $partner->category->name ?? '-' }}
+                                </span>
                             </div>
                         </div>
                         <div class="relative z-50 flex items-center gap-2">
@@ -255,16 +249,16 @@
                     </div>
 
                     <div class="group">
-                        <label for="partner_type"
+                        <label for="category_id"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-industry"></i>
                             Jenis Perusahaan <span class="text-red-400">*</span>
                         </label>
-                        <select name="partner_type" id="partner_type"
+                        <select name="category_id" id="category_id"
                             class="partner_type w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
                             <option value="-" disabled selected>Pilih Jenis Perusahaan</option>
                             @foreach ($partnerTypes as $partnerType)
-                                <option value="{{ $partnerType->value }}">{{ $partnerType->value }}</option>
+                                <option value="{{ $partnerType->id }}">{{ $partnerType->name }}</option>
                             @endforeach
                         </select>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\PartnerTypes;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\CategoryPartner;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +19,12 @@ class PartnerAdminController extends Controller
     public function index()
     {
         $partners = Partner::paginate(5);
-        $partnerTypes = PartnerTypes::cases();
+        $partnerTypes = CategoryPartner::active()->get();
         $totalPartners = Partner::count();
         $partnerStatus = Status::onlyActiveNonActive();
         $totalPartnersActive = Partner::where('status', Status::Active->value)->count();
         $totalPartnersNonActive = Partner::where('status', Status::NonActive->value)->count();
-        $totalPartnersType = Partner::distinct('partner_type')->count('partner_type');
+        $totalPartnersType = Partner::distinct('category_id')->count('category_id');
         return view('admin.partner.index', compact('partners', 'partnerTypes', 'totalPartners', 'partnerStatus', 'totalPartnersActive', 'totalPartnersNonActive', 'totalPartnersType'));
     }
 
@@ -43,8 +44,6 @@ class PartnerAdminController extends Controller
         $request->validate([
             'name' => 'required',
             'image' => 'nullable',
-            'partner_type' => 'required',
-            'partner_other_type' => 'nullable',
             'partner_email' => 'required',
             'partner_phone_number' => 'required',
             'partner_links' => 'nullable',
@@ -53,10 +52,6 @@ class PartnerAdminController extends Controller
         ]);
 
         $data = $request->all();
-
-        $data['partner_type'] = $request->partner_type;
-        $data['partner_other_type'] = $request->partner_type === PartnerTypes::Lainnya->value ? $request->partner_other_type : null;
-
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('partners', 'public');

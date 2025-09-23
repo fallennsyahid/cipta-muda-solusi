@@ -335,8 +335,7 @@
                             <select name="status" id="status"
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
                                 @foreach ($blogStatus as $status)
-                                    <option value="{{ $status->value }}"
-                                        {{ $status->value === $blog->status ? 'selected' : '' }}>
+                                    <option value="{{ $status->value }}">
                                         {{ $status->value }}
                                     </option>
                                 @endforeach
