@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\EmployeeAdminController;
 use App\Http\Controllers\Admin\JobVacancyAdminController;
 use App\Http\Controllers\Admin\PartnerReqAdminController;
 use App\Http\Controllers\Admin\PortfoliosAdminController;
+use App\Http\Controllers\AdminBlog\BlogPostController;
 use App\Http\Controllers\AdminBlog\DashboardController;
 
 // Route::get('/welcome', function () {
@@ -67,7 +68,8 @@ Route::patch('/faqs/{faq}/status', [FaqsAdminController::class, 'updateStatus'])
 Route::patch('/faqs/{faq}/answer', [FaqsAdminController::class, 'answerQuestion'])->name('faq.answer');
 
 Route::resource('admin/blogs', BlogsAdminController::class);
-Route::patch('blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');
+Route::patch('/blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');
+Route::patch('/blogs/{id}/approve', [BlogsAdminController::class, 'approve'])->name('blogs.approve');
 
 Route::resource('admin/contact', ContactAdminController::class);
 
@@ -97,6 +99,15 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin_blog'])->group(function () {
     Route::get('adminBlog/dashboard', [DashboardController::class, 'index'])->name('adminBlog.dashboard');
+
+    // Route::resource('adminBlog/blog', BlogPostController::class);
+
+    Route::get('/adminBlog/blog', [BlogPostController::class, 'index'])->name('adminBlog.index');
+    Route::post('/adminBlog/blog/store', [BlogPostController::class, 'store'])->name('adminBlog.store');
+    Route::delete('/adminBlog/blog/{id}/delete', [BlogPostController::class, 'destroy'])->name('adminBlog.delete');
+    Route::put('/adminBlog/blog/{id}/update', [BlogPostController::class, 'update'])->name('adminBlog.update');
+    Route::patch('/adminBlog/blog/{id}/toggle-featured', [BlogPostController::class, 'toggleFeatured'])->name('adminBlog.toggleFeatured');
+    Route::patch('/adminBlog/blog/{id}/request-publish', [BlogPostController::class, 'requestPublish'])->name('adminBlog.requestPublish');
 });
 
 require __DIR__ . '/auth.php';

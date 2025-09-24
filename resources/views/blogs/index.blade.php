@@ -170,7 +170,7 @@
                                         class="w-6 h-6 bg-text/25 flex items-center justify-center rounded-full overflow-hidden">
                                         <i class="fas fa-user"></i>
                                     </span>
-                                    {{ $blog->author }}
+                                    {{ $blog->user->name }}
                                 </div>
                                 <a href="{{ route('user-blog-show', $blog->slug) }}"
                                     class="text-primary

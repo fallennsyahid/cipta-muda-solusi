@@ -29,7 +29,7 @@
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
-    <x-admin.layout>
+    <x-admin-blog.layout>
         <div class="flex flex-wrap items-center justify-between">
             <div class="space-y-2">
                 <h1 class="text-2xl text-heading font-bold">Blogs Management</h1>
@@ -74,7 +74,7 @@
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
                 <div class="flex flex-row justify-between items-center space-y-0 pb-2">
                     <h1 class="text-sm font-medium text-text">
-                        Pending
+                        Ready to Publish
                     </h1>
                     <div class="w-8 h-8 rounded-lg bg-amber-600 flex justify-center items-center">
                         <i class="fas fa-clock text-white text-base"></i>
@@ -117,7 +117,8 @@
                                         <span
                                             class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
                                     @elseif ($blog->status === 'Pending')
-                                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Pending</span>
+                                        <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Ready to
+                                            Publish</span>
                                     @else
                                         <span class="bg-gray-200 px-2 py-1 rounded-full text-gray-700">Archived</span>
                                     @endif
@@ -135,7 +136,7 @@
                         </div>
                         <div class="relative z-50 flex items-center gap-2">
                             @if ($blog->is_featured === 0)
-                                <form action="{{ route('blogs.toggleFeatured', $blog->id) }}" method="POST">
+                                <form action="{{ route('adminBlog.toggleFeatured', $blog->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="px-3 py-1 text-lg text-yellow-400 cursor-pointer">
@@ -143,7 +144,7 @@
                                     </button>
                                 </form>
                             @else
-                                <form action="{{ route('blogs.toggleFeatured', $blog->id) }}" method="POST">
+                                <form action="{{ route('adminBlog.toggleFeatured', $blog->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="px-3 py-1 text-lg text-yellow-400 cursor-pointer">
@@ -151,7 +152,8 @@
                                     </button>
                                 </form>
                             @endif
-                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="delete-form">
+                            <form action="{{ route('adminBlog.delete', $blog->id) }}" method="POST"
+                                class="delete-form">
                                 @csrf
                                 @method('DELETE')
                                 <button class="cursor-pointer">
@@ -165,7 +167,7 @@
                         <div class="flex items-center gap-3">
                             <span class="flex items-center text-sm text-text">
                                 <i class="fas fa-user mr-2"></i>
-                                {{ $blog->author }}
+                                {{ $blog->user->name }}
                             </span>
                             <span class="flex items-center text-sm text-text">
                                 <i class="fas fa-calendar mr-2"></i>
@@ -177,6 +179,15 @@
                             </span>
                         </div>
                         <div class="flex items-center gap-2">
+                            <form action="{{ route('adminBlog.requestPublish', $blog->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" {{ $blog->status === 'Pending' ? '' : 'disabled' }}
+                                    class="flex items-center text-white  px-4 py-2 rounded-lg {{ $blog->status === 'Pending' ? 'cursor-pointer bg-teal-400 hover:bg-teal-500' : 'cursor-not-allowed bg-teal-400/50' }}">
+                                    <i class="fas fa-upload mr-2"></i>
+                                    Request Publish
+                                </button>
+                            </form>
                             <button type="button" data-id="{{ $blog->slug }}"
                                 class="open-modal-detail flex items-center text-white bg-gray-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-500">
                                 <i class="fas fa-eye mr-2"></i>
@@ -192,31 +203,7 @@
                 </div>
             @endforeach
         </div>
-
-        <div class="flex justify-end mt-4">
-            {{ $blogs->links() }}
-        </div>
-
-        <ul>
-            @foreach ($notifications as $notif)
-                <li class="p-3 border-b">
-                    <strong>{{ $notif->data['author'] }}</strong>
-                    minta publish artikel:
-                    <em>{{ $notif->data['title'] }}</em>
-
-                    <form action="{{ route('blogs.approve', $notif->data['blog_id']) }}" method="POST"
-                        class="inline">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="px-2 py-1 bg-green-500 text-white rounded">Approve</button>
-                    </form>
-
-                    <small class="text-gray-500">{{ $notif->created_at->diffForHumans() }}</small>
-                </li>
-            @endforeach
-        </ul>
-
-    </x-admin.layout>
+    </x-admin-blog.layout>
 
     {{-- Modal Create Start --}}
     <div id="create-new-blog" class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
@@ -242,7 +229,7 @@
             </div>
 
             <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
-                <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('adminBlog.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="space-y-6">
                         <div class="group">
@@ -267,7 +254,7 @@
                                 placeholder="Teknologi">
                         </div>
 
-                        <div class="group">
+                        {{-- <div class="group">
                             <label for="author"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-user"></i>
@@ -276,7 +263,7 @@
                             <input type="text" id="author" name="author" required
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                 placeholder="Jakarta">
-                        </div>
+                        </div> --}}
 
                         <div class="group">
                             <label for="description"
@@ -350,22 +337,6 @@
                             </div>
                         </div>
 
-                        <div class="group">
-                            <label for="status"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-toggle-on"></i>
-                                Status <span class="text-red-400">*</span>
-                            </label>
-                            <select name="status" id="status"
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
-                                @foreach ($blogStatus as $status)
-                                    <option value="{{ $status->value }}">
-                                        {{ $status->value }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
                         <div class="flex items-center gap-3">
                             <button type="button"
                                 class="close-modal flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer">
@@ -416,7 +387,7 @@
                             <label for="title"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-heading"></i>
-                                Judul Blog <span class="text-red-400">*</span>
+                                Judul Blog
                             </label>
                             <input type="text" id="title" name="title" readonly
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
@@ -427,7 +398,7 @@
                             <label for="category"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-list"></i>
-                                Kategori <span class="text-red-400">*</span>
+                                Kategori
                             </label>
                             <input type="text" id="category" name="category" readonly
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
@@ -435,21 +406,10 @@
                         </div>
 
                         <div class="group">
-                            <label for="author"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-user"></i>
-                                Penulis/Pencipta <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="author" name="author" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $blog->author }}" placeholder="Jakarta">
-                        </div>
-
-                        <div class="group">
                             <label for="description"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-align-left"></i>
-                                Deksripsi<span class="text-red-400">*</span>
+                                Deksripsi
                             </label>
                             <div class="char-counter">
                                 <textarea id="description" name="description" rows="4" maxlength="250" readonly
@@ -465,7 +425,7 @@
                             <label for="content"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-table"></i>
-                                Content<span class="text-red-400">*</span>
+                                Content
                             </label>
                             <div
                                 class="prose w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
@@ -478,7 +438,7 @@
                             <label for="image"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-image"></i>
-                                Gambar Blog <span class="text-red-400">*</span>
+                                Gambar Blog
                             </label>
                             <div
                                 class="px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
@@ -490,11 +450,16 @@
                             <label for="status"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-toggle-on"></i>
-                                Status <span class="text-red-400">*</span>
+                                Status
                             </label>
-                            <input type="text" id="status" name="status" readonly
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $blog->status }}" placeholder="Jakarta">
+                            @if ($blog->status === 'Published')
+                                <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Published</span>
+                            @elseif ($blog->status === 'Pending')
+                                <span class="bg-amber-200 px-2 py-1 rounded-full text-amber-700">Ready to
+                                    Publish</span>
+                            @else
+                                <span class="bg-gray-200 px-2 py-1 rounded-full text-gray-700">Archived</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -530,7 +495,7 @@
                 </div>
 
                 <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
-                    <form action="{{ route('blogs.update', $blog->id) }}" method="POST"
+                    <form action="{{ route('adminBlog.update', $blog->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -556,17 +521,6 @@
                                 <input type="text" id="category" name="category"
                                     class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                     value="{{ $blog->category }}" placeholder="Teknologi">
-                            </div>
-
-                            <div class="group">
-                                <label for="author"
-                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                    <i class="fas fa-user"></i>
-                                    Penulis/Pencipta <span class="text-red-400">*</span>
-                                </label>
-                                <input type="text" id="author" name="author"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                    value="{{ $blog->author }}" placeholder="Abraham">
                             </div>
 
                             <div class="group">
@@ -603,7 +557,7 @@
                                     Upload Gambar<span class="text-red-400">*</span>
                                 </label>
 
-                                <input type="file" name="edit_image" class="file-input hidden"
+                                <input type="file" name="edit_image" id="edit_image" class="file-input hidden"
                                     accept="image/png,image/jpeg,image/jpg">
 
                                 <label
@@ -658,23 +612,6 @@
                                         <i class="fa-solid fa-circle-xmark text-lg text-darkChoco"></i>
                                     </button>
                                 </div>
-                            </div>
-
-                            <div class="group">
-                                <label for="status"
-                                    class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                    <i class="fas fa-toggle-on"></i>
-                                    Status <span class="text-red-400">*</span>
-                                </label>
-                                <select name="status" id="status"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
-                                    @foreach ($blogStatus as $status)
-                                        <option value="{{ $status->value }}"
-                                            {{ $status->value === $blog->status ? 'selected' : '' }}>
-                                            {{ $status->value }}
-                                        </option>
-                                    @endforeach
-                                </select>
                             </div>
 
                             <div class="flex items-center gap-3">

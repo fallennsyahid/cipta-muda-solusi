@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use COM;
 use Mews\Purifier\Facades\Purifier;
 use App\Enums\BlogStatus;
+use App\Enums\Status;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 
 class BlogsAdminController extends Controller
 {
@@ -17,13 +19,16 @@ class BlogsAdminController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+
         $blogs = Blog::orderByDesc('is_featured')->latest()->paginate(5);
         $blogsTotal = Blog::count();
         $blogStatus = BlogStatus::cases();
         $blogsPublished = Blog::where('status', BlogStatus::Published->value)->count();
         $blogsPending = Blog::where('status', BlogStatus::ReadyToPublish->value)->count();
         $blogsArchived = Blog::where('status', BlogStatus::Archived->value)->count();
-        return view('admin.blogs.index', compact('blogs', 'blogsTotal', 'blogStatus', 'blogsPublished', 'blogsPending', 'blogsArchived'));
+        $notifications = $user->unreadNotifications;
+        return view('admin.blogs.index', compact('blogs', 'blogsTotal', 'blogStatus', 'blogsPublished', 'blogsPending', 'blogsArchived', 'notifications'));
     }
 
     /**
@@ -137,5 +142,21 @@ class BlogsAdminController extends Controller
         $blog->save();
 
         return back()->with('success', 'Featured status diupdate!');
+    }
+
+    public function approve($id)
+    {
+        $auth = Auth::user();
+
+        $blog = Blog::where('id', $id)->where('status', Status::Pending->value)->firstOrFail();
+
+        $blog->update([
+            'status' => Status::Published->value,
+        ]);
+
+        $auth->unreadNotifications()->where('data->blog_id', $id)->update(['read_at' => now()]);
+
+
+        return back()->with('success', 'Blog berhasil dipublish');
     }
 }

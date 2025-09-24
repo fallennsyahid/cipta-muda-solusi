@@ -17,6 +17,7 @@ class Blog extends Model
         'content',
         'is_featured',
         'status',
+        'user_id',
     ];
 
     public function user()
