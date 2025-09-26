@@ -9,6 +9,8 @@
 
     <title>Cipta Muda Solusi - Blogs</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -90,6 +92,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="flex justify-end mt-4">
+            {{ $categories->links() }}
         </div>
     </x-admin.layout>
 

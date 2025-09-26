@@ -80,13 +80,22 @@ class JobVacancyAdminController extends Controller
         return view('admin.jobs.show', compact('job', 'applicants', 'totalApplicants', 'pendingApplicants', 'acceptApplicants', 'deniedApplicants'));
     }
 
-    public function updateStatusApp(Request $request, Applicant $applicant)
+    public function updateStatusApp(Request $request, $id)
     {
-        $request->validate([
-            'status' => ['required', Rule::in(Status::request())],
-        ]);
+        $applicant = Applicant::findOrFail($id);
+
+        if ($request->status === Status::Diterima->value) {
+            $request->validate([
+                'position' => 'required|string|max:255',
+            ]);
+        }
 
         $applicant->status = $request->status;
+
+        if ($request->has('position')) {
+            $applicant->position = $request->position;
+        }
+
         $applicant->save();
 
         return redirect()->back()->with('success', 'Status Pelamar berhasil diperbarui.');

@@ -27,7 +27,7 @@ window.addEventListener('scroll', function () {
         isVisible = true;
         header.classList.add('navbar-fixed');
         // header.classList.remove('z-10');
-        // navbar.classList.add('navbar-effect');
+        // navbar.classList.add('navbar-fixed');
         toTop.classList.remove('hidden', 'toTop-2');
         toTop.classList.add('flex', 'toTop-1');
     }
@@ -35,7 +35,7 @@ window.addEventListener('scroll', function () {
         isVisible = false;
         header.classList.remove('navbar-fixed');
         // header.classList.remove('z-10');
-        // navbar.classList.remove('navbar-effect');
+        // navbar.classList.remove('navbar-fixed');
         toTop.classList.remove('flex', 'toTop-1');
         toTop.classList.add('toTop-2');
     }

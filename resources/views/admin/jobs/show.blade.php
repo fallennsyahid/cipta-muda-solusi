@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Pelamar - {{ $job->position }}</title>
+
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -215,43 +220,11 @@
             </div>
         @endif
 
-    </x-admin.layout>
-
-    {{-- Modal Cover Letter Start --}}
-    @foreach ($applicants as $applicant)
-        <div id="cover-letter-{{ $applicant->id }}"
-            class="fixed z-[99999] inset-0 hidden justify-center items-center">
-            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-
-            <div
-                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
-                <div
-                    class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
-                    <div class="absolute inset-0 bg-black/10"></div>
-                    <div class="relative z-10">
-                        <div
-                            class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
-                            <i class="fas fa-envelope-open text-3xl"></i>
-                        </div>
-                        <h1 class="text-2xl font-bold text-white mb-2">Cover Letter</h1>
-                        <p class="text-white/90 text-base font-lato">Lihat cover letter pelamar</p>
-                    </div>
-
-                    <button
-                        class="close-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
-                        <i class="fas fa-times text-lg"></i>
-                    </button>
-                </div>
-
-                <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
-                    <div class="flex items-center justify-center text-justify text-lg">
-                        {{ $applicant->cover_letter }}
-                    </div>
-                </div>
-            </div>
+        <div class="flex justify-end mt-4">
+            {{ $applicants->links() }}
         </div>
-    @endforeach
-    {{-- Modal Cover Letter Start --}}
+
+    </x-admin.layout>
 
     {{-- Modal Update Status Start --}}
     @foreach ($applicants as $applicant)
@@ -274,18 +247,33 @@
                 </div>
 
                 <div class="flex items-center justify-center space-x-3">
-                    <form action="{{ route('applicant.updateStatus', $applicant->id) }}" method="post">
+                    <form action="{{ route('applicant.updateStatus', $applicant->id) }}" method="post"
+                        class="form-terima w-1/2 flex flex-col">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="status" id="status" value="Diterima">
-                        <input type="hidden" name="company_status" id="company_status" value="Diterima">
-                        <button type="submit"
-                            class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer">
+                        <input type="hidden" name="status" value="Diterima">
+
+                        <button type="button"
+                            class="btn-terima flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer w-full">
                             <i class="fas fa-circle-check mr-2"></i>
                             Terima
                         </button>
+
+                        <div class="position-field hidden mt-3">
+                            <input type="text" name="position" required
+                                class="w-full p-2 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                placeholder="Diterima sebagai...">
+                        </div>
+
+                        <button type="submit"
+                            class="btn-kirim hidden items-center justify-center mt-2 text-white bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer w-full">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Kirim
+                        </button>
                     </form>
-                    <form action="{{ route('applicant.updateStatus', $applicant->id) }}" method="post">
+
+                    <form action="{{ route('applicant.updateStatus', $applicant->id) }}" method="post"
+                        class="w-1/2">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="status" id="status" value="Ditolak">

@@ -56,3 +56,17 @@ charCounterGroup.forEach(group => {
         counter.textContent = textarea.value.length;
     });
 });
+
+const btnNotif = document.querySelector('#open-notif');
+const notifDropdown = document.getElementById("notifDropdown");
+
+btnNotif.addEventListener("click", () => {
+    notifDropdown.classList.toggle("hidden");
+});
+
+// Optional: klik di luar, dropdown ketutup
+document.addEventListener("click", (e) => {
+    if (!btnNotif.contains(e.target) && !notifDropdown.contains(e.target)) {
+        notifDropdown.classList.add("hidden");
+    }
+});

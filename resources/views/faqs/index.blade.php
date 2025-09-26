@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cipta Muda Solusi - Faq</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -137,6 +139,10 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="flex justify-end mt-4">
+                {{ $faqs->links() }}
             </div>
         </div>
     </section>

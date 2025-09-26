@@ -9,6 +9,8 @@
 
     <title>Cipta Muda Solusi - Login</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- Scripts --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

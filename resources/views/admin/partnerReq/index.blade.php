@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     <title>Cipta Muda Solusi - Partner Request</title>
 
     {{-- CSS --}}
@@ -180,6 +182,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="flex justify-end mt-4">
+            {{ $partnerReq->links() }}
         </div>
     </x-admin.layout>
 

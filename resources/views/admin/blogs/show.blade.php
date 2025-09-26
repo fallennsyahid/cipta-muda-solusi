@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cipta Muda Solusi - Blog</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

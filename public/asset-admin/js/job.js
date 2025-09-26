@@ -30,7 +30,6 @@ document.querySelectorAll('.char-counter').forEach(group => {
     });
 });
 
-
 // Modal Detail
 const openEdit = document.querySelectorAll('.open-edit-modal');
 const closeEditModal = document.querySelectorAll('.close-modal-2');

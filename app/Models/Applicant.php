@@ -19,6 +19,7 @@ class Applicant extends Model
         'cv',
         'cover_letter',
         'link',
+        'position'
     ];
 
     public function jobVacancy()

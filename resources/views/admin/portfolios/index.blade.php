@@ -198,6 +198,10 @@
             @endforeach
         </div>
 
+        <div class="flex justify-end mt-4">
+            {{ $portfolios->links() }}
+        </div>
+
     </x-admin.layout>
 
     {{-- Create Modal Start --}}

@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     <title>Cipta Muda Solusi - Dashboard</title>
 
     {{-- CSS --}}
@@ -107,11 +109,6 @@
                             {{ $blogsArchived }}
                         </div>
                     </div>
-                </div>
-
-                <div class="mx-auto p-4 border border-text/25 rounded-xl">
-                    <h1 class="text-center mb-2 font-black text-primary text-3xl">Blog Statistics</h1>
-                    <canvas id="myChart" class="block w-full h-full"></canvas>
                 </div>
             </div>
         </main>

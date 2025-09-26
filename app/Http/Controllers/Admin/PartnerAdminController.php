@@ -89,8 +89,6 @@ class PartnerAdminController extends Controller
         $data = $request->validate([
             'name' => 'nullable',
             'edit_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'partner_type' => 'nullable',
-            'partner_other_type' => 'nullable',
             'partner_email' => 'nullable',
             'partner_phone_number' => 'nullable',
             'partner_links' => 'nullable',

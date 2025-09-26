@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Applicant;
 use App\Models\Blog;
 use App\Models\CvApplicant;
 use App\Models\JobVacancy;
 use App\Models\Partner;
 use App\Models\PartnerRequest;
+use App\Observers\ApplicantObserver;
 use App\Observers\BlogObserver;
 use App\Observers\CvObserver;
 use App\Observers\JobsObserver;
@@ -34,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         JobVacancy::observe(JobsObserver::class);
         Partner::observe(PartnerObserver::class);
         CvApplicant::observe(CvObserver::class);
+        Applicant::observe(ApplicantObserver::class);
     }
 }

@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cipta Muda Solusi</title>
 
+
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -26,7 +29,7 @@
 
 </head>
 
-<body class="overflow-x-hidden">
+<body>
     {{-- Header Start --}}
     <x-header>
         <div class="flex items-center justify-center px-4 py-6">
@@ -1332,6 +1335,14 @@
         </div>
     </section>
     {{-- Contact & Maps Section End --}}
+
+    {{-- To Top Start --}}
+    <div>
+        <a href="">
+            <i class="fas fa-arrow-top"></i>
+        </a>
+    </div>
+    {{-- To Top End --}}
 
     {{-- Footer Section Start --}}
     <footer class="bg-accent pt-10">

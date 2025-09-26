@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     <title>Cipta Muda Solusi - Faqs</title>
 
     {{-- CSS --}}
@@ -222,18 +224,105 @@
             @endforeach
         </div>
 
-        {{-- Create FAQ Start --}}
-        <div id="create-faq-modal"
-            class="fixed inset-0 z-[99999] hidden items-center justify-center min-h-screen animate-fade-in">
+        <div class="flex justify-end mt-4">
+            {{ $faqs->links() }}
+        </div>
+
+    </x-admin.layout>
+
+    {{-- Create FAQ Start --}}
+    <div id="create-faq-modal"
+        class="fixed inset-0 z-[99999] hidden items-center justify-center min-h-screen animate-fade-in">
+        <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+        <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full">
+            <div class="flex items-center justify-between p-6 border-b border-text/25">
+                <div>
+                    <h1 class="text-heading text-2xl font-bold">Buat FAQ Baru</h1>
+                    <h2 class="text-text font-lato text-base">
+                        Tambahkan pertanyaan dan jawaban yang akan tampil di halaman FAQ
+                    </h2>
+                </div>
+                <div>
+                    <a href="#"
+                        class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
+                        <i class="fas fa-times text-primary"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-6 max-h-96 overflow-y-auto custom-scrollbar">
+                <form action="{{ route('faqs.store') }}" method="POST" class="space-y-6">
+                    @csrf
+                    <div class="space-y-3">
+                        <div class="mb-2">
+                            <label for="question_input" class="text-base text-heading font-medium">
+                                Masukkan Pertanyaan
+                            </label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                <i class="fas fa-question text-text"></i>
+                            </div>
+                            <div class="char-counter">
+                                <textarea name="question_input" id="question_input" rows="5" maxlength="150"
+                                    placeholder="Masukkan pertanyaan" required
+                                    class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                                <p class="text-sm text-text">
+                                    <span class="char-count">0</span>/150 Karakter
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label for="answer_input" class="text-base text-heading font-medium">Masukkan
+                                Jawaban</label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                <i class="fas fa-message text-text"></i>
+                            </div>
+                            <textarea name="answer_input" id="answer_input" rows="5" maxlength="300"
+                                placeholder="Masukkan jawaban dari pertanyaan" required
+                                class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            <p class="text-sm text-text">
+                        </div>
+                        <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
+                        </p>
+                    </div>
+
+                    <div class="flex gap-3 pt-2">
+                        <button type="button"
+                            class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
+                            <i class="fas fa-times"></i>
+                            Batal
+                        </button>
+                        <button type="submit" id="submit-button"
+                            class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-paper-plane"></i>
+                            Kirim
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Create FAQ End --}}
+
+    {{-- Modal Jawab Pertanyaan Start --}}
+    @foreach ($faqs as $faq)
+        <div id="answer-question-modal-{{ $faq->id }}"
+            class="fixed inset-0 z-[99999] min-h-screen hidden items-center justify-center animate-fade-in">
             <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-            <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full">
+            <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full my-4">
                 <div class="flex items-center justify-between p-6 border-b border-text/25">
                     <div>
-                        <h1 class="text-heading text-2xl font-bold">Buat FAQ Baru</h1>
-                        <h2 class="text-text font-lato text-base">
-                            Tambahkan pertanyaan dan jawaban yang akan tampil di halaman FAQ
-                        </h2>
+                        <h1 class="text-heading text-2xl font-bold">Jawab Pertanyaan</h1>
+                        @if ($faq->email)
+                            <h2 class="text-text font-lato text-base">Pengirim: {{ $faq->email }}</h2>
+                        @else
+                            <h2 class="text-text font-lato text-base">Pengirim: -</h2>
+                        @endif
                     </div>
                     <div>
                         <a href="#"
@@ -243,28 +332,22 @@
                     </div>
                 </div>
 
-                <div class="p-6 max-h-96 overflow-y-auto custom-scrollbar">
-                    <form action="{{ route('faqs.store') }}" method="POST" class="space-y-6">
+                <div class="p-6 space-y-6">
+                    <div class="mb-2">
+                        <label for="question" class="text-base text-heading font-medium">Pertanyaan
+                        </label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                            <i class="fas fa-question text-text"></i>
+                        </div>
+                        <textarea name="question" id="question" rows="5" readonly
+                            class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
+                    </div>
+                    <form action="{{ route('faq.answer', $faq->id) }}" id="question-form" method="POST">
                         @csrf
+                        @method('PATCH')
                         <div class="space-y-3">
-                            <div class="mb-2">
-                                <label for="question_input" class="text-base text-heading font-medium">
-                                    Masukkan Pertanyaan
-                                </label>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
-                                    <i class="fas fa-question text-text"></i>
-                                </div>
-                                <div class="char-counter">
-                                    <textarea name="question_input" id="question_input" rows="5" maxlength="150"
-                                        placeholder="Masukkan pertanyaan" required
-                                        class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                                    <p class="text-sm text-text">
-                                        <span class="char-count">0</span>/150 Karakter
-                                    </p>
-                                </div>
-                            </div>
                             <div class="mb-2">
                                 <label for="answer_input" class="text-base text-heading font-medium">Masukkan
                                     Jawaban</label>
@@ -273,10 +356,9 @@
                                 <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
                                     <i class="fas fa-message text-text"></i>
                                 </div>
-                                <textarea name="answer_input" id="answer_input" rows="5" maxlength="300"
-                                    placeholder="Masukkan jawaban dari pertanyaan" required
+                                <textarea name="answer_input" id="answer_input" rows="5" placeholder="Masukkan pertanyaan (Max. 300 karakter)"
+                                    required
                                     class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                                <p class="text-sm text-text">
                             </div>
                             <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
                             </p>
@@ -298,159 +380,83 @@
                 </div>
             </div>
         </div>
-        {{-- Create FAQ End --}}
+    @endforeach
+    {{-- Modal Jawab Pertanyaan End --}}
 
-        {{-- Modal Jawab Pertanyaan Start --}}
-        @foreach ($faqs as $faq)
-            <div id="answer-question-modal-{{ $faq->id }}"
-                class="fixed inset-0 z-[99999] min-h-screen hidden items-center justify-center animate-fade-in">
-                <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    {{-- Edit Jawaban FAQ Start --}}
+    @foreach ($faqs as $faq)
+        <div id="edit-answer-modal-{{ $faq->id }}"
+            class="fixed inset-0 z-[99999] min-h-screen hidden items-center justify-center animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-                <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full my-4">
-                    <div class="flex items-center justify-between p-6 border-b border-text/25">
-                        <div>
-                            <h1 class="text-heading text-2xl font-bold">Jawab Pertanyaan</h1>
-                            @if ($faq->email)
-                                <h2 class="text-text font-lato text-base">Pengirim: {{ $faq->email }}</h2>
-                            @else
-                                <h2 class="text-text font-lato text-base">Pengirim: -</h2>
-                            @endif
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
-                                <i class="fas fa-times text-primary"></i>
-                            </a>
-                        </div>
+            <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full my-4">
+                <div class="flex items-center justify-between p-6 border-b border-text/25">
+                    <div>
+                        <h1 class="text-heading text-2xl font-bold">Edit Jawaban</h1>
+                        <h2 class="text-text font-lato text-base">Koreksi jawaban jika ada kesalahan</h2>
+
                     </div>
-
-                    <div class="p-6 space-y-6">
-                        <div class="mb-2">
-                            <label for="question" class="text-base text-heading font-medium">Pertanyaan
-                            </label>
-                        </div>
-                        <div class="relative">
-                            <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
-                                <i class="fas fa-question text-text"></i>
-                            </div>
-                            <textarea name="question" id="question" rows="5" readonly
-                                class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
-                        </div>
-                        <form action="{{ route('faq.answer', $faq->id) }}" id="question-form" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <div class="space-y-3">
-                                <div class="mb-2">
-                                    <label for="answer_input" class="text-base text-heading font-medium">Masukkan
-                                        Jawaban</label>
-                                </div>
-                                <div class="relative">
-                                    <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
-                                        <i class="fas fa-message text-text"></i>
-                                    </div>
-                                    <textarea name="answer_input" id="answer_input" rows="5" placeholder="Masukkan pertanyaan (Max. 300 karakter)"
-                                        required
-                                        class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                                </div>
-                                <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
-                                </p>
-                            </div>
-
-                            <div class="flex gap-3 pt-2">
-                                <button type="button"
-                                    class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
-                                    <i class="fas fa-times"></i>
-                                    Batal
-                                </button>
-                                <button type="submit" id="submit-button"
-                                    class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
-                                    <i class="fas fa-paper-plane"></i>
-                                    Kirim
-                                </button>
-                            </div>
-                        </form>
+                    <div>
+                        <a href="#"
+                            class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
+                            <i class="fas fa-times text-primary"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        @endforeach
-        {{-- Modal Jawab Pertanyaan End --}}
 
-        {{-- Edit Jawaban FAQ Start --}}
-        @foreach ($faqs as $faq)
-            <div id="edit-answer-modal-{{ $faq->id }}"
-                class="fixed inset-0 z-[99999] min-h-screen hidden items-center justify-center animate-fade-in">
-                <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-
-                <div class="relative bg-white rounded-xl shadow-xl max-w-md w-full my-4">
-                    <div class="flex items-center justify-between p-6 border-b border-text/25">
-                        <div>
-                            <h1 class="text-heading text-2xl font-bold">Edit Jawaban</h1>
-                            <h2 class="text-text font-lato text-base">Koreksi jawaban jika ada kesalahan</h2>
-
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="close-modal flex items-center justify-center w-10 h-10 p-0 rounded-full hover:bg-secondary/25 transition-colors duration-200 ease-in-out">
-                                <i class="fas fa-times text-primary"></i>
-                            </a>
-                        </div>
+                <div class="p-6 space-y-6">
+                    <div class="mb-2">
+                        <label for="question" class="text-base text-heading font-medium">Pertanyaan
+                        </label>
                     </div>
-
-                    <div class="p-6 space-y-6">
-                        <div class="mb-2">
-                            <label for="question" class="text-base text-heading font-medium">Pertanyaan
-                            </label>
+                    <div class="relative">
+                        <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                            <i class="fas fa-question text-text"></i>
                         </div>
-                        <div class="relative">
-                            <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
-                                <i class="fas fa-question text-text"></i>
+                        <textarea name="question" id="question" rows="5" readonly
+                            class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
+                    </div>
+                    <form action="{{ route('faqs.update', $faq->id) }}" id="question-form" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="space-y-3">
+                            <div class="mb-2">
+                                <label for="edit_answer_input" class="text-base text-heading font-medium">Masukkan
+                                    Jawaban</label>
                             </div>
-                            <textarea name="question" id="question" rows="5" readonly
-                                class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->question }}</textarea>
-                        </div>
-                        <form action="{{ route('faqs.update', $faq->id) }}" id="question-form" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="space-y-3">
-                                <div class="mb-2">
-                                    <label for="edit_answer_input" class="text-base text-heading font-medium">Masukkan
-                                        Jawaban</label>
+                            <div class="relative">
+                                <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
+                                    <i class="fas fa-message text-text"></i>
                                 </div>
-                                <div class="relative">
-                                    <div class="absolute inset-0 left-0 pl-3 top-4 flex pointer-events-none">
-                                        <i class="fas fa-message text-text"></i>
-                                    </div>
-                                    <textarea name="edit_answer_input" id="edit_answer_input" rows="5" maxlength="300"
-                                        placeholder="Masukkan Jawaban" required
-                                        class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->answer }}</textarea>
-                                    <p class="text-sm text-text">
-                                        <span id="char-count">0</span>/300 Karakter
-                                    </p>
-                                </div>
-                                <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
+                                <textarea name="edit_answer_input" id="edit_answer_input" rows="5" maxlength="300"
+                                    placeholder="Masukkan Jawaban" required
+                                    class="w-full pl-10 pr-3 py-3 border border-text/25 text-darkChoco rounded-lg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary">{{ $faq->answer }}</textarea>
+                                <p class="text-sm text-text">
+                                    <span id="char-count">0</span>/300 Karakter
                                 </p>
                             </div>
+                            <p class="text-sm text-text font-lato">Tim kami akan merespon pertanyaan Anda segera
+                            </p>
+                        </div>
 
-                            <div class="flex gap-3 pt-2">
-                                <button type="button"
-                                    class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
-                                    <i class="fas fa-times"></i>
-                                    Batal
-                                </button>
-                                <button type="submit" id="submit-button"
-                                    class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
-                                    <i class="fas fa-paper-plane"></i>
-                                    Kirim
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="flex gap-3 pt-2">
+                            <button type="button"
+                                class="close-modal flex justify-center items-center py-3 border border-text/25 flex-1 gap-2 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white hover:transition-all duration-300 ease-in-out cursor-pointer">
+                                <i class="fas fa-times"></i>
+                                Batal
+                            </button>
+                            <button type="submit" id="submit-button"
+                                class="flex-1 flex justify-center items-center py-3 bg-primary text-white font-semibold gap-2 rounded-lg hover:bg-primary/90 transition-all duration-300 ease-in-out cursor-pointer disabled:bg-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                                <i class="fas fa-paper-plane"></i>
+                                Kirim
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        @endforeach
-        {{-- Edit Jawaban FAQ End --}}
-
-    </x-admin.layout>
+        </div>
+    @endforeach
+    {{-- Edit Jawaban FAQ End --}}
 
 </body>
 

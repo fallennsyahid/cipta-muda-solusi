@@ -9,6 +9,8 @@
 
     <title>Cipta Muda Solusi - Blogs</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -86,23 +88,6 @@
                 </button>
             </div>
         </div>
-
-        <script>
-            const btnNotif = document.querySelector('#open-notif');
-            const notifDropdown = document.getElementById("notifDropdown");
-
-            btnNotif.addEventListener("click", () => {
-                notifDropdown.classList.toggle("hidden");
-            });
-
-            // Optional: klik di luar, dropdown ketutup
-            document.addEventListener("click", (e) => {
-                if (!btnNotif.contains(e.target) && !notifDropdown.contains(e.target)) {
-                    notifDropdown.classList.add("hidden");
-                }
-            });
-        </script>
-
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">

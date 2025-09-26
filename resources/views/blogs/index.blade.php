@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cipta Muda Solusi - Lowongan Kerja</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -166,11 +168,18 @@
                             </p>
                             <div class="flex justify-between">
                                 <div class="flex items-center text-text text-sm gap-2">
-                                    <span
-                                        class="w-6 h-6 bg-text/25 flex items-center justify-center rounded-full overflow-hidden">
-                                        <i class="fas fa-user"></i>
+                                    <span class="flex items-center text-sm text-text">
+                                        @if ($blog->user->profile_picture)
+                                            <img src="{{ Storage::url($blog->user->profile_picture) }}"
+                                                alt="{{ $blog->user->name }}"
+                                                class="w-6 h-6 rounded-full mr-2 object-cover">
+                                        @else
+                                            <img src="{{ Avatar::create($blog->user->name)->toBase64() }}"
+                                                alt="{{ $blog->user->name }}"
+                                                class="w-6 h-6 rounded-full mr-2 object-cover">
+                                        @endif
+                                        {{ $blog->user->name }}
                                     </span>
-                                    {{ $blog->user->name }}
                                 </div>
                                 <a href="{{ route('user-blog-show', $blog->slug) }}"
                                     class="text-primary

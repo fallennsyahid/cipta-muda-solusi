@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     <title>Cipta Muda Solusi - Partner</title>
 
     {{-- CSS --}}
@@ -181,7 +183,7 @@
             @endforeach
         </div>
 
-        <div class="mt-4">
+        <div class="flex justify-end mt-4">
             {{ $partners->links() }}
         </div>
 
@@ -287,7 +289,7 @@
                         <label for="partner_links"
                             class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-globe"></i>
-                            Website / Media Sosial <span class="text-slate-400 text-xs">(Opsional)</span>
+                            Website / Media Sosial
                         </label>
                         <input type="url" id="partner_links" name="partner_links"
                             class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
@@ -443,19 +445,15 @@
                                 <i class="fas fa-industry"></i>
                                 Jenis Perusahaan <span class="text-red-400">*</span>
                             </label>
-                            <select name="partner_type" id="partner_type"
-                                class="partner_type w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
+                            <select name="category_id" id="category_id"
+                                class="category_id w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
                                 @foreach ($partnerTypes as $partnerType)
-                                    <option value="{{ $partnerType->value }}"
-                                        {{ $partnerType->value === $partner->partner_type ? 'selected' : '' }}>
-                                        {{ $partnerType->value }}
+                                    <option value="{{ $partnerType->id }}"
+                                        {{ $partnerType->name === $partner->category->name ? 'selected' : '' }}>
+                                        {{ $partnerType->name }}
                                     </option>
                                 @endforeach
                             </select>
-
-                            <input type="text" name="partner_other_type"
-                                class="partner_other_type {{ $partner->partner_other_type ? '' : 'hidden' }} mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                value="{{ $partner->partner_other_type }}" placeholder="Masukan jenis perusahaan..">
                         </div>
 
                         <div class="group">

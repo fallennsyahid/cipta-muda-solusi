@@ -8,6 +8,8 @@
 
     <title>Cipta Muda Solusi - Contact</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
@@ -186,7 +188,7 @@
                 </div>
             @endforeach
 
-            <div class="mt-4">
+            <div class="flex justify-end mt-4">
                 {{ $contacts->links() }}
             </div>
         </div>
@@ -197,7 +199,8 @@
         <div id="call-modal-{{ $contact->id }}" class="fixed z-[99999] inset-0 hidden justify-center items-center">
             <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
 
-            <div class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+            <div
+                class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
                 <div
                     class="flex justify-between items-center bg-gradient-to-r from-heading via-primary to-secondary p-5 relative overflow-hidden">
                     <h1 class="text-xl text-white font-bold">Pilih Metode Hubungi Ulang</h1>

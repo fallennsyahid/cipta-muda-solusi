@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cipta Muda Solusi - Lowongan Kerja</title>
 
+    <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
+
     {{-- CSS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -24,77 +26,64 @@
 
 <body>
     {{-- Header Start --}}
-    <header class="absolute top-0 left-0 w-full flex items-center">
-        <div class="container max-w-full relative">
-            <div class="flex items-center justify-between">
-                <div class="pl-10 py-6">
-                    <a href="{{ route('index') }}">
-                        <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
-                            class="h-14 w-auto relative z-50" width="675" height="200">
-                    </a>
-                </div>
+    <x-header class="absolute top-0 left-0 w-full flex items-center">
+        {{-- <div class="flex items-center justify-center px-4 py-6">
+            <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
+                class="block absolute right-4 lg:hidden">
+                <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+                <span class="hamburger-line transition duration-300 ease-in-out"></span>
+                <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+            </button>
 
-                {{-- <div class="flex items-center justify-center px-4 py-6">
-                    <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
-                        class="block absolute right-4 lg:hidden">
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out"></span>
-                        <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
-                    </button>
-
-                    <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
-                        <ul class="flex items-center justify-center gap-8" id="#nav-active">
-                            <li class="group">
-                                <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Beranda
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Tentang
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Layanan
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Team
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Contact
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Faq
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
-                                    Blog
-                                </a>
-                            </li>
-                            <li class="group">
-                                <i class="fas fa-sun text-darkChoco text-2xl"></i>
-                            </li>
-                        </ul>
-                    </nav>
-                </div> --}}
-                <div id="clock" data-time="{{ now()->timezone('Asia/Jakarta')->format('Y-m-d\TH:i:s') }}"
-                    class="mr-10 text-darkChoco font-bold text-xl lg:text-2xl relative z-50"></div>
-            </div>
-        </div>
-    </header>
+            <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
+                <ul class="flex items-center justify-center gap-8" id="#nav-active">
+                    <li class="group">
+                        <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Beranda
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Tentang
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Layanan
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Team
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Faq
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="group">
+                        <i class="fas fa-sun text-darkChoco text-2xl"></i>
+                    </li>
+                </ul>
+            </nav>
+        </div> --}}
+    </x-header>
     {{-- Header Start --}}
 
     <section id="hero" class="relative h-screen bg-accent/50 flex items-center justify-center text-center">
@@ -230,6 +219,10 @@
                         </div>
                     @endforeach
                 @endif
+            </div>
+
+            <div class="flex justify-end mt-4">
+                {{ $jobs->links() }}
             </div>
         </div>
     </section>

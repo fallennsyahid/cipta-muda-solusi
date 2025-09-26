@@ -33,14 +33,20 @@ openCallModal.forEach(btn => {
     });
 });
 
-const openCoverLetter = document.querySelectorAll('.open-cover-letter');
+const formsTerima = document.querySelectorAll('.form-terima');
 
-openCoverLetter.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+formsTerima.forEach(form => {
+    const btnTerima = form.querySelector('.btn-terima');
+    const positionField = form.querySelector('.position-field');
+    const btnKirim = form.querySelector('.btn-kirim');
+
+    btnTerima.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const modal = document.querySelector('#cover-letter-' + btn.dataset.id);
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
+        positionField.classList.remove('hidden');
+        btnKirim.classList.remove('hidden');
+        btnKirim.classList.add('flex');
+        btnTerima.classList.add('hidden');
+        btnTerima.classList.remove('flex');
     });
 });
