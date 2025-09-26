@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\PartnerTypes;
 use App\Enums\Status;
+use App\Models\CategoryPartner;
 use App\Models\Partner;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         // $partners = Partner::all();
-        $partnerTypes = PartnerTypes::cases();
+        $partnerTypes = CategoryPartner::active()->get();
         $portfolios = Portfolio::where('status', Status::Published->value)->latest()->take(2)->get();
         $allPortfolios = Portfolio::where('status', Status::Published->value)->latest()->get();
         $partners = Partner::where('status', Status::Active->value)->get();

@@ -13,6 +13,11 @@ class CategoryPartner extends Model
         return $this->hasMany(Partner::class, 'category_id');
     }
 
+    public function partnerRequests()
+    {
+        return $this->hasMany(PartnerRequest::class, 'company_category');
+    }
+
     public function scopeActive($query)
     {
         return $query->where('status', true);

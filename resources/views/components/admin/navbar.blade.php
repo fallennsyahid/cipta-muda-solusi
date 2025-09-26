@@ -21,11 +21,11 @@
                 </div>
             </div>
 
-            <div class="relative" id="profile-dropdown">
-                <div class="p-2 rounded-lg hover:bg-text/25 cursor-pointer">
-                    <div class="flex items-center gap-3">
-                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="{{ Auth::user()->name }}"
-                            class="rounded-full w-10 h-10">
+            <div class="relative">
+                <div class="p-2 rounded-lg hover:bg-text/25 cursor-pointer" id="profile-dropdown">
+                    <div class="flex items-center gap-2">
+                        <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : Avatar::create(Auth::user()->name)->toBase64() }}"
+                            alt="{{ Auth::user()->name }}" class="rounded-full w-10 h-10">
                         <div class="flex flex-col">
                             <span
                                 class="text-base font-bold text-darkChoco">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
@@ -42,8 +42,24 @@
                 <div id="profile-details"
                     class="absolute top-16 right-0 min-w-72 bg-white rounded-lg border border-text/35 shadow-lg scale-y-0 origin-top transition-all duration-300 ease-in-out overflow-hidden">
                     <div class="flex items-center p-3 gap-4">
-                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt=""
-                            class="rounded-full w-10 h-10">
+                        <div class="relative group w-14 h-14">
+                            <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : Avatar::create(Auth::user()->name)->toBase64() }}"
+                                alt="{{ Auth::user()->name }}" class="rounded-full w-14 h-14 object-cover">
+
+                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                                onclick="document.getElementById('profileInput').click()">
+                                <i class="fas fa-camera text-white text-lg"></i>
+                            </div>
+
+                            <form id="profileForm" action="{{ route('profile.update') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PATCH')
+                                <input type="file" name="profile_picture" id="profileInput"
+                                    accept="image/png,image/jpeg,image/webp" class="hidden"
+                                    onchange="document.getElementById('profileForm').submit()">
+                            </form>
+                        </div>
                         <div class="flex flex-col">
                             <h1 class="text-base text-darkChoco font-bold">{{ Auth::user()->name }}</h1>
                             <h2 class="text-sm font-medium text-text">{{ Auth::user()->email }}</h2>

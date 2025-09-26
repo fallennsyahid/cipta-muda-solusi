@@ -27,12 +27,11 @@ class PartnerRequestObserver
                     ['partner_email' => $partnerRequest->company_email],
                     [
                         'name' => $partnerRequest->company_name,
-                        'image' => $partnerRequest->company_name,
-                        'partner_type' => $partnerRequest->company_category,
-                        'partner_other_type' => $partnerRequest->other_category_company,
+                        'image' => $partnerRequest->file_attachments,
+                        'category_id' => $partnerRequest->company_category,
                         'partner_phone_number' => $partnerRequest->company_phone_number,
                         'partner_links' => $partnerRequest->company_link,
-                        'description' => $partnerRequest->company_description,
+                        'description' => '-',
                         'status' => Status::Active->value,
                     ],
                 );

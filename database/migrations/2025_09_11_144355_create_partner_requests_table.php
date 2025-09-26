@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('company_email');
             $table->string('company_phone_number');
-            $table->enum('company_category', PartnerTypes::values());
-            $table->string('other_category_company')->nullable();
-            $table->text('company_description');
+            $table->string('company_category');
             $table->string('company_link')->nullable();
             $table->string('file_attachments');
             $table->enum('company_status', Status::request());

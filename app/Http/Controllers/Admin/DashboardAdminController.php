@@ -4,18 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Faq;
 use App\Models\Blog;
+use App\Models\User;
 use App\Enums\Status;
 use App\Enums\JobType;
 use App\Models\Partner;
 use App\Enums\BlogStatus;
 use App\Models\JobVacancy;
 use App\Enums\PartnerTypes;
+use App\Models\ActivityLog;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Mews\Purifier\Facades\Purifier;
 use App\Http\Controllers\Controller;
-use App\Models\ActivityLog;
 
 class DashboardAdminController extends Controller
 {
@@ -62,6 +63,17 @@ class DashboardAdminController extends Controller
 
         $activities = ActivityLog::latest()->take(10)->get();
 
+        $adminBlogs = User::where('role', 'admin_blog')->withCount([
+            'blogs as ready_count' => fn($q) => $q->where('status', BlogStatus::Pending->value),
+            'blogs as published_count' => fn($q) => $q->where('status', BlogStatus::Published->value),
+        ])->get();
+
+        $sorted = $adminBlogs->sortByDesc('published_count')->values();
+
+        $labels = $sorted->pluck('name');
+        $readyCounts = $sorted->pluck('ready_count');
+        $publishedCounts = $sorted->pluck('published_count');
+
         return view('admin.dashboard', compact(
             'totalJobsThisMonth',
             'percentageJobChange',
@@ -77,6 +89,9 @@ class DashboardAdminController extends Controller
             'partnerStatus',
             'blogStatus',
             'activities',
+            'labels',
+            'readyCounts',
+            'publishedCounts'
         ));
     }
 

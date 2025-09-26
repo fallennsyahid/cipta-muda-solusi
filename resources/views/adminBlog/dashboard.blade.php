@@ -58,49 +58,53 @@
                     <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
                         <div class="flex flex-row justify-between items-center space-y-0 pb-2">
                             <h1 class="text-sm font-medium text-text">
-                                Total Jobs
+                                Total Blog
                             </h1>
-                            <div class="w-8 h-8 rounded-lg bg-heading flex justify-center items-center">
-                                <i class="fas fa-briefcase text-white text-base"></i>
-                            </div>
-                        </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                        </div>
-                    </div>
-                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
-                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
-                            <h1 class="text-sm font-medium text-text">
-                                Active Partners
-                            </h1>
-                            <div class="w-8 h-8 rounded-lg bg-secondary flex justify-center items-center">
-                                <i class="fas fa-user-group text-white text-base"></i>
-                            </div>
-                        </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
-                        </div>
-                    </div>
-                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
-                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
-                            <h1 class="text-sm font-medium text-text">
-                                Blog Published
-                            </h1>
-                            <div class="w-8 h-8 rounded-lg bg-green-500 flex justify-center items-center">
+                            <div class="w-8 h-8 rounded-lg bg-primary flex justify-center items-center">
                                 <i class="fas fa-newspaper text-white text-base"></i>
                             </div>
                         </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                        <div class="text-2xl text-primary mt-1 font-bold">
+                            {{ $blogsTotal }}
                         </div>
                     </div>
                     <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
                         <div class="flex flex-row justify-between items-center space-y-0 pb-2">
                             <h1 class="text-sm font-medium text-text">
-                                FAQ
+                                Published
                             </h1>
-                            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex justify-center items-center">
-                                <i class="fas fa-question-circle text-white text-base"></i>
+                            <div class="w-8 h-8 rounded-lg bg-green-600 flex justify-center items-center">
+                                <i class="fas fa-check-circle text-white text-base"></i>
                             </div>
                         </div>
-                        <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                        <div class="text-2xl text-primary mt-1 font-bold">
+                            {{ $blogsPublished }}
+                        </div>
+                    </div>
+                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                            <h1 class="text-sm font-medium text-text">
+                                Ready to Publish
+                            </h1>
+                            <div class="w-8 h-8 rounded-lg bg-amber-600 flex justify-center items-center">
+                                <i class="fas fa-clock text-white text-base"></i>
+                            </div>
+                        </div>
+                        <div class="text-2xl text-primary mt-1 font-bold">
+                            {{ $blogsPending }}
+                        </div>
+                    </div>
+                    <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
+                        <div class="flex flex-row justify-between items-center space-y-0 pb-2">
+                            <h1 class="text-sm font-medium text-text">
+                                Archived
+                            </h1>
+                            <div class="w-8 h-8 rounded-lg bg-gray-600 flex justify-center items-center">
+                                <i class="fas fa-box-archive text-white text-base"></i>
+                            </div>
+                        </div>
+                        <div class="text-2xl text-primary mt-1 font-bold">
+                            {{ $blogsArchived }}
                         </div>
                     </div>
                 </div>
@@ -108,47 +112,6 @@
                 <div class="mx-auto p-4 border border-text/25 rounded-xl">
                     <h1 class="text-center mb-2 font-black text-primary text-3xl">Blog Statistics</h1>
                     <canvas id="myChart" class="block w-full h-full"></canvas>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
-                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
-                        <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
-                            <i class="fas fa-calendar"></i>
-                            Quick Actions
-                        </div>
-                        <div class="space-y-3 relative z-10">
-                            <a href="#" id="open-modal-create-job"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-briefcase mr-3"></i>
-                                Buat Lowongan Kerja Baru
-                            </a>
-                            <a href="#" id="open-add-partner"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-user-group mr-3"></i>
-                                Tambah Partner Baru
-                            </a>
-                            <a href="#" id="open-create-blog"
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-newspaper mr-3"></i>
-                                Buat Postingan Blog Baru
-                            </a>
-                            <a href=""
-                                class="px-4 py-3 border-2 border-heading rounded-lg flex items-center text-heading font-medium hover:bg-secondary/25">
-                                <i class="fas fa-question-circle mr-3"></i>
-                                Update FAQ
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-4 shadow-lg geometric-shape">
-                        <div class="font-medium text-heading text-xl flex items-center gap-2 mb-5">
-                            <i class="fas fa-clock"></i>
-                            Aktivitas Terbaru
-                        </div>
-                        <div class="space-y-2 relative z-10 h-[90%] overflow-y-auto custom-scrollbar">
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>

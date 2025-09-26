@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use COM;
 use Mews\Purifier\Facades\Purifier;
 use App\Enums\BlogStatus;
 use App\Enums\Status;
@@ -10,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class BlogsAdminController extends Controller
@@ -21,13 +21,15 @@ class BlogsAdminController extends Controller
     {
         $user = Auth::user();
 
-        $blogs = Blog::orderByDesc('is_featured')->latest()->paginate(5);
+        $blogs = Blog::with('user')->orderByDesc('is_featured')->latest()->paginate(5);
         $blogsTotal = Blog::count();
         $blogStatus = BlogStatus::cases();
         $blogsPublished = Blog::where('status', BlogStatus::Published->value)->count();
-        $blogsPending = Blog::where('status', BlogStatus::ReadyToPublish->value)->count();
+        $blogsPending = Blog::where('status', BlogStatus::Pending->value)->count();
         $blogsArchived = Blog::where('status', BlogStatus::Archived->value)->count();
+
         $notifications = $user->unreadNotifications;
+
         return view('admin.blogs.index', compact('blogs', 'blogsTotal', 'blogStatus', 'blogsPublished', 'blogsPending', 'blogsArchived', 'notifications'));
     }
 
@@ -47,7 +49,6 @@ class BlogsAdminController extends Controller
         $validated = $request->validate([
             'title' => 'nullable',
             'category' => 'nullable',
-            'author' => 'nullable',
             'image' => 'nullable',
             'description' => 'nullable',
             'content_create' => 'nullable',
@@ -62,14 +63,17 @@ class BlogsAdminController extends Controller
 
         $validated['content'] = Purifier::clean($validated['content_create']);
 
+        $user = Auth::user();
+
         Blog::create([
             'title' => $validated['title'],
             'category' => $validated['category'],
-            'author' => $validated['author'],
+            'author' => $user->name,
             'image' => $validated['image'],
             'description' => $validated['description'],
             'content' => $validated['content_create'],
             'status' => $validated['status'],
+            'user_id' => $user->id,
         ]);
 
         return redirect()->route('blogs.index')->with('success', 'Blog berhasil dibuat!');
@@ -80,7 +84,8 @@ class BlogsAdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $blog = Blog::with('user')->findOrFail($id);
+        return view('admin.blogs.show', compact('blog'));
     }
 
     /**

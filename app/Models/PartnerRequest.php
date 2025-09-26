@@ -11,10 +11,13 @@ class PartnerRequest extends Model
         'company_email',
         'company_phone_number',
         'company_category',
-        'other_category_company',
-        'company_description',
         'company_link',
         'file_attachments',
         'company_status',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryPartner::class, 'company_category');
+    }
 }

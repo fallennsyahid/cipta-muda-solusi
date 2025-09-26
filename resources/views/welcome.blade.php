@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body class="overflow-x-hidden">
     {{-- Header Start --}}
     <x-header>
         <div class="flex items-center justify-center px-4 py-6">
@@ -153,7 +153,7 @@
     {{-- Header Start --}}
 
     {{-- Hero Section Start --}}
-    <section id="hero-section" class="pt-36 pb-24 lg:pb-0 bg-section">
+    <section id="hero-section" class="pt-36 pb-24 lg:pb-0 bg-section overflow-x-hidden">
         <div class="bg-[#CFE1F9] w-55 h-55 rounded-full absolute left-3/20 -top-16 blur-xl"></div>
         <div class="bg-[#CFE1F9] w-55 h-55 rounded-full absolute -left-10 bottom-44 blur-xl"></div>
         <div class="bg-[#CFE1F9] w-55 h-55 rounded-l-full absolute right-0 bottom-7 blur-xl"></div>
@@ -162,23 +162,26 @@
         <div class="container max-w-full relative z-20">
             <div class="flex flex-wrap">
                 <div class="w-full self-center mt-12 lg:mt-0 px-8 lg:w-1/2">
-                    <h1 class="text-xl font-semibold text-primary mb-3 text-center">
+                    <h1 class="text-base md:text-lg lg:text-xl font-semibold text-primary mb-3 text-center">
                         Young, Brave, Innovative, Strong
                     </h1>
-                    <h2 class="font-bold text-5xl text-heading text-center mb-5">
+                    <h2 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">
                         PT. Cipta Muda Solusi
                     </h2>
-                    <p class="text-secondary/90 text-xl font-lato font-medium mb-9 text-center max-w-md mx-auto">
+                    <p
+                        class="text-secondary/90 text-base md:text-lg lg:text-xl font-lato font-medium mb-9 text-center max-w-md mx-auto">
                         Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda
                     </p>
 
                     <div class="flex justify-center">
                         <a href="#"
-                            class="bg-accent flex items-center text-heading font-semibold text-base py-4 px-12 h-14 rounded-tr-[50px] rounded-bl-[50px] rounded-tl-[20px] rounded-br-[20px] hover:bg-accent/80 transition-all duration-200 ease-in-out">
+                            class="bg-accent flex items-center text-heading font-semibold text-sm sm:text-base md:text-lg py-2 px-6 sm:py-3 sm:px-8 md:py-4 md:px-12 
+                            h-10 sm:h-12 md:h-14 rounded-tr-[50px] rounded-bl-[50px] rounded-tl-[20px] rounded-br-[20px] hover:bg-accent/80 transition-all duration-200 ease-in-out">
                             <i class="fas fa-phone mr-2"></i>
                             Konsultasi Gratis
                         </a>
                     </div>
+
                 </div>
 
                 <div class="w-full self-end px-4 lg:w-1/2 overflow-hidden hidden lg:block">
@@ -204,7 +207,7 @@
     {{-- Hero Section Start --}}
 
     {{-- About Section Start --}}
-    <section id="about" class="pt-36 pb-32 bg-section overflow-hidden">
+    <section id="about" class="py-28 bg-section overflow-x-hidden">
         <div class="container max-w-full">
             <div class="mb-5">
                 <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">Tentang Kami</h1>
@@ -281,7 +284,7 @@
                         <!-- 2015 -->
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-16 h-16 bg-secondary text-white text-xl font-bold flex justify-center items-center rounded-full">
+                                class="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-secondary text-white text-lg lg:text-xl  font-bold flex justify-center items-center rounded-full">
                                 2015
                             </div>
                             <div>
@@ -420,7 +423,7 @@
     {{-- About Section End --}}
 
     {{-- Layanan Section Start --}}
-    <section id="service" class="pt-36 pb-32 bg-section">
+    <section id="service" class="py-28 bg-section">
         <div class="container max-w-full">
             <div class="mb-5">
                 <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">Layanan Unggulan
@@ -659,7 +662,7 @@
     {{-- Layanan Section Start --}}
 
     {{-- Portfolio Section Start --}}
-    <section id="portfolio" class="pt-36 pb-32 bg-white">
+    <section id="portfolio" class="py-28 bg-white">
         <div class="container max-w-full relative">
             <div class="mb-5">
                 <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-3 md:mb-5">Portfolio
@@ -821,7 +824,7 @@
     {{-- Detail Portfolio Overlay End --}}
 
     {{-- Section Team Start --}}
-    <section id="team" class="pt-36 pb-32 bg-white">
+    <section id="team" class="py-28 bg-white">
         <div class="container max-w-full relative z-10">
             <div class="mb-5">
                 <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-3 md:mb-5">Tim Kami
@@ -838,7 +841,7 @@
                 <div class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/randy-khairu.webp') }}" alt=""
-                            class="rounded-full h-20 w-20 object-contain">
+                            class="rounded-full h-24 w-24 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Randy Khairu Basyar</h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisaris Utama</h2>
@@ -863,7 +866,7 @@
                     class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-0 lg:translate-y-6">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/aditya_bayu.webp') }}" alt=""
-                            class="rounded-full h-20 w-20 object-contain">
+                            class="rounded-full h-24 w-24 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Aditya Bayu Irawan</h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">CEO</h2>
@@ -891,7 +894,7 @@
                 <div class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/irfan_fauzan.webp') }}" alt=""
-                            class="rounded-full h-20 w-20 object-contain">
+                            class="rounded-full h-24 w-24 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Irfan Fauzan</h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">IT Director</h2>
@@ -920,7 +923,7 @@
                     class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-0 lg:translate-y-6">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/nanda.webp') }}" alt=""
-                            class="rounded-full h-20 w-20 object-contain">
+                            class="rounded-full h-24 w-24 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Nanda
                         Ikhsanabdullah Utama
@@ -970,7 +973,7 @@
     {{-- Section Team End --}}
 
     {{-- Partner Section Start --}}
-    <section id="partner" class="pt-36 pb-32 bg-section">
+    <section id="partner" class="py-28 bg-section">
         <div class="container max-w-full">
             <div class="mb-5">
                 <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-3 md:mb-5">Partner
@@ -986,13 +989,15 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 mx-12 gap-6 my-10">
                 @foreach ($partners as $partner)
-                    <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
-                        <div class="w-32 h-32 flex items-center justify-center">
-                            <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
-                                title="{{ $partner->name }}"
-                                class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
+                    <a href="{{ $partner->partner_links }}" target="_blank">
+                        <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
+                            <div class="w-32 h-32 flex items-center justify-center">
+                                <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
+                                    title="{{ $partner->name }}"
+                                    class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
 
@@ -1001,8 +1006,11 @@
                     Ingin menjadi partner kami?
                 </p>
                 <button type="button" id="open-partner-modal"
-                    class="flex items-center gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-4 px-10 text-white font-semibold text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
-                    <i class="fas fa-headset"></i>
+                    class="flex items-center gap-2 text-white font-semibold bg-gradient-to-r from-primary via-primary to-secondary 
+           py-2 px-4 text-sm sm:py-3 sm:px-6 sm:text-base md:py-4 md:px-8 md:text-lg lg:py-4 lg:px-10 lg:text-xl 
+           rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 
+           transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
+                    <i class="fas fa-headset text-base sm:text-lg md:text-xl"></i>
                     Hubungi Kami
                 </button>
             </div>
@@ -1010,120 +1018,99 @@
     </section>
     {{-- Partner Section End --}}
 
-    <div id="partner-modal" class="fixed inset-0 z-[99999] hidden items-center justify-center p-4">
+    <div id="partner-modal" class="fixed inset-0 z-[99999] hidden items-center justify-center p-2 sm:p-4">
         <div class="close-partner-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-        <div class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+        <div
+            class="bg-white w-full max-w-[95%] sm:max-w-lg rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+            <!-- Header -->
             <div
-                class="bg-gradient-to-r from-heading via-primary to-secondary p-8 text-center overflow-hidden relative">
+                class="bg-gradient-to-r from-heading via-primary to-secondary p-6 sm:p-8 text-center overflow-hidden relative">
                 <div class="absolute inset-0 bg-black/10"></div>
                 <div class="relative z-10">
                     <div
-                        class="w-16 h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
-                        <i class="fas fa-handshake text-3xl"></i>
+                        class="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-full flex justify-center items-center text-white mx-auto mb-4 backdrop-blur-sm">
+                        <i class="fas fa-handshake text-2xl sm:text-3xl"></i>
                     </div>
-                    <h1 class="text-2xl font-bold text-white mb-2">Mari Berkolaborasi!</h1>
-                    <p class="text-white/90 text-base font-lato">Ceritakan ide kerjasama Anda dengan kami</p>
+                    <h1 class="text-xl sm:text-2xl font-bold text-white mb-2">Mari Berkolaborasi!</h1>
+                    <p class="text-white/90 text-sm sm:text-base font-lato">Ceritakan ide kerjasama Anda dengan kami
+                    </p>
                 </div>
 
                 <button
-                    class="close-partner-modal absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
-                    <i class="fas fa-times text-lg"></i>
+                    class="close-partner-modal absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-300 hover:rotate-90">
+                    <i class="fas fa-times text-base sm:text-lg"></i>
                 </button>
             </div>
 
-            <div class="p-8 max-h-96 overflow-y-auto custom-scrollbar">
+            <!-- Body -->
+            <div class="p-4 sm:p-8 max-h-[70vh] sm:max-h-96 overflow-y-auto custom-scrollbar">
                 <form action="{{ route('user.partnerReq') }}" method="POST" enctype="multipart/form-data"
-                    class="space-y-6">
+                    class="space-y-4 sm:space-y-6">
                     @csrf
+
+                    <!-- Nama Perusahaan -->
                     <div class="group">
                         <label for="company_name"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            class="flex items-center gap-2 text-sm sm:text-base font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-building"></i>
                             Nama Perusahaan <span class="text-red-400">*</span>
                         </label>
                         <input type="text" id="company_name" name="company_name"
                             value="{{ old('company_name') }}" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="PT. Nama Perusahaan">
-
-                        @error('company_name')
-                            <p class="text-red-500 text-xs mt-1">
-                                <i class="fas fa-circle-exclamation"></i>
-                                {{ $message }}
-                            </p>
-                        @enderror
                     </div>
 
+                    <!-- Email -->
                     <div class="group">
                         <label for="company_email"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            class="flex items-center gap-2 text-sm sm:text-base font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-envelope"></i>
                             Email <span class="text-red-400">*</span>
                         </label>
                         <input type="email" id="company_email" name="company_email"
                             value="{{ old('company_email') }}" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="nama@perusahaan.com">
-
-                        @error('company_email')
-                            <p class="text-red-500 text-xs mt-1">
-                                <i class="fas fa-circle-exclamation"></i>
-                                {{ $message }}
-                            </p>
-                        @enderror
                     </div>
 
+                    <!-- Nomor Telepon -->
                     <div class="group">
                         <label for="company_phone_number"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            class="flex items-center gap-2 text-sm sm:text-base font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-mobile-screen"></i>
                             Nomor Telepon <span class="text-red-400">*</span>
                         </label>
                         <input type="tel" id="company_phone_number" name="company_phone_number" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="+62 123-3456-7890">
                     </div>
 
+                    <!-- Jenis Perusahaan -->
                     <div class="group">
                         <label for="company_category"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            class="flex items-center gap-2 text-sm sm:text-base font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-industry"></i>
                             Jenis Perusahaan <span class="text-red-400">*</span>
                         </label>
                         <select name="company_category" id="company_category"
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
+                            class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white cursor-pointer">
                             <option value="-" disabled selected>Pilih Kategori Perusahaan Anda</option>
-                            @foreach ($partnerTypes as $type)
-                                <option value="{{ $type->value }}">{{ $type->value }}</option>
+                            @foreach ($partnerTypes as $partnerType)
+                                <option value="{{ $partnerType->id }}">{{ $partnerType->name }}</option>
                             @endforeach
-                            <option value="other_category_company" disabled selected>Pilih Kategori Perusahaan Anda
-                            </option>
                         </select>
 
                         <input type="text" id="other_category_company" name="other_category_company"
-                            class="hidden mt-4 w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            class="hidden mt-4 w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="Ceritakan jenis bisnis Anda...">
                     </div>
 
-                    {{-- <div class="group">
-                        <label for="company_description"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                            <i class="fas fa-building-circle-check"></i>
-                            Penjelasan Perusahaan <span class="text-red-400">*</span>
-                        </label>
-                        <textarea name="company_description" id="company_description" rows="4" required maxlength="400"
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none transition-all duration-200 hover:bg-white resize-none"
-                            placeholder="Perusahaan kami bergerak di bidang... dengan fokus utama pada..."></textarea>
-                        <div class="flex justify-between items-center mt-2">
-                            <p class="text-xs text-slate-500">Ceritakan tentang Perusahaan Anda</p>
-                            <p class="text-xs font-medium text-slate-600" id="charCount"></p>
-                        </div>
-                    </div> --}}
-
+                    <!-- Upload -->
                     <div class="upload-group">
                         <label for="file_attachments"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            class="flex items-center gap-2 text-sm sm:text-base font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-paperclip"></i>
                             Logo Perusahaan <span class="text-red-400">*</span>
                         </label>
@@ -1139,10 +1126,12 @@
                                     Choose a file or drag & drop it here
                                 </h1>
                                 <p class="text-text text-sm font-medium font-lato">
-                                    Webp, PNG, JPEG, JPG formats, max. 5MB
+                                    JPEG, PNG, JPG format, max. 5MB
                                 </p>
                             </div>
                         </label>
+
+                        <!-- preview -->
                         <div class="preview hidden bg-text/10 p-4 mt-2 rounded-lg items-center justify-between">
                             <div class="flex items-center gap-3">
                                 <img class="preview-image w-16 h-16 object-cover rounded-lg" alt="Preview">
@@ -1164,20 +1153,22 @@
                         </div>
                     </div>
 
+                    <!-- Link -->
                     <div class="group">
                         <label for="company_link"
-                            class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
+                            class="flex items-center gap-2 text-sm sm:text-base font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                             <i class="fas fa-globe"></i>
                             Website / Media Sosial <span class="text-red-400">*</span>
                         </label>
                         <input type="url" id="company_link" name="company_link" required
-                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            class="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                             placeholder="www.perusahaan.com atau www.instagram.com/perusahaan">
                     </div>
 
+                    <!-- Submit -->
                     <div class="flex justify-center">
                         <button type="submit"
-                            class="flex items-center w-full gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-4 px-10 text-white font-semibold text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
+                            class="flex items-center justify-center w-full gap-2 bg-gradient-to-r from-primary via-primary to-secondary py-3 sm:py-4 px-6 sm:px-10 text-white font-semibold text-lg sm:text-xl rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
                             <i class="fas fa-rocket"></i>
                             Kirim Permohonan Kerjasama
                         </button>

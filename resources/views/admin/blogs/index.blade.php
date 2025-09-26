@@ -35,7 +35,50 @@
                 <h1 class="text-2xl text-heading font-bold">Blogs Management</h1>
                 <p class="text-text font-lato">Create and manage blog posts and articles</p>
             </div>
-            <div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <!-- Tombol Notifikasi -->
+                    <button type="button" id="open-notif"
+                        class="flex items-center gap-2 text-white font-semibold px-5 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 shadow-md hover:from-teal-600 hover:to-teal-700 transition-all duration-300">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span>Request Publish</span>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div id="notifDropdown"
+                        class="absolute w-80 bg-white shadow-xl left-0 top-14 rounded-xl border border-gray-100 z-20 overflow-hidden hidden">
+                        <ul class="divide-y divide-gray-200">
+                            @forelse ($notifications as $notif)
+                                <li class="px-5 py-4 hover:bg-gray-50 transition">
+                                    <div class="flex items-start justify-between">
+                                        <div>
+                                            <p class="text-sm">
+                                                <strong class="text-teal-600">{{ $notif->data['author'] }}</strong>
+                                                minta publish artikel:
+                                                <em class="text-gray-700">{{ $notif->data['title'] }}</em>
+                                            </p>
+                                            <small class="text-xs text-gray-400 block mt-1">
+                                                {{ $notif->created_at->diffForHumans() }}
+                                            </small>
+                                        </div>
+
+                                        <form action="{{ route('blogs.approve', $notif->data['blog_id']) }}"
+                                            method="POST" class="ml-3">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                class="px-3 py-1 text-xs font-medium bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition">
+                                                Approve
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
+                            @empty
+                                <li class="px-5 py-4 text-sm text-gray-500 text-center">Tidak ada notifikasi</li>
+                            @endforelse
+                        </ul>
+                    </div>
+                </div>
                 <button type="button" id="open-modal"
                     class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-heading via-primary to-secondary cursor-pointer hover:from-secondary hover:via-primary hover:to-heading">
                     <i class="fas fa-plus"></i>
@@ -43,6 +86,23 @@
                 </button>
             </div>
         </div>
+
+        <script>
+            const btnNotif = document.querySelector('#open-notif');
+            const notifDropdown = document.getElementById("notifDropdown");
+
+            btnNotif.addEventListener("click", () => {
+                notifDropdown.classList.toggle("hidden");
+            });
+
+            // Optional: klik di luar, dropdown ketutup
+            document.addEventListener("click", (e) => {
+                if (!btnNotif.contains(e.target) && !notifDropdown.contains(e.target)) {
+                    notifDropdown.classList.add("hidden");
+                }
+            });
+        </script>
+
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -151,7 +211,8 @@
                                     </button>
                                 </form>
                             @endif
-                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="delete-form">
+                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST"
+                                class="delete-form">
                                 @csrf
                                 @method('DELETE')
                                 <button class="cursor-pointer">
@@ -164,8 +225,14 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex items-center gap-3">
                             <span class="flex items-center text-sm text-text">
-                                <i class="fas fa-user mr-2"></i>
-                                {{ $blog->author }}
+                                @if ($blog->user->profile_picture)
+                                    <img src="{{ Storage::url($blog->user->profile_picture) }}"
+                                        alt="{{ $blog->user->name }}" class="w-6 h-6 rounded-full mr-2 object-cover">
+                                @else
+                                    <img src="{{ Avatar::create($blog->user->name)->toBase64() }}"
+                                        alt="{{ $blog->user->name }}" class="w-6 h-6 rounded-full mr-2 object-cover">
+                                @endif
+                                {{ $blog->user->name }}
                             </span>
                             <span class="flex items-center text-sm text-text">
                                 <i class="fas fa-calendar mr-2"></i>
@@ -177,6 +244,11 @@
                             </span>
                         </div>
                         <div class="flex items-center gap-2">
+                            <a href="{{ route('blogs.show', $blog->id) }}"
+                                class="flex items-center text-white bg-indigo-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-indigo-500">
+                                <i class="fas fa-magnifying-glass mr-2"></i>
+                                Preview
+                            </a>
                             <button type="button" data-id="{{ $blog->slug }}"
                                 class="open-modal-detail flex items-center text-white bg-gray-400 px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-500">
                                 <i class="fas fa-eye mr-2"></i>
@@ -196,25 +268,6 @@
         <div class="flex justify-end mt-4">
             {{ $blogs->links() }}
         </div>
-
-        <ul>
-            @foreach ($notifications as $notif)
-                <li class="p-3 border-b">
-                    <strong>{{ $notif->data['author'] }}</strong>
-                    minta publish artikel:
-                    <em>{{ $notif->data['title'] }}</em>
-
-                    <form action="{{ route('blogs.approve', $notif->data['blog_id']) }}" method="POST"
-                        class="inline">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="px-2 py-1 bg-green-500 text-white rounded">Approve</button>
-                    </form>
-
-                    <small class="text-gray-500">{{ $notif->created_at->diffForHumans() }}</small>
-                </li>
-            @endforeach
-        </ul>
 
     </x-admin.layout>
 
@@ -265,17 +318,6 @@
                             <input type="text" id="category" name="category" required
                                 class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                 placeholder="Teknologi">
-                        </div>
-
-                        <div class="group">
-                            <label for="author"
-                                class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
-                                <i class="fas fa-user"></i>
-                                Penulis/Pencipta <span class="text-red-400">*</span>
-                            </label>
-                            <input type="text" id="author" name="author" required
-                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                placeholder="Jakarta">
                         </div>
 
                         <div class="group">

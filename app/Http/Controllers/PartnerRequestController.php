@@ -34,10 +34,8 @@ class PartnerRequestController extends Controller
             'company_email' => 'required|string',
             'company_phone_number' => 'required',
             'company_category' => 'required|string',
-            'other_category_company' => 'nullable|string',
-            'company_description' => 'required|string',
             'company_link' => 'required|url',
-            'file_attachments' => 'required|file|mimes:pdf|max:5120',
+            'file_attachments' => 'required|file|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
         $fillPath = null;
@@ -50,8 +48,6 @@ class PartnerRequestController extends Controller
             'company_email' => $request->company_email,
             'company_phone_number' => $request->company_phone_number,
             'company_category' => $request->company_category,
-            'other_category_company' => $request->other_category_company,
-            'company_description' => $request->company_description,
             'company_link' => $request->company_link,
             'file_attachments' => $fillPath,
             'company_status' => Status::Pending->value,

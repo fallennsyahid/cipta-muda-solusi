@@ -754,24 +754,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // ambil canvas
     const ctx = document.getElementById('myChart').getContext('2d');
 
-    // data contoh (sesuaikan nilai kalau mau)
-    const labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+    const labels = @json($labels);
+    const readyData = @json($readyCounts);
+    const publishedData = @json($publishedCounts);
 
     const data = {
         labels,
         datasets: [{
-                label: 'Series 1',
-                data: [4.3, 2.5, 3.5, 4.6], // nilai untuk tiap kategori
+                label: 'Ready to Publish',
+                data: readyData,
                 backgroundColor: 'rgba(59,130,246,0.95)', // biru (Tailwind blue-500 kira2)
                 borderRadius: 6,
                 barThickness: 18
             },
             {
-                label: 'Series 2',
-                data: [2.6, 4.5, 2.1, 2.8],
+                label: 'Published',
+                data: publishedData,
                 backgroundColor: 'rgba(249,115,22,0.95)', // orange
                 borderRadius: 6,
                 barThickness: 18
@@ -780,13 +780,13 @@
     };
 
     // konfigurasi chart
+
     const config = {
-        type: 'bar', // 'bar' + indexAxis:'y' => horizontal bar chart
+        type: 'bar',
         data,
         options: {
-            indexAxis: 'y', // horizontal bars
+            indexAxis: 'y',
             responsive: true,
-            maintainAspectRatio: true,
             plugins: {
                 legend: {
                     position: 'bottom',
@@ -795,20 +795,9 @@
                         padding: 16
                     }
                 },
-                title: {
-                    display: false
-                },
                 tooltip: {
                     mode: 'index',
                     intersect: false
-                }
-            },
-            layout: {
-                padding: {
-                    top: 6,
-                    right: 6,
-                    bottom: 6,
-                    left: 6
                 }
             },
             scales: {
@@ -820,12 +809,10 @@
                     grid: {
                         color: 'rgba(0,0,0,0.06)',
                         borderColor: 'rgba(0,0,0,0.06)'
-                    },
-                    max: 6 // atur maksimal sumbu X kalau ingin mirip gambar (opsional)
+                    }
                 },
                 y: {
-                    // tampilkan kategori dari bawah ke atas sama seperti gambar (Category 4 di atas)
-                    reverse: true,
+                    reverse: false,
                     grid: {
                         display: false,
                         drawBorder: false
@@ -834,30 +821,16 @@
                         padding: 12
                     }
                 }
-            },
-            // gaya transisi halus
-            animation: {
-                duration: 600,
-                easing: 'easeOutQuart'
-            },
-            // menjaga gap antar kelompok bar
-            datasets: {
-                bar: {
-                    categoryPercentage: 0.7,
-                    barPercentage: 0.9
-                }
             }
         }
     };
 
-    // buat chart
-    const myChart = new Chart(ctx, config);
+    new Chart(ctx, config);
 
-    // contoh: update data secara dinamis (opsional)
-    // setTimeout(() => {
-    //   myChart.data.datasets[0].data = [3.9, 2.0, 4.1, 4.9];
-    //   myChart.update();
-    // }, 2000);
+    setTimeout(() => {
+        myChart.data.datasets[0].data = [3.9, 2.0, 4.1, 4.9];
+        myChart.update();
+    }, 2000);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -24,8 +24,10 @@
     --font-lato: "Lato", sans-serif;
 }
 
+html,
 body {
     font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
 }
 
 input[type="search"]::-webkit-search-cancel-button {

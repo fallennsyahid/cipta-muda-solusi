@@ -106,7 +106,7 @@
                                     @endif
                                 </div>
                                 <span class="block mt-2 text-text font-medium">
-                                    {{ $request->company_category }}
+                                    {{ $request->category->name ?? '-' }}
                                 </span>
                             </div>
                         </div>
@@ -116,9 +116,13 @@
                                 class="h-9 w-9 rounded-full flex text-lg items-center justify-center cursor-pointer text-darkChoco hover:bg-text/20">
                                 <i class="fas fa-download"></i>
                             </a>
-                            <button class="cursor-pointer">
-                                <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
-                            </button>
+                            <form action="{{ route('partnerReq.destroy', $request->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="cursor-pointer">
+                                    <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
 
@@ -146,10 +150,6 @@
                             </span>
                         </a>
                     </div>
-
-                    <p class="mt-5 text-text font-lato">
-                        {{ $request->company_description }}
-                    </p>
 
                     <div class="flex justify-between items-center mt-5">
                         <div class="text-sm text-text">

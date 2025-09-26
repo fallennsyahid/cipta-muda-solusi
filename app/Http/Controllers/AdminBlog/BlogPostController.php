@@ -166,8 +166,10 @@ class BlogPostController extends Controller
 
         $blog = Blog::where('id', $id)->where('user_id', $auth->id)->where('status', Status::Pending->value)->firstOrFail();
 
-        $mainAdmin = User::where('role', 'admin')->first();
-        $mainAdmin->notify(new RequestPublishNotification($blog));
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new RequestPublishNotification($blog));
+        }
 
         return back()->with('success', 'Permintaan sudah terkirim.');
     }

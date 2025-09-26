@@ -135,28 +135,11 @@
                             </div>
                         </div>
                         <div class="relative z-50 flex items-center gap-2">
-                            @if ($blog->is_featured === 0)
-                                <form action="{{ route('adminBlog.toggleFeatured', $blog->id) }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit" class="px-3 py-1 text-lg text-yellow-400 cursor-pointer">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                </form>
-                            @else
-                                <form action="{{ route('adminBlog.toggleFeatured', $blog->id) }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit" class="px-3 py-1 text-lg text-yellow-400 cursor-pointer">
-                                        <i class="fas fa-star"></i>
-                                    </button>
-                                </form>
-                            @endif
                             <form action="{{ route('adminBlog.delete', $blog->id) }}" method="POST"
                                 class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button class="cursor-pointer">
+                                <button type="submit" class="cursor-pointer">
                                     <i class="fas fa-trash text-red-500 hover:text-red-600"></i>
                                 </button>
                             </form>
@@ -165,8 +148,9 @@
 
                     <div class="mt-5 flex justify-between">
                         <div class="flex items-center gap-3">
-                            <span class="flex items-center text-sm text-text">
-                                <i class="fas fa-user mr-2"></i>
+                            <span class="flex items-center text-sm text-text gap-2">
+                                <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : Avatar::create(Auth::user()->name)->toBase64() }}"
+                                    alt="{{ Auth::user()->name }}" class="rounded-full w-8 h-8">
                                 {{ $blog->user->name }}
                             </span>
                             <span class="flex items-center text-sm text-text">
@@ -202,6 +186,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="flex justify-end mt-4">
+            {{ $blogs->links() }}
         </div>
     </x-admin-blog.layout>
 
