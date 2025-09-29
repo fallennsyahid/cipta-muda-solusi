@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Mews\Purifier\Facades\Purifier;
-use App\Enums\BlogStatus;
-use App\Enums\Status;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\User;
+use App\Enums\Status;
+use App\Enums\BlogStatus;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Mews\Purifier\Facades\Purifier;
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class BlogsAdminController extends Controller
@@ -28,7 +31,9 @@ class BlogsAdminController extends Controller
         $blogsPending = Blog::where('status', BlogStatus::Pending->value)->count();
         $blogsArchived = Blog::where('status', BlogStatus::Archived->value)->count();
 
-        $notifications = $user->unreadNotifications;
+        $notifications = $user->unreadNotifications->filter(function ($notif) {
+            return $notif->created_at >= Carbon::now()->subDay();
+        });
 
         return view('admin.blogs.index', compact('blogs', 'blogsTotal', 'blogStatus', 'blogsPublished', 'blogsPending', 'blogsArchived', 'notifications'));
     }
@@ -47,18 +52,28 @@ class BlogsAdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'nullable',
-            'category' => 'nullable',
-            'image' => 'nullable',
-            'description' => 'nullable',
-            'content_create' => 'nullable',
-            'status' => 'nullable',
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:5120',
+            'description' => 'required',
+            'content_create' => 'required',
+            'status' => 'required',
         ]);
 
         $validated['slug'] = Str::slug($request->title);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('blogs', 'public');
+            $imageFile = $request->file('image');
+
+            $fileName = time() . '-' . Str::slug(pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME)) . '.webp';
+
+            $path = storage_path('app/public/blogs/' . $fileName);
+
+            $manager = new ImageManager(new Driver());
+
+            $manager->read($imageFile->getRealPath())->toWebp(80)->save($path);
+
+            $validated['image'] = 'blogs/' . $fileName;
         }
 
         $validated['content'] = Purifier::clean($validated['content_create']);
@@ -159,7 +174,7 @@ class BlogsAdminController extends Controller
             'status' => Status::Published->value,
         ]);
 
-        $auth->unreadNotifications()->where('data->blog_id', $id)->update(['read_at' => now()]);
+        $auth->unreadNotifications->where('data->blog_id', $id)->update(['read_at' => now()]);
 
 
         return back()->with('success', 'Blog berhasil dipublish');

@@ -45,9 +45,13 @@
 
             <div class="flex flex-wrap items-center gap-6 text-text mb-8">
                 <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 bg-text/25 flex items-center justify-center rounded-full overflow-hidden">
-                        <i class="fas fa-user"></i>
-                    </span>
+                    @if ($blog->user->profile_picture)
+                        <img src="{{ Storage::url($blog->user->profile_picture) }}" alt="{{ $blog->user->name }}"
+                            class="w-6 h-6 rounded-full mr-2 object-cover">
+                    @else
+                        <img src="{{ Avatar::create($blog->user->name)->toBase64() }}" alt="{{ $blog->user->name }}"
+                            class="w-6 h-6 rounded-full mr-2 object-cover">
+                    @endif
                     <span class="font-medium">{{ $blog->user->name }}</span>
                 </div>
                 <div class="flex items-center gap-2">

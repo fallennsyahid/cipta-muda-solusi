@@ -27,62 +27,165 @@
 <body>
 
     <x-header>
-        {{-- <div class="flex items-center justify-center px-4 py-6">
+        <div class="flex items-center justify-center px-4 py-6">
             <button id="hamburger" name="hamburger" type="button" aria-label="Hamburger Menu"
-                class="block absolute right-4 lg:hidden">
+                class="block absolute right-4 lg:hidden cursor-pointer">
                 <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
                 <span class="hamburger-line transition duration-300 ease-in-out"></span>
                 <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
             </button>
 
-            <nav id="nav-menu" class="navbar-effect shadow-2 px-6 py-4 rounded-full">
+            <nav class="navbar-effect shadow-2 px-6 py-4 rounded-full hidden lg:block">
                 <ul class="flex items-center justify-center gap-8" id="#nav-active">
                     <li class="group">
-                        <a href="#" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Beranda
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#about" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('index') }}#about"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Tentang
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#service" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('index') }}#service"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Layanan
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#portfolio" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('index') }}#portfolio"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Portfolio
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#team" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('index') }}#team"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Team
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('index') }}#partner"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
+                            Partner
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="{{ route('index') }}#contact"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Contact
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('user.jobs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
+                            Karir
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="{{ route('user.faqs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Faq
                         </a>
                     </li>
                     <li class="group">
-                        <a href="#contact" class="text-base font-medium text-black2 group-hover:text-primary">
+                        <a href="{{ route('user.blogs.index') }}"
+                            class="text-base font-medium text-black2 group-hover:text-primary">
                             Blog
                         </a>
                     </li>
-                    <li class="group">
-                        <i class="fas fa-sun text-darkChoco text-2xl"></i>
-                    </li>
                 </ul>
             </nav>
-        </div> --}}
+        </div>
+
+        <nav id="nav-menu"
+            class="fixed top-0 right-0 h-full bg-gradient-to-b from-white via-gray-50 to-gray-100 w-72 shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-50 lg:hidden rounded-l-2xl">
+
+            <div class="flex justify-end p-6">
+                <button type="button" aria-label="Mobile Close Sidebar" id="mobile-close-sidebar"
+                    name="mobile-close-sidebar"
+                    class="close-navbar flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-primary hover:text-white duration-300 transition-all ease-in-out cursor-pointer shadow-md">
+                    <i
+                        class="fas fa-times text-lg transform transition-transform duration-500 group-hover:rotate-90"></i>
+                </button>
+            </div>
+
+            <ul class="flex flex-col gap-6 px-8 py-6 text-lg font-medium">
+                <li>
+                    <a href="{{ route('index') }}#"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-home group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('index') }}#about"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-user group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Tentang</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('index') }}#service"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-cogs group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Layanan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('index') }}#portfolio"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-briefcase group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('index') }}#team"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-users group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('index') }}#partner"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-handshake group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Partner</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('index') }}#contact"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-envelope group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.jobs.index') }}"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-briefcase group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Karir</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.faqs.index') }}"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-question-circle group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('user.blogs.index') }}"
+                        class="group flex items-center gap-3 text-gray-700 hover:text-primary transition duration-300">
+                        <i class="fas fa-blog group-hover:scale-110 transition-transform duration-300"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </x-header>
 
     <section id="hero"
@@ -141,9 +244,9 @@
                 @endforeach
             </div>
 
-            <div class="flex justify-end mt-4">
+            {{-- <div class="flex justify-end mt-4">
                 {{ $faqs->links() }}
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -186,7 +289,8 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-text"></i>
                         </div>
-                        <input type="email" name="email_input" id="email_input" placeholder="Masukkan email" required
+                        <input type="email" name="email_input" id="email_input" placeholder="Masukkan email"
+                            required
                             class="w-full pl-10 py-3 pr-3 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
                     <div class="mb-2">

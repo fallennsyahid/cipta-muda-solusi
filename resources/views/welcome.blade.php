@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda">
     <title>Cipta Muda Solusi</title>
 
 
@@ -72,7 +73,8 @@
             class="fixed top-0 right-0 h-full bg-gradient-to-b from-white via-gray-50 to-gray-100 w-72 shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out z-50 lg:hidden rounded-l-2xl">
 
             <div class="flex justify-end p-6">
-                <button
+                <button type="button" aria-label="Mobile Close Sidebar" id="mobile-close-sidebar"
+                    name="mobile-close-sidebar"
                     class="close-navbar flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-primary hover:text-white duration-300 transition-all ease-in-out cursor-pointer shadow-md">
                     <i
                         class="fas fa-times text-lg transform transition-transform duration-500 group-hover:rotate-90"></i>
@@ -212,12 +214,14 @@
     {{-- About Section Start --}}
     <section id="about" class="py-28 bg-section overflow-x-hidden">
         <div class="container max-w-full">
-            <div class="mb-5">
-                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">Tentang Kami</h1>
+            <div class="mb-5 relative z-10 md:z-0">
+                <h1 class="font-bold text-3xl md:text-4xl lg:text-5xl text-heading text-center mb-5">
+                    Tentang Kami</h1>
                 <div class="w-25 h-1 mx-auto bg-secondary rounded-full"></div>
             </div>
 
-            <p class="font-lato text-text text-lg md:text-xl lg:text-2xl text-center max-w-3xl mx-auto px-4 lg:px-0">
+            <p
+                class="font-lato text-text text-lg md:text-xl lg:text-2xl text-center max-w-3xl mx-auto px-4 lg:px-0 relative z-10 md:z-0">
                 Kami berkomitmen membangun kepercayaan dan kerjasama dengan mitra strategis dalam menghadapi era digital
                 4.0.
             </p>

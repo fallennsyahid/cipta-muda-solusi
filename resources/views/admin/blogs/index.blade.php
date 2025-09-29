@@ -46,6 +46,18 @@
                         <span>Request Publish</span>
                     </button>
 
+                    @if ($notifications->count() > 0)
+                        <span id="notifBadge"
+                            class="absolute -top-1 -right-1 flex justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
+                            {{ $notifications->count() }}
+                        </span>
+                    @else
+                        <span id="notifBadge"
+                            class="absolute -top-1 -right-1 flex justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
+                            0
+                        </span>
+                    @endif
+
                     <!-- Dropdown -->
                     <div id="notifDropdown"
                         class="absolute w-80 bg-white shadow-xl left-0 top-14 rounded-xl border border-gray-100 z-20 overflow-hidden hidden">
@@ -210,14 +222,19 @@
                     <div class="mt-5 flex justify-between">
                         <div class="flex items-center gap-3">
                             <span class="flex items-center text-sm text-text">
-                                @if ($blog->user->profile_picture)
+                                @if (optional($blog->user)->profile_picture)
                                     <img src="{{ Storage::url($blog->user->profile_picture) }}"
                                         alt="{{ $blog->user->name }}" class="w-6 h-6 rounded-full mr-2 object-cover">
-                                @else
+                                    {{ $blog->user->name }}
+                                @elseif ($blog->user)
                                     <img src="{{ Avatar::create($blog->user->name)->toBase64() }}"
                                         alt="{{ $blog->user->name }}" class="w-6 h-6 rounded-full mr-2 object-cover">
+                                    {{ $blog->user->name }}
+                                @else
+                                    <img src="{{ Avatar::create('Admin')->toBase64() }}" alt="Admin"
+                                        class="w-6 h-6 rounded-full mr-2 object-cover">
+                                    <span class="italic text-gray-500">Admin</span>
                                 @endif
-                                {{ $blog->user->name }}
                             </span>
                             <span class="flex items-center text-sm text-text">
                                 <i class="fas fa-calendar mr-2"></i>
@@ -764,6 +781,8 @@
         });
     });
 </script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
