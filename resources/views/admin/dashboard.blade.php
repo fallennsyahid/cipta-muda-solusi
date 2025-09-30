@@ -24,11 +24,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    {{-- Tiny --}}
-    <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
-        referrerpolicy="origin" crossorigin="anonymous"></script>
-
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -623,7 +618,13 @@
                                 <i class="fas fa-table"></i>
                                 Content<span class="text-red-400">*</span>
                             </label>
-                            <textarea id="content_create" name="content_create" rows="6" required class="tinymce-editor w-full px-4 py-3"></textarea>
+                            {{-- <textarea id="content_create" name="content_create" rows="6" required class="tinymce-editor w-full px-4 py-3"></textarea> --}}
+
+                            <input type="hidden" name="content_create" id="content_create" class="quill-hidden"
+                                value="{{ old('content_create') }}">
+
+                            <div class="quill-editor rounded-b-lg border border-text/25"
+                                style="background: white; height: 200px;"></div>
                         </div>
 
                         <div class="upload-group">
@@ -708,44 +709,49 @@
     </div>
     {{-- Create Blog End --}}
 </body>
+<!-- Quill CSS -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        tinymce.init({
-            selector: 'textarea.tinymce-editor',
-            plugins: [
-                // Core editing features
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists',
-                'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                // Your account includes a free trial of TinyMCE premium features
-                // Try the most popular premium features until Sep 29, 2025:
-                'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed',
-                'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable',
-                'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments',
-                'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography',
-                'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-                'See docs to implement AI Assistant')),
-            uploadcare_public_key: '909f4161f60569b19c78',
+        const editors = document.querySelectorAll(".quill-editor");
 
-            setup: function(editor) {
-                editor.on('change', function() {
-                    tinymce.triggerSave(); // simpan isi editor ke <textarea>
-                });
+        editors.forEach(function(editorEl) {
+            // Quill instance
+            const quill = new Quill(editorEl, {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        [{
+                            header: [1, 2, 3, false]
+                        }],
+                        ["bold", "italic", "underline", "strike"],
+                        [{
+                            list: "ordered"
+                        }, {
+                            list: "bullet"
+                        }],
+                        ["link", "image", "blockquote", "code-block"],
+                        ["clean"]
+                    ]
+                }
+            });
+
+            // hidden input terdekat
+            const hiddenInput = editorEl.parentElement.querySelector(".quill-hidden");
+
+            // Prefill kalau edit (ambil dari hidden input)
+            if (hiddenInput.value) {
+                quill.clipboard.dangerouslyPasteHTML(hiddenInput.value);
             }
+
+            // Update hidden input setiap kali ada perubahan
+            quill.on("text-change", function() {
+                hiddenInput.value = quill.root.innerHTML;
+            });
         });
     });
 </script>

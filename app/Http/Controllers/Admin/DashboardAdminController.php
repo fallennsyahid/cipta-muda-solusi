@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Mews\Purifier\Facades\Purifier;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardAdminController extends Controller
 {
@@ -189,6 +190,8 @@ class DashboardAdminController extends Controller
 
         $validated['content'] = Purifier::clean($validated['content_create']);
 
+        $user = Auth::user();
+
         Blog::create([
             'title' => $validated['title'],
             'category' => $validated['category'],
@@ -197,6 +200,7 @@ class DashboardAdminController extends Controller
             'description' => $validated['description'],
             'content' => $validated['content_create'],
             'status' => $validated['status'],
+            'user_id' => $user->id,
         ]);
 
         return redirect()->route('blogs.index')->with('success', 'Blog berhasil dibuat!');

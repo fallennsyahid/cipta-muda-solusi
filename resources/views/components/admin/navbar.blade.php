@@ -5,7 +5,8 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div>
-                <h2 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <h2
+                    class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent uppercase">
                     {{ ucwords(str_replace(['.', 'index'], [' ', ''], Route::currentRouteName())) }}
                 </h2>
                 <p class="text-sm text-text font-lato">Manage your company profile content</p>
