@@ -71,7 +71,7 @@ class JobVacancyAdminController extends Controller
      */
     public function show(JobVacancy $job)
     {
-        $applicants =  $job->applicants()->latest()->get();
+        $applicants =  $job->applicants()->latest()->paginate(5);
         $totalApplicants = $job->applicants()->count();
         $pendingApplicants = $job->applicants()->where('status', Status::Pending->value)->count();
         $acceptApplicants = $job->applicants()->where('status', Status::Diterima->value)->count();

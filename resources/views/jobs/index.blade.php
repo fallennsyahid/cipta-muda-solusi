@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Cropper JS -->
+    <link href="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.js"></script>
+
 </head>
 
 <body>
@@ -514,6 +519,44 @@
                             class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                     </div>
 
+                    <div class="mb-2">
+                        <label for="applicant_image" class="text-primary text-base font-medium">
+                            Foto Anda
+                        </label>
+                    </div>
+
+                    <div class="photo-group w-full space-y-3">
+                        <!-- Tombol Upload -->
+                        <div class="flex justify-center">
+                            <label
+                                class="upload-btn bg-orange-500 hover:bg-orange-600 w-full justify-center text-white px-5 py-2 rounded-lg font-semibold cursor-pointer flex items-center gap-2 transition">
+                                <i class="fas fa-image"></i> Upload Foto
+                                <input type="file" name="applicant_image" id="applicant_image" required
+                                    accept="image/jpeg,image/png,image/webp" class="photo-input hidden" />
+                            </label>
+                        </div>
+
+                        <div class="preview-container hidden opacity-0 transition-opacity duration-300">
+                            <!-- Preview -->
+                            <div class="w-full bg-gray-100 rounded-lg overflow-hidden flex justify-center items-center"
+                                style="height: 350px;">
+                                <img class="photo-preview hidden max-h-full object-contain" />
+                            </div>
+
+                            <!-- Tombol aksi -->
+                            <div class="flex gap-3 mt-3">
+                                <button
+                                    class="action-btn hidden flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium transition">
+                                    Potong
+                                </button>
+                                <button
+                                    class="delete-btn hidden flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-medium transition">
+                                    Hapus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="upload-group">
                         <div class="mb-2">
                             <label for="applicant_file" class="text-primary text-base font-medium">Upload CV</label>
@@ -572,7 +615,7 @@
             <div class="close-apply-modal absolute inset-0 bg-black/40 backdrop-blur-md"></div>
 
             <div
-                class="modal-content bg-white relative rounded-t-xl shadow-xl max-w-lg w-full transform translate-y-full transition-transform duration-300 ease-out">
+                class="modal-content bg-white relative rounded-t-xl shadow-xl max-w-2xl w-full transform translate-y-full transition-transform duration-300 ease-out">
                 <div class="p-6">
                     <div class="w-16 h-1 bg-secondary rounded-full mx-auto mb-4"></div>
 
@@ -666,6 +709,7 @@
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary resize-none"></textarea>
                         </div>
 
+                        {{-- Link --}}
                         <div class="mb-2">
                             <label for="link" class="text-primary text-base font-medium">Link Portfolio / Github /
                                 LinkedIn</label>
@@ -678,6 +722,59 @@
                                 placeholder="https://www.github.com/username"
                                 class="w-full pl-12 py-4 pr-4 border border-text/25 text-darkChoco rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-secondary">
                         </div>
+
+                        {{-- Employee Image --}}
+                        <div class="mb-2">
+                            <label for="employee_image" class="text-primary text-base font-medium">
+                                Foto Anda
+                            </label>
+                        </div>
+
+                        <div class="photo-group w-full space-y-3">
+                            <!-- Tombol Upload -->
+                            <div class="flex justify-center">
+                                <label
+                                    class="upload-btn bg-orange-500 hover:bg-orange-600 w-full justify-center text-white px-5 py-2 rounded-lg font-semibold cursor-pointer flex items-center gap-2 transition">
+                                    <i class="fas fa-image"></i> Upload Foto
+                                    <input type="file" name="applicant_picture" id="applicant_picture" required
+                                        accept="image/jpeg,image/png,image/webp" class="photo-input hidden" />
+                                </label>
+                            </div>
+
+                            <div class="preview-container hidden opacity-0 transition-opacity duration-300">
+                                <!-- Preview -->
+                                <div class="w-full bg-gray-100 rounded-lg overflow-hidden flex justify-center items-center"
+                                    style="height: 350px;">
+                                    <img class="photo-preview hidden max-h-full object-contain" />
+                                </div>
+
+                                <!-- Tombol aksi -->
+                                <div class="flex gap-3 mt-3">
+                                    <button
+                                        class="action-btn hidden flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium transition">
+                                        Potong
+                                    </button>
+                                    <button
+                                        class="delete-btn hidden flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-medium transition">
+                                        Hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <div class="flex flex-col items-center space-y-4">
+                            <!-- Input file -->
+                            <input id="photoInput" type="file" accept="image/*" class="border rounded p-2" />
+
+                            <!-- Preview -->
+                            <div
+                                class="w-64 h-64 bg-gray-100 flex items-center justify-center overflow-hidden rounded-lg">
+                                <img id="photoPreview" class="hidden max-w-full" />
+                            </div>
+
+                            <button id="cropBtn" class="hidden bg-blue-600 text-white px-4 py-2 rounded">Crop &
+                                Upload</button>
+                        </div> --}}
 
                         {{-- Upload CV --}}
                         <div class="upload-group">
@@ -742,6 +839,116 @@
     @endforeach
 </body>
 
+<script>
+    document.querySelectorAll(".photo-group").forEach((group) => {
+        const input = group.querySelector(".photo-input");
+        const previewContainer = group.querySelector(".preview-container");
+        const preview = group.querySelector(".photo-preview");
+        const actionBtn = group.querySelector(".action-btn");
+        const deleteBtn = group.querySelector(".delete-btn");
+        let cropper = null;
+        let isCropped = false;
+
+        // Upload foto
+        input.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                preview.src = reader.result;
+                preview.classList.remove("hidden");
+                previewContainer.classList.remove("hidden");
+                setTimeout(() => previewContainer.classList.add("opacity-100"), 10);
+
+                actionBtn.classList.remove("hidden");
+                deleteBtn.classList.remove("hidden");
+
+                // Reset tombol
+                isCropped = false;
+                actionBtn.textContent = "Potong";
+                actionBtn.classList.remove("bg-blue-500", "hover:bg-blue-600");
+                actionBtn.classList.add("bg-green-500", "hover:bg-green-600");
+
+                // Cropper baru
+                if (cropper) cropper.destroy();
+                cropper = new Cropper(preview, {
+                    aspectRatio: 1,
+                    viewMode: 1,
+                    autoCropArea: 1,
+                    dragMode: "move",
+                });
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Tombol Potong / Ganti Foto
+        actionBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (!isCropped && cropper) {
+                const canvas = cropper.getCroppedCanvas({
+                    width: 400,
+                    height: 400,
+                });
+
+                // Buat blob file baru agar dikirim ke server
+                canvas.toBlob((blob) => {
+                    const file = new File([blob], "cropped-photo.jpg", {
+                        type: "image/jpeg"
+                    });
+
+                    // Buat ulang input file agar punya file hasil crop
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    input.files = dataTransfer.files;
+                }, "image/jpeg");
+
+                preview.src = canvas.toDataURL();
+                cropper.destroy();
+                cropper = null;
+                isCropped = true;
+
+                // Ubah tombol jadi "Ganti Foto"
+                actionBtn.textContent = "Ganti Foto";
+                actionBtn.classList.remove("bg-green-500", "hover:bg-green-600");
+                actionBtn.classList.add("bg-blue-500", "hover:bg-blue-600");
+            } else {
+                input.click(); // buka file picker lagi
+            }
+        });
+
+        // Tombol Hapus
+        deleteBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+
+            preview.src = "";
+            preview.classList.add("hidden");
+            actionBtn.classList.add("hidden");
+            deleteBtn.classList.add("hidden");
+            input.value = "";
+            isCropped = false;
+
+            // Sembunyikan container dengan animasi halus
+            previewContainer.classList.remove("opacity-100");
+            setTimeout(() => previewContainer.classList.add("hidden"), 300);
+        });
+
+        // 🔒 Cegah form dikirim sebelum foto dipotong
+        const form = group.closest("form");
+        form.addEventListener("submit", (event) => {
+            if (!isCropped) {
+                event.preventDefault();
+                alert("Silakan potong foto terlebih dahulu sebelum mengirim lamaran!");
+            }
+        });
+    });
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     @if (session('success'))
@@ -756,7 +963,6 @@
 </script>
 
 <script>
-    // Watch
     const clockEl = document.getElementById("clock");
     let serverTime = new Date(clockEl.dataset.time);
 
@@ -767,13 +973,10 @@
         let minutes = serverTime.getMinutes();
         let seconds = serverTime.getSeconds();
 
-        let ampm = hours >= 12 ? "PM" : "AM";
-        hours = hours % 12 || 12;
-
         clockEl.innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')} ${ampm}`;
+            `${seconds.toString().padStart(2, '0')}`;
     };
 
     setInterval(updateClock, 1000);
@@ -791,7 +994,7 @@
         // klik area = trigger input file
         dropArea.addEventListener('click', () => input.click());
 
-        // fungsi render file
+        // fungsi render file (hanya PDF)
         const renderFile = (file) => {
             if (!file) return;
 
@@ -800,27 +1003,17 @@
                 return;
             }
 
+            // reset tampilan
             fileName.textContent = file.name;
             fileSize.textContent = `${(file.size / 1024).toFixed(1)} KB`;
-
-            // reset tampilan dulu
             previewImage.src = "";
             previewImage.classList.add('hidden');
+
             const oldPdfIcon = group.querySelector('.pdf-icon');
             if (oldPdfIcon) oldPdfIcon.remove();
 
-            // kalau gambar → tampilkan thumbnail
-            if (["image/jpeg", "image/png", "image/jpg", "image/webp"].includes(file.type)) {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    previewImage.src = ev.target.result;
-                    previewImage.classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
-            }
-
-            // kalau PDF → pakai icon font awesome
-            else if (file.type === "application/pdf") {
+            // hanya izinkan PDF
+            if (file.type === "application/pdf") {
                 const pdfUrl = URL.createObjectURL(file);
 
                 let pdfIcon = document.createElement("i");
@@ -829,7 +1022,7 @@
 
                 preview.querySelector('.flex').prepend(pdfIcon);
             } else {
-                alert('File harus berupa JPEG/PNG/JPG/WEBP atau PDF!');
+                alert('Hanya file PDF yang diperbolehkan!');
                 return;
             }
 
@@ -879,6 +1072,7 @@
         });
     });
 </script>
+
 
 <script src="{{ asset('js/jobs.js') }}"></script>
 <script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>

@@ -8,6 +8,7 @@
     <meta name="description" content="Solusi IT, Marketing & Event Organizer Terpercaya untuk Kemajuan Bisnis Anda">
     <title>Cipta Muda Solusi</title>
 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <link rel="shortcut icon" href="{{ asset('landing/icon-cms.png') }}" type="image/png">
 
@@ -26,7 +27,8 @@
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- Swiper CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 </head>
 
@@ -848,7 +850,7 @@
                 <div class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/randy-khairu.webp') }}" alt=""
-                            class="rounded-full h-24 w-24 object-contain">
+                            class="rounded-full h-28 w-28 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Randy Khairu Basyar</h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">Komisaris Utama</h2>
@@ -873,7 +875,7 @@
                     class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-0 lg:translate-y-6">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/aditya_bayu.webp') }}" alt=""
-                            class="rounded-full h-24 w-24 object-contain">
+                            class="rounded-full h-28 w-28 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Aditya Bayu Irawan</h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">CEO</h2>
@@ -901,7 +903,7 @@
                 <div class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/irfan_fauzan.webp') }}" alt=""
-                            class="rounded-full h-24 w-24 object-contain">
+                            class="rounded-full h-28 w-28 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Irfan Fauzan</h1>
                     <h2 class="text-sm font-semibold text-heading text-center mb-3">IT Director</h2>
@@ -930,7 +932,7 @@
                     class="bg-white shadow-4 p-6 rounded-xl border border-[#c8c8c8] flex flex-col items-center translate-y-0 lg:translate-y-6">
                     <div class="relative mb-4">
                         <img src="{{ asset('landing/webp/teams/nanda.webp') }}" alt=""
-                            class="rounded-full h-24 w-24 object-contain">
+                            class="rounded-full h-28 w-28 object-contain">
                     </div>
                     <h1 class="text-base text-heading font-bold text-center mb-1">Nanda
                         Ikhsanabdullah Utama
@@ -994,18 +996,29 @@
                 terbaik.
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 mx-12 gap-6 my-10">
-                @foreach ($partners as $partner)
-                    <a href="{{ $partner->partner_links }}" target="_blank">
-                        <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
-                            <div class="w-32 h-32 flex items-center justify-center">
-                                <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
-                                    title="{{ $partner->name }}"
-                                    class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
-                            </div>
+            <div class="swiper mySwiper my-10">
+                <div class="swiper-wrapper py-6">
+                    @foreach ($partners as $partner)
+                        <div class="swiper-slide">
+                            <a href="{{ $partner->partner_links }}" target="_blank">
+                                <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
+                                    <div class="w-32 h-32 flex items-center justify-center">
+                                        <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
+                                            title="{{ $partner->name }}"
+                                            class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                @endforeach
+                    @endforeach
+                </div>
+
+                <!-- Tombol Navigasi -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
 
             <div class="flex flex-col gap-2 items-center justify-center">
@@ -1410,6 +1423,33 @@
     </footer>
     {{-- Footer Section End --}}
 </body>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        breakpoints: {
+            640: {
+                slidesPerView: 2
+            },
+            1024: {
+                slidesPerView: 3
+            },
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if (session('success'))
@@ -1434,6 +1474,28 @@
         });
     </script>
 @endif
+
+<script>
+    // Watch
+    const clockEl = document.getElementById("clock");
+    let serverTime = new Date(clockEl.dataset.time);
+
+    const updateClock = () => {
+        serverTime.setSeconds(serverTime.getSeconds() + 1);
+
+        let hours = serverTime.getHours();
+        let minutes = serverTime.getMinutes();
+        let seconds = serverTime.getSeconds();
+
+        clockEl.innerText =
+            `${hours.toString().padStart(2, '0')}:` +
+            `${minutes.toString().padStart(2, '0')}:` +
+            `${seconds.toString().padStart(2, '0')}`;
+    };
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
 
 <script>
     document.querySelectorAll('.upload-group').forEach(group => {

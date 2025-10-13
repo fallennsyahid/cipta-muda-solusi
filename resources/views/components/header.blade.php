@@ -1,12 +1,9 @@
 <header class="absolute top-0 left-0 w-full flex items-center z-99999">
     <div class="container max-w-full relative">
         <div class="flex items-center justify-between">
-            <a href="{{ route('index') }}" class="pl-4 lg:pl-10 py-6 flex flex-col items-center">
+            <a href="{{ route('index') }}" class="pl-4 lg:pl-10 py-6">
                 <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
                     class="h-10 md:h-12 lg:h-14 w-auto" width="675" height="200">
-                <span class="font-bold text-sm sm:text-base md:text-lg text-heading">
-                    PT. Cipta Muda Solusi
-                </span>
             </a>
 
 

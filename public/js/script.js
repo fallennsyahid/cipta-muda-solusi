@@ -1,3 +1,6 @@
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
+
 // Search Form
 const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('#input-search');
@@ -109,26 +112,6 @@ visiMisiBtn.addEventListener('click', function (e) {
     visiMisiCard.classList.remove('-rotate-90', 'translate-x-2');
 })
 
-// Watch
-const clockEl = document.getElementById("clock");
-let serverTime = new Date(clockEl.dataset.time);
-
-const updateClock = () => {
-    serverTime.setSeconds(serverTime.getSeconds() + 1);
-
-    let hours = serverTime.getHours();
-    let minutes = serverTime.getMinutes();
-    let seconds = serverTime.getSeconds();
-
-    clockEl.innerText =
-        `${hours.toString().padStart(2, '0')}:` +
-        `${minutes.toString().padStart(2, '0')}:` +
-        `${seconds.toString().padStart(2, '0')}`;
-};
-
-setInterval(updateClock, 1000);
-updateClock();
-
 // Partner Modal 
 const openPartnerModal = document.querySelector('#open-partner-modal');
 const partnerModal = document.querySelector('#partner-modal');
@@ -179,6 +162,27 @@ selectCompanyType.addEventListener('change', function () {
         otherCompanyType.required = false;
         otherCompanyType.value = "";
     }
+});
+
+const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    centeredSlides: true,
+    slidesOffsetBefore: 24,
+    slidesOffsetAfter: 24,
+    breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next", // <- kurang titik di kode kamu
+        prevEl: ".swiper-button-prev",
+    },
 });
 
 

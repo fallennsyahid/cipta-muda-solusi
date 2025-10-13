@@ -104,7 +104,22 @@
                     <div class="flex justify-between">
                         <div class="flex items-center gap-3">
                             <div class="flex items-center gap-3">
-                                <h1 class="text-2xl text-heading font-semibold">{{ $cv->applicant_name }}</h1>
+                                @if ($cv->applicant_image)
+                                    <img src="{{ Storage::url($cv->applicant_image) }}" alt=""
+                                        class="w-16 h-16 rounded-full border border-text/25 p-2">
+                                @else
+                                    <div
+                                        class="h-16 w-16 rounded-full bg-accent flex items-center justify-center text-heading font-bold text-xl">
+                                        {{ strtoupper(substr($cv->applicant_name, 0, 1)) }}
+                                    </div>
+                                @endif
+                                <div>
+                                    <h1 class="text-2xl text-heading font-semibold">{{ $cv->applicant_name }}</h1>
+                                    <span class="text-text font-medium text-base">
+                                        {{ \Carbon\Carbon::parse($cv->date_of_birth)->format('d/m/Y') }}
+                                        ({{ \Carbon\Carbon::parse($cv->date_of_birth)->age }} tahun)
+                                    </span>
+                                </div>
                                 @if ($cv->status === 'Diterima')
                                     <div class="flex items-center gap-2">
                                         <span class="bg-green-200 px-2 py-1 rounded-full text-green-700">Diterima</span>
@@ -133,11 +148,6 @@
                             </form>
                         </div>
                     </div>
-
-                    <span class="block mt-2 text-text font-medium text-lg">
-                        {{ \Carbon\Carbon::parse($cv->date_of_birth)->format('d/m/Y') }}
-                        ({{ \Carbon\Carbon::parse($cv->date_of_birth)->age }} tahun)
-                    </span>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
                         <div class="flex items-center text-text text-base">

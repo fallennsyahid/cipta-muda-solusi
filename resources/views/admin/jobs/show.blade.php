@@ -112,10 +112,15 @@
                     <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
                         <div class="flex items-start justify-between gap-4 mb-4">
                             <div class="flex items-center space-x-3">
-                                <div
-                                    class="h-16 w-16 rounded-full bg-accent flex items-center justify-center text-heading font-bold text-xl">
-                                    {{ strtoupper(substr($applicant->full_name, 0, 1)) }}
-                                </div>
+                                @if ($applicant->applicant_picture)
+                                    <img src="{{ Storage::url($applicant->applicant_picture) }}" alt=""
+                                        class="w-16 h-16 rounded-full border border-text/25 p-2">
+                                @else
+                                    <div
+                                        class="h-16 w-16 rounded-full bg-accent flex items-center justify-center text-heading font-bold text-xl">
+                                        {{ strtoupper(substr($applicant->full_name, 0, 1)) }}
+                                    </div>
+                                @endif
                                 <div>
                                     <h3 class="text-2xl font-semibold text-darkChoco">
                                         {{ $applicant->full_name }}</h3>

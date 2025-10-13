@@ -17,9 +17,8 @@ class Applicant extends Model
         'date_of_birth',
         'experience',
         'cv',
-        'cover_letter',
+        'applicant_picture',
         'link',
-        'position'
     ];
 
     public function jobVacancy()

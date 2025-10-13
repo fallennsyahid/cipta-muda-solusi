@@ -588,7 +588,7 @@
             <div class="close-modal absolute bg-black/40 inset-0 backdrop-blur-sm"></div>
 
             <div
-                class="bg-white max-w-lg w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
+                class="bg-white max-w-2xl w-full rounded-xl shadow-2xl relative border border-white/20 overflow-hidden">
                 <div
                     class="flex justify-between items-center bg-gradient-to-r from-heading via-primary to-secondary p-5 relative overflow-hidden">
                     <h1 class="text-xl text-white font-bold">Pilih Metode Hubungi</h1>
@@ -598,7 +598,7 @@
                     </a>
                 </div>
 
-                <div class="flex flex-col justify-center space-y-4 p-5">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-5">
                     <a href="https://wa.me/{{ $partner->partner_phone_number }}" target="_blank"
                         class="flex items-center justify-center text-white text-lg bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
                         <i class="fab fa-whatsapp mr-2"></i>

@@ -70,10 +70,17 @@ class JobsController extends Controller
             'applicant_file' => 'required|file|mimes:pdf|max:5120',
             'applicant_experience' => 'required|string',
             'applicant_link' => 'required|url',
+            'applicant_image' => 'required|image',
         ]);
+
         $fillPath = null;
         if ($request->hasFile('applicant_file')) {
             $fillPath = $request->file('applicant_file')->store('cv_applicants', 'public');
+        }
+
+        $imagePath = null;
+        if ($request->hasFile('applicant_image')) {
+            $imagePath = $request->file('applicant_image')->store('applicant_image', 'public');
         }
 
         CvApplicant::create([
@@ -84,6 +91,7 @@ class JobsController extends Controller
             'applicant_file' => $fillPath,
             'applicant_experience' => $request->applicant_experience,
             'applicant_link' => $request->applicant_link,
+            'applicant_image' => $imagePath,
         ]);
 
         return redirect()->route('user.jobs.index')->with('success', 'CV Berhasil Terkirim');
@@ -99,11 +107,16 @@ class JobsController extends Controller
             'date_of_birth' => 'required|date',
             'experience' => 'required|string',
             'cv' => 'required|file|mimes:pdf|max:5120',
+            'applicant_picture' => 'required|image',
             'link' => 'required|url',
         ]);
 
         if ($request->hasFile('cv')) {
             $validated['cv'] = $request->file('cv')->store('cvs', 'public');
+        }
+
+        if ($request->hasFile('applicant_picture')) {
+            $validated['applicant_picture'] = $request->file('applicant_picture')->store('applicants_picture', 'public');
         }
 
         $validated['job_vacancy_id'] = $job->id;

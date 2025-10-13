@@ -103,7 +103,7 @@
                     class="bg-white border-0 rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 geometric-shape">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
-                            <img src="{{ $account->image ? Storage::url($account->image) : Avatar::create($account->name)->toBase64() }}"
+                            <img src="{{ $account->profile_picture ? Storage::url($account->profile_picture) : Avatar::create($account->name)->toBase64() }}"
                                 alt="{{ $account->name }}" class="w-16 h-16 rounded-full border border-text/25">
                             <div class="flex flex-col">
                                 <h1 class="text-lg font-semibold text-text">{{ $account->name }}</h1>

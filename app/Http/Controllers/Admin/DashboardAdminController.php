@@ -21,38 +21,41 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardAdminController extends Controller
 {
+    private function calculatePrecentage($thisMonth, $lastMonth)
+    {
+        if ($lastMonth > 0) {
+            if ($thisMonth == 0) {
+                return null;
+            }
+            return (($thisMonth - $lastMonth) / $lastMonth) * 100;
+        }
+        return null;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $totalJobsAll = JobVacancy::count();
         $totalJobsThisMonth = JobVacancy::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
         $totalJobsLastMonth = JobVacancy::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageJobChange = 0;
-        if ($totalJobsLastMonth > 0) {
-            $percentageJobChange = (($totalJobsThisMonth - $totalJobsLastMonth) / $totalJobsLastMonth) * 100;
-        }
+        $percentageJobChange = $this->calculatePrecentage($totalJobsThisMonth, $totalJobsLastMonth);
 
+        $totalActivePartnersAll = Partner::count();
         $totalActivePartnersThisMonth = Partner::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
         $totalActivePartnersLastMonth = Partner::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageActivePartnersChange = 0;
-        if ($totalActivePartnersLastMonth > 0) {
-            $percentageActivePartnersChange = (($totalActivePartnersThisMonth - $totalActivePartnersLastMonth) / $totalActivePartnersLastMonth) * 100;
-        }
+        $percentageActivePartnersChange = $this->calculatePrecentage($totalActivePartnersThisMonth, $totalActivePartnersLastMonth);
 
-        $totalBlogPublishedThisMonth = Blog::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
-        $totalBlogPublishedLastMonth = Blog::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageBlogPublishedChange = 0;
-        if ($totalBlogPublishedLastMonth > 0) {
-            $percentageBlogPublishedChange = (($totalBlogPublishedThisMonth - $totalBlogPublishedLastMonth) / $totalBlogPublishedLastMonth) * 100;
-        }
+        $totalBlogPublishedAll = Blog::where('status', BlogStatus::Published->value)->count();
+        $totalBlogPublishedThisMonth = Blog::where('status', BlogStatus::Published->value)->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $totalBlogPublishedLastMonth = Blog::where('status', BlogStatus::Published->value)->whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
+        $percentageBlogPublishedChange = $this->calculatePrecentage($totalBlogPublishedThisMonth, $totalBlogPublishedLastMonth);
 
+        $totalFaqsAll = Faq::count();
         $totalFaqsThisMonth = Faq::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
         $totalFaqsLastMonth = Faq::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageFaqsChange = 0;
-        if ($totalFaqsLastMonth) {
-            $percentageFaqsChange = (($totalFaqsThisMonth - $totalFaqsLastMonth) / $totalFaqsLastMonth) * 100;
-        }
+        $percentageFaqsChange = $this->calculatePrecentage($totalFaqsThisMonth, $totalFaqsLastMonth);
 
         $jobTypes = JobType::cases();
         $jobStatus = Status::onlyActiveNonActive();
@@ -76,12 +79,16 @@ class DashboardAdminController extends Controller
         $publishedCounts = $sorted->pluck('published_count');
 
         return view('admin.dashboard', compact(
+            'totalJobsAll',
             'totalJobsThisMonth',
             'percentageJobChange',
+            'totalActivePartnersAll',
             'totalActivePartnersThisMonth',
+            'totalBlogPublishedAll',
             'percentageActivePartnersChange',
             'totalBlogPublishedThisMonth',
             'percentageBlogPublishedChange',
+            'totalFaqsAll',
             'totalFaqsThisMonth',
             'percentageFaqsChange',
             'jobTypes',

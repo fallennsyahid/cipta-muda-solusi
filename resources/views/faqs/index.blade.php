@@ -352,7 +352,6 @@
 @endif
 
 <script>
-    // Watch
     const clockEl = document.getElementById("clock");
     let serverTime = new Date(clockEl.dataset.time);
 
@@ -363,13 +362,10 @@
         let minutes = serverTime.getMinutes();
         let seconds = serverTime.getSeconds();
 
-        let ampm = hours >= 12 ? "PM" : "AM";
-        hours = hours % 12 || 12;
-
         clockEl.innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')} ${ampm}`;
+            `${seconds.toString().padStart(2, '0')}`;
     };
 
     setInterval(updateClock, 1000);

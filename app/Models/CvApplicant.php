@@ -14,6 +14,7 @@ class CvApplicant extends Model
         'applicant_file',
         'applicant_experience',
         'applicant_link',
+        'applicant_image',
         'status',
         'note',
     ];
