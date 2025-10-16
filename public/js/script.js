@@ -164,26 +164,28 @@ selectCompanyType.addEventListener('change', function () {
     }
 });
 
-const swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    centeredSlides: true,
-    slidesOffsetBefore: 24,
-    slidesOffsetAfter: 24,
-    breakpoints: {
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    navigation: {
-        nextEl: ".swiper-button-next", // <- kurang titik di kode kamu
-        prevEl: ".swiper-button-prev",
-    },
-});
+
+
+// const swiper = new Swiper(".mySwiper", {
+//     slidesPerView: 1,
+//     spaceBetween: 20,
+//     loop: true,
+//     centeredSlides: true,
+//     slidesOffsetBefore: 24,
+//     slidesOffsetAfter: 24,
+//     breakpoints: {
+//         640: { slidesPerView: 2 },
+//         1024: { slidesPerView: 3 },
+//     },
+//     pagination: {
+//         el: ".swiper-pagination",
+//         clickable: true,
+//     },
+//     navigation: {
+//         nextEl: ".swiper-button-next", // <- kurang titik di kode kamu
+//         prevEl: ".swiper-button-prev",
+//     },
+// });
 
 
 // Dots

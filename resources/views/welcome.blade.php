@@ -1476,28 +1476,6 @@
 @endif
 
 <script>
-    // Watch
-    const clockEl = document.getElementById("clock");
-    let serverTime = new Date(clockEl.dataset.time);
-
-    const updateClock = () => {
-        serverTime.setSeconds(serverTime.getSeconds() + 1);
-
-        let hours = serverTime.getHours();
-        let minutes = serverTime.getMinutes();
-        let seconds = serverTime.getSeconds();
-
-        clockEl.innerText =
-            `${hours.toString().padStart(2, '0')}:` +
-            `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')}`;
-    };
-
-    setInterval(updateClock, 1000);
-    updateClock();
-</script>
-
-<script>
     document.querySelectorAll('.upload-group').forEach(group => {
         const input = group.querySelector('input[type="file"]');
         const dropArea = group.querySelector('.drop-area');
@@ -1600,6 +1578,26 @@
 </script>
 
 <script src="{{ asset('js/script.js') }}"></script>
+<script>
+    // Watch
+    const clockEl = document.getElementById("clock");
+    let serverTime = new Date(clockEl.dataset.time);
 
+    const updateClock = () => {
+        serverTime.setSeconds(serverTime.getSeconds() + 1);
+
+        let hours = serverTime.getHours();
+        let minutes = serverTime.getMinutes();
+        let seconds = serverTime.getSeconds();
+
+        clockEl.innerText =
+            `${hours.toString().padStart(2, '0')}:` +
+            `${minutes.toString().padStart(2, '0')}:` +
+            `${seconds.toString().padStart(2, '0')}`;
+    };
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
 
 </html>
