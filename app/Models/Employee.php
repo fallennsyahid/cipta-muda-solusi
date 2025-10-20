@@ -11,6 +11,7 @@ class Employee extends Model
         'email',
         'phone_number',
         'position',
+        'employee_image',
         'status',
     ];
 }

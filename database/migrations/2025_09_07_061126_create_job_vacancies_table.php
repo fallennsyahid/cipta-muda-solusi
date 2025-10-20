@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('location', 100);
             $table->enum('job_type', JobType::values());
             $table->string('salary', 50);
-            $table->string('description', 250);
+            $table->text('description', 250);
             $table->json('skills');
             $table->enum('status', Status::values())->default(Status::Active->value);
             $table->timestamps();

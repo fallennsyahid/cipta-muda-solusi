@@ -36,7 +36,31 @@ class EmployeeAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'position' => 'required',
+            'applicant_picture' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $path = null;
+
+        if ($request->hasFile('applicant_picture')) {
+            // Simpan ke folder storage/app/public/applicants
+            $path = $request->file('applicant_picture')->store('applicants', 'public');
+        }
+
+        Employee::create([
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'position' => $request->position,
+            'applicant_picture' => $path, // simpan path hasil store
+            'status' => Status::Pending->value,
+        ]);
+
+        return redirect()->back()->with('success', 'Pelamar berhasil ditambahkan!');
     }
 
     /**

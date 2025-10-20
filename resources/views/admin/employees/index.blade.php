@@ -100,8 +100,13 @@
                     class="bg-white border-0 rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 geometric-shape">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
-                            <img src="{{ Avatar::create($employee->name)->toBase64() }}" alt="{{ $employee->name }}"
-                                class="w-16 h-16 rounded-full border border-text/25">
+                            @if ($employee->employee_image)
+                                <img src="{{ Storage::url($employee->employee_image) }}" alt="{{ $employee->name }}"
+                                    class="w-16 h-16 rounded-full border border-text/25">
+                            @else
+                                <img src="{{ Avatar::create($employee->name)->toBase64() }}"
+                                    alt="{{ $employee->name }}" class="w-16 h-16 rounded-full border border-text/25">
+                            @endif
                             <div class="flex flex-col">
                                 <h1 class="text-lg font-semibold text-text">{{ $employee->name }}</h1>
                                 <span

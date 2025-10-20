@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
@@ -28,6 +29,14 @@ class JobVacancy extends Model
     public function applicants()
     {
         return $this->hasMany(Applicant::class);
+    }
+
+    protected function skills(): Attribute
+    {
+        return Attribute::make(
+            set: fn($value) => is_array($value) ? json_encode($value) : $value,
+            get: fn($value) => json_decode($value, true)
+        );
     }
 
     public function toSearchableArray()

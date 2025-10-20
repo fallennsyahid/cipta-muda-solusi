@@ -44,27 +44,44 @@ class JobVacancyAdminController extends Controller
             'departement' => 'required|string|max:100',
             'location' => 'required|string|max:100',
             'job_type' => ['required', Rule::in(JobType::values())],
-            'contract_duration' => 'nullable|string',
+            'contract_duration' => ['nullable', 'required_if:job_type,contract', 'string', 'max:50'],
             'salary' => 'required|string|max:50',
             'description' => 'required|string|max:250',
-            'skills' => 'required|array|min:3|max:5',
-            'skills.*' => 'nullable|string|max:50',
+            'skills' => 'required|string',
             'status' => ['required', Rule::in(Status::onlyActiveNonActive())],
         ]);
 
-        $validated['skills'] = array_values(array_filter(
-            $validated['skills'],
-            fn($value) => !is_null($value) && $value !== ''
-        ));
+        // Decode input skills dari JSON Tagify
+        $skillsData = json_decode($validated['skills'], true);
+
+        // Pastikan data skill valid
+        if (!is_array($skillsData)) {
+            return back()->with('error', 'Format skill tidak valid!');
+        }
+
+        // Ambil nilai dari setiap tag
+        $skills = array_column($skillsData, 'value');
+        $skills = array_map('trim', $skills);
+        $skills = array_filter($skills);
+        $skills = array_slice($skills, 0, 10);
+
+        // Minimal 3 skill
+        if (count($skills) < 3) {
+            return back()->with('error', 'Minimal 3 skill dibutuhkan.');
+        }
+
+        // Encode ke JSON agar sesuai tipe kolom database
+        $validated['skills'] = $skills;
 
         try {
             JobVacancy::create($validated);
-
             return redirect()->route('jobs.index')->with('success', 'Lowongan berhasil ditambahkan!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan, coba lagi..');
+            // Tampilkan pesan error langsung di SweetAlert
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -125,6 +142,12 @@ class JobVacancyAdminController extends Controller
             'departement' => ['sometimes', 'string', 'max:100'],
             'location' => ['sometimes', 'string', 'max:100'],
             'job_type' => ['sometimes', Rule::in(JobType::values())],
+            'contract_duration' => [
+                'nullable',
+                'required_if:job_type,contract',
+                'string',
+                'max:50'
+            ],
             'salary' => ['sometimes', 'string', 'max:50'],
             'description' => ['sometimes', 'string', 'max:250'],
             'skills' => ['sometimes', 'array', 'min:3', 'max:5'],

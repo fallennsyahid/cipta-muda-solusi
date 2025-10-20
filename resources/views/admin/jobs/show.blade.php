@@ -122,8 +122,16 @@
                                     </div>
                                 @endif
                                 <div>
-                                    <h3 class="text-2xl font-semibold text-darkChoco">
-                                        {{ $applicant->full_name }}</h3>
+                                    <div class="flex items-center space-x-3">
+                                        <h3 class="text-2xl font-semibold text-darkChoco">
+                                            {{ $applicant->full_name }}
+                                        </h3>
+                                        @if ($applicant->status === 'Diterima')
+                                            <span class="bg-blue-200 px-2 py-1 rounded-full text-blue-700">
+                                                {{ $applicant->position }}
+                                            </span>
+                                        @endif
+                                    </div>
                                     <span class="text-text">
                                         {{ \Carbon\Carbon::parse($applicant->date_of_birth)->age }} thn</span>
                                 </div>
@@ -192,12 +200,6 @@
                                     target="_blank">
                                     <i class="fas fa-file-pdf"></i> Lihat CV
                                 </a>
-                                @if ($applicant->cover_letter)
-                                    <button type="button" data-id="{{ $applicant->id }}"
-                                        class="open-cover-letter px-4 py-2 rounded-lg bg-secondary text-white font-medium flex items-center gap-2 hover:bg-blue-700 transition">
-                                        <i class="fas fa-envelope-open"></i> Cover Letter
-                                    </button>
-                                @endif
                             </div>
                             <div class="flex items-center space-x-3">
                                 <button type="button" data-id="{{ $applicant->id }}"
@@ -284,7 +286,7 @@
                         <input type="hidden" name="status" id="status" value="Ditolak">
                         <input type="hidden" name="company_status" id="company_status" value="Ditolak">
                         <button type="submit"
-                            class="flex items-center justify-center text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer">
+                            class="flex items-center justify-center text-white text-lg bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 cursor-pointer w-full">
                             <i class="fas fa-circle-xmark mr-2"></i>
                             Tolak
                         </button>

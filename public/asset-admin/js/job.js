@@ -53,3 +53,23 @@ closeEditModal.forEach(btn => {
         modalOpen.classList.add('hidden');
     });
 });
+
+// Contract Duration Input
+const jobTypeSelects = document.querySelectorAll('.job_type');
+const contractInputs = document.querySelectorAll('.contract_duration');
+
+jobTypeSelects.forEach((jobTypeSelect, index) => {
+    const contractInput = contractInputs[index];
+    if (!contractInput) return;
+
+    const toggleContactInput = () => {
+        const isContract = jobTypeSelect.value === 'contract';
+        contractInput.style.display = isContract ? 'block' : 'none';
+        contractInput.required = isContract;
+        if (!isContract) contractInput.value = '';
+    };
+
+    toggleContactInput();
+
+    jobTypeSelect.addEventListener('change', toggleContactInput);
+});

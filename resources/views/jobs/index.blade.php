@@ -283,7 +283,7 @@
                                 <span
                                     class="text-white bg-secondary px-3 py-2 rounded-sm">{{ $job->departement }}</span>
                             </div>
-                            <p class="font-lato text-sm max-w-md text-text mb-3">
+                            <p class="font-lato text-sm max-w-md text-text mb-3 truncate">
                                 {{ $job->description }}
                             </p>
                             <div class="flex items-center gap-6 mb-4">
@@ -307,22 +307,31 @@
                                 @endif
                             </div>
                             <h2 class="text-sm font-semibold text-heading mb-2">Keahlian yang Dibutuhkan:</h2>
-                            <div class="flex  flex-wrap items-center gap-4 mb-5">
-                                @foreach ($job->skills as $skill)
-                                    <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
-                                        {{ $skill }}
-                                    </div>
-                                @endforeach
+                            <div class="w-full overflow-x-auto mb-5 custom-scrollbar">
+                                <div class="flex flex-wrap items-center gap-4 mb-2 min-w-max">
+                                    @foreach ($job->skills as $skill)
+                                        <div class="p-1 text-xs text-primary border-1 border-text rounded-sm">
+                                            {{ $skill }}
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="flex justify-between items-center">
                                 <h3 class="text-sm font-medium text-text">Diposting
                                     {{ $job->created_at->locale('id')->diffForHumans() }}
                                 </h3>
-                                <a href="#" data-id="{{ $job->id }}"
-                                    class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm hover:bg-primary/90">
-                                    Lamar Sekarang
-                                    <i class="fas fa-chevron-right ml-2"></i>
-                                </a>
+                                <div class="flex items-center space-x-3">
+                                    <button type="button" data-id="{{ $job->id }}"
+                                        class="open-detail-application bg-cyan-500 px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm hover:bg-cyan-600 cursor-pointer">
+                                        <i class="fas fa-eye mr-2"></i>
+                                        Lihat Detail
+                                    </button>
+                                    <a href="#" data-id="{{ $job->id }}"
+                                        class="open-apply bg-primary px-4 py-2 text-white font-medium flex items-center text-sm rounded-sm hover:bg-primary/90">
+                                        Lamar Sekarang
+                                        <i class="fas fa-chevron-right ml-2"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -609,7 +618,7 @@
     </div>
 
     @foreach ($jobs as $job)
-        {{-- Lamar Sekarang --}}
+        {{-- Lamar Sekarang Start --}}
         <div id="modal-container-{{ $job->id }}"
             class="fixed inset-0 z-[99999] hidden justify-center items-end transition-all">
             <div class="close-apply-modal absolute inset-0 bg-black/40 backdrop-blur-md"></div>
@@ -836,6 +845,100 @@
                 </form>
             </div>
         </div>
+        {{-- Lamar Sekarang End --}}
+
+        {{-- Application Detail Start --}}
+        <div id="modal-detail-{{ $job->id }}"
+            class="fixed inset-0 z-[99999] hidden items-center justify-center p-4 animate-fade-in">
+            <div class="close-modal absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+            <div
+                class="bg-white max-w-3xl w-full rounded-xl shadow-2xl relative border border-text/20 overflow-hidden">
+                <div class="bg-gradient-to-r from-heading via-primary to-secondary p-8 overflow-hidden relative">
+                    <h2 class="text-2xl font-bold text-white mb-2">{{ $job->position }}</h2>
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <span
+                            class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {{ $job->departement }}
+                        </span>
+                        <div class="flex items-center text-white/90 text-sm">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>Diposting {{ $job->created_at->locale('id')->diffForHumans() }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="max-h-96 overflow-y-auto custom-scrollbar">
+                    <div class="space-y-6 p-8">
+                        <div
+                            class="grid grid-cols-1 {{ $job->contract_duration ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3' }} gap-4">
+                            <div class="bg-gray-100 rounded-lg p-4 text-center shadow-md">
+                                <i class="fas fa-location-dot text-primary text-lg mb-2"></i>
+                                <p class="text-sm text-text/80 mb-1">Lokasi</p>
+                                <p class="font-semibold text-base text-text">{{ $job->location }}</p>
+                            </div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-center shadow-md">
+                                <i class="fas fa-clock text-primary text-lg mb-2"></i>
+                                <p class="text-sm text-text/80 mb-1">Tipe Pekerjaan</p>
+                                <p class="font-semibold text-base text-text capitalize">{{ $job->job_type }}</p>
+                            </div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-center shadow-md">
+                                <i class="fas fa-money-bill text-primary text-lg mb-2"></i>
+                                <p class="text-sm text-text/80 mb-1">Gaji</p>
+                                <p class="font-semibold text-base text-text">{{ $job->salary }}</p>
+                            </div>
+                            @if ($job->contract_duration)
+                                <div class="bg-gray-100 rounded-lg p-4 text-center shadow-md">
+                                    <i class="fas fa-briefcase text-primary text-lg mb-2"></i>
+                                    <p class="text-sm text-text/80 mb-1">Durasi Kontrak</p>
+                                    <p class="font-semibold text-base text-text">{{ $job->contract_duration }}</p>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="space-y-2">
+                            <h1 class="flex items-center text-text text-lg font-bold">
+                                <i class="fas fa-file-alt text-primary mr-2"></i>
+                                Deskripsi Pekerjaan
+                            </h1>
+                            <p class="bg-gray-100 rounded-lg p-4 shadow-md">
+                                {{ $job->description }}
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h1 class="flex items-center text-text text-lg font-bold">
+                                <i class="fas fa-code text-primary mr-2"></i>
+                                Keahlian yang Dibutuhkan
+                            </h1>
+                            <div class="flex flex-wrap gap-2">
+                                @foreach ($job->skills as $skill)
+                                    <span
+                                        class="px-3 py-1 text-sm font-medium text-primary bg-primary/10 border border-primary/40 rounded-md">
+                                        {{ $skill }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-text/25 bg-gray-100 p-4">
+                        <div class="flex justify-between items-center gap-4">
+                            <button type="button"
+                                class="close-modal px-6 py-3 border-2 border-gray-300 text-gray-700 font-medium rounded-lg bg-gray-100 hover:bg-gray-200 cursor-pointer transition-colors">
+                                Tutup
+                            </button>
+                            <button type="button" data-id="{{ $job->id }}"
+                                class="open-apply flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-lg cursor-pointer transition-colors hover:from-secondary hover:to-primary">
+                                Lamar Sekarang
+                                <i class="fas fa-chevron-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Application Detail End --}}
     @endforeach
 </body>
 

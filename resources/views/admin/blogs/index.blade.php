@@ -330,6 +330,9 @@
                                 Deksripsi<span class="text-red-400">*</span>
                             </label>
                             <div class="char-counter">
+
+                                <input type="hidden" name="description" id="description" class="quill-hidden">
+
                                 <textarea id="description" name="description" rows="4" maxlength="250" required
                                     class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
                                     placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda."></textarea>

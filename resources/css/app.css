@@ -307,6 +307,7 @@ select:focus {
 /* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
+    height: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {

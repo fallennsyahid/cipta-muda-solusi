@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- Tagify JS --}}
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
+
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -283,14 +287,25 @@
                                 required>
                                 <option value="-" disabled selected>Pilih tipe pekerjaan</option>
                                 @foreach ($jobType as $type)
-                                    <option value="{{ $type->value }}">{{ $type->value }}
+                                    <option value="{{ $type->value }}"
+                                        {{ old('job_type') == $type->value ? 'selected' : '' }}>
+                                        {{ ucfirst($type->value) }}
                                     </option>
                                 @endforeach
                             </select>
 
-                            <input type="text" id="contract_duration" name="contract_duration" required
-                                class="contract_duration w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                            @error('job_type')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+
+                            <input type="text" id="contract_duration" name="contract_duration"
+                                value="{{ old('contract_duration') }}"
+                                class="contract_duration hidden w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                 placeholder="3-5 Tahun">
+
+                            @error('contract_duration')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="group">
@@ -321,26 +336,16 @@
                         </div>
 
                         <div class="group">
-                            <label for="skill"
+                            <label for="skills"
                                 class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                 <i class="fas fa-lightbulb"></i>
-                                Skill (3-5) <span class="text-red-400">*</span>
+                                Skill (maksimal 10) <span class="text-red-400">*</span>
                             </label>
-                            <div class="space-y-2">
-                                <input type="text" name="skills[]" placeholder="Skill 1"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                    required>
-                                <input type="text" name="skills[]" placeholder="Skill 2"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                    required>
-                                <input type="text" name="skills[]" placeholder="Skill 3"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
-                                    required>
-                                <input type="text" name="skills[]" placeholder="Skill 4 (opsional)"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
-                                <input type="text" name="skills[]" placeholder="Skill 5 (opsional)"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
-                            </div>
+
+                            <input type="text" name="skills" id="skills-create"
+                                placeholder="Ketik skill lalu tekan Enter atau koma"
+                                class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                required>
                         </div>
 
                         <div class="group">
@@ -449,7 +454,7 @@
                                     Jenis Pekerjaan <span class="text-red-400">*</span>
                                 </label>
                                 <select name="job_type" id="job_type"
-                                    class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
+                                    class="job_type w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white capitalize">
                                     @foreach ($jobType as $type)
                                         <option value="{{ $type->value }}"
                                             {{ $job->job_type === $type->value ? 'selected' : '' }}>
@@ -457,6 +462,10 @@
                                         </option>
                                     @endforeach
                                 </select>
+
+                                <input type="text" id="contract_duration" name="contract_duration"
+                                    class="contract_duration hidden w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
+                                    placeholder="3-5 Tahun">
                             </div>
 
                             <div class="group">
@@ -541,8 +550,31 @@
         </div>
     @endforeach
     {{-- Edit Modal End --}}
-
 </body>
+
+{{-- Tagify JS --}}
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const input = document.querySelector("#skills");
+        const tagify = new Tagify(input, {
+            delimiters: ",",
+            maxTags: 10,
+            dropdown: {
+                enabled: 0
+            },
+        });
+
+        document.querySelectorAll('#skills-create').forEach((input) => {
+            const tagify = new Tagify(input);
+
+            input.closest("form").addEventListener("submit", function() {
+                input.value = JSON.stringify(tagify.value);
+            });
+        });
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if (session('success'))
@@ -592,7 +624,6 @@
         });
     });
 </script>
-
 
 <script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
 <script src="{{ asset('asset-admin/js/job.js') }}"></script>

@@ -27,6 +27,7 @@ class ApplicantObserver
                 'email' => $applicant->email,
                 'phone_number' => $applicant->phone_number,
                 'position' => $applicant->position,
+                'employee_image' => $applicant->applicant_picture,
                 'status' => Status::Active->value,
             ]);
         }

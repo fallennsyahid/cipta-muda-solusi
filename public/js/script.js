@@ -1,6 +1,3 @@
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
-
 // Search Form
 const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('#input-search');
@@ -96,6 +93,7 @@ window.addEventListener('click', function (e) {
     }
 });
 
+// Visi Misi & Motto Card
 const visiMisiCard = document.querySelector('#visi-misi-card');
 const mottoBtn = document.querySelector('#see-motto');
 const visiMisiBtn = document.querySelector('#see-visi-misi');

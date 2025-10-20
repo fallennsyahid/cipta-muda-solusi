@@ -47,13 +47,13 @@ openModalEdit.forEach(btn => {
 const charCounterGroup = document.querySelectorAll('.char-counter');
 
 charCounterGroup.forEach(group => {
-    const textarea = group.querySelector('textarea');
+    const input = group.querySelector('input[type="hidden"]');
     const counter = group.querySelector('.char-count');
 
-    counter.textContent = textarea.value.length;
+    counter.textContent = input.value.length;
 
-    textarea.addEventListener('input', () => {
-        counter.textContent = textarea.value.length;
+    input.addEventListener('input', () => {
+        counter.textContent = input.value.length;
     });
 });
 

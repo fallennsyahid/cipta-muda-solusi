@@ -27,6 +27,7 @@ class CvObserver
                 'email' => $cvApplicant->applicant_email,
                 'phone_number' => $cvApplicant->applicant_phone_number,
                 'position' => $cvApplicant->note,
+                'employee_image' => $cvApplicant->applicant_image,
                 'status' => Status::Active->value,
             ]);
         }

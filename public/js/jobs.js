@@ -1,3 +1,4 @@
+// CV MODAL
 const cvModal = document.querySelector('#cvModal');
 const closeModalBtn = document.querySelectorAll('.close-modal');
 const uploadCvBtn = document.querySelector('#upload-cv');
@@ -13,30 +14,46 @@ closeModalBtn.forEach(btn => {
     btn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        cvModal.classList.remove('flex');
-        cvModal.classList.add('hidden');
+        const modalOpen = btn.closest('.fixed');
+        modalOpen.classList.remove('flex');
+        modalOpen.classList.add('hidden');
     });
 });
 
+// === APPLY MODAL ===
 const openApplyModalBtn = document.querySelectorAll('.open-apply');
 const closeApplyModalBtn = document.querySelectorAll('.close-apply-modal');
 
+// Buka modal apply
 openApplyModalBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const applyModalContainer = document.querySelector('#modal-container-' + btn.dataset.id);
+        // Cari ID lowongan
+        const jobId = btn.dataset.id || btn.closest('[id^="modal-detail-"]').id.replace('modal-detail-', '');
+
+        const applyModalContainer = document.querySelector('#modal-container-' + jobId);
         const applyModalContent = applyModalContainer.querySelector('.modal-content');
 
+        // Tutup modal detail dulu (kalau sedang terbuka)
+        const detailModal = document.querySelector('#modal-detail-' + jobId);
+        if (detailModal) {
+            detailModal.classList.add('hidden');
+            detailModal.classList.remove('flex');
+        }
+
+        // Buka modal apply
         applyModalContainer.classList.remove('hidden');
         applyModalContainer.classList.add('flex');
 
+        // Animasi muncul dari bawah
         setTimeout(() => {
             applyModalContent.classList.remove('translate-y-full');
         }, 100);
     });
 });
 
+// Tutup modal apply
 closeApplyModalBtn.forEach(cls => {
     cls.addEventListener('click', (e) => {
         e.preventDefault();
@@ -49,7 +66,20 @@ closeApplyModalBtn.forEach(cls => {
         setTimeout(() => {
             modalContainer.classList.remove('flex');
             modalContainer.classList.add('hidden');
-        }, 100);
+        }, 200);
+    });
+});
+
+// APPLICATION DETAIL MODAL
+const openDetailApplication = document.querySelectorAll('.open-detail-application');
+
+openDetailApplication.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const modal = document.querySelector('#modal-detail-' + btn.dataset.id);
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
     });
 });
 
