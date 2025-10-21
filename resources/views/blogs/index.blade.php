@@ -264,10 +264,10 @@
                                     <i class="fas fa-star text-yellow-500 text-sm"></i>
                                 @endif
                             </div>
-                            <h1 class="text-heading font-bold text-xl mb-3">
+                            <h1 class="text-heading font-bold text-xl mb-3 truncate">
                                 {{ $blog->title }}
                             </h1>
-                            <p class="font-laro text-text text-base mb-4">
+                            <p class="font-lato text-text text-base mb-4">
                                 {{ $blog->description }}
                             </p>
                             <div class="flex justify-between">

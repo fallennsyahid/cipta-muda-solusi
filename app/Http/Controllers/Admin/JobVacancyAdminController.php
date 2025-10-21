@@ -9,6 +9,7 @@ use App\Models\JobVacancy;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Exception;
 
 class JobVacancyAdminController extends Controller
 {
@@ -60,7 +61,8 @@ class JobVacancyAdminController extends Controller
         }
 
         // Ambil nilai dari setiap tag
-        $skills = array_column($skillsData, 'value');
+        $skills = is_array($skillsData[0] ?? null) ? array_column($skillsData, 'value') : $skillsData;
+
         $skills = array_map('trim', $skills);
         $skills = array_filter($skills);
         $skills = array_slice($skills, 0, 10);
@@ -77,7 +79,6 @@ class JobVacancyAdminController extends Controller
             JobVacancy::create($validated);
             return redirect()->route('jobs.index')->with('success', 'Lowongan berhasil ditambahkan!');
         } catch (\Exception $e) {
-            // Tampilkan pesan error langsung di SweetAlert
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
@@ -138,34 +139,44 @@ class JobVacancyAdminController extends Controller
     public function update(Request $request, JobVacancy $job)
     {
         $validated = $request->validate([
-            'position' => ['sometimes', 'string', 'max:100'],
-            'departement' => ['sometimes', 'string', 'max:100'],
-            'location' => ['sometimes', 'string', 'max:100'],
-            'job_type' => ['sometimes', Rule::in(JobType::values())],
-            'contract_duration' => [
-                'nullable',
-                'required_if:job_type,contract',
-                'string',
-                'max:50'
-            ],
-            'salary' => ['sometimes', 'string', 'max:50'],
-            'description' => ['sometimes', 'string', 'max:250'],
-            'skills' => ['sometimes', 'array', 'min:3', 'max:5'],
-            'skills.*' => ['nullable', 'string', 'max:50'],
-            'status' => ['sometimes', Rule::in(Status::values())],
+            'position' => ['required', 'string', 'max:100'],
+            'departement' => ['required', 'string', 'max:100'],
+            'location' => ['required', 'string', 'max:100'],
+            'job_type' => ['required', Rule::in(JobType::values())],
+            'contract_duration' => ['nullable', 'required_if:job_type,contract', 'string', 'max:50'],
+            'salary' => ['required', 'string', 'max:50'],
+            'description' => ['required', 'string', 'max:250'],
+            'skills' => ['required', 'string'],
+            'status' => ['required', Rule::in(Status::onlyActiveNonActive())],
         ]);
 
-        $validated['skills'] = array_values(array_filter($validated['skills'], function ($skill) {
-            return !is_null($skill) && trim($skill) !== '';
-        }));
+        try {
+            $skillsData = json_decode($validated['skills'], true);
 
-        if (count($validated['skills']) < 3) {
-            return back()->withErrors(['skills' => 'Minimal 3 skill harus diisi.'])->withInput();
+            if (!is_array($skillsData)) {
+                return back()->with('error', 'Format skill tidak valid!')->withInput();
+            }
+
+            $skills = is_array($skillsData[0] ?? null)
+                ? array_column($skillsData, 'value')
+                : $skillsData;
+
+            $skills = array_map('trim', $skills);
+            $skills = array_filter($skills);
+            $skills = array_slice($skills, 0, 10);
+
+            if (count($skills) < 3) {
+                return back()->with('error', 'Minimal 3 skill dibutuhkan.')->withInput();
+            }
+
+            $validated['skills'] = $skills; // kalau kolom di DB pakai JSON cast
+
+            $job->update($validated);
+
+            return redirect()->route('jobs.index')->with('success', 'Lowongan berhasil diperbarui!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage())->withInput();
         }
-
-        $job->update($validated);
-
-        return redirect()->route('jobs.index')->with('success', 'Data berhasil diupate!');
     }
 
     /**

@@ -27,7 +27,7 @@
 <body class="bg-[#f8fafc]">
     <section id="hero" class="py-8">
         <div class="max-w-4xl mx-auto px-8">
-            <a href="{{ route('user.blogs.index') }}"
+            <a href="{{ route('user.blogs.index') }}#blogs"
                 class="inline-flex items-center text-base font-medium text-primary hover:text-primary/80 mb-8">
                 <i class="fas fa-arrow-left mr-2"></i>
                 Kembali ke Blog
@@ -42,6 +42,10 @@
             <h1 class="text-4xl md:text-5xl font-bold text-heading mb-6 text-balance">
                 {{ $blog->title }}
             </h1>
+
+            <p class="font-lato text-text text-base mb-4">
+                {{ $blog->description }}
+            </p>
 
             <div class="flex flex-wrap items-center gap-6 text-text mb-8">
                 <div class="flex items-center gap-2">

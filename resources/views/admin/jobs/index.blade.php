@@ -464,6 +464,7 @@
                                 </select>
 
                                 <input type="text" id="contract_duration" name="contract_duration"
+                                    value="{{ $job->contract_duration ? $job->contract_duration : '' }}"
                                     class="contract_duration hidden w-full mt-4 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white"
                                     placeholder="3-5 Tahun">
                             </div>
@@ -499,20 +500,12 @@
                                 <label for="skill"
                                     class="flex items-center gap-2 text-sm font-medium text-darkChoco mb-2 group-hover:text-heading transform-colors">
                                     <i class="fas fa-lightbulb"></i>
-                                    Skill (3-5) <span class="text-red-400">*</span>
+                                    Skill (3-10) <span class="text-red-400">*</span>
                                 </label>
-                                <div class="space-y-2">
-                                    @foreach ($job->skills as $i => $skill)
-                                        <input type="text" name="skills[]"
-                                            placeholder="Skill {{ $i + 1 }}" value="{{ $skill }}"
-                                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
-                                    @endforeach
-                                    @for ($i = count($job->skills); $i < 5; $i++)
-                                        <input type="text" name="skills[]"
-                                            placeholder="Skill {{ $i + 1 }} (opsional)"
-                                            class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
-                                    @endfor
-                                </div>
+                                <input type="text" name="skills" id="skills-edit-{{ $job->id }}"
+                                    data-skills = '@json($job->skills ?? [])'
+                                    placeholder="Ketik skill lalu tekan Enter atau koma"
+                                    class="skills-edit w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
                             </div>
 
                             <div class="group">
@@ -554,23 +547,105 @@
 
 {{-- Tagify JS --}}
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const input = document.querySelector("#skills");
-        const tagify = new Tagify(input, {
-            delimiters: ",",
-            maxTags: 10,
-            dropdown: {
-                enabled: 0
-            },
+        // ==== 1️⃣ CREATE ====
+        const createInput = document.querySelector("#skills-create");
+        if (createInput) {
+            const tagifyCreate = new Tagify(createInput, {
+                delimiters: ",",
+                maxTags: 10,
+                dropdown: {
+                    enabled: 0
+                },
+            });
+
+            createInput.closest("form").addEventListener("submit", function() {
+                createInput.value = JSON.stringify(tagifyCreate.value.map(item => item.value));
+            });
+        }
+
+        const editInputs = document.querySelectorAll('.skills-edit');
+        editInputs.forEach(input => {
+            if (input) {
+                const tagify = new Tagify(input, {
+                    delimiters: ',',
+                    maxTags: 10,
+                    dropdown: {
+                        enabled: 0
+                    },
+                });
+
+                const existingSkills = JSON.parse(input.dataset.skills || '[]');
+                tagify.addTags(existingSkills);
+
+                input.closest("form").addEventListener("submit", () => {
+                    input.value = JSON.stringify(tagifyEdit.value.map(item => item.value));
+                });
+            }
         });
 
-        document.querySelectorAll('#skills-create').forEach((input) => {
-            const tagify = new Tagify(input);
+        const openEditButtons = document.querySelectorAll('.open-edit-modal');
+        const closeEditModalButtons = document.querySelectorAll('.close-modal-2');
 
-            input.closest("form").addEventListener("submit", function() {
-                input.value = JSON.stringify(tagify.value);
+        // Fungsi untuk inisialisasi Tagify
+        function initTagify(input) {
+            if (input.tagify) input.tagify.destroy();
+
+            let existingSkills = [];
+            try {
+                existingSkills = JSON.parse(input.dataset.skills || '[]');
+                if (!Array.isArray(existingSkills)) existingSkills = [];
+            } catch (e) {
+                console.warn("Data skills tidak valid untuk:", input.id, input.dataset.skills);
+                existingSkills = [];
+            }
+
+            const tagify = new Tagify(input, {
+                delimiters: ",",
+                maxTags: 10,
+                dropdown: {
+                    enabled: 0
+                },
+            });
+
+            input.tagify = tagify;
+
+            setTimeout(() => {
+                tagify.addTags(existingSkills);
+            }, 100);
+        }
+
+        // Saat tombol edit diklik
+        openEditButtons.forEach(btn => {
+            btn.addEventListener("click", e => {
+                e.preventDefault();
+                const id = btn.dataset.id;
+                const modal = document.querySelector(`#edit-modal-${id}`);
+
+                // Tampilkan modal
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+
+                // Ambil input skills sesuai id
+                const input = document.querySelector(`#skills-edit-${id}`);
+
+                // Jalankan inisialisasi Tagify dengan delay agar modal sempat muncul
+                setTimeout(() => {
+                    console.log('Inisialisasi tagify untuk:', id);
+                    console.log('Data skill:', input.dataset.skills);
+                    initTagify(input);
+                }, 200);
+            });
+        });
+
+        // Saat tombol close ditekan
+        closeEditModalButtons.forEach(btn => {
+            btn.addEventListener("click", e => {
+                e.preventDefault();
+                const modalOpen = btn.closest(".fixed");
+                modalOpen.classList.remove("flex");
+                modalOpen.classList.add("hidden");
             });
         });
     });

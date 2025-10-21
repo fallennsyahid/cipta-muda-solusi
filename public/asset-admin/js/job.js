@@ -55,21 +55,54 @@ closeEditModal.forEach(btn => {
 });
 
 // Contract Duration Input
-const jobTypeSelects = document.querySelectorAll('.job_type');
-const contractInputs = document.querySelectorAll('.contract_duration');
+// const jobTypeSelects = document.querySelectorAll('.job_type');
+// const contractInputs = document.querySelectorAll('.contract_duration');
 
-jobTypeSelects.forEach((jobTypeSelect, index) => {
-    const contractInput = contractInputs[index];
+// jobTypeSelects.forEach((jobTypeSelect, index) => {
+//     const contractInput = contractInputs[index];
+//     if (!contractInput) return;
+
+//     const toggleContactInput = () => {
+//         const isContract = jobTypeSelect.value === 'contract';
+//         contractInput.style.display = isContract ? 'block' : 'none';
+//         contractInput.required = isContract;
+//         if (!isContract) contractInput.value = '';
+//     };
+
+//     toggleContactInput();
+
+//     jobTypeSelect.addEventListener('change', toggleContactInput);
+// });
+
+const jobTypeSelects = document.querySelectorAll('select.job_type');
+
+jobTypeSelects.forEach(select => {
+    const wrapper = select.closest('.group') || document;
+    const contractInput = wrapper.querySelector('input.contract_duration');
+
     if (!contractInput) return;
 
-    const toggleContactInput = () => {
-        const isContract = jobTypeSelect.value === 'contract';
+    // Simpan nilai awal (misal dari edit form)
+    if (contractInput.dataset.initial === undefined) {
+        contractInput.dataset.initial = contractInput.value ?? '';
+    }
+
+    const toggleContractInput = () => {
+        const isContract = select.value === 'contract';
+
+        // Tampilkan/sembunyikan input durasi
         contractInput.style.display = isContract ? 'block' : 'none';
         contractInput.required = isContract;
-        if (!isContract) contractInput.value = '';
+
+        // Kembalikan nilai awal kalau sebelumnya kosong
+        if (isContract && !contractInput.value && contractInput.dataset.initial) {
+            contractInput.value = contractInput.dataset.initial;
+        }
     };
 
-    toggleContactInput();
+    // Jalankan saat halaman pertama kali dimuat (untuk edit)
+    toggleContractInput();
 
-    jobTypeSelect.addEventListener('change', toggleContactInput);
+    // Jalankan setiap kali select berubah
+    select.addEventListener('change', toggleContractInput);
 });
