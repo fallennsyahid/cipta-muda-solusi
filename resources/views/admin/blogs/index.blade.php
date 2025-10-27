@@ -156,7 +156,32 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-6">
+        <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape flex flex-wrap items-center gap-3">
+            <div class="relative w-full lg:w-3/5">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-magnifying-glass text-text"></i>
+                </div>
+
+                <input type="search" name="searchBlog" id="searchBlog" placeholder="Cari Blog.."
+                    class="w-full block pl-10 pr-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+            </div>
+
+            <select name="selectFilter" id="selectFilter"
+                class="w-full lg:w-[30%] block px-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="-">Semua Status</option>
+                @foreach ($blogStatus as $status)
+                    <option value="{{ $status->value }}">
+                        {{ $status->value }}
+                    </option>
+                @endforeach
+            </select>
+
+            <label class="flex items-center gap-2 w-full lg:w-[5%] cursor-pointer">
+                <input type="checkbox" id="featuredOnly" class="w-[46px] h-[35px] accent-primary" />
+            </label>
+        </div>
+
+        <div class="flex flex-col gap-6" id="blogList">
             @foreach ($blogs as $blog)
                 <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
                     <div class="flex justify-between items-start">
@@ -185,7 +210,7 @@
 
                                 <div>
                                     <p class="text-base text-text">
-                                        {{ $blog->description }}
+                                        {!! $blog->description !!}
                                     </p>
                                 </div>
                             </div>
@@ -329,7 +354,14 @@
                                 <i class="fas fa-align-left"></i>
                                 Deksripsi<span class="text-red-400">*</span>
                             </label>
-                            <div class="char-counter">
+
+                            <input type="hidden" name="description" id="description" class="quill-hidden"
+                                value="{{ old('description') }}">
+
+                            <div class="quill-editor rounded-b-lg border border-text/25"
+                                style="background: white; height: 200px;"></div>
+
+                            {{-- <div class="char-counter">
 
                                 <input type="hidden" name="description" id="description" class="quill-hidden">
 
@@ -339,7 +371,7 @@
                                 <p class="text-sm text-text">
                                     <span class="char-count">0</span>/250 Karakter
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="group">
@@ -505,14 +537,19 @@
                                 <i class="fas fa-align-left"></i>
                                 Deksripsi<span class="text-red-400">*</span>
                             </label>
-                            <div class="char-counter">
+
+                            <div
+                                class="prose w-full h-48 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white overflow-y-auto custom-scrollbar">
+                                {!! $blog->description !!}
+                            </div>
+                            {{-- <div class="char-counter">
                                 <textarea id="description" name="description" rows="4" maxlength="250" readonly
                                     class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
                                     placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
                                 <p class="text-sm text-text">
                                     <span class="char-count">0</span>/250 Karakter
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="group">
@@ -522,7 +559,7 @@
                                 Content<span class="text-red-400">*</span>
                             </label>
                             <div
-                                class="prose w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white">
+                                class="prose w-full h-48 px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white overflow-y-auto custom-scrollbar">
                                 {!! $blog->content !!}
                             </div>
                         </div>
@@ -629,14 +666,19 @@
                                     <i class="fas fa-align-left"></i>
                                     Deksripsi<span class="text-red-400">*</span>
                                 </label>
-                                <div class="char-counter">
+
+                                <input type="hidden" name="description" id="description" class="quill-hidden">
+
+                                <div class="quill-editor rounded-b-lg border border-text/25"
+                                    style="background: white; height: 200px;">{!! $blog->description ?? '' !!}</div>
+                                {{-- <div class="char-counter">
                                     <textarea id="description" name="description" rows="4" maxlength="250"
                                         class="w-full px-4 py-3 bg-slate-50 border border-text/25 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200 hover:bg-white resize-none"
                                         placeholder="React, Vue, atau Angular? Panduan lengkap memilih framework yang sesuai dengan kebutuhan proyek Anda.">{{ $blog->description }}</textarea>
                                     <p class="text-sm text-text">
                                         <span class="char-count">0</span>/250 Karakter
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div class="group">
@@ -752,6 +794,112 @@
     @endforeach
     {{-- Modal Edit End --}}
 </body>
+<script>
+    (function() {
+        const searchEl = document.getElementById('searchBlog');
+        const filterEl = document.getElementById('selectFilter');
+        const featuredEl = document.getElementById('featuredOnly');
+        const blogListEl = document.getElementById('blogList');
+        const searchUrl = `{{ route('blogs.search') }}`;
+
+        // 🕒 Debounce helper
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        // 🚀 Fetch & render
+        async function fetchAndRender() {
+            try {
+                const q = searchEl.value.trim();
+                const status = filterEl.value;
+                const featured = featuredEl.checked ? 1 : 0;
+
+                const url = new URL(searchUrl, window.location.origin);
+                if (q) url.searchParams.set('q', q);
+                if (status && status !== '-') url.searchParams.set('status', status);
+                if (featured) url.searchParams.set('is_featured', featured);
+
+                const res = await fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                if (!res.ok) throw new Error('Network error');
+                const html = await res.text();
+
+                // ⛔️ Cek apakah kosong
+                if (!html.trim()) {
+                    blogListEl.innerHTML = `
+                    <div class="text-center py-10 text-gray-500">
+                        <i class="fas fa-circle-exclamation text-3xl mb-2"></i>
+                        <p class="text-lg font-medium">Tidak ada hasil yang sesuai</p>
+                    </div>
+                `;
+                } else {
+                    blogListEl.innerHTML = html;
+                }
+
+            } catch (err) {
+                console.error(err);
+                blogListEl.innerHTML = `
+                <div class="text-center py-10 text-red-500">
+                    <i class="fas fa-triangle-exclamation text-3xl mb-2"></i>
+                    <p class="text-lg font-medium">Terjadi kesalahan saat memuat data</p>
+                </div>
+            `;
+            }
+        }
+
+        const debouncedFetch = debounce(fetchAndRender, 300);
+
+        // 🔍 Event input pencarian
+        searchEl.addEventListener('input', debouncedFetch);
+
+        // 🧹 Ketika klik tombol X di search input
+        searchEl.addEventListener('search', fetchAndRender);
+
+        // 🎛️ Event filter status
+        filterEl.addEventListener('change', fetchAndRender);
+
+        // ⭐ Event featured only
+        featuredEl.addEventListener('change', fetchAndRender);
+
+        // 🟢 Delegasi tombol Detail & Edit (modal)
+        document.addEventListener('click', function(e) {
+            const detailBtn = e.target.closest('.open-modal-detail');
+            const editBtn = e.target.closest('.open-modal-edit');
+
+            if (detailBtn) {
+                e.preventDefault();
+                const slug = detailBtn.dataset.id;
+                const modal = document.querySelector(`#detail-blog-${slug}`);
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+                return;
+            }
+
+            if (editBtn) {
+                e.preventDefault();
+                const slug = editBtn.dataset.id;
+                const modal = document.querySelector(`#edit-blog-${slug}`);
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
+                return;
+            }
+        });
+
+    })();
+</script>
+
 <!-- Quill CSS -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
@@ -801,38 +949,40 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const deleteForms = document.querySelectorAll('.delete-form');
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteForms = document.querySelectorAll('.delete-form');
 
-    deleteForms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            Swal.fire({
-                title: 'Yakin ingin menghapus',
-                text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#e3342f',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+                Swal.fire({
+                    title: 'Yakin ingin menghapus',
+                    text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e3342f',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
-    });
 
-    @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
-            showConfirmButton: false,
-            timer: 1500,
-        });
-    @endif
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        @endif
+    });
 </script>
 
 <script src="{{ asset('asset-admin/js/blog.js') }}"></script>

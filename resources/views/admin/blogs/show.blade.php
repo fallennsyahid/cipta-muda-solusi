@@ -43,6 +43,10 @@
                 {{ $blog->title }}
             </h1>
 
+            <div class="font-lato text-base mb-4">
+                {!! $blog->description !!}
+            </div>
+
             <div class="flex flex-wrap items-center gap-6 text-text mb-8">
                 <div class="flex items-center gap-2">
                     @if ($blog->user->profile_picture)

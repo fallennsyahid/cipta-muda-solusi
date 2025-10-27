@@ -67,7 +67,8 @@ Route::resource('/admin/faqs', FaqsAdminController::class);
 Route::patch('/faqs/{faq}/status', [FaqsAdminController::class, 'updateStatus'])->name('faqs.updateStatus');
 Route::patch('/faqs/{faq}/answer', [FaqsAdminController::class, 'answerQuestion'])->name('faq.answer');
 
-Route::resource('admin/blogs', BlogsAdminController::class);
+Route::resource('/admin/blogs', BlogsAdminController::class);
+Route::get('/blogs/search', [BlogsAdminController::class, 'search'])->name('blogs.search');
 Route::patch('/blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');
 Route::patch('/blogs/{id}/approve', [BlogsAdminController::class, 'approve'])->name('blogs.approve');
 

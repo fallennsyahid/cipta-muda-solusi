@@ -1,47 +1,59 @@
-const openModal = document.querySelector('#open-modal');
-const openModalDetail = document.querySelectorAll('.open-modal-detail');
-const openModalEdit = document.querySelectorAll('.open-modal-edit');
 const modalCreate = document.querySelector('#create-new-blog');
+const openModal = document.querySelector('#open-modal');
 const closeModal = document.querySelectorAll('.close-modal');
 
-openModal.addEventListener('click', function (e) {
-    e.preventDefault();
+// 🟢 Buka modal create
+if (openModal) {
+    openModal.addEventListener('click', function (e) {
+        e.preventDefault();
+        modalCreate.classList.toggle('hidden');
+        modalCreate.classList.add('flex');
+    });
+}
 
-    modalCreate.classList.toggle('hidden');
-    modalCreate.classList.add('flex');
-});
-
+// 🔴 Tutup modal
 closeModal.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        modalCreate.classList.remove('flex');
-        modalCreate.classList.add('hidden');
-
         const modalOpen = btn.closest('.fixed');
-        modalOpen.classList.remove('flex');
-        modalOpen.classList.add('hidden');
+        if (modalOpen) {
+            modalOpen.classList.remove('flex');
+            modalOpen.classList.add('hidden');
+        }
+
+        // Tutup modal create juga
+        if (modalCreate) {
+            modalCreate.classList.remove('flex');
+            modalCreate.classList.add('hidden');
+        }
     });
 });
 
-openModalDetail.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+// 🟣 Event delegation untuk modal detail & edit
+document.addEventListener('click', function (e) {
+    const detailBtn = e.target.closest('.open-modal-detail');
+    const editBtn = e.target.closest('.open-modal-edit');
+
+    if (detailBtn) {
         e.preventDefault();
+        const slug = detailBtn.dataset.id;
+        const modal = document.querySelector('#detail-blog-' + slug);
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
 
-        const modal = document.querySelector('#detail-blog-' + btn.dataset.id);
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    });
-});
-
-openModalEdit.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    if (editBtn) {
         e.preventDefault();
-
-        const modal = document.querySelector('#edit-blog-' + btn.dataset.id);
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    });
+        const slug = editBtn.dataset.id;
+        const modal = document.querySelector('#edit-blog-' + slug);
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
 });
 
 const charCounterGroup = document.querySelectorAll('.char-counter');

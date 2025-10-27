@@ -38,24 +38,12 @@ class DashboardAdminController extends Controller
     public function index()
     {
         $totalJobsAll = JobVacancy::count();
-        $totalJobsThisMonth = JobVacancy::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
-        $totalJobsLastMonth = JobVacancy::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageJobChange = $this->calculatePrecentage($totalJobsThisMonth, $totalJobsLastMonth);
 
         $totalActivePartnersAll = Partner::count();
-        $totalActivePartnersThisMonth = Partner::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
-        $totalActivePartnersLastMonth = Partner::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageActivePartnersChange = $this->calculatePrecentage($totalActivePartnersThisMonth, $totalActivePartnersLastMonth);
 
         $totalBlogPublishedAll = Blog::where('status', BlogStatus::Published->value)->count();
-        $totalBlogPublishedThisMonth = Blog::where('status', BlogStatus::Published->value)->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
-        $totalBlogPublishedLastMonth = Blog::where('status', BlogStatus::Published->value)->whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageBlogPublishedChange = $this->calculatePrecentage($totalBlogPublishedThisMonth, $totalBlogPublishedLastMonth);
 
         $totalFaqsAll = Faq::count();
-        $totalFaqsThisMonth = Faq::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
-        $totalFaqsLastMonth = Faq::whereMonth('created_at', now()->subMonth()->month)->whereYear('created_at', now()->subMonth()->year)->count();
-        $percentageFaqsChange = $this->calculatePrecentage($totalFaqsThisMonth, $totalFaqsLastMonth);
 
         $jobTypes = JobType::cases();
         $jobStatus = Status::onlyActiveNonActive();
@@ -80,17 +68,9 @@ class DashboardAdminController extends Controller
 
         return view('admin.dashboard', compact(
             'totalJobsAll',
-            'totalJobsThisMonth',
-            'percentageJobChange',
             'totalActivePartnersAll',
-            'totalActivePartnersThisMonth',
             'totalBlogPublishedAll',
-            'percentageActivePartnersChange',
-            'totalBlogPublishedThisMonth',
-            'percentageBlogPublishedChange',
             'totalFaqsAll',
-            'totalFaqsThisMonth',
-            'percentageFaqsChange',
             'jobTypes',
             'jobStatus',
             'partnerTypes',

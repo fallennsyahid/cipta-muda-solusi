@@ -83,11 +83,17 @@ class JobsController extends Controller
             $imagePath = $request->file('applicant_image')->store('applicant_image', 'public');
         }
 
+        $phone = preg_replace('/[^0-9+]/', '', $request->applicant_phone_number);
+
+        if (str_starts_with($phone, '0')) {
+            $phone = '+62' . substr($phone, 1);
+        }
+
         CvApplicant::create([
             'applicant_name' => $request->applicant_name,
             'date_of_birth' => $request->date_of_birth,
             'applicant_email' => $request->applicant_email,
-            'applicant_phone_number' => $request->applicant_phone_number,
+            'applicant_phone_number' => $phone,
             'applicant_file' => $fillPath,
             'applicant_experience' => $request->applicant_experience,
             'applicant_link' => $request->applicant_link,

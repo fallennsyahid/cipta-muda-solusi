@@ -55,14 +55,8 @@
                         <i class="fas fa-briefcase text-white text-base"></i>
                     </div>
                 </div>
-                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                <div class="text-2xl text-primary mt-1 font-bold">
                     {{ $totalJobsAll }}
-                    <p
-                        class="text-xs {{ $percentageJobChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                        <i
-                            class="fas {{ $percentageJobChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                        {{ number_format($percentageJobChange, 1) }}% vs last month
-                    </p>
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -74,14 +68,8 @@
                         <i class="fas fa-user-group text-white text-base"></i>
                     </div>
                 </div>
-                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                <div class="text-2xl text-primary mt-1 font-bold">
                     {{ $totalActivePartnersAll }}
-                    <p
-                        class="text-xs {{ $percentageActivePartnersChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                        <i
-                            class="fas {{ $percentageActivePartnersChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                        {{ number_format($percentageActivePartnersChange, 1) }}% vs last month
-                    </p>
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -93,14 +81,8 @@
                         <i class="fas fa-newspaper text-white text-base"></i>
                     </div>
                 </div>
-                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                <div class="text-2xl text-primary mt-1 font-bold">
                     {{ $totalBlogPublishedAll }}
-                    <p
-                        class="text-xs {{ $percentageBlogPublishedChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                        <i
-                            class="fas {{ $percentageBlogPublishedChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                        {{ number_format($percentageBlogPublishedChange, 1) }}% from last month
-                    </p>
                 </div>
             </div>
             <div class="bg-white shadow-md p-4 rounded-xl geometric-shape hover:shadow-lg">
@@ -112,14 +94,8 @@
                         <i class="fas fa-question-circle text-white text-base"></i>
                     </div>
                 </div>
-                <div class="text-2xl text-primary flex flex-col mt-1 font-bold">
+                <div class="text-2xl text-primary mt-1 font-bold">
                     {{ $totalFaqsAll }}
-                    <p
-                        class="text-xs {{ $percentageFaqsChange >= 0 ? 'text-green-600' : 'text-red-600' }} font-lato flex mt-1">
-                        <i
-                            class="fas {{ $percentageFaqsChange >= 0 ? 'fa-arrow-trend-up' : 'fa-arrow-trend-down' }} text-xs mr-1"></i>
-                        {{ number_format($percentageFaqsChange, 1) }}% from last month
-                    </p>
                 </div>
             </div>
         </div>

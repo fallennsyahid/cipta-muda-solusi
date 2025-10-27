@@ -268,7 +268,7 @@
                                 {{ $blog->title }}
                             </h1>
                             <p class="font-lato text-text text-base mb-4">
-                                {{ $blog->description }}
+                                {!! $blog->description !!}
                             </p>
                             <div class="flex justify-between">
                                 <div class="flex items-center text-text text-sm gap-2">

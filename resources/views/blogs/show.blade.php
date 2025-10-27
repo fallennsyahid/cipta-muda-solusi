@@ -44,7 +44,7 @@
             </h1>
 
             <p class="font-lato text-text text-base mb-4">
-                {{ $blog->description }}
+                {!! $blog->description !!}
             </p>
 
             <div class="flex flex-wrap items-center gap-6 text-text mb-8">

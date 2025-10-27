@@ -38,6 +38,43 @@ class BlogsAdminController extends Controller
         return view('admin.blogs.index', compact('blogs', 'blogsTotal', 'blogStatus', 'blogsPublished', 'blogsPending', 'blogsArchived', 'notifications'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+        $status = $request->get('status');
+        $featured = $request->get('is_featured');
+
+        $blogs = Blog::query();
+
+        // 🔍 Search by multiple fields
+        if ($query) {
+            $blogs->where(function ($qBuilder) use ($query) {
+                $qBuilder->where('title', 'like', "%{$query}%")
+                    ->orWhere('slug', 'like', "%{$query}%")
+                    ->orWhere('category', 'like', "%{$query}%")
+                    ->orWhere('description', 'like', "%{$query}%");
+            });
+        }
+
+        // 📄 Filter status
+        if ($status) {
+            $blogs->where('status', $status);
+        }
+
+        // 🌟 Filter featured
+        if ($featured) {
+            $blogs->where('is_featured', true);
+        }
+
+        // 📅 Urutan: featured dulu baru terbaru
+        $blogs->orderByDesc('is_featured')->orderByDesc('created_at');
+
+        $blogs = $blogs->get();
+
+        return view('admin.blogs.partials.blog-list', compact('blogs'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -77,6 +114,7 @@ class BlogsAdminController extends Controller
         }
 
         $validated['content'] = Purifier::clean($validated['content_create']);
+        $validated['description'] = Purifier::clean($validated['description']);
 
         $user = Auth::user();
 
