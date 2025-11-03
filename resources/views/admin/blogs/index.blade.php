@@ -25,9 +25,6 @@
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    {{-- Tiny --}}
-    <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
-        referrerpolicy="origin" crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -380,7 +377,6 @@
                                 <i class="fas fa-table"></i>
                                 Content<span class="text-red-400">*</span>
                             </label>
-                            {{-- <textarea id="content_create" name="content_create" rows="6" required class="tinymce-editor w-full px-4 py-3"></textarea> --}}
 
                             <input type="hidden" name="content_create" id="content_create" class="quill-hidden"
                                 value="{{ old('content_create') }}">

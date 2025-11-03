@@ -87,6 +87,8 @@ Route::get('/admin/cv-export', [CvAdminController::class, 'export'])->name('cv.e
 Route::resource('/admin/account', AccountAdminController::class);
 Route::patch('/admin/{account}/toggle-status', [AccountAdminController::class, 'toggleStatus'])->name('account.toggleStatus');
 
+Route::get('/admin/employee/search', [EmployeeAdminController::class, 'search'])->name('employee.search');
+Route::get('/admin/employee/export', [EmployeeAdminController::class, 'export'])->name('employee.export');
 Route::resource('/admin/employee', EmployeeAdminController::class);
 Route::patch('/admin/employee/{employee}/toggle-status', [EmployeeAdminController::class, 'toggleStatus'])->name('employee.toggleStatus');
 

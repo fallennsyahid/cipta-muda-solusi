@@ -594,7 +594,6 @@
                                 <i class="fas fa-table"></i>
                                 Content<span class="text-red-400">*</span>
                             </label>
-                            {{-- <textarea id="content_create" name="content_create" rows="6" required class="tinymce-editor w-full px-4 py-3"></textarea> --}}
 
                             <input type="hidden" name="content_create" id="content_create" class="quill-hidden"
                                 value="{{ old('content_create') }}">

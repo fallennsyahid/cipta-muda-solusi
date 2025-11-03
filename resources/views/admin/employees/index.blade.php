@@ -24,10 +24,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    {{-- Tiny --}}
-    <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
-        referrerpolicy="origin" crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -36,6 +32,13 @@
             <div class="space-y-2">
                 <h1 class="text-2xl text-heading font-bold">Employee Management</h1>
                 <p class="text-text font-lato">Manage employee data and personnel information</p>
+            </div>
+            <div>
+                <a href="{{ route('employee.export') }}"
+                    class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-green-500 via-green-600 to-green-700 cursor-pointer hover:from-green-600 hover:via-green-700 hover:to-green-800 transition">
+                    <i class="fas fa-file-excel"></i>
+                    Export Excel
+                </a>
             </div>
         </div>
 
@@ -94,18 +97,28 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape flex flex-wrap items-center gap-3">
-            <div class="relative w-full lg:w-3/5">
+        <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape flex flex-col lg:flex-row items-center gap-3">
+            <div class="relative w-full lg:w-4/5">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <i class="fas fa-magnifying-glass text-text"></i>
                 </div>
 
-                <input type="search" name="searchBlog" id="searchBlog" placeholder="Cari Blog.."
+                <input type="search" name="searchEmployee" id="searchEmployee" placeholder="Cari Blog.."
                     class="w-full block pl-10 pr-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+            </div>
+
+            <div class="w-full lg:w-1/5">
+                <select name="filterStatus" id="filterStatus"
+                    class="w-full block px-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                    <option value="-">Semua Status</option>
+                    @foreach ($statusEmployees as $status)
+                        <option value="{{ $status->value }}">{{ $status->value }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="employeesList">
             @foreach ($employees as $employee)
                 <div
                     class="bg-white border-0 rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4 geometric-shape">
@@ -199,6 +212,105 @@
     </x-admin.layout>
 
 </body>
+
+<script>
+    (function() {
+        const searchEl = document.getElementById('searchEmployee'); // input pencarian
+        const filterEl = document.getElementById('filterStatus'); // dropdown status
+        const employeeListEl = document.getElementById('employeesList'); // container data employee
+        const searchUrl = `{{ route('employee.search') }}`; // URL endpoint pencarian
+
+        // 🕒 Debounce helper (supaya fetch tidak terlalu sering dipanggil)
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        // 🚀 Ambil & render hasil pencarian
+        async function fetchAndRender() {
+            try {
+                const q = searchEl.value.trim();
+                const status = filterEl.value;
+
+                const url = new URL(searchUrl, window.location.origin);
+                if (q) url.searchParams.set('q', q);
+                if (status && status !== '-') url.searchParams.set('status', status);
+
+                const res = await fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                if (!res.ok) throw new Error('Network error');
+
+                const html = await res.text();
+
+                // Jika hasil kosong
+                if (!html.trim()) {
+                    employeeListEl.innerHTML = `
+                    <div class="flex flex-col justify-center items-center py-20 col-span-full">
+                        <i class="fas fa-circle-exclamation text-5xl mb-4 text-gray-400"></i>
+                        <p class="text-lg font-medium text-gray-500">Tidak ada hasil yang sesuai</p>
+                    </div>
+                `;
+                } else {
+                    employeeListEl.innerHTML = html;
+                }
+            } catch (err) {
+                console.error(err);
+                employeeListEl.innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-10 text-red-500">
+                        <i class="fas fa-triangle-exclamation text-3xl mb-2"></i>
+                        <p class="text-lg font-medium">Terjadi kesalahan saat memuat data</p>
+                    </td>
+                </tr>
+            `;
+            }
+        }
+
+        const debouncedFetch = debounce(fetchAndRender, 300);
+
+        // 🔍 Event input pencarian
+        searchEl.addEventListener('input', debouncedFetch);
+
+        // 🧹 Event tombol X di search input (jika user klik clear)
+        searchEl.addEventListener('search', fetchAndRender);
+
+        // 🎛️ Event filter status
+        filterEl.addEventListener('change', fetchAndRender);
+
+        // 🟢 Dropdown menu (aktifkan/ nonaktifkan/ hapus)
+        document.addEventListener('click', function(e) {
+            const button = e.target.closest('.dropdown-button');
+            if (button) {
+                const id = button.dataset.id;
+                const menu = document.getElementById(`dropdown-menu-${id}`);
+                if (menu) {
+                    menu.classList.toggle('scale-y-100');
+                    menu.classList.toggle('scale-y-0');
+                }
+            }
+        });
+
+        // Tutup dropdown jika klik di luar
+        document.addEventListener('click', function(e) {
+            const isDropdown = e.target.closest('.dropdown-button');
+            const isMenu = e.target.closest('[id^="dropdown-menu-"]');
+            if (!isDropdown && !isMenu) {
+                document.querySelectorAll('[id^="dropdown-menu-"]').forEach(menu => {
+                    menu.classList.remove('scale-y-100');
+                    menu.classList.add('scale-y-0');
+                });
+            }
+        });
+    })();
+</script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Status;
+use App\Exports\EmployeeExport;
 use App\Http\Controllers\Controller;
 use App\Models\CvApplicant;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeAdminController extends Controller
 {
@@ -17,10 +19,36 @@ class EmployeeAdminController extends Controller
     {
         $employees = Employee::latest()->paginate(9);
         $totalEmployees = Employee::count();
+        $statusEmployees = Status::onlyActiveNonActive();
         $totalActiveEmployees = Employee::where('status', 'Active')->count();
         $totalNonActiveEmployees = Employee::where('status', 'Non-Active')->count();
         $totalNewHires = Employee::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
-        return view('admin.employees.index', compact('employees', 'totalEmployees', 'totalActiveEmployees', 'totalNonActiveEmployees', 'totalNewHires'));
+        return view('admin.employees.index', compact('employees', 'totalEmployees', 'statusEmployees', 'totalActiveEmployees', 'totalNonActiveEmployees', 'totalNewHires'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+        $status = $request->get('status');
+
+        $employeesSearch = Employee::query();
+
+        if ($query) {
+            $employeesSearch->where(function ($qBuilder) use ($query) {
+                $qBuilder->where('name', 'like', "%{$query}%")
+                    ->orWhere('email', 'like', "%{$query}%")
+                    ->orWhere('phone_number', 'like', "%{$query}%")
+                    ->orWhere('position', 'like', "%{$query}%");
+            });
+        }
+
+        if ($status && $status !== '-') {
+            $employeesSearch->where('status', $status);
+        }
+
+        $employees = $employeesSearch->latest()->get();
+
+        return view('admin.employees.partials.employees-list', compact('employees'));
     }
 
     /**
@@ -102,5 +130,10 @@ class EmployeeAdminController extends Controller
         $employee->save();
 
         return redirect()->back()->with('success', 'Status karyawan berhasil diubah.');
+    }
+
+    public function export()
+    {
+        return Excel::download(new EmployeeExport, 'employees.xlsx');
     }
 }

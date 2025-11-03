@@ -25,10 +25,6 @@
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    {{-- Tiny --}}
-    <script src="https://cdn.tiny.cloud/1/ne2ngogb6ctihvg1psfcx2556ehuqcmgw33s33ig8a5c53ki/tinymce/8/tinymce.min.js"
-        referrerpolicy="origin" crossorigin="anonymous"></script>
-
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-section via-white to-accent">
@@ -280,53 +276,13 @@
     {{-- Create Blog End --}}
 </body>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        tinymce.init({
-            selector: 'textarea.tinymce-editor',
-            plugins: [
-                // Core editing features
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists',
-                'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                // Your account includes a free trial of TinyMCE premium features
-                // Try the most popular premium features until Sep 29, 2025:
-                'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed',
-                'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable',
-                'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments',
-                'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography',
-                'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-                'See docs to implement AI Assistant')),
-            uploadcare_public_key: '909f4161f60569b19c78',
-
-            setup: function(editor) {
-                editor.on('change', function() {
-                    tinymce.triggerSave(); // simpan isi editor ke <textarea>
-                });
-            }
-        });
-    });
-</script>
-
 <script src="{{ asset('asset-admin/js/dashboard.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // ambil canvas
-    const ctx = document.getElementById('myChart').getContext('2d');
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+    < /> <
+    script >
+        // ambil canvas
+        const ctx = document.getElementById('myChart').getContext('2d');
 
     // data contoh (sesuaikan nilai kalau mau)
     const labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
