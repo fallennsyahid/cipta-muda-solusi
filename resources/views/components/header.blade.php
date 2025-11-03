@@ -1,11 +1,10 @@
-<header class="absolute top-0 left-0 w-full flex items-center z-99999">
+<header class="absolute top-0 left-0 w-full flex items-center z-99999 bg-white">
     <div class="container max-w-full relative">
         <div class="flex items-center justify-between">
             <a href="{{ route('index') }}" class="pl-4 lg:pl-10 py-6">
                 <img src="{{ asset('landing/webp/cms-logo.webp') }}" alt="Logo Cipta Muda Solusi"
                     class="h-10 md:h-12 lg:h-14 w-auto" width="675" height="200">
             </a>
-
 
             {{ $slot }}
 

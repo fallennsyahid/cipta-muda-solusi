@@ -243,8 +243,8 @@
                                 <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <i class="fas fa-magnifying-glass text-gray-400"></i>
                                 </span>
-                                <input type="search" name="search" id="search" placeholder="Cari Lowongan.."
-                                    value="{{ $search }}"
+                                <input type="search" name="searchList" id="searchList"
+                                    placeholder="Cari Lowongan.."
                                     class="w-full h-12 pl-10 pr-3 border border-gray-300 rounded-l-lg text-sm text-black placeholder-gray-400">
                             </div>
 
@@ -1175,7 +1175,6 @@
         });
     });
 </script>
-
 
 <script src="{{ asset('js/jobs.js') }}"></script>
 <script src="{{ asset('asset-admin/js/preview-file.js') }}"></script>

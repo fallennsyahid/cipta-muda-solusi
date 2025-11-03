@@ -267,9 +267,11 @@
                             <h1 class="text-heading font-bold text-xl mb-3 truncate">
                                 {{ $blog->title }}
                             </h1>
-                            <p class="font-lato text-text text-base mb-4">
-                                {!! $blog->description !!}
-                            </p>
+                            <div class="mb-4">
+                                <p class="font-lato text-text text-base">
+                                    {!! $blog->description !!}
+                                </p>
+                            </div>
                             <div class="flex justify-between">
                                 <div class="flex items-center text-text text-sm gap-2">
                                     <span class="flex items-center text-sm text-text">
@@ -328,6 +330,33 @@
 
     setInterval(updateClock, 1000);
     updateClock();
+
+    // Navbar Fixed
+    const navbar = document.querySelector('#nav-menu');
+    const toTop = document.querySelector('#to-top');
+    const header = document.querySelector('header');
+    let isVisible = false;
+
+    window.addEventListener('scroll', function() {
+        const threshold = header.offsetHeight;
+
+        if (window.scrollY > threshold && !isVisible) {
+            isVisible = true;
+            header.classList.add('navbar-fixed');
+            // header.classList.remove('z-10');
+            // navbar.classList.add('navbar-fixed');
+            toTop.classList.remove('hidden', 'toTop-2');
+            toTop.classList.add('flex', 'toTop-1');
+        } else if (window.scrollY <= threshold && isVisible) {
+            isVisible = false;
+            header.classList.remove('navbar-fixed');
+            // header.classList.remove('z-10');
+            // navbar.classList.remove('navbar-fixed');
+            toTop.classList.remove('flex', 'toTop-1');
+            toTop.classList.add('toTop-2');
+        }
+    });
 </script>
+
 
 </html>

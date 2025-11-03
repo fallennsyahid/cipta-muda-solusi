@@ -1,3 +1,31 @@
+
+// Navbar Fixed
+const navbar = document.querySelector('#nav-menu');
+const toTop = document.querySelector('#to-top');
+const header = document.querySelector('header');
+let isVisible = false;
+
+window.addEventListener('scroll', function () {
+    const threshold = header.offsetHeight;
+
+    if (window.scrollY > threshold && !isVisible) {
+        isVisible = true;
+        header.classList.add('navbar-fixed');
+        // header.classList.remove('z-10');
+        // navbar.classList.add('navbar-fixed');
+        toTop.classList.remove('hidden', 'toTop-2');
+        toTop.classList.add('flex', 'toTop-1');
+    }
+    else if (window.scrollY <= threshold && isVisible) {
+        isVisible = false;
+        header.classList.remove('navbar-fixed');
+        // header.classList.remove('z-10');
+        // navbar.classList.remove('navbar-fixed');
+        toTop.classList.remove('flex', 'toTop-1');
+        toTop.classList.add('toTop-2');
+    }
+});
+
 // Faq Answer
 const dropdownBtns = document.querySelectorAll('.dropdown-button');
 
@@ -64,6 +92,7 @@ questionField.addEventListener('input', validateForm);
 questionField.addEventListener('change', validateForm);
 
 validateForm();
+
 
 
 

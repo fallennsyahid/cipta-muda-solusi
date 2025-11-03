@@ -19,3 +19,5 @@ shareBtn.addEventListener('click', async () => {
         alert("Browser kamu belum support Web Share API. Silakan copy link manual 😊");
     }
 });
+
+

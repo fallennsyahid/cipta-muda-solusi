@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\Status;
 use App\Models\Jobs;
 use App\Models\Applicant;
+use App\Models\Blog;
 use App\Models\JobVacancy;
 use App\Models\CvApplicant;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -46,8 +47,15 @@ class JobsController extends Controller
 
     public function search(Request $request)
     {
-        //
+        $query = $request->get('q');
+
+        $jobs = JobVacancy::query();
+
+        if ($query) {
+            $jobs->where(function ($qBuilder) use ($query) {});
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.

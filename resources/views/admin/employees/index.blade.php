@@ -94,6 +94,17 @@
             </div>
         </div>
 
+        <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape flex flex-wrap items-center gap-3">
+            <div class="relative w-full lg:w-3/5">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-magnifying-glass text-text"></i>
+                </div>
+
+                <input type="search" name="searchBlog" id="searchBlog" placeholder="Cari Blog.."
+                    class="w-full block pl-10 pr-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($employees as $employee)
                 <div
