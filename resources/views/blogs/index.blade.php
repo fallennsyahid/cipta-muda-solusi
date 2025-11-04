@@ -247,7 +247,7 @@
                 @foreach ($blogs as $blog)
                     <div class="bg-white border-1 border-text shadow-1 rounded-xl">
                         <div class="aspect-video overflow-hidden rounded-t-xl">
-                            <img src="{{ Storage::url($blog->image) }}" alt=""
+                            <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}"
                                 class="w-full h-full opacity-90 object-cover hover:opacity-100 hover:scale-105 transition-all duration-300">
                         </div>
                         <div class="p-6">
@@ -325,7 +325,7 @@
         clockEl.innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')}`;
+            `${seconds.toString().padStart(2, '0')} WIB`;
     };
 
     setInterval(updateClock, 1000);

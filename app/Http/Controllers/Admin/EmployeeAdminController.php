@@ -46,7 +46,7 @@ class EmployeeAdminController extends Controller
             $employeesSearch->where('status', $status);
         }
 
-        $employees = $employeesSearch->latest()->get();
+        $employees = $employeesSearch->latest()->paginate(6);
 
         return view('admin.employees.partials.employees-list', compact('employees'));
     }

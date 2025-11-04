@@ -1593,7 +1593,7 @@
         clockEl.innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')}`;
+            `${seconds.toString().padStart(2, '0')} WIB`;
     };
 
     setInterval(updateClock, 1000);

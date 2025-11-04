@@ -235,40 +235,27 @@
                     Daftar Lowongan Kerja ({{ $totalJobs }})
                 </h1>
 
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 w-full md:w-auto">
-                    <form action="{{ route('user.jobs.index') }}#jobs" method="GET" class="w-full sm:w-72">
-                        <div class="flex items-center">
-                            <!-- Input -->
-                            <div class="relative flex-1">
-                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-magnifying-glass text-gray-400"></i>
-                                </span>
-                                <input type="search" name="searchList" id="searchList"
-                                    placeholder="Cari Lowongan.."
-                                    class="w-full h-12 pl-10 pr-3 border border-gray-300 rounded-l-lg text-sm text-black placeholder-gray-400">
-                            </div>
+                <div class="flex items-center gap-3">
+                    <!-- Input -->
+                    <div class="relative w-full">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-magnifying-glass text-gray-400"></i>
+                        </span>
+                        <input type="search" name="searchJob" id="searchJob" placeholder="Cari Lowongan.."
+                            class="w-full pl-10 py-3 pr-4 border border-gray-300 rounded-lg text-base text-black placeholder-gray-400">
+                    </div>
 
-                            <!-- Button -->
-                            <button type="submit"
-                                class="h-12 w-12 bg-secondary flex items-center justify-center text-white rounded-r-lg hover:bg-secondary/90 transition">
-                                <i class="fas fa-paper-plane text-sm"></i>
-                            </button>
-                        </div>
-                    </form>
-
-                    {{-- <div class="flex-1 sm:flex-none sm:w-48">
-                        <select name="filter" id="filter"
-                            class="p-3 w-full rounded-lg border border-text text-base focus:outline-none text-black2" onchange="this.form.submit()">
-                            <option value="-" {{ request('filter') == '-' ? 'selected' : '' }}>Semua Kategori</option>
-                            <option value="-">IT Solution</option>
-                            <option value="-">Sales & Marketing</option>
-                            <option value="-">Event Organizer</option>
-                        </select>
-                    </div> --}}
+                    <select name="filterJob" id="filterJob"
+                        class="w-full px-6 py-3 border border-gray-300 rounded-lg text-base text-black capitalize">
+                        <option value="-">Semua Jenis</option>
+                        @foreach ($jobTypes as $type)
+                            <option value="{{ $type->value }}">{{ $type->value }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-4 md:mx-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-4 md:mx-10" id="jobList">
                 @if ($jobs->isEmpty())
                     <div class="col-span-1 lg:col-span-2 bg-white rounded-xl shadow-1 p-10 text-center">
                         <i class="fas fa-briefcase text-5xl md:text-6xl text-primary/50 mb-3 md:mb-6"></i>
@@ -281,7 +268,7 @@
                             <div class="flex justify-between items-center mb-2">
                                 <h1 class="font-bold text-xl text-heading">{{ $job->position }}</h1>
                                 <span
-                                    class="text-white bg-secondary px-3 py-2 rounded-sm">{{ $job->departement }}</span>
+                                    class="text-white bg-secondary px-3 py-2 rounded-sm capitalize">{{ $job->departement }}</span>
                             </div>
                             <p class="font-lato text-sm max-w-md text-text mb-3 truncate">
                                 {{ $job->description }}
@@ -338,9 +325,11 @@
                 @endif
             </div>
 
-            <div class="flex justify-end mt-4">
-                {{ $jobs->links() }}
-            </div>
+            @if ($jobs->hasPages())
+                <div id="paginationContainer" class="mt-4 mx-4 md:mx-10">
+                    {{ $jobs->links() }}
+                </div>
+            @endif
         </div>
     </section>
 
@@ -943,6 +932,152 @@
 </body>
 
 <script>
+    (function() {
+        const searchEl = document.getElementById('searchJob');
+        const filterEl = document.getElementById('filterJob');
+        const jobsEl = document.getElementById('jobList');
+        const searchUrl = `{{ route('jobs.search') }}`;
+
+        // 🕒 Debounce helper (supaya fetch tidak terlalu sering dipanggil)
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        // 🚀 Ambil & render hasil pencarian
+        async function fetchAndRender() {
+            try {
+                const q = searchEl.value.trim();
+                const type = filterEl.value;
+
+                const url = new URL(searchUrl, window.location.origin);
+                if (q) url.searchParams.set('q', q);
+                if (type && type !== '-') url.searchParams.set('job_type', type);
+
+                const res = await fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                if (!res.ok) throw new Error('Network error');
+
+                const html = await res.text();
+
+                const pagination = document.getElementById('paginationContainer');
+                if (pagination) {
+                    if (q || (type && type !== '-')) {
+                        pagination.classList.add('hidden');
+                    } else {
+                        pagination.classList.remove('hidden');
+                    }
+                }
+
+                // Jika hasil kosong
+                if (!html.trim()) {
+                    jobsEl.innerHTML = `
+                    <div class="flex flex-col justify-center items-center py-20 col-span-full">
+                        <i class="fas fa-circle-exclamation text-5xl mb-4 text-gray-400"></i>
+                        <p class="text-lg font-medium text-gray-500">Tidak ada hasil yang sesuai</p>
+                    </div>
+                `;
+                } else {
+                    jobsEl.innerHTML = html;
+                }
+            } catch (err) {
+                console.error(err);
+                jobsEl.innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-10 text-red-500">
+                        <i class="fas fa-triangle-exclamation text-3xl mb-2"></i>
+                        <p class="text-lg font-medium">Terjadi kesalahan saat memuat data</p>
+                    </td>
+                </tr>
+            `;
+            }
+        }
+
+        const debouncedFetch = debounce(fetchAndRender, 300);
+
+        // 🔍 Event input pencarian
+        searchEl.addEventListener('input', debouncedFetch);
+
+        // 🧹 Event tombol X di search input (jika user klik clear)
+        searchEl.addEventListener('search', fetchAndRender);
+
+        // 🎛️ Event filter status
+        filterEl.addEventListener('change', fetchAndRender);
+
+        // 🟢 Dropdown menu (aktifkan/ nonaktifkan/ hapus)
+        document.addEventListener('click', function(e) {
+            const openDetailBtn = e.target.closest('.open-detail-application');
+            if (openDetailBtn) {
+                const id = openDetailBtn.dataset.id;
+                const modal = document.getElementById(`modal-detail-${id}`);
+                if (modal) {
+                    modal.classList.toggle('hidden');
+                    modal.classList.toggle('flex');
+                }
+            }
+
+            const openApplyBtn = e.target.closest('.open-apply');
+            if (openApplyBtn) {
+                e.preventDefault();
+                const jobId = openApplyBtn.dataset.id || openApplyBtn.closest('[id^="modal-detail-"]').id
+                    .replace('modal-detail-', '');
+
+                const applyModalContainer = document.querySelector('#modal-container-' + jobId);
+                const applyModalContent = applyModalContainer?.querySelector('.modal-content');
+
+                // Tutup modal detail (kalau terbuka)
+                const detailModal = document.querySelector('#modal-detail-' + jobId);
+                if (detailModal) {
+                    detailModal.classList.add('hidden');
+                    detailModal.classList.remove('flex');
+                }
+
+                // Buka modal apply
+                if (applyModalContainer) {
+                    applyModalContainer.classList.remove('hidden');
+                    applyModalContainer.classList.add('flex');
+
+                    // Animasi muncul dari bawah
+                    setTimeout(() => {
+                        applyModalContent?.classList.remove('translate-y-full');
+                    }, 100);
+                }
+            }
+
+            // 🔹 Tutup modal apply
+            const closeApplyBtn = e.target.closest('.close-apply-modal');
+            if (closeApplyBtn) {
+                const container = closeApplyBtn.closest('[id^="modal-container-"]');
+                const content = container.querySelector('.modal-content');
+                content.classList.add('translate-y-full');
+                setTimeout(() => {
+                    container.classList.add('hidden');
+                    container.classList.remove('flex');
+                }, 300);
+            }
+        });
+
+        // // Tutup dropdown jika klik di luar
+        // document.addEventListener('click', function(e) {
+        //     const isDropdown = e.target.closest('.dropdown-button');
+        //     const isMenu = e.target.closest('[id^="dropdown-menu-"]');
+        //     if (!isDropdown && !isMenu) {
+        //         document.querySelectorAll('[id^="dropdown-menu-"]').forEach(menu => {
+        //             menu.classList.remove('scale-y-100');
+        //             menu.classList.add('scale-y-0');
+        //         });
+        //     }
+        // });
+    })();
+</script>
+
+<script>
     document.querySelectorAll(".photo-group").forEach((group) => {
         const input = group.querySelector(".photo-input");
         const previewContainer = group.querySelector(".preview-container");
@@ -1079,7 +1214,7 @@
         clockEl.innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')}`;
+            `${seconds.toString().padStart(2, '0')} WIB`;
     };
 
     setInterval(updateClock, 1000);

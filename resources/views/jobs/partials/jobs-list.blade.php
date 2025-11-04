@@ -9,7 +9,7 @@
         <div class="bg-white rounded-xl shadow-1 p-6">
             <div class="flex justify-between items-center mb-2">
                 <h1 class="font-bold text-xl text-heading">{{ $job->position }}</h1>
-                <span class="text-white bg-secondary px-3 py-2 rounded-sm">{{ $job->departement }}</span>
+                <span class="text-white bg-secondary px-3 py-2 rounded-sm capitalize">{{ $job->departement }}</span>
             </div>
             <p class="font-lato text-sm max-w-md text-text mb-3 truncate">
                 {{ $job->description }}
@@ -45,8 +45,8 @@
                 </div>
             </div>
             <div class="flex justify-between items-center">
-                <h3 class="text-sm font-medium text-text">
-                    Diposting {{ $job->created_at->locale('id')->diffForHumans() }}
+                <h3 class="text-sm font-medium text-text">Diposting
+                    {{ $job->created_at->locale('id')->diffForHumans() }}
                 </h3>
                 <div class="flex items-center space-x-3">
                     <button type="button" data-id="{{ $job->id }}"

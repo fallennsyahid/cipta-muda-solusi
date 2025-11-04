@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JobType;
 use App\Enums\Status;
 use App\Models\Jobs;
 use App\Models\Applicant;
@@ -18,42 +19,37 @@ class JobsController extends Controller
      */
     public function index(Request $request)
     {
+        $jobs = JobVacancy::where('status', Status::Active->value)->latest()->paginate(6);
         $totalJobs = JobVacancy::where('status', Status::Active->value)->count();
+        $jobTypes = JobType::cases();
 
-        $search = $request->input('search');
-        $filter = $request->input('filter');
-        $perPage = 9;
-
-        if ($search) {
-            $builder = JobVacancy::search($search);
-
-            if ($filter && $filter !== '-') {
-                $builder = $builder->where('departement', $filter);
-            }
-
-            $jobs = $builder->paginate($perPage);
-        } else {
-            $query = JobVacancy::where('status', Status::Active->value);
-
-            if ($filter && $filter !== '-') {
-                $query->where('departement', $filter);
-            }
-
-            $jobs = $query->latest()->paginate($perPage);
-        }
-
-        return view('jobs.index', compact('jobs', 'totalJobs', 'search', 'filter'));
+        return view('jobs.index', compact('jobs', 'totalJobs', 'jobTypes'));
     }
 
     public function search(Request $request)
     {
         $query = $request->get('q');
+        $filter = $request->get('job_type');
 
-        $jobs = JobVacancy::query();
+        $jobsSearch = JobVacancy::query();
 
         if ($query) {
-            $jobs->where(function ($qBuilder) use ($query) {});
+            $jobsSearch->where(function ($qBuilder) use ($query) {
+                $qBuilder->where('position', 'like', "%{$query}%")
+                    ->orWhere('departement', 'like', "%{$query}%")
+                    ->orWhere('location', 'like', "%{$query}%")
+                    ->orWhere('description', 'like', "%{$query}%")
+                    ->orWhereRaw("LOWER(skills) LIKE ?", ["%" . strtolower($query) . "%"]);
+            });
         }
+
+        if ($filter) {
+            $jobsSearch->where('job_type', $filter);
+        }
+
+        $jobs = $jobsSearch->latest()->paginate(6);
+
+        return view('jobs.partials.jobs-list', compact('jobs'));
     }
 
 

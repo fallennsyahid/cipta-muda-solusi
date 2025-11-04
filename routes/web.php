@@ -63,6 +63,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/admin/jobs', JobVacancyAdminController::class);
     Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');
     Route::delete('/admin/job/applicants/{applicant}', [JobVacancyAdminController::class, 'deleteApplicant'])->name('applicant.delete');
+    Route::get('/admin/job/applicants/{id}/export', [JobVacancyAdminController::class, 'export'])->name('job.exportApplicants');
 
     Route::resource('/admin/portfolios', PortfoliosAdminController::class);
 

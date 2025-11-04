@@ -40,7 +40,7 @@
                     Kembali
                 </a>
                 <div>
-                    <a href="#"
+                    <a href="{{ route('job.exportApplicants', $job->id) }}"
                         class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-green-500 via-green-600 to-green-700 cursor-pointer hover:from-green-600 hover:via-green-700 hover:to-green-800 transition">
                         <i class="fas fa-file-excel"></i>
                         Export Excel

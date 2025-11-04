@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Status;
 use App\Enums\JobType;
+use App\Exports\ApplicantExport;
 use App\Models\Applicant;
 use App\Models\JobVacancy;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JobVacancyAdminController extends Controller
 {
@@ -186,5 +188,14 @@ class JobVacancyAdminController extends Controller
     {
         $job->delete();
         return redirect()->route('jobs.index')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function  export($id)
+    {
+        $job = JobVacancy::findOrFail($id);
+
+        $fillName = 'Pelamar_' . str_replace(' ', '_', $job->position) . '.xlsx';
+
+        return Excel::download(new ApplicantExport($id), $fillName);
     }
 }
