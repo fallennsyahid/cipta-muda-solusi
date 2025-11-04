@@ -25,8 +25,14 @@
             <div class="relative">
                 <div class="p-2 rounded-lg hover:bg-text/25 cursor-pointer" id="profile-dropdown">
                     <div class="flex items-center gap-2">
-                        <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : Avatar::create(Auth::user()->name)->toBase64() }}"
-                            alt="{{ Auth::user()->name }}" class="rounded-full w-10 h-10">
+                        @if (Auth::check())
+                            <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : Avatar::create(Auth::user()->name)->toBase64() }}"
+                                alt="{{ Auth::user()->name ?? 'Guest' }}" class="rounded-full w-10 h-10">
+                        @else
+                            <div class="w-10 h-10 rounded-full bg-bg flex items-end justify-center overflow-hidden">
+                                <i class="fas fa-user text-3xl text-text"></i>
+                            </div>
+                        @endif
                         <div class="flex flex-col">
                             <span
                                 class="text-base font-bold text-darkChoco">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</span>
@@ -34,6 +40,8 @@
                                 @if (Auth::check() && Auth::user()->last_login_at)
                                     <span id="last-login" class="text-text font-medium text-sm"
                                         data-timestamp="{{ Auth::user()->last_login_at->timestamp }}"></span>
+                                @else
+                                    <span class="text-text font-medium text-sm">-</span>
                                 @endif
                             </span>
                         </div>
@@ -120,7 +128,7 @@
         document.getElementById("clock").innerText =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')}`;
+            `${seconds.toString().padStart(2, '0')} WIB`;
     }
 
     setInterval(updateClock, 1000);

@@ -98,6 +98,37 @@
             </div>
         </div>
 
+        <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape flex flex-col lg:flex-row items-center gap-3">
+            <div class="relative w-full lg:w-3/5">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-magnifying-glass text-text"></i>
+                </div>
+
+                <input type="search" name="searchEmployee" id="searchEmployee" placeholder="Cari Blog.."
+                    class="w-full block pl-10 pr-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+            </div>
+
+            <div class="w-full lg:w-1/5">
+                <select name="filterStatus" id="filterStatus"
+                    class="w-full block px-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                    <option value="-">Semua Kategori</option>
+                    @foreach ($partnerTypes as $partnerType)
+                        <option value="{{ $partnerType->name }}">{{ $partnerType->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="w-full lg:w-1/5">
+                <select name="filterStatus" id="filterStatus"
+                    class="w-full block px-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                    <option value="-">Semua Status</option>
+                    @foreach ($partnerStatus as $status)
+                        <option value="{{ $status->value }}">{{ $status->value }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         <div class="flex flex-col gap-6">
             @foreach ($partners as $partner)
                 <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">

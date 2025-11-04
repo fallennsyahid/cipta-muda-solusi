@@ -53,47 +53,50 @@ Route::get('testing', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::resource('/dashboard', DashboardAdminController::class)->middleware(['auth', 'verified']);
-Route::post('/dashboard/job/store', [DashboardAdminController::class, 'jobCreate'])->name('newJob.store');
-Route::post('/dashboard/partner/store', [DashboardAdminController::class, 'addPartner'])->name('addPartner.store');
-Route::post('/dashboard/blog/status', [DashboardAdminController::class, 'createNewBlog'])->name('createBlog.store');
+// Route::resource('/dashboard', DashboardAdminController::class)->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::resource('/dashboard', DashboardAdminController::class);
+    Route::post('/dashboard/job/store', [DashboardAdminController::class, 'jobCreate'])->name('newJob.store');
+    Route::post('/dashboard/partner/store', [DashboardAdminController::class, 'addPartner'])->name('addPartner.store');
+    Route::post('/dashboard/blog/status', [DashboardAdminController::class, 'createNewBlog'])->name('createBlog.store');
 
-Route::resource('/admin/jobs', JobVacancyAdminController::class);
-Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');
-Route::delete('/admin/job/applicants/{applicant}', [JobVacancyAdminController::class, 'deleteApplicant'])->name('applicant.delete');
+    Route::resource('/admin/jobs', JobVacancyAdminController::class);
+    Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');
+    Route::delete('/admin/job/applicants/{applicant}', [JobVacancyAdminController::class, 'deleteApplicant'])->name('applicant.delete');
 
-Route::resource('/admin/portfolios', PortfoliosAdminController::class);
+    Route::resource('/admin/portfolios', PortfoliosAdminController::class);
 
-Route::resource('/admin/faqs', FaqsAdminController::class);
-Route::patch('/faqs/{faq}/status', [FaqsAdminController::class, 'updateStatus'])->name('faqs.updateStatus');
-Route::patch('/faqs/{faq}/answer', [FaqsAdminController::class, 'answerQuestion'])->name('faq.answer');
+    Route::resource('/admin/faqs', FaqsAdminController::class);
+    Route::patch('/faqs/{faq}/status', [FaqsAdminController::class, 'updateStatus'])->name('faqs.updateStatus');
+    Route::patch('/faqs/{faq}/answer', [FaqsAdminController::class, 'answerQuestion'])->name('faq.answer');
 
-Route::resource('/admin/blogs', BlogsAdminController::class);
-Route::get('/blogs/search', [BlogsAdminController::class, 'search'])->name('blogs.search');
-Route::patch('/blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');
-Route::patch('/blogs/{id}/approve', [BlogsAdminController::class, 'approve'])->name('blogs.approve');
+    Route::resource('/admin/blogs', BlogsAdminController::class);
+    Route::get('/blogs/search', [BlogsAdminController::class, 'search'])->name('blogs.search');
+    Route::patch('/blogs/{id}/toggle-featured', [BlogsAdminController::class, 'toggleFeatured'])->name('blogs.toggleFeatured');
+    Route::patch('/blogs/{id}/approve', [BlogsAdminController::class, 'approve'])->name('blogs.approve');
 
-Route::resource('admin/contact', ContactAdminController::class);
+    Route::resource('admin/contact', ContactAdminController::class);
 
-Route::resource('admin/partner', PartnerAdminController::class);
+    Route::resource('admin/partner', PartnerAdminController::class);
 
-Route::resource('admin/partnerReq', PartnerReqAdminController::class);
-Route::put('partnerReq/{id}/status', [PartnerReqAdminController::class, 'updateStatus'])->name('partner-request.updateStatus');
+    Route::resource('admin/partnerReq', PartnerReqAdminController::class);
+    Route::put('partnerReq/{id}/status', [PartnerReqAdminController::class, 'updateStatus'])->name('partner-request.updateStatus');
 
-Route::resource('admin/cv', CvAdminController::class);
-Route::put('/admin/{id}/status', [CvAdminController::class, 'updateStatus'])->name('cv.updateStatus');
-Route::get('/admin/cv-export', [CvAdminController::class, 'export'])->name('cv.export');
+    Route::resource('admin/cv', CvAdminController::class);
+    Route::put('/admin/{id}/status', [CvAdminController::class, 'updateStatus'])->name('cv.updateStatus');
+    Route::get('/admin/cv-export', [CvAdminController::class, 'export'])->name('cv.export');
 
-Route::resource('/admin/account', AccountAdminController::class);
-Route::patch('/admin/{account}/toggle-status', [AccountAdminController::class, 'toggleStatus'])->name('account.toggleStatus');
+    Route::resource('/admin/account', AccountAdminController::class);
+    Route::patch('/admin/{account}/toggle-status', [AccountAdminController::class, 'toggleStatus'])->name('account.toggleStatus');
 
-Route::get('/admin/employee/search', [EmployeeAdminController::class, 'search'])->name('employee.search');
-Route::get('/admin/employee/export', [EmployeeAdminController::class, 'export'])->name('employee.export');
-Route::resource('/admin/employee', EmployeeAdminController::class);
-Route::patch('/admin/employee/{employee}/toggle-status', [EmployeeAdminController::class, 'toggleStatus'])->name('employee.toggleStatus');
+    Route::get('/admin/employee/search', [EmployeeAdminController::class, 'search'])->name('employee.search');
+    Route::get('/admin/employee/export', [EmployeeAdminController::class, 'export'])->name('employee.export');
+    Route::resource('/admin/employee', EmployeeAdminController::class);
+    Route::patch('/admin/employee/{employee}/toggle-status', [EmployeeAdminController::class, 'toggleStatus'])->name('employee.toggleStatus');
 
-Route::resource('/admin/category-partner', CategoryPartnerAdminController::class);
-Route::patch('/admin/category-partner/{category}/toggle-status', [CategoryPartnerAdminController::class, 'toggleStatus'])->name('category-partner.toggleStatus');
+    Route::resource('/admin/category-partner', CategoryPartnerAdminController::class);
+    Route::patch('/admin/category-partner/{category}/toggle-status', [CategoryPartnerAdminController::class, 'toggleStatus'])->name('category-partner.toggleStatus');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -101,7 +104,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:admin_blog'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin_blog'])->group(function () {
     Route::get('adminBlog/dashboard', [DashboardController::class, 'index'])->name('adminBlog.dashboard');
 
     // Route::resource('adminBlog/blog', BlogPostController::class);

@@ -33,12 +33,19 @@
                 <h1 class="text-2xl text-heading font-bold">{{ $job->position }}</h1>
                 <p class="text-text font-lato">Daftar pelamar untuk lowongan ini</p>
             </div>
-            <div>
+            <div class="flex items-center gap-2">
                 <a href="{{ route('jobs.index') }}"
                     class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-heading via-primary to-secondary cursor-pointer hover:from-secondary hover:via-primary hover:to-heading">
                     <i class="fas fa-arrow-left"></i>
                     Kembali
                 </a>
+                <div>
+                    <a href="#"
+                        class="flex items-center gap-4 text-white font-medium px-5 py-3 rounded-lg bg-gradient-to-r from-green-500 via-green-600 to-green-700 cursor-pointer hover:from-green-600 hover:via-green-700 hover:to-green-800 transition">
+                        <i class="fas fa-file-excel"></i>
+                        Export Excel
+                    </a>
+                </div>
             </div>
         </div>
 

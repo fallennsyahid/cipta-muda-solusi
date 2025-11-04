@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class CvApplicantsExport implements FromCollection, WithHeadings, WithMapping
 {
+    private $rowNumber;
+
     /**
      * @return \Illuminate\Support\Collection
      */
@@ -30,7 +32,7 @@ class CvApplicantsExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'ID',
+            'NO',
             'Nama Pelamar',
             'Tanggal Lahir',
             'Email Pelamar',
@@ -44,13 +46,26 @@ class CvApplicantsExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($applicant): array
     {
+        // Ambil nomor asli
+        $phone = preg_replace('/\s+|-/', '', $applicant->applicant_phone_number);
+
+        // Jika nomor diawali dengan +62
+        if (strpos($phone, '+62') === 0) {
+            $phone = '0' . substr($phone, 3);
+        }
+        // Jika nomor diawali dengan 62 (tanpa +)
+        elseif (strpos($phone, '62') === 0) {
+            $phone = '0' . substr($phone, 2);
+        }
+
         return [
-            $applicant->id,
+            ++$this->rowNumber,
             $applicant->applicant_name,
             $applicant->date_of_birth
                 ? \Carbon\Carbon::parse($applicant->date_of_birth)->format('d-m-Y') : '',
             $applicant->applicant_email,
-            $applicant->applicant_phone_number,
+            // $applicant->applicant_phone_number,
+            $phone,
             $applicant->applicant_experience,
             $applicant->applicant_link,
             $applicant->status,
