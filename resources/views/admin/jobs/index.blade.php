@@ -102,7 +102,38 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-6">
+        <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape flex flex-wrap items-center gap-3">
+            <div class="relative w-full lg:w-[55%]">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-magnifying-glass text-text"></i>
+                </div>
+
+                <input type="search" name="searchJob" id="searchJob" placeholder="Cari Job.."
+                    class="w-full block pl-10 pr-6 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-base">
+            </div>
+
+            <select name="filterType" id="filterType"
+                class="w-full lg:w-1/5 block px-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary capitalize">
+                <option value="-">Semua Jenis</option>
+                @foreach ($jobType as $type)
+                    <option value="{{ $type->value }}">
+                        {{ $type->value }}
+                    </option>
+                @endforeach
+            </select>
+
+            <select name="filterStatus" id="filterStatus"
+                class="w-full lg:w-1/5 block px-4 py-2 border border-text/25 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="-">Semua Status</option>
+                @foreach ($jobStatus as $status)
+                    <option value="{{ $status->value }}">
+                        {{ $status->value }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="flex flex-col gap-6" id="jobsList">
             @forelse ($jobs as $job)
                 <div class="bg-white rounded-2xl shadow-lg p-5 geometric-shape hover:shadow-xl">
                     <div class="flex justify-between">
@@ -210,9 +241,11 @@
                 </div>
             @endforelse
 
-            <div class="flex justify-end mt-4">
-                {{ $jobs->links() }}
-            </div>
+            @if ($jobs->hasPages())
+                <div id="paginationContainer" class="mt-4 mx-4 md:mx-10">
+                    {{ $jobs->links() }}
+                </div>
+            @endif
         </div>
     </x-admin.layout>
 
@@ -544,6 +577,135 @@
     @endforeach
     {{-- Edit Modal End --}}
 </body>
+
+<script>
+    (function() {
+        const searchEl = document.getElementById('searchJob');
+        const filterTypeEl = document.getElementById('filterType');
+        const filterStatusEl = document.getElementById('filterStatus');
+        const jobsEl = document.getElementById('jobsList');
+        const searchUrl = `{{ route('admin.jobs.search') }}`;
+
+        // 🕒 Debounce helper (supaya fetch tidak terlalu sering dipanggil)
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        // 🚀 Ambil & render hasil pencarian
+        async function fetchAndRender() {
+            try {
+                const q = searchEl.value.trim();
+                const type = filterTypeEl.value;
+                const status = filterStatusEl.value;
+
+                const url = new URL(searchUrl, window.location.origin);
+                if (q) url.searchParams.set('q', q);
+                if (type && type !== '-') url.searchParams.set('job_type', type);
+                if (status && status !== '-') url.searchParams.set('status', status);
+
+                const res = await fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                if (!res.ok) throw new Error('Network error');
+
+                const html = await res.text();
+
+                const pagination = document.getElementById('paginationContainer');
+                if (pagination) {
+                    if (q || (type && type !== '-')) {
+                        pagination.classList.add('hidden');
+                    } else {
+                        pagination.classList.remove('hidden');
+                    }
+                }
+
+                // Jika hasil kosong
+                if (!html.trim()) {
+                    jobsEl.innerHTML = `
+                    <div class="flex flex-col justify-center items-center py-20 col-span-full">
+                        <i class="fas fa-circle-exclamation text-5xl mb-4 text-gray-400"></i>
+                        <p class="text-lg font-medium text-gray-500">Tidak ada hasil yang sesuai</p>
+                    </div>
+                `;
+                } else {
+                    jobsEl.innerHTML = html;
+                }
+            } catch (err) {
+                console.error(err);
+                jobsEl.innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-10 text-red-500">
+                        <i class="fas fa-triangle-exclamation text-3xl mb-2"></i>
+                        <p class="text-lg font-medium">Terjadi kesalahan saat memuat data</p>
+                    </td>
+                </tr>
+            `;
+            }
+        }
+
+        const debouncedFetch = debounce(fetchAndRender, 300);
+
+        // 🔍 Event input pencarian
+        searchEl.addEventListener('input', debouncedFetch);
+
+        // 🧹 Event tombol X di search input (jika user klik clear)
+        searchEl.addEventListener('search', fetchAndRender);
+
+        // 🎛️ Event filter status
+        filterTypeEl.addEventListener('change', fetchAndRender);
+
+        filterStatusEl.addEventListener('change', fetchAndRender);
+
+        document.addEventListener('click', async function(e) {
+            // ✏️ Tombol Edit
+            const editBtn = e.target.closest('.open-edit-modal');
+            if (editBtn) {
+                e.preventDefault();
+                const id = editBtn.dataset.id;
+                // buka modal edit sesuai ID
+                console.log('Edit Job:', id);
+                // di sini panggil fungsi untuk buka modal
+            }
+
+            // 👀 Tombol Lihat Pelamar
+            const lihatBtn = e.target.closest('a[href*="/admin/jobs/"]');
+            if (lihatBtn) {
+                // default-nya ini link, biarkan berjalan normal
+                return;
+            }
+
+            // 🗑️ Tombol Hapus
+            const deleteForms = e.target.closest('.delete-form');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Yakin ingin menghapus',
+                        text: 'Data yang sudah dihapus tidak dapat dipulihkan!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e3342f',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+
+    })();
+</script>
 
 {{-- Tagify JS --}}
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>

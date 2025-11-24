@@ -60,6 +60,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::post('/dashboard/partner/store', [DashboardAdminController::class, 'addPartner'])->name('addPartner.store');
     Route::post('/dashboard/blog/status', [DashboardAdminController::class, 'createNewBlog'])->name('createBlog.store');
 
+    Route::get('/admin/job/search', [JobVacancyAdminController::class, 'search'])->name('admin.jobs.search');
     Route::resource('/admin/jobs', JobVacancyAdminController::class);
     Route::put('admin/job/{applicant}/status', [JobVacancyAdminController::class, 'updateStatusApp'])->name('applicant.updateStatus');
     Route::delete('/admin/job/applicants/{applicant}', [JobVacancyAdminController::class, 'deleteApplicant'])->name('applicant.delete');

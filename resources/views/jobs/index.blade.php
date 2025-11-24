@@ -1012,6 +1012,7 @@
 
         // 🟢 Dropdown menu (aktifkan/ nonaktifkan/ hapus)
         document.addEventListener('click', function(e) {
+            e.preventDefault();
             const openDetailBtn = e.target.closest('.open-detail-application');
             if (openDetailBtn) {
                 const id = openDetailBtn.dataset.id;

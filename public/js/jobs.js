@@ -21,67 +21,67 @@ closeModalBtn.forEach(btn => {
 });
 
 // === APPLY MODAL ===
-const openApplyModalBtn = document.querySelectorAll('.open-apply');
-const closeApplyModalBtn = document.querySelectorAll('.close-apply-modal');
+// const openApplyModalBtn = document.querySelectorAll('.open-apply');
+// const closeApplyModalBtn = document.querySelectorAll('.close-apply-modal');
 
-// Buka modal apply
-openApplyModalBtn.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
+// // Buka modal apply
+// openApplyModalBtn.forEach(btn => {
+//     btn.addEventListener('click', (e) => {
+//         e.preventDefault();
 
-        // Cari ID lowongan
-        const jobId = btn.dataset.id || btn.closest('[id^="modal-detail-"]').id.replace('modal-detail-', '');
+//         // Cari ID lowongan
+//         const jobId = btn.dataset.id || btn.closest('[id^="modal-detail-"]').id.replace('modal-detail-', '');
 
-        const applyModalContainer = document.querySelector('#modal-container-' + jobId);
-        const applyModalContent = applyModalContainer.querySelector('.modal-content');
+//         const applyModalContainer = document.querySelector('#modal-container-' + jobId);
+//         const applyModalContent = applyModalContainer.querySelector('.modal-content');
 
-        // Tutup modal detail dulu (kalau sedang terbuka)
-        const detailModal = document.querySelector('#modal-detail-' + jobId);
-        if (detailModal) {
-            detailModal.classList.add('hidden');
-            detailModal.classList.remove('flex');
-        }
+//         // Tutup modal detail dulu (kalau sedang terbuka)
+//         const detailModal = document.querySelector('#modal-detail-' + jobId);
+//         if (detailModal) {
+//             detailModal.classList.add('hidden');
+//             detailModal.classList.remove('flex');
+//         }
 
-        // Buka modal apply
-        applyModalContainer.classList.remove('hidden');
-        applyModalContainer.classList.add('flex');
+//         // Buka modal apply
+//         applyModalContainer.classList.remove('hidden');
+//         applyModalContainer.classList.add('flex');
 
-        // Animasi muncul dari bawah
-        setTimeout(() => {
-            applyModalContent.classList.remove('translate-y-full');
-        }, 100);
-    });
-});
+//         // Animasi muncul dari bawah
+//         setTimeout(() => {
+//             applyModalContent.classList.remove('translate-y-full');
+//         }, 100);
+//     });
+// });
 
-// Tutup modal apply
-closeApplyModalBtn.forEach(cls => {
-    cls.addEventListener('click', (e) => {
-        e.preventDefault();
+// // Tutup modal apply
+// closeApplyModalBtn.forEach(cls => {
+//     cls.addEventListener('click', (e) => {
+//         e.preventDefault();
 
-        const modalContainer = cls.closest('[id^="modal-container-"]');
-        const modalContent = modalContainer.querySelector('.modal-content');
+//         const modalContainer = cls.closest('[id^="modal-container-"]');
+//         const modalContent = modalContainer.querySelector('.modal-content');
 
-        modalContent.classList.add('translate-y-full');
+//         modalContent.classList.add('translate-y-full');
 
-        setTimeout(() => {
-            modalContainer.classList.remove('flex');
-            modalContainer.classList.add('hidden');
-        }, 200);
-    });
-});
+//         setTimeout(() => {
+//             modalContainer.classList.remove('flex');
+//             modalContainer.classList.add('hidden');
+//         }, 200);
+//     });
+// });
 
 // APPLICATION DETAIL MODAL
-const openDetailApplication = document.querySelectorAll('.open-detail-application');
+// const openDetailApplication = document.querySelectorAll('.open-detail-application');
 
-openDetailApplication.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
+// openDetailApplication.forEach(btn => {
+//     btn.addEventListener('click', (e) => {
+//         e.preventDefault();
 
-        const modal = document.querySelector('#modal-detail-' + btn.dataset.id);
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    });
-});
+//         const modal = document.querySelector('#modal-detail-' + btn.dataset.id);
+//         modal.classList.remove('hidden');
+//         modal.classList.add('flex');
+//     });
+// });
 
 // Navbar Fixed
 const navbar = document.querySelector('#nav-menu');

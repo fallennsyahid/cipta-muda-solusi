@@ -28,7 +28,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{-- Swiper CSS --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
 </head>
 
@@ -996,30 +996,31 @@
                 terbaik.
             </p>
 
-            <div class="swiper mySwiper my-10">
-                <div class="swiper-wrapper py-6">
-                    @foreach ($partners as $partner)
-                        <div class="swiper-slide">
-                            <a href="{{ $partner->partner_links }}" target="_blank">
-                                <div class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
+            <div class="container min-w-full px-4 my-6">
+                <div class="swiper">
+                    <div class="swiper-wrapper py-6">
+                        @foreach ($partners as $partner)
+                            <div class="swiper-slide">
+                                <a href="{{ $partner->partner_links }}" target="_blank"
+                                    class="bg-white p-8 rounded-2xl flex items-center justify-center shadow-3">
                                     <div class="w-32 h-32 flex items-center justify-center">
                                         <img src="{{ Storage::url($partner->image) }}" alt="{{ $partner->name }}"
                                             title="{{ $partner->name }}"
                                             class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Tombol Navigasi -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+
+                    <div class="swiper-pagination !bottom-0 mt-10"></div>
                 </div>
-
-                <!-- Tombol Navigasi -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-
-                <!-- Pagination -->
-                <div class="swiper-pagination"></div>
             </div>
+
 
             <div class="flex flex-col gap-2 items-center justify-center">
                 <p class="text-center font-lato text-lg text-text font-medium">
@@ -1027,9 +1028,9 @@
                 </p>
                 <button type="button" id="open-partner-modal"
                     class="flex items-center gap-2 text-white font-semibold bg-gradient-to-r from-primary via-primary to-secondary 
-           py-2 px-4 text-sm sm:py-3 sm:px-6 sm:text-base md:py-4 md:px-8 md:text-lg lg:py-4 lg:px-10 lg:text-xl 
-           rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 
-           transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
+                    py-2 px-4 text-sm sm:py-3 sm:px-6 sm:text-base md:py-4 md:px-8 md:text-lg lg:py-4 lg:px-10 lg:text-xl 
+                    rounded-lg hover:from-secondary hover:via-primary hover:to-heading hover:scale-105 
+                    transition-all duration-300 ease-in-out cursor-pointer active:scale-95">
                     <i class="fas fa-headset text-base sm:text-lg md:text-xl"></i>
                     Hubungi Kami
                 </button>
@@ -1424,15 +1425,18 @@
     {{-- Footer Section End --}}
 </body>
 <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <script>
-    var swiper = new Swiper(".mySwiper", {
+    const swiper = new Swiper(".swiper", {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
         breakpoints: {
-            640: {
+            // 480: {
+            //     slidesPerView: 1,
+            // }
+            768: {
                 slidesPerView: 2
             },
             1024: {

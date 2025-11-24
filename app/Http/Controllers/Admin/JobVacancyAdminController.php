@@ -29,6 +29,38 @@ class JobVacancyAdminController extends Controller
         return view('admin.jobs.index', compact('jobs', 'jobType', 'jobStatus', 'totalJobActive', 'totalJobNonActive', 'totalApplicants'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+        $filterType = $request->get('job_type');
+        $filterStatus = $request->get('status');
+
+        $jobsSearch = JobVacancy::query();
+
+        if ($query) {
+            $jobsSearch->where(function ($qBuilder) use ($query) {
+                $qBuilder->where('position', 'like', "%{$query}%")
+                    ->orWhere('departement', 'like', "%{$query}%")
+                    ->orWhere('location', 'like', "%{$query}%")
+                    ->orWhere('description', 'like', "%{$query}%")
+                    ->orWhereRaw("LOWER(skills) LIKE ?", ["%" . strtolower($query) . "%"]);
+            });
+        }
+
+        if ($filterType && $filterType !== '-') {
+            $jobsSearch->where('job_type', $filterType);
+        }
+
+        if ($filterStatus && $filterStatus !== '-') {
+            $jobsSearch->where('status', $filterStatus);
+        }
+
+        $jobs = $jobsSearch->latest()->paginate(5);
+
+        return view('admin.jobs.partials.jobs-list', compact('jobs'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
