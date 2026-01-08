@@ -72,147 +72,99 @@ const hamburger = document.querySelector('#hamburger');
 const navMenu = document.querySelector('#nav-menu');
 const closeNav = document.querySelectorAll('.close-navbar');
 
-hamburger.addEventListener('click', function () {
-    navMenu.classList.toggle('translate-x-full');
-    navMenu.classList.toggle('translate-x-0');
-});
-
-closeNav.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        navMenu.classList.remove('translate-x-0');
-        navMenu.classList.add('translate-x-full');
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        navMenu.classList.toggle('translate-x-full');
+        navMenu.classList.toggle('translate-x-0');
     });
-});
 
-window.addEventListener('click', function (e) {
-    if (e.target != hamburger && e.target != navMenu) {
-        navMenu.classList.remove('translate-x-0');
-        navMenu.classList.add('translate-x-full');
-    }
-});
+    closeNav.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            navMenu.classList.remove('translate-x-0');
+            navMenu.classList.add('translate-x-full');
+        });
+    });
+
+    window.addEventListener('click', function (e) {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('translate-x-0');
+            navMenu.classList.add('translate-x-full');
+        }
+    });
+}
 
 // Visi Misi & Motto Card
 const visiMisiCard = document.querySelector('#visi-misi-card');
 const mottoBtn = document.querySelector('#see-motto');
 const visiMisiBtn = document.querySelector('#see-visi-misi');
 
-mottoBtn.addEventListener('click', function (e) {
-    e.preventDefault();
+if (mottoBtn && visiMisiCard) {
+    mottoBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        visiMisiCard.classList.add('-rotate-90', 'translate-x-2');
+    });
+}
 
-    visiMisiCard.classList.add('-rotate-90', 'translate-x-2');
-});
-
-visiMisiBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    visiMisiCard.classList.remove('-rotate-90', 'translate-x-2');
-})
+if (visiMisiBtn && visiMisiCard) {
+    visiMisiBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        visiMisiCard.classList.remove('-rotate-90', 'translate-x-2');
+    });
+}
 
 // Partner Modal 
 const openPartnerModal = document.querySelector('#open-partner-modal');
 const partnerModal = document.querySelector('#partner-modal');
 const closePartnerModal = document.querySelectorAll('.close-partner-modal');
 
-openPartnerModal.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    partnerModal.classList.remove('hidden');
-    partnerModal.classList.add('flex', 'animate-fade-in');
-
-    partnerModal.classList.remove('animate-fade-out')
-});
-
-closePartnerModal.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+if (openPartnerModal && partnerModal) {
+    openPartnerModal.addEventListener("click", function (e) {
         e.preventDefault();
-
-        partnerModal.classList.remove('animate-fade-in');
-        partnerModal.classList.add('animate-fade-out')
-
-        partnerModal.addEventListener('animationend', () => {
-            if (partnerModal.classList.contains('animate-fade-out')) {
-                partnerModal.classList.remove('flex', 'animate-fade-out');
-                partnerModal.classList.add('hidden');
-            }
-        }, { once: true });
+        partnerModal.classList.remove('hidden');
+        partnerModal.classList.add('flex', 'animate-fade-in');
+        partnerModal.classList.remove('animate-fade-out');
     });
-});
+
+    closePartnerModal.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            partnerModal.classList.remove('animate-fade-in');
+            partnerModal.classList.add('animate-fade-out');
+
+            partnerModal.addEventListener('animationend', () => {
+                if (partnerModal.classList.contains('animate-fade-out')) {
+                    partnerModal.classList.remove('flex', 'animate-fade-out');
+                    partnerModal.classList.add('hidden');
+                }
+            }, { once: true });
+        });
+    });
+}
 
 const messageCompany = document.querySelector('#company-message');
 const charCount = document.querySelector('#charCount');
 
-messageCompany.addEventListener('input', function () {
-    charCount.textContent = `${messageCompany.value.length} / 400 Karakter`
-});
+if (messageCompany && charCount) {
+    messageCompany.addEventListener('input', function () {
+        charCount.textContent = `${messageCompany.value.length} / 400 Karakter`;
+    });
+}
 
 const selectCompanyType = document.querySelector('#company-type');
 const otherCompanyType = document.querySelector('#other-company-type');
 
-selectCompanyType.addEventListener('change', function () {
-    if (selectCompanyType.value === 'other') {
-        otherCompanyType.classList.remove('hidden');
-        otherCompanyType.required = true;
-        otherCompanyType.focus();
-    } else {
-        otherCompanyType.classList.add('hidden');
-        otherCompanyType.required = false;
-        otherCompanyType.value = "";
-    }
-});
-
-
-
-// const swiper = new Swiper(".mySwiper", {
-//     slidesPerView: 1,
-//     spaceBetween: 20,
-//     loop: true,
-//     centeredSlides: true,
-//     slidesOffsetBefore: 24,
-//     slidesOffsetAfter: 24,
-//     breakpoints: {
-//         640: { slidesPerView: 2 },
-//         1024: { slidesPerView: 3 },
-//     },
-//     pagination: {
-//         el: ".swiper-pagination",
-//         clickable: true,
-//     },
-//     navigation: {
-//         nextEl: ".swiper-button-next", // <- kurang titik di kode kamu
-//         prevEl: ".swiper-button-prev",
-//     },
-// });
-
-
-// Dots
-// const container = document.querySelector('.dots-container');
-// const section = document.getElementById('teams');
-// const sectionWidth = section.offsetWidth;
-// const sectionHeight = section.offsetHeight;
-// const primary = '#1e40af';
-// const secondary = '#3b82f6';
-// const accent = ' #dbeafe';
-
-// const colors = [primary, secondary, accent];
-
-// for (let i = 0; i < 20; i++) {
-//     const dot = document.createElement('div');
-//     const size = Math.floor(Math.random() * (55 - 30 + 1)) + 30;
-//     const posX = Math.random() * sectionWidth;
-//     const posY = Math.random() * sectionHeight;
-//     const delay = Math.random() * 5;
-//     const color = colors[Math.floor(Math.random() * colors.length)];
-
-//     dot.classList.add('dot');
-//     dot.style.width = `${size}px`;
-//     dot.style.height = `${size}px`;
-//     dot.style.left = `${posX}px`;
-//     dot.style.top = `${posY}px`;
-//     dot.style.animationDelay = `${delay}s`;
-//     dot.style.backgroundColor = color;
-
-//     container.appendChild(dot);
-// }
-
+if (selectCompanyType && otherCompanyType) {
+    selectCompanyType.addEventListener('change', function () {
+        if (selectCompanyType.value === 'other') {
+            otherCompanyType.classList.remove('hidden');
+            otherCompanyType.required = true;
+            otherCompanyType.focus();
+        } else {
+            otherCompanyType.classList.add('hidden');
+            otherCompanyType.required = false;
+            otherCompanyType.value = "";
+        }
+    });
+}

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('description');
             $table->longText('content');
             $table->boolean('is_featured')->default(false);
-            $table->enum('status', BlogStatus::values())->default(BlogStatus::ReadyToPublish->value);
+            $table->enum('status', BlogStatus::values())->default(BlogStatus::Pending->value);
             $table->timestamps();
         });
     }

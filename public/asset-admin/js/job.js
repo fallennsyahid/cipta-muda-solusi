@@ -1,3 +1,19 @@
+const profileDropdown = document.getElementById('profile-dropdown');
+const profileDetails = document.getElementById('profile-details');
+
+profileDropdown.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDetails.classList.toggle('scale-y-0');
+    profileDetails.classList.toggle('scale-y-100');
+});
+
+window.addEventListener('click', (e) => {
+    if (!profileDropdown.contains(e.target) && !profileDetails.contains(e.target)) {
+        profileDetails.classList.remove('scale-y-100')
+        profileDetails.classList.add('scale-y-0')
+    }
+});
+
 const modalCreateJob = document.querySelector('#create-new-job');
 const openModalBtn = document.querySelector('#open-modal');
 const closeModalBtn = document.querySelectorAll('.close-modal');
