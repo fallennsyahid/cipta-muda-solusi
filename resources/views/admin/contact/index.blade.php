@@ -295,6 +295,6 @@
 </script>
 
 <script src="{{ asset('asset-admin/js/sidebar.js') }}"></script>
-{{-- <script src="{{ asset('asset-admin/js/contact.js') }}"></script> --}}
+<script src="{{ asset('asset-admin/js/contact.js') }}"></script>
 
 </html>

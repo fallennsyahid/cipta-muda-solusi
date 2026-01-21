@@ -1,61 +1,269 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏢 Cipta Muda Solusi - Company Profile Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Website company profile dan sistem manajemen untuk **PT Cipta Muda Solusi**, sebuah perusahaan yang bergerak di bidang IT Solution, Software Development, dan layanan teknologi informasi lainnya.
 
-## About Laravel
+## 📋 Deskripsi Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi web full-stack yang dibangun menggunakan Laravel 12 dengan fitur:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Landing Page** - Halaman utama perusahaan dengan informasi layanan
+- **Job Vacancy System** - Sistem lowongan kerja dengan fitur pencarian dan aplikasi online
+- **Blog Management** - CMS untuk artikel dan berita perusahaan
+- **Portfolio Showcase** - Galeri project dan portofolio perusahaan
+- **Partner Management** - Manajemen data mitra dan klien
+- **Contact Form** - Formulir kontak dengan notifikasi
+- **FAQ System** - Sistem tanya jawab untuk pengunjung
+- **Admin Dashboard** - Panel admin untuk mengelola seluruh konten
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Tech Stack
 
-## Learning Laravel
+### Backend
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **PHP** ^8.2
+- **Laravel** ^12.0
+- **Laravel Scout** dengan TNTSearch - Full-text search engine
+- **Laravel Breeze** - Authentication scaffolding
+- **Maatwebsite Excel** - Export data ke Excel
+- **Intervention Image** - Image processing
+- **Mews Purifier** - HTML sanitization
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Frontend
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Tailwind CSS** ^4.1 dengan plugin forms & typography
+- **Alpine.js** ^3.4 - Reactive JavaScript framework
+- **Vite** ^7.0 - Build tool
+- **Swiper.js** ^12.0 - Touch slider
 
-## Laravel Sponsors
+### Testing
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Pest PHP** ^3.8 - Testing framework
 
-### Premium Partners
+## 📁 Struktur Project
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```
+├── app/
+│   ├── Enums/              # Enum definitions (Status, JobType, etc.)
+│   ├── Exports/            # Excel export classes
+│   ├── Http/
+│   │   ├── Controllers/    # Web & Admin controllers
+│   │   ├── Middleware/     # Custom middleware
+│   │   └── Requests/       # Form request validation
+│   ├── Models/             # Eloquent models
+│   ├── Notifications/      # Notification classes
+│   ├── Observers/          # Model observers
+│   └── View/Components/    # Blade components
+├── database/
+│   ├── factories/          # Model factories
+│   ├── migrations/         # Database migrations
+│   └── seeders/            # Database seeders
+├── resources/
+│   ├── css/                # Stylesheets
+│   ├── js/                 # JavaScript files
+│   └── views/              # Blade templates
+├── routes/
+│   ├── web.php             # Web routes
+│   └── auth.php            # Authentication routes
+└── tests/                  # Pest tests
+```
 
-## Contributing
+## 🚀 Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Persyaratan Sistem
 
-## Code of Conduct
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- MySQL / MariaDB / SQLite
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Langkah Instalasi
 
-## Security Vulnerabilities
+1. **Clone repository**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    git clone <repository-url>
+    cd cipta-muda-solusi
+    ```
 
-## License
+2. **Install PHP dependencies**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    composer install
+    ```
+
+3. **Install Node.js dependencies**
+
+    ```bash
+    npm install
+    ```
+
+4. **Setup environment**
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+5. **Konfigurasi database** di file `.env`
+
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=cipta_muda_solusi
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+6. **Jalankan migrasi dan seeder**
+
+    ```bash
+    php artisan migrate --seed
+    ```
+
+7. **Create storage link**
+
+    ```bash
+    php artisan storage:link
+    ```
+
+8. **Build assets**
+    ```bash
+    npm run build
+    ```
+
+## 💻 Menjalankan Aplikasi
+
+### Development Mode (Recommended)
+
+Jalankan semua service sekaligus dengan satu command:
+
+```bash
+composer dev
+```
+
+Command ini akan menjalankan secara bersamaan:
+
+- Laravel development server (`php artisan serve`)
+- Queue listener (`php artisan queue:listen`)
+- Vite dev server (`npm run dev`)
+
+### Manual Mode
+
+Buka 3 terminal terpisah:
+
+```bash
+# Terminal 1 - Laravel server
+php artisan serve
+
+# Terminal 2 - Queue listener
+php artisan queue:listen
+
+# Terminal 3 - Vite
+npm run dev
+```
+
+Akses aplikasi di: `http://localhost:8000`
+
+## 📊 Fitur Utama
+
+### 🏠 Public Pages (Landing)
+
+| Fitur           | Deskripsi                                               |
+| --------------- | ------------------------------------------------------- |
+| Homepage        | Halaman utama dengan hero section, layanan, dan partner |
+| Jobs            | Daftar lowongan kerja dengan pencarian full-text        |
+| Blogs           | Artikel dan berita perusahaan                           |
+| FAQs            | Halaman tanya jawab                                     |
+| Contact         | Formulir kontak                                         |
+| Partner Request | Formulir permintaan kerjasama                           |
+
+### 🔐 Admin Panel
+
+| Modul            | Fungsi                              |
+| ---------------- | ----------------------------------- |
+| Dashboard        | Overview statistik dan aktivitas    |
+| Job Vacancies    | CRUD lowongan kerja, kelola pelamar |
+| Portfolios       | Manajemen project showcase          |
+| Blogs            | CMS artikel dengan approval system  |
+| FAQs             | Kelola pertanyaan dan jawaban       |
+| Partners         | Manajemen mitra bisnis              |
+| Partner Requests | Review permintaan kerjasama         |
+| CV Bank          | Database CV pelamar                 |
+| Employees        | Manajemen data karyawan             |
+| Contacts         | View pesan dari contact form        |
+| Accounts         | User management                     |
+
+### 📦 Kategori Portfolio
+
+- Web Development
+- Software Development
+- IT Solution
+- Data Center
+- Sales & Marketing
+- Event Organizer
+- IT Operation & Maintenance
+
+## 🧪 Testing
+
+Jalankan test suite dengan Pest:
+
+```bash
+# Via composer script
+composer test
+
+# Atau langsung
+php artisan test
+```
+
+## 📝 Scripts Tersedia
+
+| Command         | Deskripsi                        |
+| --------------- | -------------------------------- |
+| `composer dev`  | Jalankan development environment |
+| `composer test` | Jalankan test suite              |
+| `npm run dev`   | Start Vite dev server            |
+| `npm run build` | Build production assets          |
+
+## 🔒 Role & Permissions
+
+Aplikasi menggunakan sistem role sederhana:
+
+- **Admin** - Akses penuh ke admin panel
+- **Writer** - Akses untuk membuat blog (dengan approval)
+
+## 📤 Export Data
+
+Fitur export ke Excel tersedia untuk:
+
+- Data Pelamar (Applicants)
+- Data CV
+- Data Karyawan (Employees)
+
+## 🔍 Search Engine
+
+Menggunakan **Laravel Scout** dengan **TNTSearch driver** untuk pencarian full-text pada:
+
+- Job Vacancies (posisi, departemen, lokasi, skill)
+
+## 📧 Notifications
+
+Sistem notifikasi untuk:
+
+- Request publish blog (dari writer ke admin)
+- Activity logging untuk audit trail
+
+## 🤝 Contributing
+
+1. Fork repository
+2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
+
+## 📄 License
+
+Project ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).
+
+---
+
+**Dikembangkan dengan ❤️ oleh Tim Cipta Muda Solusi**
